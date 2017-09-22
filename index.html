@@ -6,6 +6,7 @@
     <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <![endif]-->
+    <!-- this way of defining the viewport is not the most reliable; we need to do it in the css -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/softozor.css" />
     <link rel="stylesheet" type="text/css" href="css/contact.css" />
@@ -27,37 +28,12 @@
     <input class="burger-check" id="burger-check" type="checkbox"><label for="burger-check" class="burger"></label>
     <nav id="navigation" class="navigation">
         <ul>
-            <li><a href="#" id="teamlink" class="teamlink" onclick="load('team');">Team</a></li>
-            <li><a href="#" onclick="load('contact');">Contact</a></li>
-            <li><a href="#" onclick="load('blog');">Blog</a></li>
+            <li><a href="#" onclick="load('team.html');">Team</a></li>
+            <li><a href="#" onclick="load('contact.html');">Contact</a></li>
+            <li><a href="#" onclick="load('blog.html');">Blog</a></li>
         </ul>
     </nav>
-
-    <div id="content"></div>
-
-    <!--script>
-        function linkClick(section) {
-            $("#allSections").find("section").not("#" + section).hide();
-            $("#" + section).fadeIn("slow", function() {
-                //document.getElementById("burger-check").checked = false;
-            });
-        }
-        var dinos = ["florianosorus", "lauranozor", "thomex"];
-        for (var i = 0; i < dinos.length; ++i) {
-            $("#" + dinos[i]).hover(
-                function() {
-                    //$(this).parent().find("#hoverme").hide();
-                    $(this).parent().find("#hoverme").fadeTo("slow", 0, function() {});
-                },
-                function() {
-                    $(this).parent().find("#hoverme").fadeTo("slow", 1, function() {});
-                }
-            );
-        }
-
-    </script-->
-
+    <div id="content" />
 </body>
-
 
 </html>
