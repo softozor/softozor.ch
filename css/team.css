@@ -1,8 +1,8 @@
 /*@import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css';*/
+
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css';
 @import 'https://fonts.googleapis.com/css?family=Raleway:100,600';
 @import 'https://fonts.googleapis.com/css?family=Open+Sans:300';
-
 #team {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
@@ -12,8 +12,6 @@
 
 #team h1,
 #team h2,
-/*#team h3,
-#team h4,*/
 #team h5,
 #team h6 {
   margin: 0 0 20px 0;
@@ -27,12 +25,12 @@
 
 .team-member a:link,
 .team-member a:active,
-.team-member a:visited{
-  color:rgba(255,255,255,1);
+.team-member a:visited {
+  color: rgba(255, 255, 255, 1);
 }
 
-.team-member a:hover{
-  color:rgba(255,255,255,0.6);
+.team-member a:hover {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .team-member {
@@ -101,20 +99,19 @@
   color: #fff;
   background: rgba(255, 0, 220, 0.75);
 }
+
 .team-member figure[data-dinosaur="lauranozor"]:hover figcaption {
   color: #fff;
   background: rgba(0, 0, 255, 0.75);
 }
+
 .team-member figure[data-dinosaur="thomex"]:hover figcaption {
   color: #fff;
   background: rgba(0, 143, 29, 0.9);
 }
+
 .team-member figure:hover figcaption {
   visibility: visible;
-  /*color: #fff;
-  background: rgba(230, 78, 62, 0.9);*/
-  /* Primary color, can be changed via colors.css */
-
   height: 100%;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -150,13 +147,72 @@
   transition: all 0.4s ease-in-out;
 }
 
-.team-member .img-responsive
-{
+.team-member .img-responsive {
   border-radius: 50%;
 }
 
-.dinoname
-{
+.dinoname {
   font-weight: 400;
   font-size: 30px !important;
+}
+
+button.accordion {
+  background-color: #eee;
+  color: #444;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 20px;
+  transition: 0.4s;
+}
+
+button.accordion.active,
+button.accordion:hover {
+  background-color: #ddd;
+}
+
+button.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+}
+
+button.accordion.active:after {
+  content: "\2212";
+}
+
+button.accordion figure {}
+
+button.accordion figure img {
+  float: left;
+  display: block;
+  width: 50%;
+  margin-right: 15px;
+  margin-bottom: 5px;
+}
+
+button.accordion .shortDescr {
+  text-align: justify;
+  width: 90%;
+}
+
+button.accordion hr {
+  height: 1px;
+  margin: -0.5em 0 0.5em;
+  padding: 0;
+  color: #000;
+  background-color: #000;
+  border: 0;
+}
+
+div.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  font-size: 15px;
 }
