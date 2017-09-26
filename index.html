@@ -21,18 +21,18 @@
 
 <body>
   <div class="banner">
-    <nav id="language-selector" class="language-selector">
-      <img src="images/blank.png" class="flag flag-us languageImg" alt="english" />&nbsp;<img src="images/blank.png" class="flag flag-fr languageSelected" alt="français" />&nbsp;<img src="images/blank.png" class="flag flag-de languageImg" alt="deutsch" />&nbsp;<img src="images/blank.png" class="flag flag-es languageImg" alt="español" />&nbsp;<img src="images/blank.png" class="flag flag-pt languageImg" alt="português" />&nbsp;
-    </nav>
-    <img src="images/banner.jpg" alt="softozor banner" class="bannerImg">
+    <!--nav id="language-selector" class="language-selector">
+           <img src="images/blank.png" class="flag flag-us languageImg" alt="english" />&nbsp;<img src="images/blank.png" class="flag flag-fr languageSelected" alt="français" />&nbsp;<img src="images/blank.png" class="flag flag-de languageImg" alt="deutsch" />&nbsp;<img src="images/blank.png" class="flag flag-es languageImg" alt="español" />&nbsp;<img src="images/blank.png" class="flag flag-pt languageImg" alt="português" />&nbsp;>
+    </nav-->
+    <img src="images/banner.jpg" alt="softozor banner" id="bannerImg">
   </div>
   <input class="burger-check" id="burger-check" type="checkbox"><label for="burger-check" class="burger"></label>
-  <nav id="navigation" class="navigation">
+  <nav class="navigation">
     <ul>
       <li><a href="#" onclick='Menu.load("team.html");'>Team</a></li>
       <li><a href="#" onclick='Menu.load("focus.html");'>Focus</a></li>
       <li><a href="#" onclick='Menu.load("products.html");'>Products</a></li>
-      <li><a href="#" onclick='Menu.load("contact.html");'>Contact</a></li>
+      <li><a href="#" onclick='Menu.load("contact.php");'>Contact</a></li>
       <li><a href="#" onclick='Menu.load("blog.html");'>Blog</a></li>
     </ul>
   </nav>
@@ -46,5 +46,16 @@
     </table>
   </div>
 </body>
+
+<script>
+  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  console.log("viewport width = " + w);
+  var imgWidth = document.getElementById("bannerImg").width;
+  var imgHeight = document.getElementById("bannerImg").height;
+  if (imgWidth > w) {
+    document.getElementById("bannerImg").style.marginLeft = (w - imgWidth) + "px";
+  }
+
+</script>
 
 </html>

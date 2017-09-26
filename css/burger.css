@@ -1,5 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
-
 .burger {
   display: inline-block;
   border: 0;
@@ -11,16 +10,17 @@
   width: 28px;
   /*transition: border-bottom 1s ease-in-out;
   -webkit-transition: border-bottom 1s ease-in-out;*/
-  position:absolute;
-  left:6px;
-  top:6px;
-  z-index:1;
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  z-index: 1;
 }
 
 .burger::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
+
 .burger:before {
   content: "";
   display: block;
@@ -45,16 +45,20 @@
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
 }
 
+
 /*remove the default view of a checkbox*/
+
 .burger-check {
   display: none;
-  position:absolute;
+  position: absolute;
 }
+
 
 /*
  * first line
  */
-.burger-check:checked ~ .burger:before {
+
+.burger-check:checked~.burger:before {
   transform: rotate(-405deg) translateY(1px) translateX(-3px);
   -webkit-transform: rotate(-405deg) translateY(1px) translateX(-3px);
   transition: -webkit-transform 0.5s ease-in-out;
@@ -63,10 +67,12 @@
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
 }
 
+
 /*
  * second line
  */
-.burger-check:checked ~ .burger:after {
+
+.burger-check:checked~.burger:after {
   transform: rotate(405deg) translateY(-4px) translateX(-5px);
   -webkit-transform: rotate(405deg) translateY(-4px) translateX(-5px);
   transition: -webkit-transform 0.5s ease-in-out;
@@ -75,10 +81,12 @@
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
 }
 
+
 /*
  * third line
  */
-.burger-check:checked ~ .burger {
+
+.burger-check:checked~.burger {
   border-bottom: 4px solid transparent;
   transition: border-bottom 0.8s ease-in-out;
   -webkit-transition: border-bottom 0.8s ease-in-out;
@@ -90,27 +98,30 @@
   -webkit-transition: max-height 0.5s ease-in-out;
   transition: max-height 0.5s ease-in-out;
   font-style: italic;
-  position:absolute;
-  left:6px;
-  top:26px;
-  z-index:1;
+  position: absolute;
+  left: 6px;
+  top: 26px;
+  z-index: 1;
+  border-width: 0px;
+  border-color: black;
+  border-style: solid;
+  background-color: white;
 }
 
-.burger-check:checked ~ .navigation {
+.burger-check:checked~.navigation {
   max-height: 500px;
   -webkit-transition: max-height 0.5s ease-in-out;
   transition: max-height 0.5s ease-in-out;
+  border-width: 3px;
 }
 
-#navigation a
-{
-  color:#000000 !important;
+.navigation a {
+  color: #000000 !important;
   font-family: 'Libre Baskerville', serif;
   text-align: left;
 }
 
-#navigation li a
-{
+.navigation li a {
   line-height: 25px !important;
-  text-size-adjust:auto !important;
+  text-size-adjust: auto !important;
 }

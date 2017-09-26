@@ -12,17 +12,18 @@ buildAccordions($conn, $lang);
 mysqli_close($conn);
 ?>
 
-  <?
+  <?php
 function getShortDescription($conn, $lang, $id)
 {
   $req = "SELECT " . $lang . " FROM short_desc WHERE id = '" . $id . "'";
   $res = mysqli_query($conn, $req);
   if($row = mysqli_fetch_row($res))
   {
-    return $row[0];
+    $returnValue = $row[0];
   }
 
   mysqli_free_result($res);
+  return $returnValue;
 }
 
 function getPortfolio($conn, $lang, $id)
@@ -45,17 +46,6 @@ function buildAccordions($conn, $lang)
 
   while($row = mysqli_fetch_array($res))
   {
-//    echo "<button class='accordion'  onclick='AccordionLoader.toggle(this)'>";
-//    echo "<div class='shortDescr'>";
-//    echo "<figure>";
-//    echo "<img src='images/Team/" . $row['img'] . "'>";
-//    echo "</figure>";
-//    echo "<h2>";
-//    echo $row['firstName'] . " " . $row['lastName'];
-//    echo "</h2>";
-//    echo "<hr>";
-//    echo getShortDescription($conn, $lang, $row['id']);
-//    echo "</button>"; 
     echo "<button class='accordion'  onclick='AccordionLoader.toggle(this)'>";
     echo "<figure>";
     echo "<img src='images/Team/" . $row['img'] . "'>";
