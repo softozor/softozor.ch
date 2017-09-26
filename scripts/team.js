@@ -1,5 +1,5 @@
 var AccordionLoader = {
-  toggle: function (param) {
+  deactivateAll: function (param) {
     var accs = document.getElementsByClassName("accordion");
     for (var i = 0; i < accs.length; ++i) {
       if (accs[i] == param) {
@@ -11,7 +11,9 @@ var AccordionLoader = {
         panel.style.maxHeight = null;
       }
     }
-
+  },
+  toggle: function (param) {
+    AccordionLoader.deactivateAll(param);
     param.classList.toggle("active");
     var panel = param.nextElementSibling;
     if (panel.style.maxHeight) {
