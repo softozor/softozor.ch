@@ -1,5 +1,17 @@
 var AccordionLoader = {
   toggle: function (param) {
+    var accs = document.getElementsByClassName("accordion");
+    for (var i = 0; i < accs.length; ++i) {
+      if (accs[i] == param) {
+        continue;
+      }
+      var panel = accs[i].nextElementSibling;
+      if (panel.style.maxHeight) {
+        accs[i].classList.toggle("active");
+        panel.style.maxHeight = null;
+      }
+    }
+
     param.classList.toggle("active");
     var panel = param.nextElementSibling;
     if (panel.style.maxHeight) {
@@ -26,7 +38,7 @@ var AccordionLoader = {
       lang = "en";
     }
 
-    xmlhttp.open("GET", "getTeam.php?lang=" + lang, true);
+    xmlhttp.open("GET", "scripts/getTeam.php?lang=" + lang, true);
     xmlhttp.send();
   }
 };

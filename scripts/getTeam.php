@@ -1,4 +1,4 @@
-<?
+<?php
 $lang = strval($_GET['lang']);
 
 $conn = mysqli_connect('michella.mysql.db.internal', 'michella_user', 'SgjFhdaZ', 'michella_softozor');
@@ -45,14 +45,25 @@ function buildAccordions($conn, $lang)
 
   while($row = mysqli_fetch_array($res))
   {
+//    echo "<button class='accordion'  onclick='AccordionLoader.toggle(this)'>";
+//    echo "<div class='shortDescr'>";
+//    echo "<figure>";
+//    echo "<img src='images/Team/" . $row['img'] . "'>";
+//    echo "</figure>";
+//    echo "<h2>";
+//    echo $row['firstName'] . " " . $row['lastName'];
+//    echo "</h2>";
+//    echo "<hr>";
+//    echo getShortDescription($conn, $lang, $row['id']);
+//    echo "</button>"; 
     echo "<button class='accordion'  onclick='AccordionLoader.toggle(this)'>";
-    echo "<div class='shortDescr'>";
     echo "<figure>";
     echo "<img src='images/Team/" . $row['img'] . "'>";
     echo "</figure>";
-    echo "<h4>";
+    echo "<div class='shortDescr'>";
+    echo "<h2>";
     echo $row['firstName'] . " " . $row['lastName'];
-    echo "</h4>";
+    echo "</h2>";
     echo getShortDescription($conn, $lang, $row['id']);
     echo "</button>"; 
     echo "<div class='panel'>";
