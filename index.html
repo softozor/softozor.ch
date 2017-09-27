@@ -26,14 +26,14 @@
     </nav-->
     <img src="images/banner.jpg" alt="softozor banner" id="bannerImg">
   </div>
-  <input class="burger-check" id="burger-check" type="checkbox"><label for="burger-check" class="burger"></label>
-  <nav class="navigation">
+  <input id="burger-check" type="checkbox"><label for="burger-check" id="burger"></label>
+  <nav id="navigation">
     <ul>
-      <li><a href="#" onclick='Menu.load("team.html");'>Team</a></li>
-      <li><a href="#" onclick='Menu.load("focus.html");'>Focus</a></li>
-      <li><a href="#" onclick='Menu.load("products.html");'>Products</a></li>
-      <li><a href="#" onclick='Menu.load("contact.php");'>Contact</a></li>
-      <li><a href="#" onclick='Menu.load("blog.html");'>Blog</a></li>
+      <li><a href="#" onclick='MainNavigation.load("team.html");'>Team</a></li>
+      <li><a href="#" onclick='MainNavigation.load("focus.html");'>Focus</a></li>
+      <li><a href="#" onclick='MainNavigation.load("products.html");'>Products</a></li>
+      <li><a href="#" onclick='MainNavigation.load("contact.php");'>Contact</a></li>
+      <li><a href="#" onclick='MainNavigation.load("blog.html");'>Blog</a></li>
     </ul>
   </nav>
   <div id="content">
@@ -47,15 +47,7 @@
   </div>
 </body>
 
-<script>
-  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-  console.log("viewport width = " + w);
-  var imgWidth = document.getElementById("bannerImg").width;
-  var imgHeight = document.getElementById("bannerImg").height;
-  if (imgWidth > w) {
-    document.getElementById("bannerImg").style.marginLeft = (w - imgWidth) + "px";
-  }
-
-</script>
+<script src="scripts/banner.js"></script>
+<script src="scripts/burger.js"></script>
 
 </html>
