@@ -78,7 +78,7 @@ li a:hover {
 }
 
 .banner {
-  display: inline-block;
+  display: block;
   background-color: #c9c9c9;
   width: 100%;
   text-align: center;
