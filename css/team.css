@@ -33,6 +33,9 @@ button.accordion {
   outline: none;
   font-size: 20px;
   transition: 0.4s;
+  display: flex;
+  /*  flex-direction: row;*/
+  align-items: center;
 }
 
 button.accordion.active,
@@ -51,20 +54,25 @@ button.accordion.active:after {
   content: "\2212";
 }
 
-button.accordion figure {}
+button.accordion figure {
+  min-width: 50%;
+  min-height: 50%;
+}
 
 button.accordion figure img {
   /*  float: left;*/
   display: block;
-  width: 25%;
-  margin-right: auto;
   margin-left: auto;
-  margin-bottom: 5px;
+  margin-right: auto;
+  width: 50%;
 }
 
 button.accordion .shortDescr {
   text-align: center;
-  width: 100%;
+  width: 50%;
+  display: block;
+  min-width: 50%;
+  min-height: 50%;
 }
 
 button.accordion h2 {
