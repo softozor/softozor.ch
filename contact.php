@@ -11,8 +11,8 @@ if(!$conn)
 
   <section id="contact" class="anArticle">
     <form id="contactForm" action="scripts/sendMail.php" method="post">
-      <h3>Contact</h3>
-      <h4>Vous voulez en savoir plus sur ce qu'on fait? Vous avez besoin de conseil, envie de demander un devis ou toute autre nécessité de nous contacter? Utilisez ce formulaire sans hésiter:</h4>
+      <h1>Contact</h1>
+      Vous voulez en savoir plus sur ce qu'on fait? Vous avez besoin de conseil, envie de demander un devis ou toute autre nécessité de nous contacter? Utilisez ce formulaire sans hésiter:
 
 
 

@@ -3,3 +3,8 @@ document.addEventListener("click", function (event) {
     document.getElementById("burger-check").checked = false;
   }
 });
+
+$('#navigation ul li a').on('click', function () {
+  $(this).parent().parent().children().children().removeClass('selected');
+  $(this).addClass('selected');
+});

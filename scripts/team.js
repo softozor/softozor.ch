@@ -1,4 +1,9 @@
 var AccordionLoader = {
+  resetPanel: function (panel) {
+    panel.style.maxHeight = null;
+    panel.style.borderWidth = null;
+    panel.style.borderColor = "white";
+  },
   deactivateAll: function (param) {
     var accs = document.getElementsByClassName("accordion");
     for (var i = 0; i < accs.length; ++i) {
@@ -8,7 +13,7 @@ var AccordionLoader = {
       var panel = accs[i].nextElementSibling;
       if (panel.style.maxHeight) {
         accs[i].classList.toggle("active");
-        panel.style.maxHeight = null;
+        AccordionLoader.resetPanel(panel);
       }
     }
   },
@@ -17,9 +22,12 @@ var AccordionLoader = {
     param.classList.toggle("active");
     var panel = param.nextElementSibling;
     if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
+      AccordionLoader.resetPanel(panel);
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
+      panel.style.borderColor = "#327fb2";
+      panel.style.borderStyle = "solid";
+      panel.style.borderWidth = "2px";
     }
   },
   showTeam: function (lang) {

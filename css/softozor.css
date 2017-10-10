@@ -1,55 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  -o-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
 html {
   overflow: -moz-scrollbars-vertical;
   overflow-y: scroll;
 }
 
 body {
-  background-color: floralwhite;
+  background-color: white;
   font-family: 'Libre Baskerville', serif;
-  font-size: 30px;
+  /*  font-size: 30px;*/
   text-align: left;
   margin: 0px;
-}
-
-a {
-  color: inherit;
-}
-
-small {
-  font-size: 14px;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  list-style: none;
-  font-size: 25px;
-  padding: 5px 0;
-}
-
-li a {
-  text-decoration: none;
-}
-
-li a:hover {
-  text-decoration: underline;
 }
 
 .allArticles {
@@ -79,7 +39,7 @@ li a:hover {
 
 .banner {
   display: block;
-  background-color: #c9c9c9;
+  background-color: white;
   width: 100%;
   text-align: center;
 }
@@ -94,22 +54,6 @@ li a:hover {
   width: 100%;
   margin: 0 auto;
   position: relative;
-}
-
-h3 {
-  color: #F96 !important;
-  display: block;
-  font-size: 30px !important;
-  font-weight: 400 !important;
-  line-height: 30px !important;
-}
-
-h4 {
-  margin: 5px 0 15px !important;
-  display: block;
-  font-size: 18px !important;
-  line-height: 20px !important;
-  color: #777 !important;
 }
 
 a.tooltip {

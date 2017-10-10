@@ -3,75 +3,74 @@
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css';
 @import 'https://fonts.googleapis.com/css?family=Raleway:100,600';
 @import 'https://fonts.googleapis.com/css?family=Open+Sans:300';
-#team {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 300;
-  color: #999;
-  background-color: #fff;
-}
-
-#team h1,
-#team h2,
-#team h5,
-#team h6 {
-  margin: 0 0 20px 0;
-  text-transform: none;
-  color: rgba(254, 82, 76, 1);
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 600;
-  letter-spacing: 1px;
-  line-height: 1.5;
-}
-
 button.accordion {
-  background-color: #eee;
-  color: #444;
+  background-color: white;
   padding: 18px;
   width: 100%;
-  border: none;
+  border-width: 5px 5px 0px 0px;
+  border-style: solid;
+  border-color: #b2a796;
   text-align: left;
   outline: none;
   font-size: 20px;
   transition: 0.4s;
   display: flex;
-  /*  flex-direction: row;*/
   align-items: center;
 }
 
 button.accordion.active,
 button.accordion:hover {
-  background-color: #ddd;
+  background-color: #327fb2;
 }
 
-button.accordion:after {
-  content: '\002B';
-  color: #777;
-  font-weight: bold;
-  float: right;
+@media screen and (min-width: 1200px) {
+  button.accordion figure {
+    min-width: 50%;
+    min-height: 50%;
+    margin: 0;
+    padding: 0;
+  }
+  button.accordion figure img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  button.accordion .shortDescr {
+    text-align: center;
+    width: 50%;
+    display: block;
+    min-width: 50%;
+    min-height: 50%;
+    margin: 0;
+    padding: 0;
+  }
 }
 
-button.accordion.active:after {
-  content: "\2212";
-}
-
-button.accordion figure {
-  min-width: 50%;
-  min-height: 50%;
-}
-
-button.accordion figure img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
-button.accordion .shortDescr {
-  text-align: center;
-  width: 50%;
-  display: block;
-  min-width: 50%;
-  min-height: 50%;
+@media screen and (max-width: 1200px) {
+  button.accordion {
+    flex-direction: column;
+  }
+  button.accordion figure {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0;
+    padding: 0;
+  }
+  button.accordion figure img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+  }
+  button.accordion .shortDescr {
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 button.accordion h2 {
@@ -95,4 +94,6 @@ div.panel {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   font-size: 15px;
+  margin-top: 0px;
+  margin-bottom: 20px;
 }

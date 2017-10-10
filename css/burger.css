@@ -7,14 +7,22 @@
   position: absolute;
 }
 
+#navigation a {
+  color: white;
+  font-family: 'Libre Baskerville', serif;
+  text-decoration: none;
+  font-size: 30px;
+  width: 100%;
+  display: block;
+}
+
 @media screen and (min-width: 1200px) {
   #navigation {
     height: auto;
     width: 100%;
-    border-style: solid;
-    border-color: red;
-    border-width: 3px;
-    top: 0px;
+  }
+  #navigation a {
+    text-align: center;
   }
   #navigation ul {
     display: flex;
@@ -22,10 +30,21 @@
     flex-direction: row;
     align-items: stretch;
     width: 100%;
+    padding: 0;
+    margin: 0;
   }
   #navigation ul li {
     flex: 1;
     text-align: center;
+    background-color: #b2a796;
+  }
+  #navigation ul li:hover {
+    flex: 1;
+    text-align: center;
+    background-color: #327fb2;
+  }
+  .selected {
+    background-color: #327fb2;
   }
 }
 
@@ -70,7 +89,6 @@
     transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
     -webkit-transition: -webkit-transform 0.5s ease-in-out;
   }
-  */
   /*
  * first line
  */
@@ -108,27 +126,28 @@
     transition: max-height 0.5s ease-in-out;
     font-style: italic;
     position: absolute;
-    left: 6px;
+    left: 0px;
     top: 26px;
     z-index: 1;
-    border-width: 0px;
-    border-color: black;
-    border-style: solid;
-    background-color: white;
+  }
+  #navigation a {
+    text-align: left;
   }
   #burger-check:checked~#navigation {
     max-height: 500px;
     -webkit-transition: max-height 0.5s ease-in-out;
     transition: max-height 0.5s ease-in-out;
-    border-width: 3px;
   }
-  #navigation a {
-    color: #000000 !important;
-    font-family: 'Libre Baskerville', serif;
-    text-align: left;
+  #navigation ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
-  #navigation li a {
-    line-height: 25px !important;
-    text-size-adjust: auto !important;
+  #navigation ul li {
+    background-color: #b2a796;
+    padding: 25px 5px 25px 5px;
+  }
+  #navigation ul li:hover {
+    background-color: #327fb2;
   }
 }
