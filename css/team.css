@@ -9,7 +9,7 @@ button.accordion {
   width: 100%;
   border-width: 5px 5px 0px 0px;
   border-style: solid;
-  border-color: #b2a796;
+  border-color: #327fb2;
   text-align: left;
   outline: none;
   font-size: 20px;
@@ -21,6 +21,7 @@ button.accordion {
 button.accordion.active,
 button.accordion:hover {
   background-color: #327fb2;
+  color: black;
 }
 
 @media screen and (min-width: 1200px) {
@@ -44,6 +45,7 @@ button.accordion:hover {
     min-height: 50%;
     margin: 0;
     padding: 0;
+    font-size: 15px;
   }
 }
 
@@ -52,8 +54,6 @@ button.accordion:hover {
     flex-direction: column;
   }
   button.accordion figure {
-    margin-left: auto;
-    margin-right: auto;
     margin: 0;
     padding: 0;
   }
@@ -62,7 +62,6 @@ button.accordion:hover {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    /*    max-width: 400px;*/
   }
   button.accordion .shortDescr {
     text-align: center;
@@ -71,11 +70,6 @@ button.accordion:hover {
     margin: 0;
     padding: 0;
   }
-}
-
-button.accordion h2 {
-  text-align: center;
-  width: 100%;
 }
 
 button.accordion hr {
@@ -96,4 +90,53 @@ div.panel {
   font-size: 15px;
   margin-top: 0px;
   margin-bottom: 20px;
+}
+
+div.panel h1 {
+  color: black;
+}
+
+div.panel a {
+  text-decoration: none;
+  color: black;
+  font-style: italic;
+}
+
+div.panel a:hover {
+  text-decoration: underline;
+}
+
+div.panel .cvEntry {
+  display: flex;
+  flex-direction: row;
+}
+
+div.panel .cvEntry time {
+  width: 25%;
+  text-align: right;
+  margin-right: 15px;
+  font-style: italic;
+}
+
+div.panel .cvEntry a {
+  width: 75%;
+  text-align: left;
+}
+
+div.panel .cvEntry .descr {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  text-align: left;
+}
+
+div.panel .cvEntry .descr .title {
+  font-weight: bold;
+  width: 100%;
+  text-align: left;
+}
+
+div.panel .cvEntry .descr .details {
+  width: 100%;
+  text-align: left;
 }

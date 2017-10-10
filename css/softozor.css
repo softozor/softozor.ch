@@ -7,9 +7,20 @@ html {
 body {
   background-color: white;
   font-family: 'Libre Baskerville', serif;
-  /*  font-size: 30px;*/
   text-align: left;
   margin: 0px;
+}
+
+h1 {
+  font-size: 35px;
+}
+
+h2 {
+  font-size: 25px;
+}
+
+#content {
+  margin: 25px;
 }
 
 .allArticles {
@@ -48,12 +59,6 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-
-.container {
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
 }
 
 a.tooltip {
