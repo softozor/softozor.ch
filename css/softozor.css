@@ -1,4 +1,5 @@
-@import 'https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600';
+/*@import 'https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600';*/
+
 @import 'colors.css';
 html {
   overflow: -moz-scrollbars-vertical;
@@ -7,17 +8,17 @@ html {
 
 body {
   background-color: white;
-  font-family: 'Libre Baskerville', serif;
+  /*  font-family: 'Libre Baskerville', serif;*/
   text-align: left;
   margin: 0px;
 }
 
 h1 {
-  font-size: 35px;
+  font-size: 4vw;
 }
 
 h2 {
-  font-size: 25px;
+  font-size: 2vw;
 }
 
 #content {

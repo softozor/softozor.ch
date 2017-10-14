@@ -12,13 +12,10 @@ if(!$conn)
   <section id="contact" class="anArticle">
     <form id="contactForm" action="scripts/sendMail.php" method="post">
       <!--      <h1>Contact</h1>-->
-      Vous voulez en savoir plus sur ce qu'on fait? Vous avez besoin de conseil, envie de demander un devis ou toute autre nécessité de nous contacter? Utilisez ce formulaire sans hésiter:
-
-
 
       <?php
     
-      buildForm($conn, "en");  
+      buildFieldSet($conn, "en");  
 
       mysqli_close($conn);
       
@@ -42,14 +39,14 @@ function getPlaceHolder($conn, $lang, $id)
   return $returnValue;
 }
 
-function buildForm($conn, $lang)
+function buildFieldSet($conn, $lang)
 {
+  echo "<fieldset>";
   $req = "SELECT id, field, required, type, name FROM fields_definition";
   $res = mysqli_query($conn, $req);
   $i = 0;
   while($row = mysqli_fetch_array($res))
   {
-    echo "<fieldset>";
     echo "<";
     echo $row['field'] . " ";
     if(isset($row['type']))
@@ -76,8 +73,7 @@ function buildForm($conn, $lang)
        echo getPlaceHolder($conn, $lang, $row['id']);
        echo "</" . $row['field'] . ">";
     }
-    
-    echo "</fieldset>";
   }
+  echo "</fieldset>";
 }
 ?>

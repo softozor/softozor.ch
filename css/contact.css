@@ -1,21 +1,19 @@
+@import 'colors.css';
 #contactForm input[type="text"],
 #contactForm input[type="email"],
 #contactForm input[type="tel"],
 #contactForm input[type="url"],
 #contactForm textarea,
 #contactForm button[type="submit"] {
-  font: 400 12px/16px "Open Sans", Helvetica, Arial, sans-serif;
+  /*  font: 400 12px/16px "Open Sans", Helvetica, Arial, sans-serif;*/
 }
 
 #contactForm {
-  width: 100%;
-  /*  background: #F9F9F9;*/
+  width: 90%;
 }
 
 fieldset {
   border: medium none;
-  margin: 0 0 10px;
-  min-width: 100%;
   padding: 0;
   width: 100%;
 }
@@ -26,10 +24,11 @@ fieldset {
 #contactForm input[type="url"],
 #contactForm textarea {
   width: 100%;
-  border: 1px solid #CCC;
-  background: #FFF;
+  border: 1px solid var(--secondaryColor);
+  background: white;
   margin: 0 0 5px;
   padding: 10px;
+  box-sizing: border-box;
 }
 
 #contactForm input[type="text"]:hover,
@@ -40,7 +39,7 @@ fieldset {
   -webkit-transition: border-color 0.3s ease-in-out;
   -moz-transition: border-color 0.3s ease-in-out;
   transition: border-color 0.3s ease-in-out;
-  border: 1px solid #AAA;
+  border: 1px solid var(--principalColor);
 }
 
 #contactForm input[type="url"] {
@@ -49,23 +48,25 @@ fieldset {
 
 #contactForm textarea {
   height: 100px;
-  max-width: 100%;
   resize: none;
 }
 
 #contactForm button[type="submit"] {
   cursor: pointer;
-  width: 100%;
-  border: none;
-  background: #0CF;
-  color: #FFF;
-  margin: 0 0 5px;
+  width: 50%;
+  border: 1px solid var(--principalColor);
+  background: white;
+  color: black;
   padding: 10px;
-  font-size: 15px;
+  font-size: 1vw;
+  text-align: center;
+  display: block;
+  margin: 25px auto;
 }
 
 #contactForm button[type="submit"]:hover {
-  background: #09C;
+  background: var(--principalColor);
+  color: white;
   -webkit-transition: background 0.3s ease-in-out;
   -moz-transition: background 0.3s ease-in-out;
   transition: background-color 0.3s ease-in-out;
@@ -78,21 +79,21 @@ fieldset {
 #contactForm input:focus,
 #contactForm textarea:focus {
   outline: 0;
-  border: 1px solid #999;
+  border: 1px solid var(--principalColor);
 }
 
 ::-webkit-input-placeholder {
-  color: #888;
+  color: var(--secondaryColor);
 }
 
 :-moz-placeholder {
-  color: #888;
+  color: var(--secondaryColor);
 }
 
 ::-moz-placeholder {
-  color: #888;
+  color: var(--secondaryColor);
 }
 
 :-ms-input-placeholder {
-  color: #888;
+  color: var(--secondaryColor);
 }
