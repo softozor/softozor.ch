@@ -6,7 +6,7 @@ $lang = strval($_GET['lang']);
 $conn = getConnection("michella_contact");
 ?>
 
-  <section id="contact" class="anArticle">
+  <section id="contact" class="anArticle decorated">
     <form id="contactForm" action="scripts/sendMail.php" method="post">
       <!--      <h1>Contact</h1>-->
 
