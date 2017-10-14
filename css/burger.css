@@ -12,7 +12,6 @@
   color: white;
   font-family: 'Libre Baskerville', serif;
   text-decoration: none;
-  font-size: 30px;
   width: 100%;
   display: block;
 }
@@ -24,6 +23,7 @@
   }
   #navigation a {
     text-align: center;
+    font-size: 2vw;
   }
   #navigation ul {
     display: flex;
@@ -122,7 +122,7 @@
   }
   #navigation {
     overflow: hidden;
-    max-height: 0px;
+    height: 0px;
     -webkit-transition: max-height 0.5s ease-in-out;
     transition: max-height 0.5s ease-in-out;
     font-style: italic;
@@ -133,9 +133,10 @@
   }
   #navigation a {
     text-align: left;
+    font-size: 5vw;
   }
   #burger-check:checked~#navigation {
-    max-height: 500px;
+    height: auto;
     -webkit-transition: max-height 0.5s ease-in-out;
     transition: max-height 0.5s ease-in-out;
   }
