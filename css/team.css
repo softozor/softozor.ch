@@ -1,15 +1,14 @@
-/*@import 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css';*/
-
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css';
 @import 'https://fonts.googleapis.com/css?family=Raleway:100,600';
 @import 'https://fonts.googleapis.com/css?family=Open+Sans:300';
+@import 'colors.css';
 button.accordion {
   background-color: white;
   padding: 18px;
   width: 100%;
   border-width: 5px 5px 0px 0px;
   border-style: solid;
-  border-color: #327fb2;
+  border-color: var(--principalColor);
   text-align: left;
   outline: none;
   font-size: 20px;
@@ -20,7 +19,7 @@ button.accordion {
 
 button.accordion.active,
 button.accordion:hover {
-  background-color: #327fb2;
+  background-color: var(--principalColor);
   color: black;
 }
 
@@ -94,6 +93,17 @@ div.panel {
 
 div.panel h1 {
   color: black;
+  font-size: 25px;
+}
+
+div.panel h2 {
+  color: black;
+  font-size: 20px;
+}
+
+div.panel h3 {
+  color: black;
+  font-size: 17.5px;
 }
 
 div.panel a {

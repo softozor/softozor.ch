@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600';
+@import 'colors.css';
 
 /*remove the default view of a checkbox*/
 
@@ -36,15 +37,15 @@
   #navigation ul li {
     flex: 1;
     text-align: center;
-    background-color: #b2a796;
+    background-color: var(--secondaryColor);
   }
   #navigation ul li:hover {
     flex: 1;
     text-align: center;
-    background-color: #327fb2;
+    background-color: var(--principalColor);
   }
   .selected {
-    background-color: #327fb2;
+    background-color: var(--principalColor);
   }
 }
 
@@ -144,10 +145,10 @@
     padding: 0;
   }
   #navigation ul li {
-    background-color: #b2a796;
+    background-color: var(--secondaryColor);
     padding: 25px 5px 25px 5px;
   }
   #navigation ul li:hover {
-    background-color: #327fb2;
+    background-color: var(--principalColor);
   }
 }
