@@ -16,6 +16,7 @@
   <script src="scripts/jquery-3.2.1.min.js"></script>
   <script src="scripts/menu.js"></script>
   <script src="scripts/team.js"></script>
+  <script src="scripts/ContentLoader.js"></script>
   <title>Bienvenue chez Softozor</title>
 </head>
 
@@ -36,18 +37,14 @@
       <li><a href="#" onclick='MainNavigation.load("blog.html");'>Blog</a></li>
     </ul>
   </nav>
-  <div id="content">
-    <table width=100% height=250px>
-      <tr>
-        <td valign='middle' align='center'>
-          <huge><b>Site under construction!</b></huge>
-        </td>
-      </tr>
-    </table>
-  </div>
+  <div id="content" />
 </body>
 
 <script src="scripts/banner.js"></script>
 <script src="scripts/burger.js"></script>
+<script>
+  ContentLoader.getText("UNDER_CONSTRUCTION", "en", "content");
+
+</script>
 
 </html>

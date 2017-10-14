@@ -1,17 +1,16 @@
 <?php
-    
+require 'scripts/getConnection.php';
+
 $lang = strval($_GET['lang']);
 
-$conn = mysqli_connect('michella.mysql.db.internal', 'michella_user', 'SgjFhdaZ', 'michella_contact');
-if(!$conn)
-{
-    die("Could not connect: " . mysqli_error($conn));
-}
+$conn = getConnection("michella_contact");
 ?>
 
   <section id="contact" class="anArticle">
     <form id="contactForm" action="scripts/sendMail.php" method="post">
       <!--      <h1>Contact</h1>-->
+
+      <div id="contactIntro" />
 
       <?php
     
@@ -23,6 +22,11 @@ if(!$conn)
 
     </form>
   </section>
+
+  <script>
+    ContentLoader.getText("CONTACT_INTRO", "en", "contactIntro");
+
+  </script>
 
   <?php
 

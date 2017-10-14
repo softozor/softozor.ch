@@ -1,11 +1,9 @@
 <?php
+require 'getConnection.php';
+
 $lang = strval($_GET['lang']);
 
-$conn = mysqli_connect('michella.mysql.db.internal', 'michella_user', 'SgjFhdaZ', 'michella_softozor');
-if(!$conn)
-{
-  die("Could not connect: " . mysqli_error($conn));
-}
+$conn = getConnection("michella_softozor");
 
 buildAccordions($conn, $lang);
 
