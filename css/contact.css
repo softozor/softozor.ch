@@ -1,3 +1,4 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:300';
 @import 'colors.css';
 #contactForm input[type="text"],
 #contactForm input[type="email"],
@@ -16,6 +17,7 @@ fieldset {
   border: medium none;
   padding: 0;
   width: 100%;
+  /*  font: 400 12px/16px "Open Sans", Helvetica, Arial, sans-serif;*/
 }
 
 #contactForm input[type="text"],
@@ -58,7 +60,6 @@ fieldset {
   background: white;
   color: black;
   padding: 10px;
-  font-size: 1vw;
   text-align: center;
   display: block;
   margin: 25px auto;

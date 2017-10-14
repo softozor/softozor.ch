@@ -86,24 +86,24 @@ div.panel {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
-  font-size: 15px;
+  font-size: 1.5vw;
   margin-top: 0px;
   margin-bottom: 20px;
 }
 
 div.panel h1 {
   color: black;
-  font-size: 2vw;
+  font-size: 3.5vw;
 }
 
 div.panel h2 {
   color: black;
-  font-size: 1vw;
+  font-size: 2.5vw;
 }
 
 div.panel h3 {
   color: black;
-  font-size: 0.5vw;
+  font-size: 1.5vw;
 }
 
 div.panel a {
