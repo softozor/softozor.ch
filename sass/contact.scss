@@ -1,0 +1,99 @@
+@import 'partials/base';
+
+#contactForm input[type="text"],
+#contactForm input[type="email"],
+#contactForm input[type="tel"],
+#contactForm input[type="url"],
+#contactForm textarea,
+#contactForm button[type="submit"] {
+
+}
+
+#contactForm {
+  width: 90%;
+}
+
+fieldset {
+  border: medium none;
+  padding: 0;
+  width: 100%;
+}
+
+#contactForm input[type="text"],
+#contactForm input[type="email"],
+#contactForm input[type="tel"],
+#contactForm input[type="url"],
+#contactForm textarea {
+  width: 100%;
+  border: 1px solid $secondary-color;
+  background: white;
+  margin: 0 0 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#contactForm input[type="text"]:hover,
+#contactForm input[type="email"]:hover,
+#contactForm input[type="tel"]:hover,
+#contactForm input[type="url"]:hover,
+#contactForm textarea:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid $principal-color;
+}
+
+#contactForm input[type="url"] {
+  display: none;
+}
+
+#contactForm textarea {
+  height: 100px;
+  resize: none;
+}
+
+#contactForm button[type="submit"] {
+  cursor: pointer;
+  width: 50%;
+  border: 1px solid $principal-color;
+  background: white;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  display: block;
+  margin: 25px auto;
+}
+
+#contactForm button[type="submit"]:hover {
+  background: $principal-color;
+  color: white;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#contactForm button[type="submit"]:active {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#contactForm input:focus,
+#contactForm textarea:focus {
+  outline: 0;
+  border: 1px solid $principal-color;
+}
+
+::-webkit-input-placeholder {
+  color: $secondary-color;
+}
+
+:-moz-placeholder {
+  color: $secondary-color;
+}
+
+::-moz-placeholder {
+  color: $secondary-color;
+}
+
+:-ms-input-placeholder {
+  color: $secondary-color;
+}

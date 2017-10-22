@@ -1,4 +1,7 @@
+@import 'partials/base';
+
 /*remove the default view of a checkbox*/
+
 #burger-check {
   display: none;
   position: absolute;
@@ -16,12 +19,10 @@
     height: auto;
     width: 100%;
   }
-
   #navigation a {
     text-align: center;
     font-size: 2vw;
   }
-
   #navigation ul {
     display: flex;
     list-style: none;
@@ -31,23 +32,21 @@
     padding: 0;
     margin: 0;
   }
-
   #navigation ul li {
     flex: 1;
     text-align: center;
-    background-color: #b2a796;
+    background-color: $secondary-color;
   }
-
   #navigation ul li:hover {
     flex: 1;
     text-align: center;
-    background-color: #327fb2;
+    background-color: $principal-color;
   }
-
   .selected {
-    background-color: #327fb2;
+    background-color: $principal-color;
   }
 }
+
 @media screen and (max-width: 1200px) {
   #burger {
     display: inline-block;
@@ -63,12 +62,10 @@
     top: 6px;
     z-index: 1;
   }
-
   #burger::-moz-focus-inner {
     border: 0;
     padding: 0;
   }
-
   #burger:before {
     content: "";
     display: block;
@@ -80,7 +77,6 @@
     transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
     -webkit-transition: -webkit-transform 0.5s ease-in-out;
   }
-
   #burger:after {
     content: "";
     display: block;
@@ -92,11 +88,10 @@
     transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
     -webkit-transition: -webkit-transform 0.5s ease-in-out;
   }
-
- /*
-* first line
-*/
-  #burger-check:checked ~ #burger:before {
+  /*
+ * first line
+ */
+  #burger-check:checked~#burger:before {
     transform: rotate(-405deg) translateY(1px) translateX(-3px);
     -webkit-transform: rotate(-405deg) translateY(1px) translateX(-3px);
     transition: -webkit-transform 0.5s ease-in-out;
@@ -104,11 +99,10 @@
     transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
     -webkit-transition: -webkit-transform 0.5s ease-in-out;
   }
-
- /*
-* second line
-*/
-  #burger-check:checked ~ #burger:after {
+  /*
+ * second line
+ */
+  #burger-check:checked~#burger:after {
     transform: rotate(405deg) translateY(-4px) translateX(-5px);
     -webkit-transform: rotate(405deg) translateY(-4px) translateX(-5px);
     transition: -webkit-transform 0.5s ease-in-out;
@@ -116,16 +110,14 @@
     transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
     -webkit-transition: -webkit-transform 0.5s ease-in-out;
   }
-
- /*
-* third line
-*/
-  #burger-check:checked ~ #burger {
+  /*
+ * third line
+ */
+  #burger-check:checked~#burger {
     border-bottom: 4px solid transparent;
     transition: border-bottom 0.8s ease-in-out;
     -webkit-transition: border-bottom 0.8s ease-in-out;
   }
-
   #navigation {
     overflow: hidden;
     height: 0px;
@@ -137,30 +129,25 @@
     top: 26px;
     z-index: 1;
   }
-
   #navigation a {
     text-align: left;
     font-size: 5vw;
   }
-
-  #burger-check:checked ~ #navigation {
+  #burger-check:checked~#navigation {
     height: auto;
     -webkit-transition: max-height 0.5s ease-in-out;
     transition: max-height 0.5s ease-in-out;
   }
-
   #navigation ul {
     width: 100%;
     margin: 0;
     padding: 0;
   }
-
   #navigation ul li {
-    background-color: #b2a796;
+    background-color: $secondary-color;
     padding: 25px 5px 25px 5px;
   }
-
   #navigation ul li:hover {
-    background-color: #327fb2;
+    background-color: $principal-color;
   }
 }
