@@ -3,13 +3,15 @@ require 'getConnection.php';
 $lang = strval($_GET['lang']);
 $conn = getConnection("michella_contact");
 
-echo "<form id='contactForm' action='sendMail.php' method='post'>";
+echo "<form id='contactForm' action='scripts/sendMail.php' method='post'>";
 
 buildFieldSet($conn, $lang);  
 mysqli_close($conn);
 
 echo "</form>";
+?>
 
+  <?php
 function getPlaceHolder($conn, $lang, $id)
 {
   $req = "SELECT " . $lang . " FROM placeholders WHERE id = '" . $id . "'";
@@ -41,7 +43,7 @@ function buildFieldSet($conn, $lang)
     {
       echo "name='" . $row['name'] . "' "; 
     }
-    echo "tabindex='" . ++$i . "' ";
+    echo "tabindex='" . ++$i . "' "; 
     if($row['required'])
     {
       echo "required ";
@@ -49,13 +51,13 @@ function buildFieldSet($conn, $lang)
     
     if($row['field'] != "button")
     {
-      echo "placeholder='" . getPlaceHolder($conn, $lang, $row['id']) . "'/>";
+      echo "placeholder='" . getPlaceHolder($conn, $lang, $row['id']) . "'></" . $row['field'] . ">";
     }
-    else
-    {
-       echo ">";
-       echo getPlaceHolder($conn, $lang, $row['id']);
-       echo "</" . $row['field'] . ">";
+    else 
+    { 
+        echo ">"; 
+        echo getPlaceHolder($conn, $lang, $row['id']); 
+        echo "</ " . $row['field'] . ">"; 
     }
   }
   echo "</fieldset>";
