@@ -1,34 +1,14 @@
 <?php
-require 'scripts/getConnection.php';
-
+require 'getConnection.php';
 $lang = strval($_GET['lang']);
-
 $conn = getConnection("michella_contact");
-?>
 
-  <section id="contact" class="anArticle decorated">
-    <form id="contactForm" action="scripts/sendMail.php" method="post">
-      <!--      <h1>Contact</h1>-->
+echo "<form id='contactForm' action='sendMail.php' method='post'>";
 
-      <div id="contactIntro" />
+buildFieldSet($conn, $lang);  
+mysqli_close($conn);
 
-      <?php
-    
-      buildFieldSet($conn, "en");  
-
-      mysqli_close($conn);
-      
-?>
-
-    </form>
-  </section>
-
-  <script>
-    ContentLoader.getText("CONTACT_INTRO", "en", "contactIntro");
-
-  </script>
-
-  <?php
+echo "</form>";
 
 function getPlaceHolder($conn, $lang, $id)
 {
