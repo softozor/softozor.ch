@@ -22,8 +22,10 @@ h2 {
 }
 
 section.decorated {
-  border-width: 5px 5px 0px 0px;
-  border-style: solid;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-top-width: 5px;
+  border-right-width: 5px;
   border-color: #327fb2;
   padding-left: 50px;
 }
@@ -110,3 +112,5 @@ a.tooltip:hover::before {
   font-size: 20px;
   color: rgba(120, 120, 120, 0.85);
 }
+
+/*# sourceMappingURL=softozor.css.map */

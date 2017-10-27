@@ -1,7 +1,5 @@
-@import "compass";
-
+@import 'bourbon/bourbon';
 // base colors
 $principal-color: #327fb2;
 $secondary-color: #b2a796;
-
 @import "modules/all";

@@ -1,5 +1,4 @@
 @import 'partials/base';
-
 html {
   overflow: -moz-scrollbars-vertical;
   overflow-y: scroll;
@@ -24,9 +23,9 @@ h2 {
 }
 
 section.decorated {
-  border-width: 5px 5px 0px 0px;
-  border-style: solid;
-  border-color: $principal-color;
+  @include border-style(solid solid null null);
+  @include border-width(5px 5px null null);
+  @include border-color($principal-color);
   padding-left: 50px;
 }
 
