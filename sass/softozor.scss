@@ -1,4 +1,6 @@
-@import 'partials/base';
+@import 'base/colors';
+@import 'plugins/plugins';
+
 html {
   overflow: -moz-scrollbars-vertical;
   overflow-y: scroll;

@@ -3,7 +3,7 @@ require 'getConnection.php';
 $lang = strval($_GET['lang']);
 $conn = getConnection("michella_contact");
 
-echo "<form id='contactForm' action='scripts/sendMail.php' method='post'>";
+echo "<form id='contactForm' class='contactForm' action='scripts/sendMail.php' method='post'>";
 
 buildFieldSet($conn, $lang);  
 mysqli_close($conn);

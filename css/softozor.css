@@ -1,3 +1,4 @@
+/* Plugins */
 html {
   overflow: -moz-scrollbars-vertical;
   overflow-y: scroll;
@@ -112,3 +113,5 @@ a.tooltip:hover::before {
   font-size: 20px;
   color: rgba(120, 120, 120, 0.85);
 }
+
+/*# sourceMappingURL=softozor.css.map */

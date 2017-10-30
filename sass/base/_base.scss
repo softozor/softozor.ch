@@ -3,12 +3,26 @@
 // Copyright 2013-2017 thoughtbot, inc.
 // MIT License
 
-@import "variables";
+/* Base */
 
-@import "buttons";
-@import "forms";
-@import "layout";
-@import "lists";
-@import "media";
-@import "tables";
-@import "typography";
+// Base rules do not include any class or ID selectors
+// They are defining the default styling for how the elements should look in all occurrences on the page
+// There is no place for !important
+// These rules include
+// * setting heading sizes
+// * setting default link styles
+// * setting default font styles
+// * setting body backgrounds
+
+
+@import 'variables';
+
+@import 'colors';
+
+@import 'buttons';
+@import 'forms';
+@import 'layout';
+@import 'lists';
+@import 'media';
+@import 'tables';
+@import 'typography';

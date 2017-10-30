@@ -1,0 +1,10 @@
+/* Modules */
+
+// This will contain modules styles, like widgets (call-out forms, login forms, navigation item, etc.)
+// Modules can easily be oved to different parts of the layout without breaking
+// Avoid using IDs (#) and element selectors; rather stick to class names (.)
+// A module will likely contain a number of elements and there is likely to be a desire to use child selectors to target those elements
+
+
+@import 'burger';
+@import 'contactForm';
