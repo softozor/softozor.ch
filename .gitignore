@@ -3,3 +3,6 @@ images/Thumbs.db
 blog
 wiki
 *.map
+.sass-cache
+*test*
+colors.txt
