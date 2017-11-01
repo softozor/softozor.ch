@@ -54,7 +54,7 @@ function buildAccordions($conn, $lang)
     echo "</h2>";
     echo getShortDescription($conn, $lang, $row['id']);
     echo "</div></button>"; 
-    echo "<div class='panel'>";
+    echo "<div class='portfolio'>";
     echo getPortfolio($conn, $lang, $row['id']);
     echo "</div>";
   }

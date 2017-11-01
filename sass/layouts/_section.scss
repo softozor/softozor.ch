@@ -1,6 +1,13 @@
-section.decorated {
-  @include border-style(solid solid null null);
-  @include border-width(5px 5px null null);
-  @include border-color($principal-color);
-  padding-left: 50px;
+section {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+  font-size: 1.5vw;
+  &.decorated {
+    @include border-style(solid solid null null);
+    @include border-width(5px 5px null null);
+    @include border-color($principal-color);
+    padding-left: 50px;
+  }
 }

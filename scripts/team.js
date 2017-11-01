@@ -25,7 +25,7 @@ var AccordionLoader = {
       AccordionLoader.resetPanel(panel);
     } else {
       panel.style.maxHeight = panel.scrollHeight + "px";
-      panel.style.borderColor = getComputedStyle(document.body).getPropertyValue('--principalColor');
+      //panel.style.borderColor = getComputedStyle(document.body).getPropertyValue('--principalColor');
       panel.style.borderStyle = "solid";
       panel.style.borderWidth = "2px";
     }

@@ -1,4 +1,5 @@
 button.accordion {
+  $custom-grid: ( columns: 1, gutter: 50px, media: $large-screen, );
   margin-right: auto;
   margin-left: auto;
   background-color: white;
@@ -12,71 +13,55 @@ button.accordion {
   transition: 0.4s;
   display: flex;
   align-items: center;
-}
-
-button.accordion.active,
-button.accordion:hover {
-  background-color: $principal-color;
-  color: black;
-}
-
-@media screen and (min-width: 1200px) {
-  button.accordion figure {
-    min-width: 50%;
-    min-height: 50%;
+  flex-direction: column;
+  @include grid-media($custom-grid) {
+    flex-direction: row;
+  }
+  &.active,
+  &:hover {
+    background-color: $principal-color;
+    color: black;
+  }
+  hr {
+    height: 1px;
+    margin: -0.5em 0 0.5em;
+    padding: 0;
+    color: #000;
+    background-color: #000;
+    border: 0;
+  }
+  figure {
     margin: 0;
     padding: 0;
+    @include grid-media($custom-grid) {
+      min-width: 50%;
+      min-height: 50%;
+    }
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      @include grid-media($custom-grid) {
+        width: 50%;
+      }
+    }
   }
-  button.accordion figure img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }
-  button.accordion .shortDescr {
-    text-align: center;
-    width: 50%;
-    display: block;
-    min-width: 50%;
-    min-height: 50%;
-    margin: 0;
-    padding: 0;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  button.accordion {
-    flex-direction: column;
-  }
-  button.accordion figure {
-    margin: 0;
-    padding: 0;
-  }
-  button.accordion figure img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-  }
-  button.accordion .shortDescr {
+  .shortDescr {
     text-align: center;
     width: 100%;
     display: block;
     margin: 0;
     padding: 0;
+    @include grid-media($custom-grid) {
+      width: 50%;
+      min-width: 50%;
+      min-height: 50%;
+    }
   }
 }
 
-button.accordion hr {
-  height: 1px;
-  margin: -0.5em 0 0.5em;
-  padding: 0;
-  color: #000;
-  background-color: #000;
-  border: 0;
-}
-
-div.panel {
+.portfolio {
   padding: 0 18px;
   background-color: white;
   max-height: 0;
@@ -87,29 +72,24 @@ div.panel {
   margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
-}
-
-div.panel h1 {
-  color: black;
-  font-size: 3.5vw;
-}
-
-div.panel h2 {
-  color: black;
-  font-size: 2.5vw;
-}
-
-div.panel h3 {
-  color: black;
-  font-size: 1.5vw;
-}
-
-div.panel a {
-  text-decoration: none;
-  color: black;
-  font-style: italic;
-}
-
-div.panel a:hover {
-  text-decoration: underline;
+  h1 {
+    color: black;
+    font-size: 3.5vw;
+  }
+  h2 {
+    color: black;
+    font-size: 2.5vw;
+  }
+  h3 {
+    color: black;
+    font-size: 1.5vw;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+    font-style: italic;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
