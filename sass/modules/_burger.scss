@@ -1,7 +1,9 @@
 @import '../base/colors';
 
-/*remove the default view of a checkbox*/
+// TODO: stick to class names (with '.')!
 
+
+// remove the default view of a checkbox
 #burger-check {
   display: none;
   position: absolute;

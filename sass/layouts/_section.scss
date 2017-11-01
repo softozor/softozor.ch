@@ -1,0 +1,6 @@
+section.decorated {
+  @include border-style(solid solid null null);
+  @include border-width(5px 5px null null);
+  @include border-color($principal-color);
+  padding-left: 50px;
+}

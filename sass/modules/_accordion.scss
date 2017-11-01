@@ -1,5 +1,3 @@
-@import 'base/colors';
-
 button.accordion {
   margin-right: auto;
   margin-left: auto;
@@ -114,39 +112,4 @@ div.panel a {
 
 div.panel a:hover {
   text-decoration: underline;
-}
-
-div.panel .cvEntry {
-  display: flex;
-  flex-direction: row;
-}
-
-div.panel .cvEntry time {
-  width: 25%;
-  text-align: right;
-  margin-right: 15px;
-  font-style: italic;
-}
-
-div.panel .cvEntry a {
-  width: 75%;
-  text-align: left;
-}
-
-div.panel .cvEntry .descr {
-  display: flex;
-  flex-direction: column;
-  width: 75%;
-  text-align: left;
-}
-
-div.panel .cvEntry .descr .title {
-  font-weight: bold;
-  width: 100%;
-  text-align: left;
-}
-
-div.panel .cvEntry .descr .details {
-  width: 100%;
-  text-align: left;
 }
