@@ -1,6 +1,5 @@
 $_button-background-color: $action-color;
 $_button-background-color-hover: shade($action-color, 20%);
-
 #{$all-buttons} {
   appearance: none;
   background-color: $_button-background-color;
@@ -11,7 +10,6 @@ $_button-background-color-hover: shade($action-color, 20%);
   display: inline-block;
   font-family: $base-font-family;
   font-size: 16px;
-  -webkit-font-smoothing: antialiased;
   font-weight: 600;
   line-height: 1;
   padding: $small-spacing $base-spacing;
@@ -21,21 +19,17 @@ $_button-background-color-hover: shade($action-color, 20%);
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
-
   &:hover {
     background-color: $_button-background-color-hover;
     color: contrast-switch($_button-background-color-hover);
   }
-
   &:focus {
     outline: $focus-outline;
     outline-offset: $focus-outline-offset;
   }
-
   &:disabled {
     cursor: not-allowed;
     opacity: 0.5;
-
     &:hover {
       background-color: $_button-background-color;
     }

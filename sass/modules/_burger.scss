@@ -1,6 +1,4 @@
 // TODO: stick to class names (with '.')!
-
-
 // remove the default view of a checkbox
 #burger-check {
   display: none;
@@ -72,10 +70,7 @@
     border-bottom: 4px solid currentColor;
     width: 100%;
     margin-bottom: 5px;
-    transition: -webkit-transform 0.5s ease-in-out;
     transition: transform 0.5s ease-in-out;
-    transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
-    -webkit-transition: -webkit-transform 0.5s ease-in-out;
   }
   #burger:after {
     content: "";
@@ -83,32 +78,21 @@
     border-bottom: 4px solid currentColor;
     width: 100%;
     margin-bottom: 5px;
-    transition: -webkit-transform 0.5s ease-in-out;
     transition: transform 0.5s ease-in-out;
-    transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
-    -webkit-transition: -webkit-transform 0.5s ease-in-out;
   }
   /*
  * first line
  */
   #burger-check:checked~#burger:before {
     transform: rotate(-405deg) translateY(1px) translateX(-3px);
-    -webkit-transform: rotate(-405deg) translateY(1px) translateX(-3px);
-    transition: -webkit-transform 0.5s ease-in-out;
     transition: transform 0.5s ease-in-out;
-    transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
-    -webkit-transition: -webkit-transform 0.5s ease-in-out;
   }
   /*
  * second line
  */
   #burger-check:checked~#burger:after {
     transform: rotate(405deg) translateY(-4px) translateX(-5px);
-    -webkit-transform: rotate(405deg) translateY(-4px) translateX(-5px);
-    transition: -webkit-transform 0.5s ease-in-out;
     transition: transform 0.5s ease-in-out;
-    transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
-    -webkit-transition: -webkit-transform 0.5s ease-in-out;
   }
   /*
  * third line
@@ -116,12 +100,10 @@
   #burger-check:checked~#burger {
     border-bottom: 4px solid transparent;
     transition: border-bottom 0.8s ease-in-out;
-    -webkit-transition: border-bottom 0.8s ease-in-out;
   }
   #navigation {
     overflow: hidden;
     height: 0px;
-    -webkit-transition: max-height 0.5s ease-in-out;
     transition: max-height 0.5s ease-in-out;
     font-style: italic;
     position: absolute;
@@ -135,7 +117,6 @@
   }
   #burger-check:checked~#navigation {
     height: auto;
-    -webkit-transition: max-height 0.5s ease-in-out;
     transition: max-height 0.5s ease-in-out;
   }
   #navigation ul {
