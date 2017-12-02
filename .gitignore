@@ -1,6 +1,7 @@
-<<<<<<< HEAD
 Thumbs.db
-=======
-images/Team/Thumbs.db
-images/Thumbs.db
->>>>>>> bf07989a64d6d856c4a6f156e015b8dd2976a7b9
+blog
+wiki
+*.map
+.sass-cache
+*test*
+colors.txt
