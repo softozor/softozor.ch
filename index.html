@@ -2,62 +2,83 @@
 <html lang="en-US">
 
 <head>
-    <meta charset="UTF-8" />
-    <!--[if lt IE 9]>
+  <meta charset="UTF-8" />
+  <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="css/softozor.css" />
-    <link rel="stylesheet" type="text/css" href="css/contact.css" />
-    <link rel="stylesheet" type="text/css" href="css/team.css" />
-    <link rel="stylesheet" type="text/css" href="css/burger.css" />
-    <link rel="stylesheet" type="text/css" href="css/flags.min.css" />
-    <script src="scripts/jquery-3.2.1.min.js"></script>
-    <script src="scripts/menu.js"></script>
-    <title>Bienvenue chez Softozor</title>
+  <!-- this way of defining the viewport is not the most reliable; we need to do it in the css -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="css/app.css" />
+  <link rel="stylesheet" type="text/css" href="css/flags.min.css" />
+  <script src="scripts/jquery-3.2.1.min.js"></script>
+  <script src="scripts/menu.js"></script>
+  <script src="scripts/team.js"></script>
+  <script src="scripts/ContactLoader.js"></script>
+  <script src="scripts/ContentLoader.js"></script>
+  <title>Bienvenue chez Softozor</title>
 </head>
 
 <body>
-    <div class="banner">
-        <nav id="language-selector" class="language-selector">
-            <img src="images/blank.png" class="flag flag-us languageImg" alt="english" />&nbsp;<img src="images/blank.png" class="flag flag-fr languageSelected" alt="français" />&nbsp;<img src="images/blank.png" class="flag flag-de languageImg" alt="deutsch" />&nbsp;<img src="images/blank.png" class="flag flag-es languageImg" alt="español" />&nbsp;<img src="images/blank.png" class="flag flag-pt languageImg" alt="português" />&nbsp;
-        </nav>
-        <img src="http://www.placehold.it/600x150" alt="softozor banner" class="bannerImg">
+  <div class="banner">
+    <!--nav id="language-selector" class="language-selector">
+           <img src="images/blank.png" class="flag flag-us languageImg" alt="english" />&nbsp;<img src="images/blank.png" class="flag flag-fr languageSelected" alt="français" />&nbsp;<img src="images/blank.png" class="flag flag-de languageImg" alt="deutsch" />&nbsp;<img src="images/blank.png" class="flag flag-es languageImg" alt="español" />&nbsp;<img src="images/blank.png" class="flag flag-pt languageImg" alt="português" />&nbsp;>
+    </nav-->
+    <img src="images/banner.jpg" alt="softozor banner" id="bannerImg">
+  </div>
+  <input id="burger-check" type="checkbox"><label for="burger-check" id="burger"></label>
+  <nav id="navigation">
+    <ul>
+      <li><a href="#" onclick='MainNavigation.load("team.html");'>Team</a></li>
+      <li><a href="#" onclick='MainNavigation.load("focus.html");'>Focus</a></li>
+      <li><a href="#" onclick='MainNavigation.load("products.html");'>Products</a></li>
+      <li><a href="#" onclick='MainNavigation.load("contact.html");'>Contact</a></li>
+    </ul>
+  </nav>
+  <div id="content"></div>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-logo">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_square.png" alt="Logo image">
     </div>
-    <input class="burger-check" id="burger-check" type="checkbox"><label for="burger-check" class="burger"></label>
-    <nav id="navigation" class="navigation">
-        <ul>
-            <li><a href="#" id="teamlink" class="teamlink" onclick="load('team');">Team</a></li>
-            <li><a href="#" onclick="load('contact');">Contact</a></li>
-            <li><a href="#" onclick="load('blog');">Blog</a></li>
-        </ul>
-    </nav>
+    <ul>
+      <li><a href="javascript:void(0)">About</a></li>
+      <li><a href="javascript:void(0)">Contact</a></li>
+      <li><a href="javascript:void(0)">Products</a></li>
+    </ul>
 
-    <div id="content"></div>
+    <div class="footer-secondary-links">
+      <ul>
+        <li><a href="javascript:void(0)">Terms and Conditions</a></li>
+        <li><a href="javascript:void(0)">Privacy Policy</a></li>
+      </ul>
 
-    <!--script>
-        function linkClick(section) {
-            $("#allSections").find("section").not("#" + section).hide();
-            $("#" + section).fadeIn("slow", function() {
-                //document.getElementById("burger-check").checked = false;
-            });
-        }
-        var dinos = ["florianosorus", "lauranozor", "thomex"];
-        for (var i = 0; i < dinos.length; ++i) {
-            $("#" + dinos[i]).hover(
-                function() {
-                    //$(this).parent().find("#hoverme").hide();
-                    $(this).parent().find("#hoverme").fadeTo("slow", 0, function() {});
-                },
-                function() {
-                    $(this).parent().find("#hoverme").fadeTo("slow", 1, function() {});
-                }
-            );
-        }
-
-    </script-->
+      <ul class="footer-social">
+        <li>
+          <a href="javascript:void(0)">
+            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook">
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">
+            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter">
+          </a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">
+            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png" alt="YouTube">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
 
 </body>
 
+<script src="scripts/banner.js"></script>
+<script src="scripts/burger.js"></script>
+<script>
+  ContentLoader.getText("UNDER_CONSTRUCTION", "en", "content");
+
+</script>
 
 </html>

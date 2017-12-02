@@ -1,0 +1,134 @@
+// TODO: stick to class names (with '.')!
+// remove the default view of a checkbox
+#burger-check {
+  display: none;
+  position: absolute;
+}
+
+#navigation a {
+  color: white;
+  text-decoration: none;
+  width: 100%;
+  display: block;
+}
+
+@media screen and (min-width: 1200px) {
+  #navigation {
+    height: auto;
+    width: 100%;
+  }
+  #navigation a {
+    text-align: center;
+    font-size: 2vw;
+  }
+  #navigation ul {
+    display: flex;
+    list-style: none;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  #navigation ul li {
+    flex: 1;
+    text-align: center;
+    background-color: $secondary-color;
+  }
+  #navigation ul li:hover {
+    flex: 1;
+    text-align: center;
+    background-color: $principal-color;
+  }
+  .selected {
+    background-color: $principal-color;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #burger {
+    display: inline-block;
+    border: 0;
+    background: none;
+    outline: 0;
+    padding: 0;
+    cursor: pointer;
+    border-bottom: 4px solid currentColor;
+    width: 28px;
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    z-index: 1;
+  }
+  #burger::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+  #burger:before {
+    content: "";
+    display: block;
+    border-bottom: 4px solid currentColor;
+    width: 100%;
+    margin-bottom: 5px;
+    transition: transform 0.5s ease-in-out;
+  }
+  #burger:after {
+    content: "";
+    display: block;
+    border-bottom: 4px solid currentColor;
+    width: 100%;
+    margin-bottom: 5px;
+    transition: transform 0.5s ease-in-out;
+  }
+  /*
+ * first line
+ */
+  #burger-check:checked~#burger:before {
+    transform: rotate(-405deg) translateY(1px) translateX(-3px);
+    transition: transform 0.5s ease-in-out;
+  }
+  /*
+ * second line
+ */
+  #burger-check:checked~#burger:after {
+    transform: rotate(405deg) translateY(-4px) translateX(-5px);
+    transition: transform 0.5s ease-in-out;
+  }
+  /*
+ * third line
+ */
+  #burger-check:checked~#burger {
+    border-bottom: 4px solid transparent;
+    transition: border-bottom 0.8s ease-in-out;
+  }
+  #navigation {
+    overflow: hidden;
+    height: 0px;
+    transition: max-height 0.5s ease-in-out;
+    font-style: italic;
+    position: absolute;
+    left: 0px;
+    top: 26px;
+    z-index: 1;
+  }
+  #navigation a {
+    text-align: left;
+    font-size: 5vw;
+  }
+  #burger-check:checked~#navigation {
+    height: auto;
+    transition: max-height 0.5s ease-in-out;
+  }
+  #navigation ul {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #navigation ul li {
+    background-color: $secondary-color;
+    padding: 25px 5px 25px 5px;
+  }
+  #navigation ul li:hover {
+    background-color: $principal-color;
+  }
+}

@@ -1,0 +1,95 @@
+button.accordion {
+  $custom-grid: ( columns: 1, gutter: 50px, media: $large-screen, );
+  margin-right: auto;
+  margin-left: auto;
+  background-color: white;
+  padding: 18px;
+  width: 100%;
+  border-width: 5px 5px 0px 0px;
+  border-style: solid;
+  border-color: $principal-color;
+  text-align: left;
+  outline: none;
+  transition: 0.4s;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  @include grid-media($custom-grid) {
+    flex-direction: row;
+  }
+  &.active,
+  &:hover {
+    background-color: $principal-color;
+    color: black;
+  }
+  hr {
+    height: 1px;
+    margin: -0.5em 0 0.5em;
+    padding: 0;
+    color: #000;
+    background-color: #000;
+    border: 0;
+  }
+  figure {
+    margin: 0;
+    padding: 0;
+    @include grid-media($custom-grid) {
+      min-width: 50%;
+      min-height: 50%;
+    }
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      @include grid-media($custom-grid) {
+        width: 50%;
+      }
+    }
+  }
+  .shortDescr {
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    @include grid-media($custom-grid) {
+      width: 50%;
+      min-width: 50%;
+      min-height: 50%;
+    }
+  }
+}
+
+.portfolio {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  font-size: 1.5vw;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  h1 {
+    color: black;
+    font-size: 3.5vw;
+  }
+  h2 {
+    color: black;
+    font-size: 2.5vw;
+  }
+  h3 {
+    color: black;
+    font-size: 1.5vw;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+    font-style: italic;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
