@@ -1,0 +1,32 @@
+{
+  "name": "softozor.ch",
+  "version": "1.0.0",
+  "description": "Softozor website",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc",
+    "webpack": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zadigus/softozor.ch.git"
+  },
+  "author": "Softozor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zadigus/softozor.ch/issues"
+  },
+  "homepage": "https://github.com/zadigus/softozor.ch#readme",
+  "dependencies": {
+    "bitters": "^2.0.0",
+    "bourbon": "^4.3.4",
+    "jquery": "^3.2.1",
+    "neat": "^1.2.2"
+  },
+  "devDependencies": {
+    "node-sass": "^4.7.2",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
+  }
+}

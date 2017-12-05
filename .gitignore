@@ -3,5 +3,6 @@ blog
 wiki
 *.map
 .sass-cache
-*test*
-colors.txt
+node_modules
+package-lock.json
+dist/
