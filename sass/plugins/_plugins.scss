@@ -1,5 +1,14 @@
 /* Plugins */
 
-@import 'bourbon/bourbon';
+/*@import 'bourbon/bourbon';
 @import 'neat/neat';
-@import 'base/base';
+@import 'base/base';*/
+
+// when npm bourbon is recent enough, we can uncomment the following lines and get 
+// rid of the above code
+@import 'bourbon';
+@import 'neat';
+
+// the npm bitters version is old and not fully compatible with the latest bourbon / neat packages
+$helvetica: $font-stack-helvetica;
+@import 'bitters';

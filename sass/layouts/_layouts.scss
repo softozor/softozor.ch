@@ -1,5 +1,8 @@
 /* Layouts */
 
+// sizes
+$large-screen: 1200px; //53.75em !default;
+
 // this will include any layout stuff like header, article, section, footer styling
 @import 'footer';
 @import 'section';

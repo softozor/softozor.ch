@@ -1,4 +1,0 @@
-# first configure you linux distro like this
-fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-# then launch (if bourbon was installed under ~/Libraries)
-sass -I ~/Libraries/ -I sass/ --watch sass:css --style expanded
