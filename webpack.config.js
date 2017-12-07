@@ -31,13 +31,11 @@ module.exports = {
         loader: ExtractTextPlugin.extract([{
             loader: 'css-loader'
         }, {
-            loader: 'sass-loader'
-            // when npm bourbon is recent enough, uncomment these lines!
-            ,
+            loader: 'sass-loader',
             options: {
               includePaths: [bourbon, neat, bitters]
             }
-        }]) // , 'sass-loader'
+        }])
       }, { // regular css files
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
