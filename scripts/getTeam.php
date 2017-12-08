@@ -44,7 +44,7 @@ function buildAccordions($conn, $lang)
 
   while($row = mysqli_fetch_array($res))
   {
-    echo "<button class='accordion'  onclick='AccordionLoader.toggle(this)'>";
+    echo "<button class='accordion'>"; //  onclick='AccordionLoader.toggle(this)'>";
     echo "<figure>";
     echo "<img src='images/Team/" . $row['img'] . "'>";
     echo "</figure>";
