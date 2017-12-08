@@ -1,4 +1,4 @@
-var AccordionLoader = {
+export const AccordionLoader = {
   resetPanel: function (panel) {
     panel.style.maxHeight = null;
     panel.style.borderWidth = null;
@@ -30,7 +30,8 @@ var AccordionLoader = {
       panel.style.borderWidth = "2px";
     }
   },
-  showTeam: function (lang) {
+  showTeam: function (elementId) {
+    var xmlhttp;
     if (window.XMLHttpRequest) {
       // code for IE7+, Firefox, Chrome, Opera, Safari
       xmlhttp = new XMLHttpRequest();
@@ -40,14 +41,11 @@ var AccordionLoader = {
     }
     xmlhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("teamContent").innerHTML = this.responseText;
+        document.getElementById(elementId).innerHTML = this.responseText;
       }
     };
 
-    if (lang.empty) {
-      lang = "en";
-    }
-
+    const lang = "en";
     xmlhttp.open("GET", "scripts/getTeam.php?lang=" + lang, true);
     xmlhttp.send();
   }

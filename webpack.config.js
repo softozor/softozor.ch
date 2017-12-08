@@ -1,13 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
-// when the latest version on npm is recent enough, uncomment these lines 
-// also uncomment the includePaths option of the sass-loader down below
 const bourbon = require('bourbon').includePaths;
 const neat = require('bourbon-neat').includePaths;
 const bitters = require('bourbon-bitters').includePaths;
-
+const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 
 module.exports = {
   entry: ['./src/index.js', './sass/app.scss'],
@@ -31,9 +28,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract([{
             loader: 'css-loader'
         }, {
-            loader: 'sass-loader'
-            // when npm bourbon is recent enough, uncomment these lines!
-            ,
+            loader: 'sass-loader',
             options: {
               includePaths: [bourbon, neat, bitters]
             }
@@ -41,15 +36,21 @@ module.exports = {
       }, { // regular css files
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
-          use: {
+          use: [{
             loader: 'css-loader',
             options: {
               importLoaders: true
             }
-          }
+          }, {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function() {
+                return autoprefixer;
+              }
+            }
+          }]
         })
-      }
-    ]
+      }]
   }, 
   plugins: [
     new webpack.ProvidePlugin({

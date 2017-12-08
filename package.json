@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/zadigus/softozor.ch#readme",
   "dependencies": {
+    "autoprefixer": "^7.2.1",
     "bourbon": "^5.0.0-beta.8",
     "bourbon-bitters": "^1.2.1",
     "bourbon-neat": "^2.0.0-beta.2",
