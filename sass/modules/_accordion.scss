@@ -14,14 +14,17 @@ button.accordion {
   display: flex;
   align-items: center;
   flex-direction: column;
+
   @include grid-media($custom-grid) {
     flex-direction: row;
   }
+
   &.active,
   &:hover {
     background-color: $principal-color;
     color: black;
   }
+
   hr {
     height: 1px;
     margin: -0.5em 0 0.5em;
@@ -30,29 +33,39 @@ button.accordion {
     background-color: #000;
     border: 0;
   }
+
   figure {
     margin: 0;
     padding: 0;
+
     @include grid-media($custom-grid) {
       min-width: 50%;
       min-height: 50%;
     }
+
     img {
       display: block;
       margin-left: auto;
       margin-right: auto;
       width: 100%;
+
       @include grid-media($custom-grid) {
         width: 50%;
       }
     }
   }
+
   .shortDescr {
     text-align: center;
     width: 100%;
     display: block;
     margin: 0;
     padding: 0;
+    color: black;
+
+    font-weight: normal;
+    white-space: normal;
+
     @include grid-media($custom-grid) {
       width: 50%;
       min-width: 50%;
