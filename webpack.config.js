@@ -32,7 +32,7 @@ module.exports = {
             options: {
               includePaths: [bourbon, neat, bitters]
             }
-        }]) // , 'sass-loader'
+        }])
       }, { // regular css files
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
