@@ -1,3 +1,13 @@
+import SKY_IMG from '../assets/banner/sky.png'
+import CLOUDS_IMG from '../assets/banner/clouds.png'
+import BACK_IMG from '../assets/banner/back.png'
+import MID_IMG from '../assets/banner/mid.png'
+import FRONT_IMG from '../assets/banner/front.png'
+import WORLD_BAND_IMG from '../assets/banner/worldBand.png'
+import SOFTOZOR_IMG from '../assets/banner/softozor.png'
+import GAME_STOPPED_IMG from '../assets/banner/gameStopped.png'
+import BUBBLE_IMG from '../assets/banner/bubble.png'
+
 /* Issues
 	banner width is claculated at startup.
 	If banner is resized, depending components won't follow.
@@ -58,7 +68,7 @@ export default function initGame(){
 	gameStoppedDisplay.style.position = "absolute";
 	banner.html.appendChild(gameStoppedDisplay);
 	var gameStopped = document.createElement("img");
-	gameStopped.setAttribute("src", filePath + "gameStopped.png");
+	gameStopped.setAttribute("src", GAME_STOPPED_IMG);
 	gameStopped.style.height = "100%";
 	gameStopped.style.margin = "auto";
 	gameStopped.style.display = "block";
@@ -129,7 +139,7 @@ var banner = {};
 
 // band values
 var band = [];
-const filePath = "assets/";
+
 // bands render data
 function bandDataProto(src, alt, widthPX, heightPX, distanceFactor) {
 	this.src = src;
@@ -139,12 +149,12 @@ function bandDataProto(src, alt, widthPX, heightPX, distanceFactor) {
 	this.distanceFactor = distanceFactor;
 };
 const bandData = [
-	new bandDataProto(filePath + "sky.png", "Sky", 5000, 500, Infinity),
-	new bandDataProto(filePath + "clouds.png", "Clouds", 5000, 500, 16),
-	new bandDataProto(filePath + "back.png", "Back Mountains", 5000, 500, 8),
-	new bandDataProto(filePath + "mid.png", "Middle Mountains", 5000, 500, 4),
-	new bandDataProto(filePath + "front.png", "Front Mountains", 5000, 500, 2),
-	new bandDataProto(filePath + "worldBand.png", "World Band", 5000, 500, 1)
+	new bandDataProto(SKY_IMG, "Sky", 5000, 500, Infinity),
+	new bandDataProto(CLOUDS_IMG, "Clouds", 5000, 500, 16),
+	new bandDataProto(BACK_IMG, "Back Mountains", 5000, 500, 8),
+	new bandDataProto(MID_IMG, "Middle Mountains", 5000, 500, 4),
+  new bandDataProto(FRONT_IMG, "Front Mountains", 5000, 500, 2),
+  new bandDataProto(WORLD_BAND_IMG, "World Band", 5000, 500, 1)
 	/*
 	You can add or remove bands here.
 	The last one will be in front of the others.
@@ -226,7 +236,7 @@ function imgProto(bandIndex, rank){ // the leftmost image has rank 0
 
 // Softozor data
 const softozorData = {
-	src : filePath + "softozor.png",
+	src : SOFTOZOR_IMG,
 	alt : "Softozor",
 	originalDeltaXW : 100, // right shift in *W units
 	minYW : 2,
@@ -476,7 +486,7 @@ function collisionProto(type, centerxW, centeryW, hitXW, hitYW){
 // bubble
 function bubble(x, y, diameter, obstacleIndex){
 	var pos = new positionProto(x, y, worldBandIndex);
-	var spr = new spriteProto(pos, filePath + "bubble.png", "Soap bubble", diameter, diameter, worldBandIndex);
+	var spr = new spriteProto(pos, BUBBLE_IMG, "Soap bubble", diameter, diameter, worldBandIndex);
 	var radius = diameter / 2;
 	var hit = new hitboxProto(pos, radius, radius, radius);
 	var obs = new obstacleProto(pos, spr, hit, obstacleIndex);
