@@ -30,10 +30,9 @@ function initGame(){
 
 	// banner initialization
 	banner.html = document.getElementById("banner");
-	banner.widthPX = parseInt(window.getComputedStyle(banner.html, null).getPropertyValue("width"));
-	banner.heightPX = parseInt(window.getComputedStyle(banner.html, null).getPropertyValue("height"));
 	banner.html.style.position = "relative";
 	banner.html.style.overflow = "hidden";
+	banner.refreshSize();
 
 	$("#banner").mouseenter(function () {
 		run();
@@ -45,6 +44,11 @@ function initGame(){
 
 	$("#banner").click(function () {
 		softozor.flap();
+	});
+
+
+	$(window).resize(function () {
+		refreshSize();
 	});
 
 	// display layers initialization
@@ -101,16 +105,6 @@ function initGame(){
 	scoreText.style.fontWeight = "bold";
 	dashBoardDisplay.appendChild(scoreText);
 
-	// obstacle initialization
-	var x, y, diameter, bubbleIndex;
-	var startAmount = 100 * (band[worldBandIndex].widthW - 100) / band[worldBandIndex].widthW;
-	for(bubbleIndex = 0; bubbleIndex < startAmount; bubbleIndex++){
-		x = Math.random() * (2 * band[worldBandIndex].widthW - 200) + 200;
-		var y = randomFavorExtrema() * 90 + 5;
-		diameter = 5 + Math.random() * 20;
-		obstacle[bubbleIndex] = bubble(x, y, diameter, bubbleIndex);
-	}
-
 	// position initialization
 	update();
 }
@@ -123,9 +117,8 @@ const frameTime = 20;
 var transition = 0; // transition reference: 0 = stopped, 1 = started
 var transitionDirection = 0; // -1: transition to stop; 0: no transition; 1: transition to start
 
-// time [frames * transition] delay between 2 bubble spawns
-var bubbleTimeDelay = 40;
-var bubbleTimeCount = 0;
+// bubble amount per image
+var bubbleDensity = 40;
 
 // score values
 var score = 0;
@@ -139,7 +132,12 @@ var dashBoardDisplay;
 var gameStoppedDisplay;
 
 // banner values
-var banner = {};
+var banner = {
+	refreshSize : function(){
+		banner.widthPX = parseInt(window.getComputedStyle(banner.html, null).getPropertyValue("width"));
+		banner.heightPX = parseInt(window.getComputedStyle(banner.html, null).getPropertyValue("height"));
+	}
+};
 
 // band values
 var band = [];
@@ -183,7 +181,12 @@ function bandProto(bandIndex){
 
 	this.update = function(){
 
-		if(this.position.xW + this.widthW < softozor.xW) this.position.xW += this.widthW;
+		if(this.position.xW + this.widthW < softozor.xW){
+			this.position.xW += this.widthW;
+			if(this.bandIndex === worldBandIndex){
+				fillImage(this.nImgs - 1);
+			}
+		}
 
 		var i = 0;
 		for(i = 0; i < this.nImgs; i++){
@@ -195,6 +198,7 @@ function bandProto(bandIndex){
 		// create images to fill banner
 		while((this.nImgs - 1) * this.widthPX < banner.widthPX){
 			this.img[this.nImgs] = new imgProto(this.bandIndex, this.nImgs);
+			if(this.bandIndex === worldBandIndex) fillImage(this.nImgs);
 			this.nImgs++;
 		}
 	}
@@ -232,6 +236,7 @@ function imgProto(bandIndex, rank){ // the leftmost image has rank 0
 	this.html.style.position = "absolute";
 
 	this.html.style.width = band[bandIndex].widthPX + "px";
+	this.html.style.maxWidth = band[bandIndex].widthPX + "px";
 	this.html.style.height = band[bandIndex].heightPX + "px";
 
 	worldDisplay.appendChild(this.html);
@@ -246,7 +251,7 @@ const softozorData = {
 	minYW : 2,
 	maxYW : 90,
 	heightW : 10,
-	xSpeed : 0.5,
+	originalXSpeed : 0.5,
 	gravity : 0.05,
 	flapStrength : 1.5,
 	hitDownSpeed : 0.1
@@ -258,6 +263,7 @@ var softozor = {
 	xW : 0,
 	deltaXW : softozorData.originalDeltaXW,
 	deltaXSpeed : 0,
+	xSpeed : softozorData.originalXSpeed,
 	yW : softozorData.minYW,
 	ySpeed : 0,
 	flapDelay : 0,
@@ -324,7 +330,7 @@ var softozor = {
 	},
 
 	move : function(){
-		this.xW += softozorData.xSpeed * transition;
+		this.xW += this.xSpeed * transition;
 		this.deltaXW += this.deltaXSpeed * transition;
 		this.deltaXSpeed *= 0.9;
 	},
@@ -337,7 +343,7 @@ var softozor = {
 			if(collision.type === true){
 				var dx = collision.hitXW - collision.centerXW;
 				var dy = collision.hitYW - collision.centerYW;
-				var speedChangeFactor = 2 * ((this.deltaXSpeed + softozorData.xSpeed) * dx + this.ySpeed * dy) / (dx * dx + dy * dy);
+				var speedChangeFactor = 2 * ((this.deltaXSpeed + this.xSpeed) * dx + this.ySpeed * dy) / (dx * dx + dy * dy);
 				this.deltaXSpeed -= dx * speedChangeFactor;
 				this.ySpeed -= dy * speedChangeFactor;
 				obstacle[obstacleIndex].mustBeDestroyed = true;
@@ -497,24 +503,28 @@ function bubble(x, y, diameter, obstacleIndex){
 	return obs;
 }
 
-// bubble creator
-function bubbleCreator(){
-	if(bubbleTimeCount <= 0){
-		var x = (Math.random() + 2 + Math.floor(softozor.xW / band[worldBandIndex].widthW)) * band[worldBandIndex].widthW;
-		var y = randomFavorExtrema() * 90 + 5;
-		var diameter = 5 + Math.random() * 20;
+// fill image of bubbles
+function fillImage(imgNumber){
+	for(var fillIndex = 0; fillIndex < bubbleDensity; fillIndex++){
+		var x = (Math.random() + imgNumber)* band[worldBandIndex].widthW + softozor.xW - softozor.xW % band[worldBandIndex].widthW ;
+		var y = approachExtrema01(approachExtrema01(Math.random())) * 90 - 5;
+		var diameter = 10 + Math.random() * 20;
 		obstacle[obstacle.length] = bubble(x, y, diameter, obstacle.length);
-		bubbleTimeCount = bubbleTimeDelay;
-	} else {
-		bubbleTimeCount -= transition;
 	}
+	softozor.xSpeed *= 1.01;
 }
 
-// make 0 and 1 more frequent, 0.5 less frequent, symetric
-function randomFavorExtrema(){
-	var rand = Math.random();
-	var randExtr = (3 - 2 * rand) * rand * rand;
-	return randExtr;
+// stretches a value between 0 and 1 to 0 or 1, symetric relative to 0.5
+function approachExtrema01(number01){
+	return (3 - 2 * number01) * number01 * number01;
+}
+
+function refreshSize(){
+	banner.refreshSize();
+	for(var bandIndex = 0; bandIndex < band.length; bandIndex++){
+		band[bandIndex].createImages();
+		band[bandIndex].update();
+	}
 }
 
 // run the game
@@ -573,8 +583,6 @@ function update(){
 	softozor.update();
 
 	scoreUpdate();
-
-	bubbleCreator();
 
 	var obstacleIndex;
 	for(obstacleIndex = 0; obstacleIndex < obstacle.length; obstacleIndex++)	obstacle[obstacleIndex].update();
