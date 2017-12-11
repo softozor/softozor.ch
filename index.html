@@ -14,16 +14,19 @@
 </head>
 
 <body>
-  <div id="banner" style="height:200px"></div>
-  <input id="burger-check" type="checkbox"><label for="burger-check" id="burger"></label>
-  <nav id="navigation">
-    <ul>
-      <li><a href="#team">Team</a></li>
-      <li><a href="#focus">Focus</a></li>
-      <li><a href="#products">Products</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <header>
+    <div id="banner"></div>
+    <nav id="navigation">
+      <ul>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#focus">Focus</a></li>
+        <li><a href="#products">Products</a></li>
+      </ul>
+      <div id="bottomLine"></div>
+    </nav>
+    <input id="burger-check" type="checkbox"></input><label for="burger-check" id="burger"></label>
+  </header>
+
   <div id="content"></div>
 
   <footer class="footer" role="contentinfo">
@@ -31,31 +34,19 @@
       <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_square.png" alt="Logo image">
     </div>
     <ul>
-      <li><a href="javascript:void(0)">About</a></li>
-      <li><a href="javascript:void(0)">Contact</a></li>
-      <li><a href="javascript:void(0)">Products</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
 
     <div class="footer-secondary-links">
-      <ul>
-        <li><a href="javascript:void(0)">Terms and Conditions</a></li>
-        <li><a href="javascript:void(0)">Privacy Policy</a></li>
-      </ul>
-
       <ul class="footer-social">
         <li>
           <a href="javascript:void(0)">
-            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook">
+            <img src="./assets/footer/facebook.png" alt="Facebook">
           </a>
         </li>
         <li>
           <a href="javascript:void(0)">
-            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter">
-          </a>
-        </li>
-        <li>
-          <a href="javascript:void(0)">
-            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png" alt="YouTube">
+            <img src="assets/footer/youtube.png" alt="YouTube">
           </a>
         </li>
       </ul>

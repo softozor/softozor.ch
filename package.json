@@ -24,7 +24,8 @@
     "bourbon": "^5.0.0-beta.8",
     "bourbon-bitters": "^1.2.1",
     "bourbon-neat": "^2.0.0-beta.2",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "jquerykeyframes": "0.0.10"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.34",

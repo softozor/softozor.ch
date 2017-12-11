@@ -6,7 +6,7 @@
 }
 
 #navigation a {
-  color: white;
+  color: #000;
   text-decoration: none;
   width: 100%;
   display: block;
@@ -16,32 +16,40 @@
   #navigation {
     height: auto;
     width: 100%;
+
+    a {
+      text-align: right;
+      font-size: 1em;
+
+      &:hover {
+        color: $principal-color;
+      }
+    }
+
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      list-style: none;
+      flex-direction: row;
+      width: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      box-sizing: border-box;
+
+      li {
+        margin-left: 10px;
+      }
+    }
   }
-  #navigation a {
-    text-align: center;
-    font-size: 2vw;
-  }
-  #navigation ul {
-    display: flex;
-    list-style: none;
-    flex-direction: row;
-    align-items: stretch;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
-  #navigation ul li {
-    flex: 1;
-    text-align: center;
-    background-color: $secondary-color;
-  }
-  #navigation ul li:hover {
-    flex: 1;
-    text-align: center;
-    background-color: $principal-color;
-  }
-  .selected {
-    background-color: $principal-color;
+
+  #bottomLine {
+    border-top: 1px solid #000000;
+    float: right;
+    position: relative;
+    width: 0;
+    height: 2px;
+    display: block;
+    box-sizing: border-box;
   }
 }
 
@@ -80,23 +88,20 @@
     margin-bottom: 5px;
     transition: transform 0.5s ease-in-out;
   }
-  /*
- * first line
- */
+  
+  // first line
   #burger-check:checked~#burger:before {
     transform: rotate(-405deg) translateY(1px) translateX(-3px);
     transition: transform 0.5s ease-in-out;
   }
-  /*
- * second line
- */
+
+  //second line
   #burger-check:checked~#burger:after {
     transform: rotate(405deg) translateY(-4px) translateX(-5px);
     transition: transform 0.5s ease-in-out;
   }
-  /*
- * third line
- */
+  
+  // third line
   #burger-check:checked~#burger {
     border-bottom: 4px solid transparent;
     transition: border-bottom 0.8s ease-in-out;

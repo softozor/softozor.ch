@@ -5,6 +5,8 @@ body {
 
 #content {
   margin: 25px;
+  min-height: 250px;
+  width: 100%;
 }
 
 #{$all-text-inputs} {

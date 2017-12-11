@@ -63,9 +63,10 @@ module.exports = {
   }, 
   plugins: [
     new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery"
-  }), new ExtractTextPlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      _: 'lodash',
+    }), new ExtractTextPlugin({
       filename: 'app.css',
       allChunks: true,
     })]

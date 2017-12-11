@@ -21,8 +21,12 @@ import BUBBLE_IMG from '../assets/banner/bubble.png'
 		- have a proper height
 */
 
+$(document).ready(function () {
+  initGame();
+});
+
 // game initialization
-export default function initGame(){
+function initGame(){
 
 	// banner initialization
 	banner.html = document.getElementById("banner");
