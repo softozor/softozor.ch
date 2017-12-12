@@ -21,7 +21,7 @@ const MainNavigation = {
     }, 4000);
   }, 
   setupMenu: function () {
-    $("nav#navigation a").click(function () {
+    $("nav#navigation a, footer a").click(function () {
       const addressValue = $(this).attr("href").split("#")[1];
       if (addressValue === "team") {
         MainNavigation.load(`${addressValue}.html`, function () {

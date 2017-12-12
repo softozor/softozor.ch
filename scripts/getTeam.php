@@ -46,7 +46,7 @@ function buildAccordions($conn, $lang)
   {
     echo "<button class='accordion'>";
     echo "<figure>";
-    echo "<img src='images/Team/" . $row['img'] . "'>";
+    echo "<img src='assets/team/" . $row['img'] . "'>";
     echo "</figure>";
     echo "<div class='shortDescr'>";
     echo "<h2>";
