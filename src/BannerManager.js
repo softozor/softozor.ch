@@ -8,16 +8,11 @@ import SOFTOZOR_IMG from '../assets/banner/softozor.png'
 import GAME_STOPPED_IMG from '../assets/banner/gameStopped.png'
 import BUBBLE_IMG from '../assets/banner/bubble.png'
 
-/* Issues
-	banner width is claculated at startup.
-	If banner is resized, depending components won't follow.
-*/
 
 "use strict";
 
 /* The html tag which will contain the banner must:
 		- have the attribute:	id="banner"
-		- be followed by:		<script src="bannerscript.js"></script>
 		- have a proper height
 */
 
