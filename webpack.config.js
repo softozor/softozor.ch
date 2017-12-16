@@ -38,32 +38,22 @@ module.exports = {
         }
       }, { // sass / scss loader for webpack
         test: /\.(sass|scss)$/,
-        loader: ExtractTextPlugin.extract([{
-            loader: 'css-loader'
+        loader: ExtractTextPlugin.extract(['css-loader',
+        {
+          loader: 'postcss-loader',
+          options: {
+            plugins: () => autoprefixer({
+              browsers: ['last 3 versions', '> 1%']
+            })
+          }
         }, {
             loader: 'sass-loader',
             options: {
               includePaths: [bourbon, neat, bitters]
             }
-        }])
-      }, { // regular css files
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          use: [{
-            loader: 'css-loader',
-            options: {
-              importLoaders: true
-            }
-          }, {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function() {
-                return autoprefixer;
-              }
-            }
-          }]
-        })
-      }]
+          }])
+      }
+    ]
   }, 
   plugins: [
     new webpack.ProvidePlugin({
