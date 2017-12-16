@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
-    "build": "webpack --display-error-details",
+    "clean": "rimraf dist",
+    "build": "npm run clean && webpack --display-error-details",
     "sass": "node-sass"
   },
   "repository": {
@@ -32,11 +33,14 @@
     "@babel/preset-env": "^7.0.0-beta.34",
     "babel-core": "^6.26.0",
     "babel-loader": "^8.0.0-beta.0",
+    "copy-webpack-plugin": "^4.3.0",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.30.1",
     "image-webpack-loader": "^3.4.2",
     "node-sass": "^4.7.2",
+    "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
     "typescript": "^2.6.2",

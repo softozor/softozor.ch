@@ -5,15 +5,22 @@ const neat = require('bourbon-neat').includePaths;
 const bitters = require('bourbon-bitters').includePaths;
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const BUILD_PATH = './dist/';
+const VENDOR_LIBS = ['lodash', 'jquery']
 
 module.exports = {
-  entry: ['./src/index.js', './sass/app.scss'],
+  entry: {
+    bundle: [
+      './src/index.js',
+      './sass/app.scss'
+    ],
+    vendor: VENDOR_LIBS
+  },
   output: {
-    filename: 'app.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: BUILD_PATH
   },
   module: {
     rules: [
@@ -64,7 +71,23 @@ module.exports = {
       jQuery: 'jquery',
       _: 'lodash',
     }), new ExtractTextPlugin({
-      filename: 'app.css',
+      filename: '[name].css',
       allChunks: true,
-    })]
+    }), new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    }), new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    }), new CopyWebpackPlugin([{
+      from: '*.html',
+      to: ''
+    }, {
+      from: 'assets/footer',
+      to: 'assets/footer'
+      }, {
+        from: 'assets/team',
+        to: 'assets/team'
+    }, {
+      from: 'scripts',
+      to: 'scripts'
+    }])]
 };
