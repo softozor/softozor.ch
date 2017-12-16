@@ -52,6 +52,9 @@ module.exports = {
               includePaths: [bourbon, neat, bitters]
             }
           }])
+      }, {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   }, 

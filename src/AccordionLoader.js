@@ -1,3 +1,9 @@
+//import team from '../assets/team/team.json'
+
+//$(document).ready(function () {
+//  console.log(team);
+//});
+
 export const AccordionLoader = {
   resetPanel: function (panel) {
     panel.style.maxHeight = null;
