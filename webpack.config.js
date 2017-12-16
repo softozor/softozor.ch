@@ -19,7 +19,7 @@ module.exports = {
     vendor: VENDOR_LIBS
   },
   output: {
-    filename: '[name].js',
+    filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
@@ -71,10 +71,10 @@ module.exports = {
       jQuery: 'jquery',
       _: 'lodash',
     }), new ExtractTextPlugin({
-      filename: '[name].css',
+      filename: '[name].[chunkhash].css',
       allChunks: true,
     }), new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
+      names: ['vendor', 'manifest']
     }), new HtmlWebpackPlugin({
       template: 'src/index.html'
     }), new CopyWebpackPlugin([{
