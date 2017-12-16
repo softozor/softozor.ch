@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
-    "build": "webpack",
+    "build": "webpack --display-error-details",
     "sass": "node-sass"
   },
   "repository": {
