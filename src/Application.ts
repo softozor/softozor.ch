@@ -1,23 +1,29 @@
 ﻿import { MainNavigationManager } from './MainNavigationManager'
 import './BannerManager.js'
 
-import { AccordionLoader } from './AccordionLoader.js'
+import { TeamRenderer } from './TeamRenderer'
 import { ContactLoader } from './ContactLoader.js'
+
+import * as team from '../assets/team/team.json';
 
 export class Application {
   private m_MainNavMgr: MainNavigationManager;
+  private m_TeamRenderer: TeamRenderer;
 
   constructor() {
     this.m_MainNavMgr = new MainNavigationManager();
+    this.m_TeamRenderer = new TeamRenderer();
   }
 
   private onDocumentReady(): void {
     this.m_MainNavMgr.onDocumentReady();
-    AccordionLoader.showTeam("teamContent");
-    ContactLoader.showForm("contactForm");
+    this.m_TeamRenderer.onDocumentReady();
+    //TeamRenderer.showTeam("teamContent");
+    //ContactLoader.showForm("contactForm");
   }
 
   public exec(): void {
     $(document).ready(() => this.onDocumentReady());
+    console.log("team = ", team);
   }
 }
