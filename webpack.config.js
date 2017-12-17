@@ -13,7 +13,7 @@ const VENDOR_LIBS = ['lodash', 'jquery']
 module.exports = {
   entry: {
     bundle: [
-      './src/index.js',
+      './src/index.ts',
       './sass/app.scss'
     ],
     vendor: VENDOR_LIBS
@@ -22,11 +22,18 @@ module.exports = {
     filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
   },
+  resolve: {
+    extensions: ['.ts', '.js', '.json']
+  },
   module: {
     rules: [
       {
         test: /\.(jpe?g|png|gif|svg)$/,   
         use: ['file-loader']
+      }, {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        loader: 'ts-loader'
       }, {
         test: /\.js$/,
         exclude: /(node_modules|dist)/,
@@ -38,6 +45,7 @@ module.exports = {
         }
       }, { // sass / scss loader for webpack
         test: /\.(sass|scss)$/,
+        exclude: /node_modules/,
         loader: ExtractTextPlugin.extract(['css-loader',
         {
           loader: 'postcss-loader',
@@ -54,6 +62,7 @@ module.exports = {
           }])
       }, {
         test: /\.json$/,
+        exclude: /node_modules/,
         loader: 'json-loader'
       }
     ]
