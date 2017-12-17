@@ -80,9 +80,6 @@ module.exports = {
     }), new HtmlWebpackPlugin({
       template: 'src/index.html'
     }), new CopyWebpackPlugin([{
-      from: '*.html',
-      to: ''
-    }, {
       from: 'assets/footer',
       to: 'assets/footer'
       }, {

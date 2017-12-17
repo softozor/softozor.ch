@@ -1,9 +1,6 @@
 import 'jQuery'
 import {isUndefined} from 'util'
 
-import { AccordionLoader } from './AccordionLoader.js'
-import { ContactLoader } from './ContactLoader.js'
-
 type LoadCallback = () => void;
 
 export class MainNavigationManager {
@@ -65,18 +62,7 @@ export class MainNavigationManager {
 
   private onClick(elem: HTMLElement): void {
     let menuName: string | undefined = this.menuName(elem);
-
-    if (menuName === "team") {
-      this.load(`${menuName}.html`, function () {
-        AccordionLoader.showTeam("teamContent");
-      });
-    } else if (menuName === "contact") {
-      this.load(`${menuName}.html`, function () {
-        ContactLoader.showForm("contactForm");
-      });
-    } else if (typeof menuName !== 'undefined') {
-      this.load(`${menuName}.html`);
-    }
+    $(`section#${menuName}`).show().siblings("section").hide();
   }
 
   private setupMenu(): void {
