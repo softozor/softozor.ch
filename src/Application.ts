@@ -4,7 +4,7 @@ import './BannerManager.js'
 import { TeamRenderer } from './TeamRenderer'
 import { ContactLoader } from './ContactLoader.js'
 
-import * as team from '../assets/team/team.json';
+import * as team from '../assets/team/team.json'
 
 export class Application {
   private m_MainNavMgr: MainNavigationManager;
