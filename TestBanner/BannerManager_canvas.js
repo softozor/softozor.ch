@@ -10,7 +10,8 @@ var SOFTOZOR_FLAP2_IMG = '../assets/banner/softozor_flap2.png';
 var GAME_STOPPED_IMG = '../assets/banner/gameStopped.png';
 var GAME_STOPPED_SHADOW_IMG = '../assets/banner/gameStopped_shadow.png';
 var GAME_STOPPED_BACKGROUND_IMG = '../assets/banner/gameStopped_background.png';
-var BUBBLE_IMG = '../assets/banner/bubble.png';
+var GOODBUBBLE_IMG = '../assets/banner/goodbubble.png';
+var BADBUBBLE_IMG = '../assets/banner/badbubble.png';
 
 "use strict";
 
@@ -107,13 +108,13 @@ var transition = 0; // transition reference: 0 = stopped, 1 = started
 var transitionDirection = 0; // -1: transition to stop; 0: no transition; 1: transition to start
 
 // bubble values
-var bubblePerSquare = 4;
+var badBubblePerSquare = 3;
+var goodBubblePerSquare = 3;
 var lastFilledSquareXW = 200;
 
 // score values
 var score = 0;
 var scoreIncrement = 1;
-var scoreText;
 
 // banner values
 var banner = {
@@ -303,14 +304,21 @@ var softozor = {
 		var length = obstacle.length;
 		for(var obstacleIndex = 0; obstacleIndex < length; obstacleIndex++){
 			var collision = this.hitbox.testHit(obstacle[obstacleIndex].hitbox);
-			if(collision.type === true){
-				var dx = collision.hitXW - collision.centerXW;
-				var dy = collision.hitYW - collision.centerYW;
-				var speedChangeFactor = 2 * ((this.deltaXSpeed + this.xSpeed) * dx + this.ySpeed * dy) / (dx * dx + dy * dy);
-				this.deltaXSpeed -= dx * speedChangeFactor;
-				this.ySpeed -= dy * speedChangeFactor;
+			if(collision.type === true && this.deltaXW + softozorData.heightW > 0){
+        if(obstacle[obstacleIndex].type === "bad"){
+          var dx = collision.hitXW - collision.centerXW;
+  				var dy = collision.hitYW - collision.centerYW;
+  				var speedChangeFactor = 2 * ((this.deltaXSpeed + this.xSpeed) * dx + this.ySpeed * dy) / (dx * dx + dy * dy);
+  				this.deltaXSpeed -= dx * speedChangeFactor;
+  				this.ySpeed -= dy * speedChangeFactor;
+          scorePop[scorePop.length] = new scorePopProto("xxx");
+  				scoreIncrement = 1;
+        } else if(obstacle[obstacleIndex].type === "good"){
+          scorePop[scorePop.length] = new scorePopProto(scoreIncrement);
+          score += scoreIncrement;
+          scoreIncrement++;
+        }
 				obstacle[obstacleIndex].mustBeDestroyed = true;
-				scoreIncrement = 1;
 			}
 		}
 	},
@@ -364,12 +372,13 @@ function positionProto(xW, yW, bandIndex){
 var obstacle = [];
 
 
-function obstacleProto(position, sprite, hitbox, obstacleIndex){
+function obstacleProto(position, sprite, hitbox, obstacleIndex, type){
 	this.position = position;
 	this.sprite = sprite;
 	this.hitbox = hitbox;
 	this.obstacleIndex = obstacleIndex;
 	this.mustBeDestroyed = false;
+  this.type = type;
 
 	this.update = function(){
 		this.sprite.draw(this.position.xObsPX(), this.position.yObsPX());
@@ -381,8 +390,6 @@ function obstacleProto(position, sprite, hitbox, obstacleIndex){
 	this.checkOut = function(){
 		if(this.position.xW + this.sprite.widthW <= scrollingPosition.xW && softozor.deltaXW + softozorData.heightW >= 0){
 			this.mustBeDestroyed = true;
-			score += scoreIncrement;
-			scoreIncrement++;
 		}
 	}
 
@@ -448,24 +455,41 @@ function collisionProto(type, centerxW, centeryW, hitXW, hitYW){
 	this.hitYW = hitYW;
 }
 
-// bubble
-function bubble(x, y, diameter, obstacleIndex){
+// badbubble
+function badBubble(x, y, diameter, obstacleIndex){
 	var pos = new positionProto(x, y, worldBandIndex);
-	var spr = new spriteProto(BUBBLE_IMG, diameter, diameter, worldBandIndex);
+	var spr = new spriteProto(BADBUBBLE_IMG, diameter, diameter, worldBandIndex);
 	var radius = diameter / 2;
 	var hit = new hitboxProto(pos, radius, radius, radius);
-	var obs = new obstacleProto(pos, spr, hit, obstacleIndex);
+	var obs = new obstacleProto(pos, spr, hit, obstacleIndex, "bad");
+	return obs;
+}
+
+// goodbubble
+function goodBubble(x, y, diameter, obstacleIndex){
+	var pos = new positionProto(x, y, worldBandIndex);
+	var spr = new spriteProto(GOODBUBBLE_IMG, diameter, diameter, worldBandIndex);
+	var radius = diameter / 2;
+	var hit = new hitboxProto(pos, radius, radius, radius);
+	var obs = new obstacleProto(pos, spr, hit, obstacleIndex, "good");
 	return obs;
 }
 
 // fill image of bubbles
 function fillWorldSquare(){
   while(lastFilledSquareXW < scrollingPosition.xW + banner.widthPX / worldBandRatioToBanner) {
-  	for(var fillIndex = 0; fillIndex < bubblePerSquare; fillIndex++) {
+  	for(var fillIndex = 0; fillIndex < badBubblePerSquare; fillIndex++) {
   		var x = Math.random() * band[worldBandIndex].sprite.heightW + lastFilledSquareXW;
   		var y = approachExtrema01(approachExtrema01(Math.random())) * 90 - 5;
   		var diameter = 10 + Math.random() * 20;
-  		obstacle[obstacle.length] = bubble(x, y, diameter, obstacle.length);
+  		obstacle[obstacle.length] = badBubble(x, y, diameter, obstacle.length);
+      obstacle[obstacle.length - 1].refreshSize();
+  	}
+    for(var fillIndex = 0; fillIndex < goodBubblePerSquare; fillIndex++) {
+  		var x = Math.random() * band[worldBandIndex].sprite.heightW + lastFilledSquareXW;
+  		var y = approachCenter(approachCenter(Math.random())) * 90 - 5;
+  		var diameter = 10 + Math.random() * 20;
+  		obstacle[obstacle.length] = goodBubble(x, y, diameter, obstacle.length);
       obstacle[obstacle.length - 1].refreshSize();
   	}
   	softozor.xSpeed *= 1.01;
@@ -476,6 +500,10 @@ function fillWorldSquare(){
 // stretches a value between 0 and 1 to 0 or 1, symetric relative to 0.5
 function approachExtrema01(number01){
 	return (3 - 2 * number01) * number01 * number01;
+}
+
+function approachCenter(number01){
+  return ((2 * number01 - 3) * number01 + 2) * number01;
 }
 
 function refreshSize(){
@@ -521,10 +549,44 @@ function stop(){
 	transitionDirection = -1;
 }
 
+// score display
 function scoreUpdate(){
   banner.ctx.font = "bold 15px Arial";
-  banner.ctx.fillStyle = "#FFFFFF";
-  banner.ctx.fillText("SCORE : " + score + " (+" + scoreIncrement + ")", 5, banner.heightPX - 5);
+  banner.ctx.fillStyle = "#ffffff";
+  banner.ctx.fillText("SCORE : " + score, 5, banner.heightPX - 5);
+}
+
+// score increment shown above Softozor
+var scorePop = [];
+
+function scorePopProto(pop){
+  this.deltaXPX = softozorData.heightW * worldBandRatioToBanner / 2;
+  this.deltaYPX = 0;
+  this.pop = pop;
+  this.lifetime = 30;
+  this.mustBeDestroyed = false;
+
+  this.update = function(){
+    this.draw();
+    this.deltaYPX += 1;
+    this.lifetime--;
+    this.checkIfDie();
+  }
+
+  this.draw = function(){
+    banner.ctx.font = "bold 15px Arial";
+    if(pop > 0){
+      banner.ctx.fillStyle = "#003000" + parseInt(255 * (this.lifetime + 16) / 46).toString(16);
+      banner.ctx.fillText("+" + this.pop, softozor.position.xObsPX() + this.deltaXPX, softozor.position.yObsPX() - this.deltaYPX);
+    } else {
+      banner.ctx.fillStyle = "#800000" + parseInt(255 * (this.lifetime + 16) / 46).toString(16);
+      banner.ctx.fillText("" + this.pop, softozor.position.xObsPX() + this.deltaXPX, softozor.position.yObsPX() - this.deltaYPX);
+    }
+  }
+
+  this.checkIfDie = function(){
+    if(this.lifetime <= 0) this.mustBeDestroyed = true;
+  }
 }
 
 var gameStopped = {
@@ -619,6 +681,9 @@ function update(){
 	// dashboard display
   banner.ctx.globalAlpha = 0.6 * transition;
   scoreUpdate();
+  for(var scorePopIndex = 0; scorePopIndex < scorePop.length; scorePopIndex++){
+    scorePop[scorePopIndex].update();
+  }
 
   // game stopped display
   banner.ctx.globalAlpha = 1;
@@ -634,6 +699,14 @@ function update(){
 			obstacleIndex--;
 		}
 	}
+
+  // destroy scorePops
+  for(scorePopIndex = 0; scorePopIndex < scorePop.length; scorePopIndex++){
+    if(scorePop[scorePopIndex].mustBeDestroyed){
+      scorePop.splice(scorePopIndex, 1);
+      scorePopIndex--;
+    }
+  }
 
   // add objects
   fillWorldSquare();
