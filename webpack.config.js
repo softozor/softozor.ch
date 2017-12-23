@@ -8,6 +8,60 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const env = (process.env.NODE_ENV || 'development').trim();
+
+const isProd = env === 'production';
+
+var plugins = [
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV) // --> will be accessible in the application code
+    }
+  }),
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    _: 'lodash'
+  }),
+  new ExtractTextPlugin({
+    filename: '[name].[chunkhash].css',
+    allChunks: true
+  }),
+  // https://stackoverflow.com/questions/30329337/how-to-bundle-vendor-scripts-separately-and-require-them-as-needed-with-webpack/38733864#38733864
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    filename: '[name].[chunkhash].js',
+    minChunks: function(module) {
+      return isExternal(module);
+    }
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/index.html'
+  }),
+  new CopyWebpackPlugin([
+    {
+      from: 'assets/footer',
+      to: 'assets/footer'
+    },
+    {
+      from: 'assets/team',
+      to: 'assets/team'
+    },
+    {
+      from: 'scripts',
+      to: 'scripts'
+    }
+  ])
+];
+
+if (isProd) {
+  plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false }
+    })
+  );
+}
+
 module.exports = {
   entry: {
     bundle: ['./src/index.ts', './sass/app.scss']
@@ -72,48 +126,18 @@ module.exports = {
         loader: 'json-loader'
       },
       {
+        // this really precompiles the hbs code
         test: /\.hbs/,
         loader: 'handlebars-loader'
       }
     ]
   },
-  plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      _: 'lodash'
-    }),
-    new ExtractTextPlugin({
-      filename: '[name].[chunkhash].css',
-      allChunks: true
-    }),
-    // https://stackoverflow.com/questions/30329337/how-to-bundle-vendor-scripts-separately-and-require-them-as-needed-with-webpack/38733864#38733864
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: '[name].[chunkhash].js',
-      minChunks: function(module) {
-        return isExternal(module);
-      }
-    }),
-    new HtmlWebpackPlugin({
-      template: 'src/index.html'
-    }),
-    new CopyWebpackPlugin([
-      {
-        from: 'assets/footer',
-        to: 'assets/footer'
-      },
-      {
-        from: 'assets/team',
-        to: 'assets/team'
-      },
-      {
-        from: 'scripts',
-        to: 'scripts'
-      }
-    ])
-  ]
+  plugins: getPlugins()
 };
+
+function getPlugins() {
+  return plugins;
+}
 
 function isExternal(module) {
   const context = module.context;
