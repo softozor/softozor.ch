@@ -8,33 +8,32 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const VENDOR_LIBS = ['lodash', 'jquery']
-
 module.exports = {
   entry: {
-    bundle: [
-      './src/index.ts',
-      './sass/app.scss'
-    ],
-    vendor: VENDOR_LIBS
+    bundle: ['./src/index.ts', './sass/app.scss']
   },
   output: {
     filename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist')
   },
   resolve: {
     extensions: ['.ts', '.js', '.json']
   },
+  node: {
+    fs: 'empty'
+  },
   module: {
     rules: [
       {
-        test: /\.(jpe?g|png|gif|svg)$/,   
+        test: /\.(jpe?g|png|gif|svg)$/,
         use: ['file-loader']
-      }, {
+      },
+      {
         test: /\.ts$/,
         exclude: /node_modules/,
         loader: 'ts-loader'
-      }, {
+      },
+      {
         test: /\.js$/,
         exclude: /(node_modules|dist)/,
         use: {
@@ -43,50 +42,85 @@ module.exports = {
             presets: ['@babel/preset-env']
           }
         }
-      }, { // sass / scss loader for webpack
+      },
+      {
+        // sass / scss loader for webpack
         test: /\.(sass|scss)$/,
         exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract(['css-loader',
-        {
-          loader: 'postcss-loader',
-          options: {
-            plugins: () => autoprefixer({
-              browsers: ['last 3 versions', '> 1%']
-            })
-          }
-        }, {
+        loader: ExtractTextPlugin.extract([
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () =>
+                autoprefixer({
+                  browsers: ['last 3 versions', '> 1%']
+                })
+            }
+          },
+          {
             loader: 'sass-loader',
             options: {
               includePaths: [bourbon, neat, bitters]
             }
-          }])
-      }, {
+          }
+        ])
+      },
+      {
         test: /\.json$/,
         exclude: /node_modules/,
         loader: 'json-loader'
+      },
+      {
+        test: /\.hbs/,
+        loader: 'handlebars-loader'
       }
     ]
-  }, 
+  },
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-      _: 'lodash',
-    }), new ExtractTextPlugin({
+      _: 'lodash'
+    }),
+    new ExtractTextPlugin({
       filename: '[name].[chunkhash].css',
-      allChunks: true,
-    }), new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest']
-    }), new HtmlWebpackPlugin({
+      allChunks: true
+    }),
+    // https://stackoverflow.com/questions/30329337/how-to-bundle-vendor-scripts-separately-and-require-them-as-needed-with-webpack/38733864#38733864
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: '[name].[chunkhash].js',
+      minChunks: function(module) {
+        return isExternal(module);
+      }
+    }),
+    new HtmlWebpackPlugin({
       template: 'src/index.html'
-    }), new CopyWebpackPlugin([{
-      from: 'assets/footer',
-      to: 'assets/footer'
-      }, {
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: 'assets/footer',
+        to: 'assets/footer'
+      },
+      {
         from: 'assets/team',
         to: 'assets/team'
-    }, {
-      from: 'scripts',
-      to: 'scripts'
-    }])]
+      },
+      {
+        from: 'scripts',
+        to: 'scripts'
+      }
+    ])
+  ]
 };
+
+function isExternal(module) {
+  const context = module.context;
+
+  if (typeof context !== 'string') {
+    return false;
+  }
+
+  return context.indexOf('node_modules') >= 0;
+}
