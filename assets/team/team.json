@@ -1,83 +1,177 @@
-[{
-   "firstName": "Laurent",
-   "lastName": "Michel",
-   "img": "laurosor_full_res.jpg",
-   "shortDescr": "Software architect with solid background in mathematics and physics as well as extensive experience as a SCRUM product owner. Skilled military simulation frameworks developer.",
-   "profExp": [
+[
+  {
+    "FirstName": "Laurent",
+    "LastName": "Michel",
+    "ImgFilename": "laurosor_full_res.jpg",
+    "ShortDescription":
+      "Software architect with solid background in mathematics and physics as well as extensive experience as a SCRUM product owner. Skilled military simulation frameworks developer.",
+    "ProfExp": [
       {
-         "start": 2016,
-         "title": "Product Owner, RUAG Defence, Bern"
+        "start": 2016,
+        "title": "Product Owner, RUAG Defence, Bern"
       },
       {
-         "start": 2014,
-         "end": 2016,
-         "title": "Software developer / technical project manager, RUAG Defence, Bern",
-         "details": "Managed and developed several C++ projects in the field of military simulations."
+        "start": 2014,
+        "end": 2016,
+        "title":
+          "Software developer / technical project manager, RUAG Defence, Bern",
+        "details":
+          "Managed and developed several C++ projects in the field of military simulations."
       },
       {
-         "start": 2009,
-         "end": 2014,
-         "title": "Teaching assistant, EPFL, Lausanne",
-         "details": "Teaching assistant in analysis I, II, III, and numerical analysis for physicists, mathematicians, civil, mechanical, and environmental engineers."
+        "start": 2009,
+        "end": 2014,
+        "title": "Teaching assistant, EPFL, Lausanne",
+        "details":
+          "Teaching assistant in analysis I, II, III, and numerical analysis for physicists, mathematicians, civil, mechanical, and environmental engineers."
       },
       {
-         "start": 2008,
-         "end": 2009,
-         "title": "Scientific collaborator, The University of Queensland, Brisbane",
-         "details": "Scientific collaboration with a research group at the University of Queensland where we worked on the design of efficient algorithms to simulate infinite, one-dimensional spin chains in the framework of matrix product states and operators."
+        "start": 2008,
+        "end": 2009,
+        "title":
+          "Scientific collaborator, The University of Queensland, Brisbane",
+        "details":
+          "Scientific collaboration with a research group at the University of Queensland where we worked on the design of efficient algorithms to simulate infinite, one-dimensional spin chains in the framework of matrix product states and operators."
       },
       {
-         "start": 2006,
-         "end": 2008,
-         "title": "Teaching assistant, The University of Fribourg, Fribourg",
-         "details": "Teaching assistant in physics for physicians, chemists, and biologists."
+        "start": 2006,
+        "end": 2008,
+        "title": "Teaching assistant, The University of Fribourg, Fribourg",
+        "details":
+          "Teaching assistant in physics for physicians, chemists, and biologists."
       }
-   ],
-   "publications": [
+    ],
+    "Publications": [
       {
-         "date": "February 2013",
-         "title": "Estimating the ice thickness of mountain glaciers with an inverse approach using surface topography and mass-balance",
-         "link": "http://iopscience.iop.org/article/10.1088/0266-5611/29/3/035002/meta;jsessionid=9066A8362AB73C9FEE199FE08099C3F7.c5.iopscience.cld.iop.org"
+        "date": "February 2013",
+        "title":
+          "Estimating the ice thickness of mountain glaciers with an inverse approach using surface topography and mass-balance",
+        "link":
+          "http://iopscience.iop.org/article/10.1088/0266-5611/29/3/035002/meta;jsessionid=9066A8362AB73C9FEE199FE08099C3F7.c5.iopscience.cld.iop.org"
       },
       {
-         "date": "November 2013",
-         "title": "Estimating the ice thickness of mountain glaciers with a shape optimization algorithm using surface topography and mass-balance",
-         "link": "https://www.degruyter.com/view/j/jip.ahead-of-print/jip-2013-0016/jip-2013-0016.xml"
+        "date": "November 2013",
+        "title":
+          "Estimating the ice thickness of mountain glaciers with a shape optimization algorithm using surface topography and mass-balance",
+        "link":
+          "https://www.degruyter.com/view/j/jip.ahead-of-print/jip-2013-0016/jip-2013-0016.xml"
       },
       {
-         "date": "May 2014",
-         "title": "Estimating the ice thickness of shallow glaciers from surface topography and mass-balance data with a shape optimization algorithm",
-         "link": "http://www.sciencedirect.com/science/article/pii/S0098300414000235"
+        "date": "May 2014",
+        "title":
+          "Estimating the ice thickness of shallow glaciers from surface topography and mass-balance data with a shape optimization algorithm",
+        "link":
+          "http://www.sciencedirect.com/science/article/pii/S0098300414000235"
       },
       {
-         "date": "August 2014",
-         "title": "Bedrock topography reconstruction of glaciers from surface topography and mass-balance data",
-         "link": "https://link.springer.com/article/10.1007/s10596-014-9439-6?sa_campaign=email/event/articleAuthor/onlineFirst"
+        "date": "August 2014",
+        "title":
+          "Bedrock topography reconstruction of glaciers from surface topography and mass-balance data",
+        "link":
+          "https://link.springer.com/article/10.1007/s10596-014-9439-6?sa_campaign=email/event/articleAuthor/onlineFirst"
       }
-   ],
-   "education": [
+    ],
+    "Education": [
       {
-         "start": 2009,
-         "end": 2013,
-         "title": "PhD in mathematics, EPFL, Lausanne",
-         "details": "<a href='https://infoscience.epfl.ch/record/188621/files/EPFL_TH5940.pdf'>Estimating the ice thickness of mountain glaciers using surface topography and mass-balance<\/a>"
+        "start": 2009,
+        "end": 2013,
+        "title": "PhD in mathematics, EPFL, Lausanne",
+        "details":
+          "<a href='https://infoscience.epfl.ch/record/188621/files/EPFL_TH5940.pdf'>Estimating the ice thickness of mountain glaciers using surface topography and mass-balance</a>"
       },
       {
-         "start": 2006,
-         "end": 2008,
-         "title": "MSc in Physics, The University of Fribourg, Fribourg, Minor of mathematics.",
-         "details": "<a href=''>Time evolution of the quantum spiral state<\/a>"
+        "start": 2006,
+        "end": 2008,
+        "title":
+          "MSc in Physics, The University of Fribourg, Fribourg, Minor of mathematics.",
+        "details": "<a href=''>Time evolution of the quantum spiral state</a>"
       },
       {
-         "start": 2003,
-         "end": 2006,
-         "title": "BSc in Physics, The University of Fribourg, Fribourg, Minor of mathematics."
+        "start": 2003,
+        "end": 2006,
+        "title":
+          "BSc in Physics, The University of Fribourg, Fribourg, Minor of mathematics."
       },
       {
-         "start": 1999,
-         "end": 2003,
-         "title": "Federal maturity, Coll&egrave;ge du Sud",
-         "details": "Options Latin, Biology, Chemistry, and Physics."
+        "start": 1999,
+        "end": 2003,
+        "title": "Federal maturity, Coll&egrave;ge du Sud",
+        "details": "Options Latin, Biology, Chemistry, and Physics."
       }
-   ]
-}]
+    ]
+  },
+  {
+    "FirstName": "Florian",
+    "LastName": "Pittet",
+    "ImgFilename": "floriosor_full_res.jpg",
+    "ShortDescription": "Graphics designer"
+  },
+  {
+    "FirstName": "Thomas",
+    "LastName": "Michel",
+    "ImgFilename": "thomosor_full_res.jpg",
+    "ShortDescription": "Software architect",
+    "ProfExp": [
+      {
+        "start": "May 2016",
+        "title": "Software Engineer, RUAG Defence, Bern, Switzerland",
+        "details":
+          "I worked in the Simulation &amp; Training department, on just one project which was the biggest project this department had ever had. I was the lead “visual system programmer”, which means I was in charge of everything our customer can ultimately see in the simulator. The job involved making a C++ plugin for VR-Vantage (VRV) to control VRV so that it does what we want, this includes a variety of features and in particular the ability to communicate with our vehicle simulations, display the various reticles of the various supported tanks with the correct information on them, making and configuring the various visual effects we need (explosions, ammunition tracers, ...), making sure the performance of the system was acceptable and making the correct compromises to achieve them if required, etc... I also trained and supervised several developpers so they could assist me on the visual system tasks."
+      },
+      {
+        "start": "May 2015",
+        "end": "May 2016",
+        "title": "Programmer, Abstraction Games, Valkenswaard, The Netherlands",
+        "details":
+          "Porting/Adapting various games from PC Steam to the consoles market. Most of my work for this company has been with Unity, but I also had to write C++ plugins for Unity for the consoles in order to interact with the native console (PS4/Xbox) APIs. I have also been in charge of all the publishing related work for Whispering Willows on WiiU and Xbox One (paperwork and actual technical work). Project turnaround was fairly high and so I had to change from one codebase to the other quite frequently, as a result I’m able to adapt to new codebases and coding style rapidly.<br /> The tasks varied from random bug fixing in the games, performance analysis and improvement, development of new game features and various platform specific requirements.<br />I have worked on Verdun, Whispering Willows, Pixel Piracy and BroForce."
+      },
+      {
+        "start": "February 2014",
+        "end": "November 2014",
+        "title":
+          "Render Technology Programmer, Traveller’s Tales, Knutsford, United Kingdom",
+        "details":
+          "My work there mostly consisted in maintaining our in house game engine. This included enhancing supported rendering effects, researching differences with next gen consoles in the way they work (crash dump mechanism, rendering, ...), supporting new systems for other departments such as new blending modes for artists, ... It also includes various improvements in our complex game building system and our build server system (which was all Python scripts working together with TeamCity). <br />I worked on LEGO Fusion, LEGO The Hobbit and LEGO Batman: Beyond Gotham."
+      },
+      {
+        "start": "October 2012",
+        "end": "February 2014",
+        "title":
+          "Software Engineer, SG Gaming (Barcrest), Oldham, United Kingdom",
+        "details":
+          "I developed games for a variety of platforms and systems. In order to do that, I liaised with video artists, quality assurance and game designers. All our games are developed using C++ using our own custom 3D game engine. When not working on a new game, I am usually working on older games that await a new release for whatever reason or require bug fixing which involves debugging code that other people, who may no longer work at Barcrest, have written. We work on several platforms and part of the job involves porting games from a platform to another. I have worked on various famous Barcrest titles such as the Rainbow Riches franchise, Money Mad Martian and Psycho Cash beast to name a few."
+      }
+    ],
+    "Education": [
+      {
+        "start": 2011,
+        "end": 2012,
+        "title": "MSc, Games Programming, Hull, United Kingdom",
+        "details":
+          "<a href='#solaire'>MSc Thesis: Multiplayer space simulator game</a>"
+      },
+      {
+        "start": 2008,
+        "end": 2011,
+        "title":
+          "BSc, Computer Science, College of Engineering and Architecture, Fribourg, part of the University of Applied Sciences, Western Switzerland",
+        "details":
+          "Thesis about multi mobile platforms (Android and iOS) multiplayer game, completed at Northeastern University in Boston, Massachusetts, USA"
+      }
+    ],
+    "Portfolio": [
+      {
+        "start": 2011,
+        "title": "<a name='solaire'>Sol@ire</a>",
+        "details":
+          "This project was completed with Matthew Smith for our Games Programming master dissertation at the University of Hull. The idea for the project came when we realized that we were both very enthusiastic about making a game for our dissertation. We thought that by working together, we would be able to make a better and more complete product. Matt wanted to do game design, game logic and mechanics-related work, while I was looking for something more technical involving game engine and networking and so this project was born. We decided to make a space combat game which we decided to call Sol@ire and that can be played alone or over the local area network (LAN). Most of the work consisted of coming up with game mechanics and game concepts and supporting these on the multiplayer version of the game.<br /><br />The key concepts in the game are ship modules and locking a ship. The modules are the weapon you can equip to your ship, some are restricted to specific ships. Locking a ship is the process of targeting a ship, in our game this is done by using one of the \"change target\" action key and point towards that enemy for long enough, in order to use some more advanced weapons such as homing missiles, turrets, etc.<br /><br />The video shows the game in single player against bots, but the LAN game is essentially identical in the current version, except that a few more steps to start playing because you have to connect with each other and form teams, but after that you can play your death match games with your mates!<br /><br /><iframe width='560' height='315' src='https://www.youtube.com/embed/e9mq-2hKc9U?rel=0' frameborder='0' allowfullscreen></iframe>"
+      },
+      {
+        "start": 2011,
+        "title": "X-Sledding 3000",
+        "details":
+          "This project is a complete game developed as part of the master's degree in game programming at the University of Hull. We were a team of 6 developers and decided to make a fake studio for the occasion called TExstudio :) We developed this over 5 weeks and made almost everything from scratch. We made our own game engine, the TEXEngine that supports both the Windows and the PS3 platforms. Initially the engine should have supported the PSP as well but we had to drop that support.<br /><br />The engine supports LUA scripted UI, procedural meshes and textures. It also has its own custom scripting language to script scene content. It uses CG shaders and supports keyboard - mouse and multiple xbox controllers for input. The physics uses Bullet and our audio system uses Fmod. All the textures, audio sounds, models and other assets were made by ourselves.<br /><br />The video shows the game running on Windows however it runs on the PS3 as well. <br /> Basically the way the game plays is that you select your pack of \"huskies\" (which may or may not be actual huskies :)), each have different characteristics in terms of E (energy) / D (discipline) / M (morale). The more you whip your pack, the less morale they will have but the faster you will go, energy decreases over time and discipline varies based on your energy and thrust. The discipline of your pack controls how they will obey you.<br /><br /><iframe width='560' height='315' src='https://www.youtube.com/embed/x9Du6oRotGA?rel=0' frameborder='0' allowfullscreen></iframe>"
+      }
+    ]
+  }
+]

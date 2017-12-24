@@ -1,10 +1,8 @@
-﻿import { MainNavigationManager } from './MainNavigationManager'
-import './BannerManager.js'
+﻿import { MainNavigationManager } from './MainNavigationManager';
+import './BannerManager.js';
 
-import { TeamRenderer } from './TeamRenderer'
-import { ContactLoader } from './ContactLoader.js'
-
-import * as team from '../assets/team/team.json'
+import { TeamRenderer } from './TeamRenderer';
+import { ContactLoader } from './ContactLoader.js';
 
 export class Application {
   private m_MainNavMgr: MainNavigationManager;
@@ -24,6 +22,5 @@ export class Application {
 
   public exec(): void {
     $(document).ready(() => this.onDocumentReady());
-    console.log("team = ", team);
   }
 }
