@@ -16,7 +16,6 @@ export class Application {
   private onDocumentReady(): void {
     this.m_MainNavMgr.onDocumentReady();
     this.m_TeamRenderer.onDocumentReady();
-    //TeamRenderer.showTeam("teamContent");
     //ContactLoader.showForm("contactForm");
   }
 
