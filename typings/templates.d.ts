@@ -1,1 +1,1 @@
-declare module '*.hbs';
+declare module '*.pug';

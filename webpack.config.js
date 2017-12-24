@@ -15,7 +15,7 @@ const isProd = env === 'production';
 var plugins = [
   new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: JSON.stringify(process.env.NODE_ENV) // --> will be accessible in the application code
+      NODE_ENV: env // --> will be accessible in the application code
     }
   }),
   new webpack.ProvidePlugin({
@@ -126,9 +126,10 @@ module.exports = {
         loader: 'json-loader'
       },
       {
-        // this really precompiles the hbs code
-        test: /\.hbs/,
-        loader: 'handlebars-loader'
+        test: /\.pug$/,
+        use: {
+          loader: 'pug-loader'
+        }
       }
     ]
   },
