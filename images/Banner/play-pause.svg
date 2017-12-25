@@ -1,0 +1,953 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="play-pause.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="41.591953"
+     inkscape:cy="153.59585"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:snap-global="true"
+     inkscape:snap-center="true"
+     inkscape:snap-smooth-nodes="true"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-nodes="true"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:snap-grids="true"
+     inkscape:snap-nodes="false"
+     inkscape:snap-others="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4150"
+       spacingx="0.5"
+       spacingy="0.50000001"
+       empspacing="50" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g4277-29"
+       transform="translate(-1950,700.00088)"
+       inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/play_pause.png"
+       inkscape:export-xdpi="12.857142"
+       inkscape:export-ydpi="12.857142">
+      <ellipse
+         ry="175"
+         rx="175.00002"
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         cy="127.36222"
+         cx="-1025"
+         id="path4360-31"
+         style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+      <path
+         id="path4272-9"
+         d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+         style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000031"
+         y="22.362226"
+         x="-1100"
+         height="210"
+         width="50.000061"
+         id="rect4153-0-4"
+         style="fill:#005000;fill-opacity:1;stroke:none" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000004"
+         y="22.362221"
+         x="-1000"
+         height="210"
+         width="50.000008"
+         id="rect4153-9-7"
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         inkscape:transform-center-x="-50.000002"
+         inkscape:transform-center-y="6.5009058" />
+      <rect
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         id="rect4153-9-20-49"
+         width="50.000008"
+         height="210"
+         x="-1000"
+         y="22.361338"
+         ry="25.000004"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-ydpi="25.399998"
+         inkscape:transform-center-x="-50.000001"
+         inkscape:transform-center-y="-6.4999774" />
+    </g>
+    <g
+       id="g4277-29-2"
+       transform="translate(-549.99997,700.00088)"
+       inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/play_pause.png"
+       inkscape:export-xdpi="12.857142"
+       inkscape:export-ydpi="12.857142">
+      <ellipse
+         ry="175"
+         rx="175.00002"
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         cy="127.36222"
+         cx="-1025"
+         id="path4360-31-0"
+         style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+      <path
+         id="path4272-9-6"
+         d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+         style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000031"
+         y="22.362226"
+         x="-1100"
+         height="210"
+         width="50.000061"
+         id="rect4153-0-4-8"
+         style="fill:#005000;fill-opacity:1;stroke:none" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000004"
+         y="365.64404"
+         x="-896.84796"
+         height="210"
+         width="50.000008"
+         id="rect4153-9-7-9"
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         inkscape:transform-center-x="-44.761165"
+         inkscape:transform-center-y="23.209858"
+         transform="matrix(0.93969262,0.34202014,-0.34202014,0.93969262,0,0)" />
+      <rect
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         id="rect4153-9-20-49-2"
+         width="50.000008"
+         height="210"
+         x="-983.9682"
+         y="-336.28214"
+         ry="25.000004"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-ydpi="25.399998"
+         inkscape:transform-center-x="-44.761512"
+         inkscape:transform-center-y="-23.208994"
+         transform="matrix(0.93969262,-0.34202014,0.34202014,0.93969262,0,0)" />
+    </g>
+    <g
+       id="g4277-29-2-6"
+       transform="translate(850.00002,699.99998)"
+       inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/play_pause.png"
+       inkscape:export-xdpi="12.857142"
+       inkscape:export-ydpi="12.857142">
+      <ellipse
+         ry="175"
+         rx="175.00002"
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         cy="127.36222"
+         cx="-1025"
+         id="path4360-31-0-6"
+         style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+      <path
+         id="path4272-9-6-4"
+         d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+         style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000031"
+         y="22.362226"
+         x="-1100"
+         height="210"
+         width="50.000061"
+         id="rect4153-0-4-8-9"
+         style="fill:#005000;fill-opacity:1;stroke:none" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000004"
+         y="652.94336"
+         x="-682.50739"
+         height="210"
+         width="50.000008"
+         id="rect4153-9-7-9-5"
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         inkscape:transform-center-x="-34.123524"
+         inkscape:transform-center-y="37.119383"
+         transform="matrix(0.76604444,0.64278761,-0.64278761,0.76604444,0,0)" />
+      <rect
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         id="rect4153-9-20-49-2-0"
+         width="50.000008"
+         height="210"
+         x="-846.23993"
+         y="-667.81354"
+         ry="25.000004"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-ydpi="25.399998"
+         inkscape:transform-center-x="-34.12415"
+         inkscape:transform-center-y="-37.118647"
+         transform="matrix(0.76604444,-0.64278761,0.64278761,0.76604444,0,0)" />
+    </g>
+    <g
+       id="g4277-29-4"
+       transform="translate(-1599.9999,700.00087)"
+       inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/play_pause.png"
+       inkscape:export-xdpi="12.857142"
+       inkscape:export-ydpi="12.857142">
+      <ellipse
+         ry="175"
+         rx="175.00002"
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         cy="127.36222"
+         cx="-1025"
+         id="path4360-31-8"
+         style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+      <path
+         id="path4272-9-7"
+         d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+         style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000031"
+         y="22.362226"
+         x="-1100"
+         height="210"
+         width="50.000061"
+         id="rect4153-0-4-1"
+         style="fill:#005000;fill-opacity:1;stroke:none" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000004"
+         y="111.23695"
+         x="-985.5658"
+         height="210"
+         width="50.000008"
+         id="rect4153-9-7-7"
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         inkscape:transform-center-x="-49.243155"
+         inkscape:transform-center-y="10.83397"
+         transform="matrix(0.9961947,0.08715574,-0.08715574,0.9961947,0,0)" />
+      <rect
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         id="rect4153-9-20-49-27"
+         width="50.000008"
+         height="210"
+         x="-1007.7664"
+         y="-67.482681"
+         ry="25.000004"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-ydpi="25.399998"
+         inkscape:transform-center-x="-49.243153"
+         inkscape:transform-center-y="-10.833027"
+         transform="matrix(0.9961947,-0.08715574,0.08715574,0.9961947,0,0)" />
+    </g>
+    <g
+       id="g4277-29-22"
+       transform="translate(-1250,700.00087)"
+       inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/play_pause.png"
+       inkscape:export-xdpi="12.857142"
+       inkscape:export-ydpi="12.857142">
+      <ellipse
+         ry="175"
+         rx="175.00002"
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         cy="127.36222"
+         cx="-1025"
+         id="path4360-31-6"
+         style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+      <path
+         id="path4272-9-1"
+         d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+         style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000031"
+         y="22.362226"
+         x="-1100"
+         height="210"
+         width="50.000061"
+         id="rect4153-0-4-0"
+         style="fill:#005000;fill-opacity:1;stroke:none" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000004"
+         y="-157.46332"
+         x="-1005.4153"
+         height="210"
+         width="50.000008"
+         id="rect4153-9-7-6"
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         inkscape:transform-center-x="-50.369274"
+         inkscape:transform-center-y="-2.2802779"
+         transform="matrix(0.98480775,-0.17364817,0.17364817,0.98480775,0,0)" />
+      <rect
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         id="rect4153-9-20-49-1"
+         width="50.000008"
+         height="210"
+         x="-961.18317"
+         y="198.31706"
+         ry="25.000004"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-ydpi="25.399998"
+         inkscape:transform-center-x="-50.36911"
+         inkscape:transform-center-y="2.2811856"
+         transform="matrix(0.98480775,0.17364817,-0.17364817,0.98480775,0,0)" />
+      <g
+         id="g4277-29-5"
+         transform="translate(350,-2.5363886e-6)">
+        <ellipse
+           ry="175"
+           rx="175.00002"
+           inkscape:export-ydpi="25.399998"
+           inkscape:export-xdpi="25.399998"
+           inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+           cy="127.36222"
+           cx="-1025"
+           id="path4360-31-9"
+           style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+        <path
+           id="path4272-9-4"
+           d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+           style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           inkscape:connector-curvature="0" />
+        <rect
+           inkscape:export-ydpi="25.399998"
+           inkscape:export-xdpi="25.399998"
+           inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+           ry="25.000031"
+           y="22.362226"
+           x="-1100"
+           height="210"
+           width="50.000061"
+           id="rect4153-0-4-9"
+           style="fill:#005000;fill-opacity:1;stroke:none" />
+        <rect
+           inkscape:export-ydpi="25.399998"
+           inkscape:export-xdpi="25.399998"
+           inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+           ry="25.000004"
+           y="-247.04555"
+           x="-996.35516"
+           height="210"
+           width="50.000008"
+           id="rect4153-9-7-0"
+           style="fill:#005000;fill-opacity:1;stroke:none"
+           inkscape:transform-center-x="-49.978866"
+           inkscape:transform-center-y="-6.6615587"
+           transform="matrix(0.96592583,-0.25881905,0.25881905,0.96592583,0,0)" />
+        <rect
+           style="fill:#005000;fill-opacity:1;stroke:none"
+           id="rect4153-9-20-49-9"
+           width="50.000008"
+           height="210"
+           x="-930.4281"
+           y="283.08963"
+           ry="25.000004"
+           inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+           inkscape:export-xdpi="25.399998"
+           inkscape:export-ydpi="25.399998"
+           inkscape:transform-center-x="-49.978622"
+           inkscape:transform-center-y="6.6624432"
+           transform="matrix(0.96592583,0.25881905,-0.25881905,0.96592583,0,0)" />
+      </g>
+    </g>
+    <g
+       id="g4277-29-2-6-1"
+       transform="translate(-199.99997,700.00088)"
+       inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/play_pause.png"
+       inkscape:export-xdpi="12.857142"
+       inkscape:export-ydpi="12.857142">
+      <ellipse
+         ry="175"
+         rx="175.00002"
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         cy="127.36222"
+         cx="-1025"
+         id="path4360-31-0-6-7"
+         style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+      <path
+         id="path4272-9-6-4-7"
+         d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+         style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000031"
+         y="22.362226"
+         x="-1100"
+         height="210"
+         width="50.000061"
+         id="rect4153-0-4-8-9-1"
+         style="fill:#005000;fill-opacity:1;stroke:none" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000004"
+         y="-422.14526"
+         x="-955.0437"
+         height="210"
+         width="50.000008"
+         id="rect4153-9-7-9-5-1"
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         inkscape:transform-center-x="-48.062771"
+         inkscape:transform-center-y="-15.239089"
+         transform="matrix(0.90630779,-0.42261826,0.42261826,0.90630779,0,0)" />
+      <rect
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         id="rect4153-9-20-49-2-0-5"
+         width="50.000008"
+         height="210"
+         x="-847.39325"
+         y="443.0033"
+         ry="25.000004"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-ydpi="25.399998"
+         inkscape:transform-center-x="-48.062393"
+         inkscape:transform-center-y="15.239938"
+         transform="matrix(0.90630779,0.42261826,-0.42261826,0.90630779,0,0)" />
+    </g>
+    <g
+       id="g4277-29-2-6-9"
+       transform="translate(150.00002,700.00088)"
+       inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/play_pause.png"
+       inkscape:export-xdpi="12.857142"
+       inkscape:export-ydpi="12.857142">
+      <ellipse
+         ry="175"
+         rx="175.00002"
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         cy="127.36222"
+         cx="-1025"
+         id="path4360-31-0-6-77"
+         style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+      <path
+         id="path4272-9-6-4-6"
+         d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+         style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000031"
+         y="22.362226"
+         x="-1100"
+         height="210"
+         width="50.000061"
+         id="rect4153-0-4-8-9-7"
+         style="fill:#005000;fill-opacity:1;stroke:none" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000004"
+         y="518.66986"
+         x="-802.24536"
+         height="210"
+         width="50.000008"
+         id="rect4153-9-7-9-5-3"
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         inkscape:transform-center-x="-40.050846"
+         inkscape:transform-center-y="30.629947"
+         transform="matrix(0.8660254,0.5,-0.5,0.8660254,0,0)" />
+      <rect
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         id="rect4153-9-20-49-2-0-6"
+         width="50.000008"
+         height="210"
+         x="-929.60669"
+         y="-508.07266"
+         ry="25.000004"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-ydpi="25.399998"
+         inkscape:transform-center-x="-40.051299"
+         inkscape:transform-center-y="-30.629136"
+         transform="matrix(0.8660254,-0.5,0.5,0.8660254,0,0)" />
+    </g>
+    <g
+       id="g4277-29-2-6-5"
+       transform="translate(500.00002,700.00088)"
+       inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/play_pause.png"
+       inkscape:export-xdpi="12.857142"
+       inkscape:export-ydpi="12.857142">
+      <ellipse
+         ry="175"
+         rx="175.00002"
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         cy="127.36222"
+         cx="-1025"
+         id="path4360-31-0-6-6"
+         style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+      <path
+         id="path4272-9-6-4-3"
+         d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+         style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000031"
+         y="22.362226"
+         x="-1100"
+         height="210"
+         width="50.000061"
+         id="rect4153-0-4-8-9-9"
+         style="fill:#005000;fill-opacity:1;stroke:none" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000004"
+         y="-587.41113"
+         x="-883.95404"
+         height="210"
+         width="50.000008"
+         id="rect4153-9-7-9-5-4"
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         inkscape:transform-center-x="-44.686387"
+         inkscape:transform-center-y="-23.35358"
+         transform="matrix(0.81915204,-0.57357644,0.57357644,0.81915204,0,0)" />
+      <rect
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         id="rect4153-9-20-49-2-0-8"
+         width="50.000008"
+         height="210"
+         x="-737.85114"
+         y="586.06866"
+         ry="25.000004"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-ydpi="25.399998"
+         inkscape:transform-center-x="-44.685834"
+         inkscape:transform-center-y="23.354377"
+         transform="matrix(0.81915204,0.57357644,-0.57357644,0.81915204,0,0)" />
+    </g>
+    <g
+       id="g4277-29-2-6-12"
+       transform="translate(1200,699.99998)"
+       inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/play_pause.png"
+       inkscape:export-xdpi="12.857142"
+       inkscape:export-ydpi="12.857142">
+      <ellipse
+         ry="175"
+         rx="175.00002"
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         cy="127.36222"
+         cx="-1025"
+         id="path4360-31-0-6-9"
+         style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+      <path
+         id="path4272-9-6-4-39"
+         d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+         style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000031"
+         y="22.362226"
+         x="-1100"
+         height="210"
+         width="50.000061"
+         id="rect4153-0-4-8-9-0"
+         style="fill:#005000;fill-opacity:1;stroke:none" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000004"
+         y="-737.82172"
+         x="-785.24628"
+         height="210"
+         width="50.000008"
+         id="rect4153-9-7-9-5-8"
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         inkscape:transform-center-x="-39.952178"
+         inkscape:transform-center-y="-30.758547"
+         transform="matrix(0.70710678,-0.70710678,0.70710678,0.70710678,0,0)" />
+      <rect
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         id="rect4153-9-20-49-2-0-85"
+         width="50.000008"
+         height="210"
+         x="-605.13019"
+         y="707.93872"
+         ry="25.000004"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-ydpi="25.399998"
+         inkscape:transform-center-x="-39.95153"
+         inkscape:transform-center-y="30.75918"
+         transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,0,0)" />
+    </g>
+    <g
+       id="g4277-29-2-6-0"
+       transform="translate(1550,699.99998)"
+       inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/play_pause.png"
+       inkscape:export-xdpi="12.857142"
+       inkscape:export-ydpi="12.857142">
+      <ellipse
+         ry="175"
+         rx="175.00002"
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         cy="127.36222"
+         cx="-1025"
+         id="path4360-31-0-6-96"
+         style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+      <path
+         id="path4272-9-6-4-38"
+         d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+         style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000031"
+         y="22.362226"
+         x="-1100"
+         height="210"
+         width="50.000061"
+         id="rect4153-0-4-8-9-5"
+         style="fill:#005000;fill-opacity:1;stroke:none" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000004"
+         y="764.38464"
+         x="-541.27216"
+         height="210"
+         width="50.000008"
+         id="rect4153-9-7-9-5-6"
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         inkscape:transform-center-x="-27.159383"
+         inkscape:transform-center-y="42.480951"
+         transform="matrix(0.64278761,0.76604444,-0.76604444,0.64278761,0,0)" />
+      <rect
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         id="rect4153-9-20-49-2-0-1"
+         width="50.000008"
+         height="210"
+         x="-736.401"
+         y="-810.65112"
+         ry="25.000004"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-ydpi="25.399998"
+         inkscape:transform-center-x="-27.160131"
+         inkscape:transform-center-y="-42.480335"
+         transform="matrix(0.64278761,-0.76604444,0.76604444,0.64278761,0,0)" />
+    </g>
+    <g
+       id="g4277-29-2-6-15"
+       transform="translate(1900,699.99998)"
+       inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/play_pause.png"
+       inkscape:export-xdpi="12.857142"
+       inkscape:export-ydpi="12.857142">
+      <ellipse
+         ry="175"
+         rx="175.00002"
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         cy="127.36222"
+         cx="-1025"
+         id="path4360-31-0-6-98"
+         style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+      <path
+         id="path4272-9-6-4-4"
+         d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+         style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000031"
+         y="22.362226"
+         x="-1100"
+         height="210"
+         width="50.000061"
+         id="rect4153-0-4-8-9-8"
+         style="fill:#005000;fill-opacity:1;stroke:none" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000004"
+         y="-868.80676"
+         x="-661.91962"
+         height="210"
+         width="50.000008"
+         id="rect4153-9-7-9-5-10"
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         inkscape:transform-center-x="-34.004046"
+         inkscape:transform-center-y="-37.228879"
+         transform="matrix(0.57357644,-0.81915204,0.81915204,0.57357644,0,0)" />
+      <rect
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         id="rect4153-9-20-49-2-0-3"
+         width="50.000008"
+         height="210"
+         x="-453.26309"
+         y="804.91058"
+         ry="25.000004"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-ydpi="25.399998"
+         inkscape:transform-center-x="-34.003269"
+         inkscape:transform-center-y="37.229376"
+         transform="matrix(0.57357644,0.81915204,-0.81915204,0.57357644,0,0)" />
+    </g>
+    <g
+       id="g4277-29-0"
+       transform="translate(2250,700.00088)"
+       inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/play_pause.png"
+       inkscape:export-xdpi="12.857142"
+       inkscape:export-ydpi="12.857142">
+      <ellipse
+         ry="175"
+         rx="175.00002"
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         cy="127.36222"
+         cx="-1025"
+         id="path4360-31-4"
+         style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+      <path
+         id="path4272-9-44"
+         d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+         style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000031"
+         y="22.362226"
+         x="-1100"
+         height="210"
+         width="50.000061"
+         id="rect4153-0-4-4"
+         style="fill:#005000;fill-opacity:1;stroke:none" />
+      <rect
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         ry="25.000004"
+         y="849.6076"
+         x="-382.83102"
+         height="210"
+         width="50.000008"
+         id="rect4153-9-7-76"
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         inkscape:transform-center-x="-19.370055"
+         inkscape:transform-center-y="46.551735"
+         transform="matrix(0.5,0.8660254,-0.8660254,0.5,0,0)" />
+      <rect
+         style="fill:#005000;fill-opacity:1;stroke:none"
+         id="rect4153-9-20-49-3"
+         width="50.000008"
+         height="210"
+         x="-603.42731"
+         y="-932.24536"
+         ry="25.000004"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-ydpi="25.399998"
+         inkscape:transform-center-x="-19.370851"
+         inkscape:transform-center-y="-46.551259"
+         transform="matrix(0.5,-0.8660254,0.8660254,0.5,0,0)" />
+    </g>
+    <g
+       id="g4295"
+       transform="translate(1275,200.00088)">
+      <ellipse
+         ry="175"
+         rx="175.00002"
+         inkscape:export-ydpi="25.399998"
+         inkscape:export-xdpi="25.399998"
+         inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+         cy="127.36222"
+         cx="-1025"
+         id="path4360-31-4-6"
+         style="fill:#ffffff;fill-opacity:0.49152545;stroke:none" />
+      <path
+         id="path4272-9-44-7"
+         d="m -1025,-47.638672 a 174.99936,175.00032 0 0 0 -175,175.000002 174.99936,175.00032 0 0 0 175,175 174.99936,175.00032 0 0 0 175,-175 174.99936,175.00032 0 0 0 -175,-175.000002 z m 0,30 a 144.99987,145.00085 0 0 1 145,145.000002 144.99987,145.00085 0 0 1 -145,145 144.99987,145.00085 0 0 1 -145,-145 144.99987,145.00085 0 0 1 145,-145.000002 z"
+         style="fill:#005000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:connector-curvature="0" />
+      <g
+         id="g4242-6"
+         transform="matrix(-0.83275188,0,0,-0.83275188,-1827.4675,233.4219)">
+        <rect
+           style="fill:#005000;fill-opacity:1;stroke:none"
+           id="rect4153-0-4-4-5-2"
+           width="50.000061"
+           height="210"
+           x="-1100"
+           y="22.362226"
+           ry="25.000031"
+           inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+           inkscape:export-xdpi="25.399998"
+           inkscape:export-ydpi="25.399998" />
+        <rect
+           transform="matrix(0.5,0.8660254,-0.8660254,0.5,0,0)"
+           inkscape:transform-center-y="46.551735"
+           inkscape:transform-center-x="-19.370055"
+           style="fill:#005000;fill-opacity:1;stroke:none"
+           id="rect4153-9-7-76-3-9"
+           width="50.000008"
+           height="210"
+           x="-382.83102"
+           y="849.6076"
+           ry="25.000004"
+           inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+           inkscape:export-xdpi="25.399998"
+           inkscape:export-ydpi="25.399998" />
+        <rect
+           transform="matrix(0.5,-0.8660254,0.8660254,0.5,0,0)"
+           inkscape:transform-center-y="-46.551259"
+           inkscape:transform-center-x="-19.370851"
+           inkscape:export-ydpi="25.399998"
+           inkscape:export-xdpi="25.399998"
+           inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+           ry="25.000004"
+           y="-932.24536"
+           x="-603.42731"
+           height="210"
+           width="50.000008"
+           id="rect4153-9-20-49-3-5-1"
+           style="fill:#005000;fill-opacity:1;stroke:none" />
+      </g>
+      <g
+         id="g4242-6-2"
+         transform="matrix(-0.83275188,0,0,-0.83275188,-1920.4675,233.4219)">
+        <rect
+           transform="matrix(0.5,0.8660254,-0.8660254,0.5,0,0)"
+           inkscape:transform-center-y="46.551735"
+           inkscape:transform-center-x="-19.370055"
+           style="fill:#005000;fill-opacity:1;stroke:none"
+           id="rect4153-9-7-76-3-9-0"
+           width="50.000008"
+           height="210"
+           x="-382.83102"
+           y="849.6076"
+           ry="25.000004"
+           inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+           inkscape:export-xdpi="25.399998"
+           inkscape:export-ydpi="25.399998" />
+        <rect
+           transform="matrix(0.5,-0.8660254,0.8660254,0.5,0,0)"
+           inkscape:transform-center-y="-46.551259"
+           inkscape:transform-center-x="-19.370851"
+           inkscape:export-ydpi="25.399998"
+           inkscape:export-xdpi="25.399998"
+           inkscape:export-filename="/home/florian/Documents/gitHub/softozor.ch/assets/banner/pause.png"
+           ry="25.000004"
+           y="-932.24536"
+           x="-603.42731"
+           height="210"
+           width="50.000008"
+           id="rect4153-9-20-49-3-5-1-9"
+           style="fill:#005000;fill-opacity:1;stroke:none" />
+      </g>
+    </g>
+  </g>
+</svg>
