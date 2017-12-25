@@ -1,0 +1,10 @@
+include ./helpers/ImgPaths
+
+each member in Members
+  button.accordion 
+    figure
+      img(src=pathToTeamImg(member.ImgFilename))
+    .shortDescr
+      h2 #{member.FirstName} #{member.LastName}
+      p #{member.ShortDescription}
+  .portfolio Portfolio!

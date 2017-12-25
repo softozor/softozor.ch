@@ -8,3 +8,4 @@ package-lock.json
 dist/
 .vs
 .vscode
+push.sh
