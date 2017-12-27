@@ -1,5 +1,5 @@
 import * as team from '../assets/team/team.json';
-import * as accordionTemplate from './templates/TeamMemberAccordion.pug';
+import * as memberTemplate from './templates/TeamMember.pug';
 
 export class TeamRenderer {
   constructor() {
@@ -7,7 +7,7 @@ export class TeamRenderer {
   }
 
   public showTeam(elementId): void {
-    var html = accordionTemplate({ Members: team });
+    var html = memberTemplate({ Members: team });
     $('div#teamContent').html(html);
   }
 

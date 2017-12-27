@@ -1,0 +1,11 @@
+include ./helpers/ImgPaths
+
+each member in Members
+  .side-image
+    .image-wrapper
+      img(src=pathToTeamImg(member.ImgFilename))
+    .side-image-content
+      h2 #{member.FirstName} #{member.LastName}
+      hr
+      p #{member.ShortDescription}
+  br
