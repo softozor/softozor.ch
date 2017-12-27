@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const env = (process.env.NODE_ENV || 'development').trim();
 
@@ -55,11 +56,7 @@ var plugins = [
 ];
 
 if (isProd) {
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    })
-  );
+  plugins.push(new UglifyJSPlugin());
 }
 
 module.exports = {
@@ -102,7 +99,12 @@ module.exports = {
         test: /\.(sass|scss)$/,
         exclude: /node_modules/,
         loader: ExtractTextPlugin.extract([
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: isProd
+            }
+          },
           {
             loader: 'postcss-loader',
             options: {
