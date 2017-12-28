@@ -1,19 +1,19 @@
-var SKY_IMG = '../assets/banner/sky.png';
-var CLOUDS_IMG = '../assets/banner/clouds.png';
-var BACK_IMG = '../assets/banner/back.png';
-var MID_IMG = '../assets/banner/mid.png';
-var FRONT_IMG = '../assets/banner/front.png';
-var WORLD_BAND_IMG = '../assets/banner/worldBand.png';
-var SOFTOZOR_IDLE_IMG = '../assets/banner/softozor.png';
-var SOFTOZOR_FLAP1_IMG = '../assets/banner/softozor_flap1.png';
-var SOFTOZOR_FLAP2_IMG = '../assets/banner/softozor_flap2.png';
-var GAME_STOPPED_IMG = '../assets/banner/gameStopped.png';
-var GAME_STOPPED_SHADOW_IMG = '../assets/banner/gameStopped_shadow.png';
-var GAME_STOPPED_BACKGROUND_IMG = '../assets/banner/gameStopped_background.png';
-var GOOD_BUBBLE_IMG = '../assets/banner/goodbubble.png';
-var BAD_BUBBLE_IMG = '../assets/banner/badbubble.png';
-var PLAY_PAUSE_IMG = '../assets/banner/play_pause.png';
-var RESTART_IMG = '../assets/banner/restart.png';
+import SKY_IMG from '../assets/banner/sky.png';
+import CLOUDS_IMG from '../assets/banner/clouds.png';
+import BACK_IMG from '../assets/banner/back.png';
+import MID_IMG from '../assets/banner/mid.png';
+import FRONT_IMG from '../assets/banner/front.png';
+import WORLD_BAND_IMG from '../assets/banner/worldBand.png';
+import SOFTOZOR_IDLE_IMG from '../assets/banner/softozor.png';
+import SOFTOZOR_FLAP1_IMG from '../assets/banner/softozor_flap1.png';
+import SOFTOZOR_FLAP2_IMG from '../assets/banner/softozor_flap2.png';
+import GAME_STOPPED_IMG from '../assets/banner/gameStopped.png';
+import GAME_STOPPED_SHADOW_IMG from '../assets/banner/gameStopped_shadow.png';
+import GAME_STOPPED_BACKGROUND_IMG from '../assets/banner/gameStopped_background.png';
+import GOOD_BUBBLE_IMG from '../assets/banner/goodbubble.png';
+import BAD_BUBBLE_IMG from '../assets/banner/badbubble.png';
+import PLAY_PAUSE_IMG from '../assets/banner/play_pause.png';
+import RESTART_IMG from '../assets/banner/restart.png';
 
 ('use strict');
 
@@ -202,28 +202,20 @@ var banner = {
   stateTransition: 0, // transition reference: 0 = stopped, 1 = started
 
   initialize: function() {
-    this.html = document.getElementById('banner');
-    this.canvas = document.createElement('canvas');
-    this.html.appendChild(this.canvas);
+    this.canvas = $('#banner > canvas')[0];
     this.ctx = this.canvas.getContext('2d');
 
-    this.canvas.addEventListener('mousedown', this.handleMouseDown);
-    this.canvas.addEventListener('mouseup', this.handleMouseUp);
-
-    this.canvas.addEventListener('touchstart', this.handleMouseDown);
-    this.canvas.addEventListener('touchend', this.handleMouseUp);
-
-    document.addEventListener('keydown', this.handleKeyDown);
-    document.addEventListener('keyup', this.handleKeyUp);
+    this.canvas.onmousedown = this.handleMouseDown;
+    this.canvas.onmouseup = this.handleMouseUp;
+    this.canvas.ontouchstart = this.handleMouseDown;
+    this.canvas.ontouchend = this.handleMouseUp;
+    this.canvas.onkeydown = this.handleKeyDown;
+    this.canvas.onkeyup = this.handleKeyUp;
 
     var isChrome = !!window.chrome && !!window.chrome.webstore;
     if (!isChrome) {
-      this.canvas.addEventListener('mouseenter', function() {
-        banner.run();
-      });
-      this.canvas.addEventListener('mouseleave', function() {
-        banner.pause();
-      });
+      this.canvas.onmouseenter = () => banner.run();
+      this.canvas.onmouseleave = () => banner.pause();
     }
   },
 
@@ -261,12 +253,8 @@ var banner = {
   },
 
   refreshSize: function() {
-    this.widthPX = parseInt(
-      window.getComputedStyle(this.html, null).getPropertyValue('width')
-    );
-    this.heightPX = parseInt(
-      window.getComputedStyle(this.html, null).getPropertyValue('height')
-    );
+    this.widthPX = $('#banner').width();
+    this.heightPX = $('#banner').height();
     this.canvas.width = this.widthPX;
     this.canvas.height = this.heightPX;
   },
@@ -904,7 +892,7 @@ function scoreUpdate() {
   var heightPX = 20;
   var text = 'SCORE : ' + score;
 
-  banner.ctx.font = 'bold ' + heightPX + 'px Arial';
+  banner.ctx.font = `bold ${heightPX}px Arial`;
   banner.ctx.fillStyle = 'rgb(255, 255, 255)';
   banner.ctx.fillText(text, xPX, yPX + heightPX);
   banner.ctx.strokeStyle = 'rgb(0, 64, 128)';
@@ -929,7 +917,8 @@ function scorePopProto(pop) {
   };
 
   this.draw = function() {
-    banner.ctx.font = 'bold 15px Arial';
+    var fontSize = '15px';
+    banner.ctx.font = `bold ${fontSize} Arial`;
     if (pop > 0) {
       banner.ctx.fillStyle = 'rgba(0, 50, 0, ' + this.lifetime / 30 + ')';
       banner.ctx.fillText(
@@ -1125,37 +1114,6 @@ function update() {
   // add objects
   fillWorldSquare();
 }
-
-// game initialization
-/*(function() {
-  $(window).resize(() => {
-    refreshSize();
-    update();
-  });
-
-  // sprites initialization
-  spriteList.initialize();
-
-  // banner initialization
-  banner.initialize();
-
-  // bands initialization
-  band[5] = new bandProto(spriteList.sky, Infinity);
-  band[4] = new bandProto(spriteList.clouds, 16);
-  band[3] = new bandProto(spriteList.back, 8);
-  band[2] = new bandProto(spriteList.mid, 4);
-  band[1] = new bandProto(spriteList.front, 2);
-  band[0] = new bandProto(spriteList.world, worldDistanceFactor);
-
-  // Softozor initialization
-  softozor.initialize();
-
-  // game stopped display initialization
-  gameStopped.initialize();
-
-  // add objects
-  fillWorldSquare();
-})();*/
 
 export function initGame() {
   $(window).resize(() => {
