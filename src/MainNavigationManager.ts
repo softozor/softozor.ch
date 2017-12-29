@@ -1,4 +1,3 @@
-import 'jQuery'
 import {isUndefined} from 'util'
 
 type LoadCallback = () => void;
