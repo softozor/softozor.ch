@@ -884,6 +884,7 @@ function refreshSize() {
   gameStopped.refreshSize();
   playButton.refreshSize();
   restartButton.refreshSize();
+  console.log(banner.widthPX);
 }
 
 // score display
@@ -945,6 +946,8 @@ function scorePopProto(pop) {
 var gameStopped = {
   copyCanvas: undefined,
 
+  heightRatio : 0.6,
+
   sx: 0,
   sy: 0,
   swidth: 0,
@@ -963,10 +966,18 @@ var gameStopped = {
     this.sy = 0;
     this.swidth = spriteList.gameStopped.img.naturalWidth;
     this.sheight = spriteList.gameStopped.img.naturalHeight;
-    this.y = banner.heightPX * 0.2;
-    this.height = banner.heightPX * 0.6;
-    this.width = this.height * this.swidth / this.sheight;
-    this.x = (banner.widthPX - this.width) / 2;
+    if(this.swidth / this.sheight <= banner.widthPX / (banner.heightPX * this.heightRatio)){
+      this.y = banner.heightPX * (1 - this.heightRatio) / 2;
+      this.height = banner.heightPX * this.heightRatio;
+      this.width = this.height * this.swidth / this.sheight;
+      this.x = (banner.widthPX - this.width) / 2;
+    } else {
+      this.x = 0;
+      this.width = banner.widthPX;
+      this.height = this.width * this.sheight / this.swidth;
+      this.y = (banner.heightPX - this.height) / 2;
+    }
+
 
     this.copyCanvas.width = this.width;
     this.copyCanvas.height = this.height;
