@@ -209,8 +209,9 @@ var banner = {
     this.canvas.onmouseup = this.handleMouseUp;
     this.canvas.ontouchstart = this.handleMouseDown;
     this.canvas.ontouchend = this.handleMouseUp;
-    this.canvas.onkeydown = this.handleKeyDown;
-    this.canvas.onkeyup = this.handleKeyUp;
+
+    document.onkeydown = this.handleKeyDown;
+    document.onkeyup = this.handleKeyUp;
 
     var isChrome = !!window.chrome && !!window.chrome.webstore;
     if (!isChrome) {
@@ -348,7 +349,7 @@ var banner = {
     }
   },
 
-  handleKeyDown(event) {
+  handleKeyDown: function(event) {
     switch (event.keyCode) {
     case 32: //space
       softozor.startFlap();
@@ -360,7 +361,7 @@ var banner = {
     }
   },
 
-  handleKeyUp(event) {
+  handleKeyUp: function(event) {
     switch (event.keyCode) {
     case 32: //space
       softozor.stopFlap();
