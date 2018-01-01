@@ -17,6 +17,7 @@ import RESTART_IMG from '../assets/banner/restart.png';
 
 ('use strict');
 
+/* ported */
 function spriteProto(src) {
   this.img = new Image();
 
@@ -28,6 +29,7 @@ function spriteProto(src) {
   };
   this.img.src = src;
 }
+/**/
 
 var spriteList = {
   initialize: function() {
@@ -173,11 +175,13 @@ const softozorData = {
   maxSpeed: 0.8
 };
 
+/* ported */
 // bubble values
 var badBubblePerSquare = 3;
 var goodBubblePerSquare = 3;
 const firstFilledSquareDistance = 300;
 var lastFilledSquareXW = firstFilledSquareDistance + softozorData.startPosition;
+/**/
 
 /* ported */
 // score values

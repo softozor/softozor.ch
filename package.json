@@ -31,7 +31,8 @@
     "jquery": "^3.2.1",
     "jquerykeyframes": "0.0.10",
     "lodash": "^4.17.4",
-    "pug": "^2.0.0-rc.4"
+    "pug": "^2.0.0-rc.4",
+    "ts-events": "^3.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.35",

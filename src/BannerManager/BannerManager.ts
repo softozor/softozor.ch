@@ -24,11 +24,10 @@ export class BannerManager {
   /**
    * private methods
    */
-
   /**
    *  fill image of bubbles
    */
-  private fillWorldSquare(): void {
+  public static fillWorldSquare(): void {
     while (
       banner.gameState === 'on' &&
       lastFilledSquareXW <

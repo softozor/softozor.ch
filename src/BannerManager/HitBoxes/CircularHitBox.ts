@@ -1,15 +1,16 @@
-import { Position } from './Position';
-import { Collision } from './Collision';
+import { HitBox } from './HitBox';
 
-/**
- * A hitbox is a circle that defines an object's bounds
- */
-export class HitBox {
+import { Position } from '../Position';
+import { Collision } from '../Collision';
+
+export class CircularHitBox extends HitBox {
   constructor(
     private readonly m_PositionW: Position,
     private readonly m_RelativeCenterW: Position,
     private readonly m_RadiusW: number
-  ) {}
+  ) {
+    super();
+  }
 
   /**
    * Getters / setters
@@ -34,6 +35,19 @@ export class HitBox {
    * Public methods
    */
   public collide(other: HitBox): Collision | undefined {
+    if (other instanceof CircularHitBox) {
+      return this.collideWithCircularHitBox(other);
+    }
+    console.log('Collision with unknown HitBox shape.');
+    return undefined;
+  }
+
+  /**
+   * Private methods
+   */
+  private collideWithCircularHitBox(
+    other: CircularHitBox
+  ): Collision | undefined {
     let dW: Position = Position.minus(other.centerW, this.centerW); // actual distance vector between the two hitboxes
     let dMinW: number = other.radiusW + this.radiusW; // minimal distance between two hitboxes
     let distSqW: number = dW.x * dW.x + dW.y * dW.y;
@@ -43,11 +57,8 @@ export class HitBox {
       : undefined;
   }
 
-  /**
-   * Private methods
-   */
   private createCollision(
-    other: HitBox,
+    other: CircularHitBox,
     dW: Position,
     dMinW: number
   ): Collision {
