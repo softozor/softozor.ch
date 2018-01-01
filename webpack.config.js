@@ -22,7 +22,8 @@ var plugins = [
   new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
-    _: 'lodash'
+    _: 'lodash',
+    lodash: 'lodash'
   }),
   new ExtractTextPlugin({
     filename: '[name].[chunkhash].css',
