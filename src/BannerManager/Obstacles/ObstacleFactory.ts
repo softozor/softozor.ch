@@ -39,20 +39,4 @@ export class ObstacleFactory {
   /**
    * Private members
    */
-  // TODO: move these variables to the  ObstacleManager class
-  private static readonly BAD_BUBBLE_PER_SQUARE: number = 3;
-  private static readonly GOOD_BUBBLE_PER_SQUARE: number = 3;
-  private static readonly FIRST_FILLED_SQUARE_DISTANCE: number = 300;
-  private static readonly LAST_FILLED_SQUARE_XW: number = FIRST_FILLED_SQUARE_DISTANCE +
-    softozorData.startPosition;
-}
-
-// TODO: move these methods to the ObstacleManager class
-// stretches a value between 0 and 1 to 0 or 1, symetric relative to 0.5
-function approachExtrema01(value: number): number {
-  return (3 - 2 * value) * value * value;
-}
-
-function approachCenter(value: number): number {
-  return ((2 * value - 3) * value + 2) * value;
 }
