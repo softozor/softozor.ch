@@ -17,6 +17,7 @@ import RESTART_IMG from '../assets/banner/restart.png';
 
 ('use strict');
 
+/* ported */
 function spriteProto(src) {
   this.img = new Image();
 
@@ -28,6 +29,7 @@ function spriteProto(src) {
   };
   this.img.src = src;
 }
+/**/
 
 var spriteList = {
   initialize: function() {
@@ -53,6 +55,7 @@ var spriteList = {
   }
 };
 
+/* ported */
 function spriteRendererProto(sprite, widthW, heightW, distanceFactor) {
   this.sprite = sprite;
   this.distanceFactor = distanceFactor;
@@ -146,6 +149,7 @@ function spriteRendererProto(sprite, widthW, heightW, distanceFactor) {
     this.heightPXToN = this.sprite.img.naturalHeight / this.heightPX;
   };
 }
+/**/
 
 /* The html tag which will contain the banner must:
 		- have the attribute:	id="banner"
@@ -171,20 +175,26 @@ const softozorData = {
   maxSpeed: 0.8
 };
 
+/* ported */
 // bubble values
 var badBubblePerSquare = 3;
 var goodBubblePerSquare = 3;
 const firstFilledSquareDistance = 300;
 var lastFilledSquareXW = firstFilledSquareDistance + softozorData.startPosition;
+/**/
 
+/* ported */
 // score values
 var score = 0;
 var scoreIncrement = 1;
+/**/
 
+/* ported */
 // world values
 const worldDistanceFactor = 1;
 const worldBandRatioToBanner = 2;
 const worldBandIndex = 0;
+/**/
 
 // band values
 var band = [];
@@ -209,8 +219,9 @@ var banner = {
     this.canvas.onmouseup = this.handleMouseUp;
     this.canvas.ontouchstart = this.handleMouseDown;
     this.canvas.ontouchend = this.handleMouseUp;
-    this.canvas.onkeydown = this.handleKeyDown;
-    this.canvas.onkeyup = this.handleKeyUp;
+
+    document.onkeydown = this.handleKeyDown;
+    document.onkeyup = this.handleKeyUp;
 
     var isChrome = !!window.chrome && !!window.chrome.webstore;
     if (!isChrome) {
@@ -348,7 +359,7 @@ var banner = {
     }
   },
 
-  handleKeyDown(event) {
+  handleKeyDown: function(event) {
     switch (event.keyCode) {
     case 32: //space
       softozor.startFlap();
@@ -360,7 +371,7 @@ var banner = {
     }
   },
 
-  handleKeyUp(event) {
+  handleKeyUp: function(event) {
     switch (event.keyCode) {
     case 32: //space
       softozor.stopFlap();
@@ -638,6 +649,9 @@ var softozor = {
   hitCheck: function() {
     var length = obstacle.length;
     for (var obstacleIndex = 0; obstacleIndex < length; obstacleIndex++) {
+      // TODO: add a method Obstacle::collide(hitBox) and call it here!
+      // Obstacle::collide(hitBox){ this.hitBox.testHit(hitBox); }
+      // This will generalize the mustBeDestroyed flag
       var collision = this.hitbox.testHit(obstacle[obstacleIndex].hitbox);
       if (collision.type === true) {
         if (obstacle[obstacleIndex].type === 'bad') {
@@ -649,9 +663,11 @@ var softozor = {
             (dx * dx + dy * dy);
           this.deltaXSpeed -= dx * speedChangeFactor;
           this.ySpeed -= dy * speedChangeFactor;
+          // scorePopProto needs the value deltaPX = softozorData.widthW * worldBandRatioToBanner * 0.6
           scorePop[scorePop.length] = new scorePopProto('xxx');
           scoreIncrement = 1;
         } else if (obstacle[obstacleIndex].type === 'good') {
+          // scorePopProto needs the value deltaPX = softozorData.widthW * worldBandRatioToBanner * 0.6
           scorePop[scorePop.length] = new scorePopProto(scoreIncrement);
           score += scoreIncrement;
           scoreIncrement++;
@@ -672,11 +688,13 @@ var softozor = {
   }
 };
 
+/* ported */
 var scrollingPosition = new positionProto(
   softozorData.startPosition,
   (worldBandRatioToBanner - 1) * softozorData.maxYW / worldBandRatioToBanner,
   worldDistanceFactor
 );
+/**/
 
 /* position convention
 	*W : units in % of worldBand height
@@ -714,9 +732,12 @@ function positionProto(xW, yW, distanceFactor) {
   };
 }
 
+/* ported */
 // obstacle
 var obstacle = [];
+/**/
 
+/* ported */
 function obstacleProto(position, widthW, heightW, sprite, hitbox, type) {
   this.position = position;
   this.spriteRenderer = new spriteRendererProto(
@@ -737,10 +758,7 @@ function obstacleProto(position, widthW, heightW, sprite, hitbox, type) {
   };
 
   this.checkOut = function() {
-    if (
-      this.position.xW + this.spriteRenderer.widthW <= scrollingPosition.xW &&
-      softozor.deltaXW + softozorData.heightW >= 0
-    ) {
+    if (this.position.xW + this.spriteRenderer.widthW <= scrollingPosition.xW) {
       this.mustBeDestroyed = true;
       //score += scoreIncrement;
       //scoreIncrement++;
@@ -751,7 +769,9 @@ function obstacleProto(position, widthW, heightW, sprite, hitbox, type) {
     this.spriteRenderer.refreshSize();
   };
 }
+/**/
 
+/* ported */
 // hitbox prototype(center relative to position)
 function hitboxProto(position, cXW, cYW, radiusW) {
   this.position = position;
@@ -765,7 +785,7 @@ function hitboxProto(position, cXW, cYW, radiusW) {
   this.testHit = function(other) {
     var dXW = other.cXW + other.position.xW - (this.cXW + this.position.xW);
     var dYW = other.cYW + other.position.yW - (this.cYW + this.position.yW);
-    var dMinW = other.radiusW + this.radiusW;
+    var dMinW = other.radiusW + this.radiusW; // distance critique
     var distSqW = dXW * dXW + dYW * dYW;
     var dMinSqW = dMinW * dMinW;
     if (distSqW < dMinSqW) {
@@ -780,6 +800,7 @@ function hitboxProto(position, cXW, cYW, radiusW) {
 
     return this.collision;
   };
+  /**/
 
   // Visual reference for hitbox setup. Must be commentar in final game.
   /*
@@ -794,6 +815,7 @@ function hitboxProto(position, cXW, cYW, radiusW) {
 */
 }
 
+/* ported */
 // collision prototype
 function collisionProto(type, centerxW, centeryW, hitXW, hitYW) {
   this.type = type;
@@ -802,7 +824,9 @@ function collisionProto(type, centerxW, centeryW, hitXW, hitYW) {
   this.hitXW = hitXW;
   this.hitYW = hitYW;
 }
+/**/
 
+/* ported */
 // badbubble
 function badBubble(x, y, diameter) {
   var pos = new positionProto(x, y, worldDistanceFactor);
@@ -834,7 +858,9 @@ function goodBubble(x, y, diameter) {
   );
   return obs;
 }
+/**/
 
+/* ported */
 // fill image of bubbles
 function fillWorldSquare() {
   while (
@@ -863,7 +889,9 @@ function fillWorldSquare() {
     lastFilledSquareXW += band[worldBandIndex].spriteRenderer.heightW;
   }
 }
+/**/
 
+/* ported */
 // stretches a value between 0 and 1 to 0 or 1, symetric relative to 0.5
 function approachExtrema01(number01) {
   return (3 - 2 * number01) * number01 * number01;
@@ -872,7 +900,9 @@ function approachExtrema01(number01) {
 function approachCenter(number01) {
   return ((2 * number01 - 3) * number01 + 2) * number01;
 }
+/**/
 
+/* ported */
 function refreshSize() {
   banner.refreshSize();
   for (var bandIndex = 0; bandIndex < band.length; bandIndex++)
@@ -885,13 +915,15 @@ function refreshSize() {
   restartButton.refreshSize();
   console.log(banner.widthPX);
 }
+/**/
 
+/* ported */
 // score display
 function scoreUpdate() {
-  var xPX = 5;
-  var yPX = 5;
-  var heightPX = 20;
-  var text = 'SCORE : ' + score;
+  const xPX = 5;
+  const yPX = 5;
+  const heightPX = 20;
+  const text = 'SCORE : ' + score;
 
   banner.ctx.font = `bold ${heightPX}px Arial`;
   banner.ctx.fillStyle = 'rgb(255, 255, 255)';
@@ -899,7 +931,9 @@ function scoreUpdate() {
   banner.ctx.strokeStyle = 'rgb(0, 64, 128)';
   banner.ctx.strokeText(text, xPX, yPX + heightPX);
 }
+/**/
 
+/* ported */
 // score increment shown above Softozor
 var scorePop = [];
 
@@ -941,11 +975,12 @@ function scorePopProto(pop) {
     if (this.lifetime <= 0) this.mustBeDestroyed = true;
   };
 }
+/**/
 
 var gameStopped = {
   copyCanvas: undefined,
 
-  heightRatio : 0.6,
+  heightRatio: 0.6,
 
   sx: 0,
   sy: 0,
@@ -965,7 +1000,10 @@ var gameStopped = {
     this.sy = 0;
     this.swidth = spriteList.gameStopped.img.naturalWidth;
     this.sheight = spriteList.gameStopped.img.naturalHeight;
-    if(this.swidth / this.sheight <= banner.widthPX / (banner.heightPX * this.heightRatio)){
+    if (
+      this.swidth / this.sheight <=
+      banner.widthPX / (banner.heightPX * this.heightRatio)
+    ) {
       this.y = banner.heightPX * (1 - this.heightRatio) / 2;
       this.height = banner.heightPX * this.heightRatio;
       this.width = this.height * this.swidth / this.sheight;
@@ -976,7 +1014,6 @@ var gameStopped = {
       this.height = this.width * this.sheight / this.swidth;
       this.y = (banner.heightPX - this.height) / 2;
     }
-
 
     this.copyCanvas.width = this.width;
     this.copyCanvas.height = this.height;
@@ -1066,15 +1103,18 @@ var gameStopped = {
   }
 };
 
+/* ported */
 function destroyDeadObjects(array) {
   for (var index = 0; index < array.length; index++) {
     if (array[index].mustBeDestroyed) {
       array.splice(index, 1);
-      index--;
+      --index;
     }
   }
 }
+/**/
 
+/* ported */
 function graphicUpdate() {
   // world display
   banner.ctx.globalAlpha = 1;
@@ -1107,7 +1147,9 @@ function graphicUpdate() {
   playButton.update();
   restartButton.update();
 }
+/**/
 
+/* ported */
 // game frame function
 function update() {
   banner.transitionUpdate();
@@ -1125,7 +1167,9 @@ function update() {
   // add objects
   fillWorldSquare();
 }
+/**/
 
+/* ported */
 export function initGame() {
   $(window).resize(() => {
     refreshSize();
@@ -1155,3 +1199,4 @@ export function initGame() {
   // add objects
   fillWorldSquare();
 }
+/**/
