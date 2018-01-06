@@ -2,7 +2,9 @@ import { ObstacleFactory } from './ObstacleFactory';
 import { Position } from '../Position';
 import { Obstacle } from './Obstacle';
 
-// TODO: needs a reference to the Softozor object
+import { remove } from 'lodash';
+
+// TODO: may need a reference to the Softozor object; this can also be entered as argument to the functions of this class
 export class ObstacleManager {
   // must be called with movingObjectInitialX = softozorData.startPosition
   // m_BannerHeight is not really banner height (see bandProto::refreshSize)
@@ -26,6 +28,11 @@ export class ObstacleManager {
   public restart(): void {
     // TODO: see the Banner::restart method
     console.log('To be implemented');
+  }
+
+  public update(): void {
+    this.cleanup();
+    this.fillWorldSquare();
   }
 
   /**
@@ -85,6 +92,14 @@ export class ObstacleManager {
     let y: number =
       approachExtrema01(approachExtrema01(Math.random())) * 90 - 5;
     return new Position(x, y);
+  }
+
+  private cleanup(): void {
+    remove(
+      this.m_Obstacles,
+      (element: Obstacle): Boolean =>
+        element.isOutOfBounds(scrollingPosition.xW) || element.hasCollided
+    );
   }
 
   private bubbleDiameter(): number {

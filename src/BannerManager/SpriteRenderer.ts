@@ -1,93 +1,124 @@
-function spriteRendererProto(sprite, widthW, heightW, distanceFactor) {
-  this.sprite = sprite;
-  this.distanceFactor = distanceFactor;
-  this.widthW = widthW;
-  this.heightW = heightW;
+import Sprite from './Sprite';
 
-  this.draw = function(x0PX, y0PX) {
-    var sx, sy, swidth, sheight, x, y, width, height;
+type ClippingParams = {
+  pos: number;
+  sPos: number;
+  length: number;
+  sLength: number;
+};
 
-    var mustBeDrawn = true;
+// TODO: probably need to write a generic SpriteRenderer and derive this one from it
+export default class SpriteRenderer {
+  constructor(
+    private readonly m_Sprite: Sprite,
+    private readonly m_WidthW: number,
+    private readonly m_HeightW: number,
+    private readonly m_DistanceFactor: number
+  ) {}
+
+  /**
+   * Public methods
+   */
+  // TODO: must take the banner and softozor objects as arguments
+  public draw(x0PX: number, y0PX: number, bannerHeightPX: number): void {
+    this.refreshSize(bannerHeightPX);
+
+    let vertParams: ClippingParams = this.getClippingParams(
+      x0PX,
+      this.m_WidthPX,
+      banner.widthPX,
+      this.m_WidthPXToN
+    );
+    let horizParams: ClippingParams = this.getClippingParams(
+      y0PX,
+      this.m_HeightPX,
+      banner.heightPX,
+      this.m_HeightPXToN
+    );
+
+    banner.ctx.drawImage(
+      this.m_Sprite.img,
+      vertParams.sPos,
+      horizParams.sPos,
+      vertParams.sLength,
+      horizParams.sLength,
+      vertParams.pos,
+      horizParams.pos,
+      vertParams.length,
+      horizParams.length
+    );
+  }
+
+  /**
+   * Private methods
+   */
+  private getClippingParams(
+    pos0PX: number,
+    lengthPX: number,
+    bannerLengthPX: number,
+    lengthPXToN: number
+  ): ClippingParams {
     var scrollXPX = scrollingPosition.xObsPX();
-    var scrollYPX = scrollingPosition.yObsPX();
 
-    if (x0PX <= -this.widthPX) {
-      mustBeDrawn = false;
-    } else if (x0PX <= 0) {
-      x = 0;
-      width = Math.min(banner.widthPX, this.widthPX + x0PX);
-      sx = -x0PX * this.widthPXToN;
-      swidth = width * this.widthPXToN;
-    } else if (x0PX <= scrollXPX + banner.widthPX - this.widthPX) {
-      x = x0PX;
-      width = Math.min(banner.widthPX - x0PX, this.widthPX);
-      sx = 0;
-      swidth = width * this.widthPXToN;
-    } else if (x0PX < scrollXPX + banner.widthPX) {
-      x = x0PX;
-      width = banner.widthPX - x0PX;
-      sx = 0;
-      swidth = width * this.widthPXToN;
+    if (pos0PX <= -lengthPX) {
+      return undefined;
+    } else if (pos0PX <= 0) {
+      let result: ClippingParams;
+      result.pos = 0;
+      result.length = Math.min(bannerLengthPX, lengthPX + pos0PX);
+      result.sPos = -pos0PX * lengthPXToN;
+      result.sLength = result.length * lengthPXToN;
+      return result;
+    } else if (pos0PX <= scrollXPX + bannerLengthPX - lengthPX) {
+      let result: ClippingParams;
+      result.pos = pos0PX;
+      result.length = Math.min(bannerLengthPX - pos0PX, lengthPX);
+      result.sPos = 0;
+      result.sLength = result.length * lengthPXToN;
+      return result;
+    } else if (pos0PX < scrollXPX + bannerLengthPX) {
+      let result: ClippingParams;
+      result.pos = pos0PX;
+      result.length = bannerLengthPX - pos0PX;
+      result.sPos = 0;
+      result.sLength = result.length * lengthPXToN;
+      return result;
     } else {
-      mustBeDrawn = false;
+      return undefined;
     }
+  }
 
-    if (y0PX <= -this.heightPX) {
-      mustBeDrawn = false;
-    } else if (y0PX <= 0) {
-      y = 0;
-      height = Math.min(banner.heightPX, this.heightPX + y0PX);
-      sy = -y0PX * this.heightPXToN;
-      sheight = height * this.heightPXToN;
-    } else if (y0PX <= scrollYPX + banner.heightPX - this.heightPX) {
-      y = y0PX;
-      height = Math.min(banner.heightPX - y0PX, this.heightPX);
-      sy = 0;
-      sheight = height * this.heightPXToN;
-    } else if (y0PX < scrollYPX + banner.heightPX) {
-      y = y0PX;
-      height = banner.heightPX - y0PX;
-      sy = 0;
-      sheight = height * this.heightPXToN;
+  // TODO: in the end, we will not need that argument any more
+  // The CoordinatesAdapter singleton will be kept up-to-date with the banner height!
+  private refreshSize(bannerHeightPX: number): void {
+    // TODO: this is the same as the coordinate transformation in positionProto, but for distances!
+    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
+      this.m_HeightPX = this.m_HeightW;
+      this.m_WidthPX = this.m_WidthW;
     } else {
-      mustBeDrawn = false;
-    }
-
-    if (mustBeDrawn) {
-      banner.ctx.drawImage(
-        this.sprite.img,
-        sx,
-        sy,
-        swidth,
-        sheight,
-        x,
-        y,
-        width,
-        height
-      );
-    }
-  };
-
-  this.refreshSize = function() {
-    if (this.distanceFactor === 0 || this.distanceFactor === Infinity) {
-      this.heightPX = this.heightW;
-      this.widthPX = this.widthW;
-    } else {
-      this.heightPX =
-        this.heightW *
+      this.m_HeightPX =
+        this.m_HeightW *
         worldBandRatioToBanner *
-        banner.heightPX /
+        bannerHeightPX /
         100 /
-        this.distanceFactor;
-      this.widthPX =
-        this.widthW *
+        this.m_DistanceFactor;
+      this.m_WidthPX =
+        this.m_WidthW *
         worldBandRatioToBanner *
-        banner.heightPX /
+        bannerHeightPX /
         100 /
-        this.distanceFactor;
+        this.m_DistanceFactor;
     }
 
-    this.widthPXToN = this.sprite.img.naturalWidth / this.widthPX;
-    this.heightPXToN = this.sprite.img.naturalHeight / this.heightPX;
-  };
+    this.m_WidthPXToN = this.m_Sprite.img.naturalWidth / this.m_WidthPX;
+    this.m_HeightPXToN = this.m_Sprite.img.naturalHeight / this.m_HeightPX;
+  }
+
+  /**
+   * Private members
+   */
+  private m_WidthPX: number = 0;
+  private m_HeightPX: number = 0;
+  private m_WidthPXToN: number = 0;
+  private m_HeightPXToN: number = 0;
 }

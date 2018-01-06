@@ -127,6 +127,7 @@ function spriteRendererProto(sprite, widthW, heightW, distanceFactor) {
   };
 
   this.refreshSize = function() {
+    // TODO: this is the same as the coordinate transformation in positionProto, but for distances!
     if (this.distanceFactor === 0 || this.distanceFactor === Infinity) {
       this.heightPX = this.heightW;
       this.widthPX = this.widthW;

@@ -2,7 +2,7 @@ import { VoidSyncEvent } from 'ts-events';
 
 type ImgLoadedCallback = () => void;
 
-export class Sprite {
+export default class Sprite {
   constructor(imgSrc: string) {
     this.m_Img = new Image();
     let me: Sprite = this;
@@ -10,6 +10,13 @@ export class Sprite {
       me.m_ImgLoadedEvent.post();
     };
     this.m_Img.src = imgSrc;
+  }
+
+  /**
+   * Getters / setters
+   */
+  get img(): HTMLImageElement {
+    return this.m_Img;
   }
 
   /**

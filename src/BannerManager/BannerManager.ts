@@ -91,14 +91,6 @@ export class BannerManager {
     restartButton.update();
   }
 
-  private cleanupObstacles(): void {
-    remove(
-      this.m_Obstacles,
-      (element: Obstacle): Boolean =>
-        element.isOutOfBounds(scrollingPosition.xW) || element.hasCollided
-    );
-  }
-
   private cleanupScorePops(): void {
     // ScorePops is filled by the softozor class --> maybe softozor should clean that up directly!
     remove(
@@ -115,9 +107,8 @@ export class BannerManager {
 
     softozor.physicUpdate();
     this.graphicUpdate();
-    this.cleanupObstacles();
+    this.m_ObstacleMgr.update();
     this.cleanupScorePops();
-    this.fillWorldSquare();
   }
 
   private refreshSize(): void {
