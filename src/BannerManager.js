@@ -978,6 +978,7 @@ function scorePopProto(pop) {
 }
 /**/
 
+/* ported */
 var gameStopped = {
   copyCanvas: undefined,
 
@@ -1103,6 +1104,7 @@ var gameStopped = {
     }
   }
 };
+/**/
 
 /* ported */
 function destroyDeadObjects(array) {
