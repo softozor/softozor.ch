@@ -1,9 +1,9 @@
-import { HitBox } from './HitBox';
+import HitBox from './HitBox';
 
-import { Position } from '../Position';
-import { Collision } from '../Collision';
+import Position from '../Position';
+import Collision from '../Collision';
 
-export class CircularHitBox extends HitBox {
+export default class CircularHitBox extends HitBox {
   constructor(
     private readonly m_PositionW: Position,
     private readonly m_RelativeCenterW: Position,

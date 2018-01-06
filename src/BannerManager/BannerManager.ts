@@ -1,15 +1,13 @@
 import { forEach, remove } from 'lodash';
 
-import { ScoreManager } from './ScoreManager';
-import { ScorePopper } from './ScorePopper';
-import * as BubbleHelpers from './BubbleHelpers';
+import ScoreManager from './ScoreManager';
+import ScorePopper from './ScorePopper';
 import * as Helpers from './Helpers';
-import { Position } from './Position';
-import { Obstacle } from './Obstacle';
-import { World } from './World';
-import { ObstacleManager } from './Obstacles/ObstacleManager';
+import Position from './Position';
+import World from './World';
+import ObstacleManager from './Obstacles/ObstacleManager';
 
-export class BannerManager {
+export default class BannerManager {
   constructor() {
     // TODO: initialize World:
     // m_World = new World(softozorData.startPosition, softozorData.maxYW);

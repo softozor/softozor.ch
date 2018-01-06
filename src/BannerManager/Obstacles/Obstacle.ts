@@ -1,11 +1,11 @@
-import { Position } from '../Position';
-import { HitBox } from '../HitBoxes/HitBox';
-import { Collision } from '../Collision';
+import Position from '../Position';
+import HitBox from '../HitBoxes/HitBox';
+import Collision from '../Collision';
 
 /**
  * m_Position is the top-left corner of a rectangle that wraps the obstacle
  */
-export abstract class Obstacle {
+export default abstract class Obstacle {
   constructor(protected readonly m_Position: Position) {}
 
   /**

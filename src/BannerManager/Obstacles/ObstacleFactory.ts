@@ -1,10 +1,10 @@
-import { Obstacle } from './Obstacle';
-import { GoodBubble } from './GoodBubble';
-import { BadBubble } from './BadBubble';
-import { Position } from '../Position';
-import { CircularHitBox } from '../HitBoxes/CircularHitBox';
+import Obstacle from './Obstacle';
+import GoodBubble from './GoodBubble';
+import BadBubble from './BadBubble';
+import Position from '../Position';
+import CircularHitBox from '../HitBoxes/CircularHitBox';
 
-export class ObstacleFactory {
+export default class ObstacleFactory {
   /**
    * Public methods
    */

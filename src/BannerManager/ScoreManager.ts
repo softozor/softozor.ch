@@ -1,7 +1,7 @@
 import * as Helpers from './Helpers';
-import { Position } from './Position';
+import Position from './Position';
 
-export class ScoreManager {
+export default class ScoreManager {
   constructor() {}
 
   /**

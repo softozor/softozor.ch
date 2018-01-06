@@ -1,9 +1,9 @@
-import { Position } from '../Position';
-import { HitBox } from '../HitBoxes/HitBox';
-import { CircularHitBox } from '../HitBoxes/CircularHitBox';
-import { Obstacle } from './Obstacle';
+import Position from '../Position';
+import HitBox from '../HitBoxes/HitBox';
+import CircularHitBox from '../HitBoxes/CircularHitBox';
+import Obstacle from './Obstacle';
 
-export abstract class CircularObstacle extends Obstacle {
+export default abstract class CircularObstacle extends Obstacle {
   constructor(
     position: Position,
     private readonly m_Radius: number,

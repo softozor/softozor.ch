@@ -1,11 +1,11 @@
-import { ObstacleFactory } from './ObstacleFactory';
-import { Position } from '../Position';
-import { Obstacle } from './Obstacle';
+import ObstacleFactory from './ObstacleFactory';
+import Position from '../Position';
+import Obstacle from './Obstacle';
 
 import { remove } from 'lodash';
 
 // TODO: may need a reference to the Softozor object; this can also be entered as argument to the functions of this class
-export class ObstacleManager {
+export default class ObstacleManager {
   // must be called with movingObjectInitialX = softozorData.startPosition
   // m_BannerHeight is not really banner height (see bandProto::refreshSize)
   constructor(

@@ -1,7 +1,7 @@
 import * as Helpers from './Helpers';
-import { Position } from './Position';
+import Position from './Position';
 
-export class ScorePopper {
+export default class ScorePopper {
   constructor(
     private readonly m_Pop: string | number,
     private readonly m_DeltaXPX: number

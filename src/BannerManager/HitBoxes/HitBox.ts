@@ -1,7 +1,7 @@
-import { Position } from '../Position';
-import { Collision } from '../Collision';
+import Position from '../Position';
+import Collision from '../Collision';
 
-export abstract class HitBox {
+export default abstract class HitBox {
   /**
    * Getters / setters
    */

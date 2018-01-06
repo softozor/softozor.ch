@@ -1,12 +1,12 @@
-import { Position } from '../Position';
-import { CircularHitBox } from '../HitBoxes/CircularHitBox';
-import { SpriteRenderer } from '../SpriteRenderer';
-import { CircularObstacle } from './CircularObstacle';
-import { Sprite } from '../Sprite';
+import Position from '../Position';
+import CircularHitBox from '../HitBoxes/CircularHitBox';
+import SpriteRenderer from '../SpriteRenderer';
+import CircularObstacle from './CircularObstacle';
+import Sprite from '../Sprite';
 
 import BUBBLE from '../../../assets/banner/badbubble.png';
 
-export class BadBubble extends CircularObstacle {
+export default class BadBubble extends CircularObstacle {
   constructor(position: Position, radius: number, hitbox: CircularHitBox) {
     super(position, radius, hitbox);
     let diameter: number = 2 * radius;
