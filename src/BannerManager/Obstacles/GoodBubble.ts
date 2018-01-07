@@ -10,11 +10,11 @@ import BUBBLE from '../../../assets/banner/goodbubble.png';
 export default class GoodBubble extends CircularObstacle {
   constructor(
     canvas: Canvas,
-    position: Position,
+    topLeftCorner: Position,
     radius: number,
     hitbox: CircularHitBox
   ) {
-    super(canvas, position, radius, hitbox);
+    super(canvas, topLeftCorner, radius, hitbox);
     let diameter: number = 2 * radius;
     this.m_SpriteRenderer = new SpriteRenderer(
       canvas,
@@ -30,8 +30,8 @@ export default class GoodBubble extends CircularObstacle {
    */
   protected render(): void {
     let pos: Position = new Position(
-      this.m_Position.xObsPX,
-      this.m_Position.yObsPX
+      this.m_TopLeftCorner.xObsPX,
+      this.m_TopLeftCorner.yObsPX
     );
     this.m_SpriteRenderer.draw(pos);
   }

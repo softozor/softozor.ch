@@ -3,14 +3,14 @@ import Position from '../Position';
 import Obstacle from './Obstacle';
 import Canvas from '../Canvas';
 
-import { remove } from 'lodash';
+import { remove, forEach } from 'lodash';
 
 // TODO: may need a reference to the Softozor object; this can also be entered as argument to the functions of this class
 export default class ObstacleManager {
   // TODO: must be called with movingObjectInitialX = softozorData.startPosition
   // TODO: m_BannerHeight is not really banner height (see bandProto::refreshSize); we need band[0].spriteRenderer.heightW
   constructor(
-    private m_Canvas: Canvas,
+    private readonly m_Canvas: Canvas,
     movingObjectInitialX: number,
     private readonly m_BannerHeight: number
   ) {
@@ -32,9 +32,10 @@ export default class ObstacleManager {
     console.log('To be implemented');
   }
 
-  public update(): void {
+  public tick(): void {
     this.cleanup();
     this.fillWorldSquare();
+    forEach(this.m_Obstacles, element => element.tick());
   }
 
   /**

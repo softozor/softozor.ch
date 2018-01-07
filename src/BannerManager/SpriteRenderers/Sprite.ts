@@ -19,6 +19,14 @@ export default class Sprite {
     return this.m_Img;
   }
 
+  get naturalWidth(): number {
+    return this.m_Img.naturalWidth;
+  }
+
+  get naturalHeight(): number {
+    return this.m_Img.naturalHeight;
+  }
+
   public attachImgLoadedEvent(callback: ImgLoadedCallback): void {
     this.m_ImgLoadedEvent.attach(callback);
   }

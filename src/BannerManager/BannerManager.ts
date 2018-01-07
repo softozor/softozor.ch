@@ -6,6 +6,7 @@ import * as Helpers from './Helpers';
 import Position from './Position';
 import World from './World';
 import ObstacleManager from './Obstacles/ObstacleManager';
+import ParallaxManager from './ParallaxManager';
 
 export default class BannerManager {
   constructor() {
@@ -18,7 +19,7 @@ export default class BannerManager {
       // resizeEvent.attach(item.callback), where callback is the resize() method of each item (or onBannerResize)
 
       this.refreshSize();
-      this.update();
+      this.tick();
     });
   }
 
@@ -60,20 +61,13 @@ export default class BannerManager {
   private graphicUpdate(): void {
     // world display
     banner.ctx.globalAlpha = 1;
-    for (var bandIndex = band.length - 1; bandIndex >= 0; bandIndex--)
-      band[bandIndex].update();
+
+    this.m_ParallaxMgr.tick();
 
     // game objects display
     banner.ctx.globalAlpha =
       1 * banner.stateTransition * banner.gameEndingTransition;
     softozor.graphicUpdate();
-    for (
-      var obstacleIndex = 0;
-      obstacleIndex < obstacle.length;
-      obstacleIndex++
-    ) {
-      obstacle[obstacleIndex].update();
-    }
 
     // dashboard display
     banner.ctx.globalAlpha = 0.6 * banner.stateTransition;
@@ -100,10 +94,10 @@ export default class BannerManager {
   /**
    * game frame function
    */
-  private update(): void {
+  private tick(): void {
     softozor.physicUpdate();
     this.graphicUpdate();
-    this.m_ObstacleMgr.update();
+    this.m_ObstacleMgr.tick();
     this.cleanupScorePops();
   }
 
@@ -117,7 +111,9 @@ export default class BannerManager {
   /**
    * private members
    */
+  private m_Canvas: Canvas = new Canvas();
   private m_ObstacleMgr: ObstacleManager = new ObstacleManager(
+    this.m_Canvas,
     softozorData.startPosition,
     (worldBandRatioToBanner - 1 + worldDistanceFactor) *
       100 /
@@ -130,4 +126,7 @@ export default class BannerManager {
   private m_ScorePops: ScorePopper[] = [];
   private m_ScoreMgr: ScoreManager = new ScoreManager();
   private m_World: World;
+  private readonly m_ParallaxMgr: ParallaxManager = new ParallaxManager(
+    this.m_Canvas
+  );
 }

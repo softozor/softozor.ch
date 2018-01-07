@@ -274,7 +274,7 @@ var banner = {
   // run the game
   run: function() {
     clearInterval(banner.runSpeed);
-    banner.runSpeed = setInterval(update, this.frameTime);
+    banner.runSpeed = setInterval(update, this.frameTime); // TODO: call the tick() method instead
     this.playState = 'starting';
   },
 
@@ -483,6 +483,7 @@ var restartButton = {
   }
 };
 
+/* ported */
 // prototype of one layer of the banner
 function bandProto(sprite, distanceFactor) {
   this.spriteRenderer = new spriteRendererProto(
@@ -495,8 +496,9 @@ function bandProto(sprite, distanceFactor) {
   this.position = new positionProto(0, 0, distanceFactor);
 
   this.update = function() {
-    if (this.position.xW + this.widthW < scrollingPosition.xW)
+    if (this.position.xW + this.widthW < scrollingPosition.xW) {
       this.position.xW += this.widthW;
+    }
 
     var x0PX = this.position.xObsPX();
     var y0PX = this.position.yObsPX();
@@ -522,6 +524,7 @@ function bandProto(sprite, distanceFactor) {
     this.spriteRenderer.refreshSize();
   };
 }
+/**/
 
 // Softozor
 var softozor = {

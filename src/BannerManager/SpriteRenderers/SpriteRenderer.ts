@@ -6,7 +6,7 @@ import Position from '../Position';
 // they write in the Canvas directly (within draw())
 export default abstract class SpriteRenderer {
   constructor(
-    protected m_Canvas: Canvas,
+    protected readonly m_Canvas: Canvas,
     private readonly m_Width?: number,
     private readonly m_Height?: number
   ) {}

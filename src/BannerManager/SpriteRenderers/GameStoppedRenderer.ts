@@ -48,11 +48,11 @@ export default class GameStoppedRenderer extends SpriteRenderer {
   }
 
   private get swidth(): number {
-    return GameStoppedRenderer.SPRITES.stopped.img.naturalWidth;
+    return GameStoppedRenderer.SPRITES.stopped.naturalWidth;
   }
 
   private get sheight(): number {
-    return GameStoppedRenderer.SPRITES.stopped.img.naturalHeight;
+    return GameStoppedRenderer.SPRITES.stopped.naturalHeight;
   }
 
   private get sx(): number {

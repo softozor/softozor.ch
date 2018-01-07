@@ -17,8 +17,8 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     canvas: Canvas,
     widthW: number,
     heightW: number,
-    private readonly m_Sprite: Sprite,
-    private readonly m_DistanceFactor: number
+    protected readonly m_Sprite: Sprite,
+    protected readonly m_DistanceFactor: number
   ) {
     super(canvas, widthW, heightW);
   }
@@ -56,11 +56,11 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   }
 
   get widthPXToN(): number {
-    return this.m_Sprite.img.naturalWidth / this.widthPX;
+    return this.m_Sprite.naturalWidth / this.widthPX;
   }
 
   get heightPXToN(): number {
-    return this.m_Sprite.img.naturalHeight / this.heightPX;
+    return this.m_Sprite.naturalHeight / this.heightPX;
   }
 
   public draw(pos0PX: Position): void {

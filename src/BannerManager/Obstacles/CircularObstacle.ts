@@ -7,11 +7,11 @@ import Canvas from '../Canvas';
 export default abstract class CircularObstacle extends Obstacle {
   constructor(
     canvas: Canvas,
-    position: Position,
+    topLeftCorner: Position,
     private readonly m_Radius: number,
     private readonly m_Hitbox: CircularHitBox
   ) {
-    super(canvas, position);
+    super(canvas, topLeftCorner);
   }
 
   /**
@@ -22,6 +22,6 @@ export default abstract class CircularObstacle extends Obstacle {
   }
 
   public isOutOfBounds(scrollingXW: number): Boolean {
-    return this.m_Position.x + this.m_Radius <= scrollingXW;
+    return this.m_TopLeftCorner.x + this.m_Radius <= scrollingXW;
   }
 }

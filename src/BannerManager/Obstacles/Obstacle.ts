@@ -3,13 +3,10 @@ import HitBox from '../HitBoxes/HitBox';
 import Collision from '../Collision';
 import Canvas from '../Canvas';
 
-/**
- * m_Position is the top-left corner of a rectangle that wraps the obstacle
- */
 export default abstract class Obstacle {
   constructor(
-    protected m_Canvas: Canvas,
-    protected readonly m_Position: Position
+    protected readonly m_Canvas: Canvas,
+    protected readonly m_TopLeftCorner: Position
   ) {}
 
   /**
@@ -21,7 +18,7 @@ export default abstract class Obstacle {
 
   abstract get hitBox(): HitBox;
 
-  public update(): void {
+  public tick(): void {
     this.render();
   }
 
