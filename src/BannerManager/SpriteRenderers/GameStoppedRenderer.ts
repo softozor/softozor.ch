@@ -9,11 +9,6 @@ import GAME_STOPPED_BACKGROUND_IMG from '../../../assets/banner/gameStopped_back
 export default class GameStoppedRenderer extends SpriteRenderer {
   constructor(canvas: Canvas) {
     super(canvas);
-    this.m_Sprites = {
-      stopped: new Sprite(GAME_STOPPED_IMG),
-      shadow: new Sprite(GAME_STOPPED_SHADOW_IMG),
-      background: new Sprite(GAME_STOPPED_BACKGROUND_IMG)
-    };
   }
 
   /**
@@ -53,11 +48,11 @@ export default class GameStoppedRenderer extends SpriteRenderer {
   }
 
   private get swidth(): number {
-    return this.m_Sprites.stopped.img.naturalWidth;
+    return GameStoppedRenderer.SPRITES.stopped.img.naturalWidth;
   }
 
   private get sheight(): number {
-    return this.m_Sprites.stopped.img.naturalHeight;
+    return GameStoppedRenderer.SPRITES.stopped.img.naturalHeight;
   }
 
   private get sx(): number {
@@ -84,7 +79,7 @@ export default class GameStoppedRenderer extends SpriteRenderer {
     // make hole in canvas
     this.m_Canvas.ctx.globalCompositeOperation = 'destination-out';
     this.m_Canvas.ctx.drawImage(
-      this.m_Sprites.stopped.img,
+      GameStoppedRenderer.SPRITES.stopped.img,
       0,
       0,
       this.swidth,
@@ -99,7 +94,7 @@ export default class GameStoppedRenderer extends SpriteRenderer {
   private drawBackgroundSprite(): void {
     this.m_Canvas.ctx.globalCompositeOperation = 'destination-over';
     this.m_Canvas.ctx.drawImage(
-      this.m_Sprites.background.img,
+      GameStoppedRenderer.SPRITES.background.img,
       this.x,
       this.y,
       this.width,
@@ -110,7 +105,7 @@ export default class GameStoppedRenderer extends SpriteRenderer {
   private drawShadowSprite(): void {
     this.m_Canvas.ctx.globalCompositeOperation = 'source-over';
     this.m_Canvas.ctx.drawImage(
-      this.m_Sprites.shadow.img,
+      GameStoppedRenderer.SPRITES.shadow.img,
       this.sx,
       this.sy,
       this.swidth,
@@ -126,5 +121,13 @@ export default class GameStoppedRenderer extends SpriteRenderer {
    * Private members
    */
   private static HEIGHT_RATIO: number = 0.6;
-  private m_Sprites: { stopped: Sprite; background: Sprite; shadow: Sprite };
+  private static SPRITES: {
+    stopped: Sprite;
+    background: Sprite;
+    shadow: Sprite;
+  } = {
+    stopped: new Sprite(GAME_STOPPED_IMG),
+    background: new Sprite(GAME_STOPPED_BACKGROUND_IMG),
+    shadow: new Sprite(GAME_STOPPED_SHADOW_IMG)
+  };
 }

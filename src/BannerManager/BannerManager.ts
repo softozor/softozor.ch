@@ -101,8 +101,6 @@ export default class BannerManager {
    * game frame function
    */
   private update(): void {
-    banner.transitionUpdate();
-
     softozor.physicUpdate();
     this.graphicUpdate();
     this.m_ObstacleMgr.update();
@@ -111,21 +109,9 @@ export default class BannerManager {
 
   private refreshSize(): void {
     banner.refreshSize();
-    for (var bandIndex = 0; bandIndex < band.length; bandIndex++) {
-      band[bandIndex].refreshSize();
-    }
-    softozor.refreshSize();
-    for (
-      var obstacleIndex = 0;
-      obstacleIndex < obstacle.length;
-      obstacleIndex++
-    ) {
-      obstacle[obstacleIndex].refreshSize();
-    }
-    gameStopped.refreshSize();
-    playButton.refreshSize();
-    restartButton.refreshSize();
-    console.log(banner.widthPX);
+    // TODO: get rid of all of these refreshSize methods
+    // playButton.refreshSize();
+    // restartButton.refreshSize();
   }
 
   /**

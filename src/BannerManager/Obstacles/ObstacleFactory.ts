@@ -3,12 +3,14 @@ import GoodBubble from './GoodBubble';
 import BadBubble from './BadBubble';
 import Position from '../Position';
 import CircularHitBox from '../HitBoxes/CircularHitBox';
+import Canvas from '../Canvas';
 
 export default class ObstacleFactory {
   /**
    * Public methods
    */
   public static createBadBubble(
+    canvas: Canvas,
     position: Position,
     diameter: number
   ): Obstacle {
@@ -19,10 +21,11 @@ export default class ObstacleFactory {
       relCenter,
       radius
     );
-    return new BadBubble(position, diameter / 2, hitbox);
+    return new BadBubble(canvas, position, diameter / 2, hitbox);
   }
 
   public static createGoodBubble(
+    canvas: Canvas,
     position: Position,
     diameter: number
   ): Obstacle {
@@ -33,10 +36,6 @@ export default class ObstacleFactory {
       relCenter,
       radius
     );
-    return new GoodBubble(position, diameter / 2, hitbox);
+    return new GoodBubble(canvas, position, diameter / 2, hitbox);
   }
-
-  /**
-   * Private members
-   */
 }
