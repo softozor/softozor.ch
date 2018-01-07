@@ -2,7 +2,7 @@
 export default class Position {
   constructor(private m_X: number = 0, private m_Y: number = 0) {}
   /**
-   * getters / setters
+   * Public methods
    */
   get x(): number {
     return this.m_X;
@@ -20,9 +20,6 @@ export default class Position {
     this.m_Y = value;
   }
 
-  /**
-   * Public methods
-   */
   times(factor: number): Position {
     return new Position(this.x * factor, this.y * factor);
   }

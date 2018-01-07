@@ -1,6 +1,7 @@
 import Sprite from './Sprite';
 import SpriteRenderer from './SpriteRenderer';
 import Canvas from '../Canvas'; // TODO: this is the old banner object
+import Position from '../Position';
 
 type ClippingParams = {
   pos: number;
@@ -23,47 +24,62 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   }
 
   /**
-   * Getters / setters
-   */
-  get x0PX(): number {
-    return this.m_x0PX;
-  }
-
-  get y0PX(): number {
-    return this.m_y0PX;
-  }
-
-  set x0PX(value: number) {
-    this.m_x0PX = value;
-  }
-
-  set y0PX(value: number) {
-    this.m_y0PX = value;
-  }
-
-  /**
    * Public methods
    */
-  public draw(): void {
-    let vertParams: ClippingParams = this.getClippingParams(
-      this.x0PX,
-      this.m_WidthPX,
+  // TODO: in the end, we will not need that argument any more
+  // The CoordinatesAdapter singleton will be kept up-to-date with the banner height!
+  // TODO: this is the same as the coordinate transformation in positionProto, but for distances!
+  get heightPX(): number {
+    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
+      return this.height;
+    }
+    return (
+      this.height *
+      worldBandRatioToBanner *
+      this.m_Canvas.heightPX /
+      100 /
+      this.m_DistanceFactor
+    );
+  }
+
+  get widthPX(): number {
+    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
+      return this.width;
+    }
+    return (
+      this.width *
+      worldBandRatioToBanner *
+      this.m_Canvas.heightPX /
+      100 /
+      this.m_DistanceFactor
+    );
+  }
+
+  get widthPXToN(): number {
+    return this.m_Sprite.img.naturalWidth / this.widthPX;
+  }
+
+  get heightPXToN(): number {
+    return this.m_Sprite.img.naturalHeight / this.heightPX;
+  }
+
+  public draw(pos0PX: Position): void {
+    let vertParams: ClippingParams = getClippingParams(
+      pos0PX.x,
+      this.widthPX,
       this.m_Canvas.widthPX,
-      this.m_WidthPXToN,
+      this.widthPXToN,
       scrollingPosition.xObsPX()
     );
-    let horizParams: ClippingParams = this.getClippingParams(
-      this.y0PX,
-      this.m_HeightPX,
+    let horizParams: ClippingParams = getClippingParams(
+      pos0PX.y,
+      this.heightPX,
       this.m_Canvas.heightPX,
-      this.m_HeightPXToN,
+      this.heightPXToN,
       scrollingPosition.yObsPX()
     );
 
-    if (
-      typeof vertParams !== 'undefined' &&
-      typeof horizParams !== 'undefined'
-    ) {
+    if (vertParams !== undefined && horizParams !== undefined) {
       this.m_Canvas.ctx.drawImage(
         this.m_Sprite.img,
         vertParams.sPos,
@@ -78,80 +94,49 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     }
   }
 
-  // TODO: in the end, we will not need that argument any more
-  // The CoordinatesAdapter singleton will be kept up-to-date with the banner height!
-  public onCanvasResized(width: number, height: number): void {
-    // TODO: this is the same as the coordinate transformation in positionProto, but for distances!
-    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
-      this.m_HeightPX = this.m_Height;
-      this.m_WidthPX = this.m_Width;
-    } else {
-      this.m_HeightPX =
-        this.m_Height *
-        worldBandRatioToBanner *
-        this.m_Canvas.heightPX /
-        100 /
-        this.m_DistanceFactor;
-      this.m_WidthPX =
-        this.m_Width *
-        worldBandRatioToBanner *
-        this.m_Canvas.heightPX /
-        100 /
-        this.m_DistanceFactor;
-    }
-
-    // TODO: These data are sprite renderer-specific and must be refreshed when the canvas is resized
-    this.m_WidthPXToN = this.m_Sprite.img.naturalWidth / this.m_WidthPX;
-    this.m_HeightPXToN = this.m_Sprite.img.naturalHeight / this.m_HeightPX;
-  }
-
   /**
    * Private methods
    */
-  private getClippingParams(
-    pos0PX: number,
-    lengthPX: number,
-    bannerLengthPX: number,
-    lengthPXToN: number,
-    scrollPX: number
-  ): ClippingParams {
-    if (pos0PX <= -lengthPX) {
-      return undefined;
-    } else if (pos0PX <= 0) {
-      let result: ClippingParams;
-      result.pos = 0;
-      result.length = Math.min(bannerLengthPX, lengthPX + pos0PX);
-      result.sPos = -pos0PX * lengthPXToN;
-      result.sLength = result.length * lengthPXToN;
-      return result;
-    } else if (pos0PX <= scrollPX + bannerLengthPX - lengthPX) {
-      let result: ClippingParams;
-      result.pos = pos0PX;
-      result.length = Math.min(bannerLengthPX - pos0PX, lengthPX);
-      result.sPos = 0;
-      result.sLength = result.length * lengthPXToN;
-      return result;
-    } else if (pos0PX < scrollPX + bannerLengthPX) {
-      let result: ClippingParams;
-      result.pos = pos0PX;
-      result.length = bannerLengthPX - pos0PX;
-      result.sPos = 0;
-      result.sLength = result.length * lengthPXToN;
-      return result;
-    } else {
-      return undefined;
-    }
-  }
 
   /**
    * Private members
    */
-  // TODO: use a size object here
-  private m_WidthPX: number = 0;
-  private m_HeightPX: number = 0;
-  private m_WidthPXToN: number = 0;
-  private m_HeightPXToN: number = 0;
+}
 
-  private m_x0PX: number = 0;
-  private m_y0PX: number = 0;
+/**
+ * Helper methods
+ */
+function getClippingParams(
+  pos0PX: number,
+  lengthPX: number,
+  bannerLengthPX: number,
+  lengthPXToN: number,
+  scrollPX: number
+): ClippingParams {
+  if (pos0PX <= -lengthPX) {
+    return undefined;
+  } else if (pos0PX <= 0) {
+    let result: ClippingParams;
+    result.pos = 0;
+    result.length = Math.min(bannerLengthPX, lengthPX + pos0PX);
+    result.sPos = -pos0PX * lengthPXToN;
+    result.sLength = result.length * lengthPXToN;
+    return result;
+  } else if (pos0PX <= scrollPX + bannerLengthPX - lengthPX) {
+    let result: ClippingParams;
+    result.pos = pos0PX;
+    result.length = Math.min(bannerLengthPX - pos0PX, lengthPX);
+    result.sPos = 0;
+    result.sLength = result.length * lengthPXToN;
+    return result;
+  } else if (pos0PX < scrollPX + bannerLengthPX) {
+    let result: ClippingParams;
+    result.pos = pos0PX;
+    result.length = bannerLengthPX - pos0PX;
+    result.sPos = 0;
+    result.sLength = result.length * lengthPXToN;
+    return result;
+  } else {
+    return undefined;
+  }
 }

@@ -11,9 +11,9 @@ export default class World {
   }
 
   /**
-   * Getters / setters
+   * Public methods
    */
-  get scrollingPos(): Position {
+  public get scrollingPos(): Position {
     return this.m_ScrollingPosition;
   }
 

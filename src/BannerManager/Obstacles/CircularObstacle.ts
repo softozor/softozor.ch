@@ -13,15 +13,12 @@ export default abstract class CircularObstacle extends Obstacle {
   }
 
   /**
-   * Getters / setters
+   * Public methods
    */
   get hitBox(): HitBox {
     return this.m_Hitbox;
   }
 
-  /**
-   * Public methods
-   */
   public isOutOfBounds(scrollingXW: number): Boolean {
     return this.m_Position.x + this.m_Radius <= scrollingXW;
   }

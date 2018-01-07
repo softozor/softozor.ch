@@ -13,7 +13,7 @@ export default class CircularHitBox extends HitBox {
   }
 
   /**
-   * Getters / setters
+   * Public methods
    */
   get positionW(): Position {
     return this.m_PositionW;
@@ -31,9 +31,6 @@ export default class CircularHitBox extends HitBox {
     return Position.plus(this.relativeCenterW, this.positionW);
   }
 
-  /**
-   * Public methods
-   */
   public collide(other: HitBox): Collision | undefined {
     if (other instanceof CircularHitBox) {
       return this.collideWithCircularHitBox(other);

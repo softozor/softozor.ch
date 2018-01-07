@@ -23,13 +23,8 @@ export default class BadBubble extends CircularObstacle {
   }
 
   /**
-   * Getters / setters
-   */
-
-  /**
    * Public methods
    */
-
   public refreshSize(): void {
     this.m_SpriteRenderer.refreshSize();
   }
@@ -37,7 +32,6 @@ export default class BadBubble extends CircularObstacle {
   /**
    * Private methods
    */
-
   protected render(): void {
     this.m_SpriteRenderer.draw(this.m_Position.xObsPX, this.m_Position.yObsPX);
   }

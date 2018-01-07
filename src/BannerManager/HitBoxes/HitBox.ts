@@ -3,12 +3,8 @@ import Collision from '../Collision';
 
 export default abstract class HitBox {
   /**
-   * Getters / setters
-   */
-  abstract get centerW(): Position;
-
-  /**
    * Public methods
    */
+  abstract get centerW(): Position;
   public abstract collide(other: HitBox): Collision | undefined;
 }

@@ -13,15 +13,12 @@ export default class Sprite {
   }
 
   /**
-   * Getters / setters
+   * Public members
    */
   get img(): HTMLImageElement {
     return this.m_Img;
   }
 
-  /**
-   * Public members
-   */
   public attachImgLoadedEvent(callback: ImgLoadedCallback): void {
     this.m_ImgLoadedEvent.attach(callback);
   }

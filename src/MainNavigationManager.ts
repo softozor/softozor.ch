@@ -1,12 +1,11 @@
-import {isUndefined} from 'util'
+import { isUndefined } from 'util';
 
 type LoadCallback = () => void;
 
 export class MainNavigationManager {
+  private m_LineAnimationDuration: number = 4000; // in [ms]
 
-  private m_LineAnimationDuration: number = 4000; // in [ms] 
-
-  constructor() { }
+  constructor() {}
 
   set LineAnimationDuration(value: number) {
     this.m_LineAnimationDuration = value;
@@ -23,20 +22,22 @@ export class MainNavigationManager {
 
   private load(file: string, callback?: LoadCallback): void {
     if (!isUndefined(callback)) {
-      $("#content").load(file, callback);
+      $('#content').load(file, callback);
     } else {
-      $("#content").load(file);
+      $('#content').load(file);
     }
   }
 
   private menuWidth(): number {
     let width: number = 0;
-    $("#navigation > ul").children().each(function (index: number, element: HTMLElement): void {
-      let outerWidth: number | undefined = $(element).outerWidth(true);
-      if (typeof outerWidth !== 'undefined') {
-        width += outerWidth;
-      }
-    });
+    $('#navigation > ul')
+      .children()
+      .each(function(index: number, element: HTMLElement): void {
+        let outerWidth: number | undefined = $(element).outerWidth(true);
+        if (outerWidth !== undefined) {
+          width += outerWidth;
+        }
+      });
     return width;
   }
 
@@ -46,26 +47,31 @@ export class MainNavigationManager {
   private animateMenuLine(): void {
     let menuWidth: number = this.menuWidth();
     let animDuration: number = this.LineAnimationDuration;
-    $('#bottomLine').animate({
-      width: menuWidth + "px"
-    }, animDuration);
+    $('#bottomLine').animate(
+      {
+        width: menuWidth + 'px'
+      },
+      animDuration
+    );
   }
 
-  private menuName(elem : HTMLElement) : string | undefined {
-    const href: string | undefined = $(elem).attr("href");
-    if (typeof href !== 'undefined') {
-      return href.split("#")[1];
+  private menuName(elem: HTMLElement): string | undefined {
+    const href: string | undefined = $(elem).attr('href');
+    if (href !== undefined) {
+      return href.split('#')[1];
     }
     return undefined;
   }
 
   private onClick(elem: HTMLElement): void {
     let menuName: string | undefined = this.menuName(elem);
-    $(`section#${menuName}`).show().siblings("section").hide();
+    $(`section#${menuName}`)
+      .show()
+      .siblings('section')
+      .hide();
   }
 
   private setupMenu(): void {
-    $("nav#navigation a, footer a").click(e => this.onClick(e.target));
+    $('nav#navigation a, footer a').click(e => this.onClick(e.target));
   }
-
 }

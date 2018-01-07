@@ -9,18 +9,13 @@ export default abstract class Obstacle {
   constructor(protected readonly m_Position: Position) {}
 
   /**
-   * Getters / setters
+   * Public methods
    */
-
   get hasCollided(): Boolean {
     return this.m_HasCollided;
   }
 
   abstract get hitBox(): HitBox;
-
-  /**
-   * Public methods
-   */
 
   public update(): void {
     this.render();
@@ -42,7 +37,6 @@ export default abstract class Obstacle {
   /**
    * Protected methods
    */
-
   protected abstract render(): void;
 
   /**
