@@ -334,6 +334,7 @@ var banner = {
   },
 
   handleEventPosition: function(evt) {
+    // TODO: this is a pure playButton code --> should go in the playButton object
     if (
       evt.clientX >= playButton.xPX - playButton.clickDeltaPX &&
       evt.clientX <=
@@ -344,6 +345,7 @@ var banner = {
     ) {
       return 'playButton';
     } else if (
+      // TODO: this is a pure restartButton code --> should go in the restartButton object
       banner.gameState === 'over' &&
       evt.clientX >= restartButton.xPX - restartButton.clickDeltaPX &&
       evt.clientX <=
@@ -393,8 +395,10 @@ var banner = {
     //event.preventDefault();
     var zone = banner.handleEventPosition(event);
     if (zone === 'playButton') {
+      // TODO: do not implement a click method; instead, let the banner handle the playButton.click() code here directly
       playButton.click();
     } else if (zone === 'restartButton') {
+      // TODO: do not implement a click method; instead, let the banner handle the restartButton.click() code here directly
       restartButton.click();
     } else {
       softozor.stopFlap();
@@ -402,6 +406,7 @@ var banner = {
   }
 };
 
+/* ported */
 var playButton = {
   xPX: 5,
   yPX: 5,
@@ -411,6 +416,7 @@ var playButton = {
   clickDeltaPX: 50,
 
   click: function() {
+    // TODO: this definitely doesn't belong to this object; this must be implemented in the banner object
     if (banner.playState === 'paused' || banner.playState === 'pausing') {
       banner.run();
     } else if (
@@ -447,17 +453,20 @@ var playButton = {
     this.yPX = banner.heightPX - this.yBottomPX - this.heightPX;
   }
 };
+/**/
 
+/* ported */
 var restartButton = {
   xPX: 5,
-  xRightPX: 5,
   yPX: 5,
-  yBottomPX: 5,
   widthPX: 50,
   heightPX: 50,
   clickDeltaPX: 50,
+  xRightPX: 5,
+  yBottomPX: 5,
 
   click: function() {
+    // TODO: this definitely doesn't belong to this object; this must be implemented in the banner object
     if (banner.gameState === 'over' && banner.gameEndingTransition <= 0) {
       banner.run();
       banner.restart();
@@ -482,6 +491,7 @@ var restartButton = {
     this.yPX = banner.heightPX - this.yBottomPX - this.heightPX;
   }
 };
+/**/
 
 /* ported */
 // prototype of one layer of the banner
