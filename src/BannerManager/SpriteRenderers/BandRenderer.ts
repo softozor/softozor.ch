@@ -18,6 +18,7 @@ export default class BandRenderer extends DynamicSpriteRenderer {
   /**
    * Public methods
    */
+  // TODO: move to ParallaxManager
   public tick(): void {
     let x0PX: number = CoordinatesAdapter.xObsPX(0, this.m_DistanceFactor);
     let y0PX: number = CoordinatesAdapter.yObsPX(0, this.m_DistanceFactor);
