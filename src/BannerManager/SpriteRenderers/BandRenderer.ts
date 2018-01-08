@@ -3,7 +3,6 @@ import Sprite from './Sprite';
 import DynamicSpriteRenderer from './DynamicSpriteRenderer';
 import Position from '../Position';
 
-// TODO: call with width = 2000 and height = 200
 export default class BandRenderer extends DynamicSpriteRenderer {
   constructor(
     canvas: Canvas,
@@ -13,20 +12,6 @@ export default class BandRenderer extends DynamicSpriteRenderer {
     distanceFactor: number
   ) {
     super(canvas, width, height, sprite, distanceFactor);
-  }
-
-  /**
-   * Public methods
-   */
-  // TODO: move to ParallaxManager
-  public tick(): void {
-    let x0PX: number = CoordinatesAdapter.xObsPX(0, this.m_DistanceFactor);
-    let y0PX: number = CoordinatesAdapter.yObsPX(0, this.m_DistanceFactor);
-    let pos0PX: Position = new Position(x0PX, y0PX);
-    while (pos0PX.x <= this.m_Canvas.widthPX) {
-      this.draw(pos0PX);
-      pos0PX.x += this.widthPX;
-    }
   }
 
   /**

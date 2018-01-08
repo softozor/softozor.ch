@@ -26,8 +26,6 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   /**
    * Public methods
    */
-  // TODO: in the end, we will not need that argument any more
-  // The CoordinatesAdapter singleton will be kept up-to-date with the banner height!
   // TODO: this is the same as the coordinate transformation in positionProto, but for distances!
   get heightPX(): number {
     if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
@@ -61,6 +59,10 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
 
   get heightPXToN(): number {
     return this.m_Sprite.naturalHeight / this.heightPX;
+  }
+
+  get distanceFactor(): number {
+    return this.m_DistanceFactor;
   }
 
   public draw(pos0PX: Position): void {

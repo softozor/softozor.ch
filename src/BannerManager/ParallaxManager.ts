@@ -1,6 +1,7 @@
 import Canvas from './Canvas';
 import BandRenderer from './SpriteRenderers/BandRenderer';
 import Sprite from './SpriteRenderers/Sprite';
+import Position from './Position';
 
 import { map, forEach } from 'lodash';
 
@@ -11,9 +12,12 @@ import MID_IMG from '../../assets/banner/mid.png';
 import FRONT_IMG from '../../assets/banner/front.png';
 import WORLD_BAND_IMG from '../../assets/banner/worldBand.png';
 
+type SpriteList = { sprite: Sprite; distanceFactor: number }[];
+
 export default class ParallaxManager {
   constructor(private readonly m_Canvas: Canvas) {
-    this.m_BandRenderers = map(ParallaxManager.BANDS, element => {
+    const bands: SpriteList = sprites();
+    this.m_BandRenderers = map(bands, element => {
       return new BandRenderer(
         this.m_Canvas,
         2000,
@@ -25,17 +29,37 @@ export default class ParallaxManager {
   }
 
   /**
-   * Public members
+   * Public methods
    */
   public tick(): void {
-    // TODO: refactor BandRenderers::tick and put that here
-    forEach(this.m_BandRenderers, element => element.tick());
+    forEach(this.m_BandRenderers, element => this.renderBand(element));
+  }
+
+  /**
+   * Private methods
+   */
+  private renderBand(bandRenderer: BandRenderer): void {
+    let distFact: number = bandRenderer.distanceFactor;
+    let x0PX: number = CoordinatesAdapter.xObsPX(0, distFact);
+    let y0PX: number = CoordinatesAdapter.yObsPX(0, distFact);
+    let pos0PX: Position = new Position(x0PX, y0PX);
+    while (pos0PX.x <= this.m_Canvas.widthPX) {
+      bandRenderer.draw(pos0PX);
+      pos0PX.x += bandRenderer.widthPX;
+    }
   }
 
   /**
    * Private members
    */
-  private static BANDS: { sprite: Sprite; distanceFactor: number }[] = [
+  private m_BandRenderers: BandRenderer[];
+}
+
+/**
+ * Helpers
+ */
+function sprites(): SpriteList {
+  return [
     // The order here is important as this is the order in which the bands are rendered
     { sprite: new Sprite(SKY_IMG), distanceFactor: Infinity },
     { sprite: new Sprite(CLOUDS_IMG), distanceFactor: 16 },
@@ -44,6 +68,4 @@ export default class ParallaxManager {
     { sprite: new Sprite(FRONT_IMG), distanceFactor: 2 },
     { sprite: new Sprite(WORLD_BAND_IMG), distanceFactor: 1 }
   ];
-
-  private m_BandRenderers: BandRenderer[];
 }
