@@ -19,12 +19,7 @@ export default class BandRenderer extends DynamicSpriteRenderer {
    * Public methods
    */
   public tick(): void {
-    let x: number = 0;
-    if (x + this.width < scrollingPosition.xW) {
-      x += this.width;
-    }
-
-    let x0PX: number = CoordinatesAdapter.xObsPX(x, this.m_DistanceFactor);
+    let x0PX: number = CoordinatesAdapter.xObsPX(0, this.m_DistanceFactor);
     let y0PX: number = CoordinatesAdapter.yObsPX(0, this.m_DistanceFactor);
     let pos0PX: Position = new Position(x0PX, y0PX);
     while (pos0PX.x <= this.m_Canvas.widthPX) {
