@@ -28,6 +28,7 @@ export default class ParallaxManager {
    * Public members
    */
   public tick(): void {
+    // TODO: refactor BandRenderers::tick and put that here
     forEach(this.m_BandRenderers, element => element.tick());
   }
 
