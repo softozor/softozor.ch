@@ -1,6 +1,6 @@
-import { Position } from './Position';
+import Position from './Position';
 
-export class Collision {
+export default class Collision {
   constructor(
     private readonly m_CenterW: Position = new Position(0, 0),
     private readonly m_HitW: Position = new Position(0, 0)

@@ -1,32 +1,26 @@
-import { Position } from '../Position';
-import { HitBox } from '../HitBoxes/HitBox';
-import { Collision } from '../Collision';
+import Position from '../Position';
+import HitBox from '../HitBoxes/HitBox';
+import Collision from '../Collision';
+import Canvas from '../Canvas';
 
-/**
- * m_Position is the top-left corner of a rectangle that wraps the obstacle
- */
-export abstract class Obstacle {
-  constructor(protected readonly m_Position: Position) {}
+export default abstract class Obstacle {
+  constructor(
+    protected readonly m_Canvas: Canvas,
+    protected readonly m_TopLeftCorner: Position
+  ) {}
 
   /**
-   * Getters / setters
+   * Public methods
    */
-
   get hasCollided(): Boolean {
     return this.m_HasCollided;
   }
 
   abstract get hitBox(): HitBox;
 
-  /**
-   * Public methods
-   */
-
-  public update(): void {
+  public tick(): void {
     this.render();
   }
-
-  public abstract refreshSize(): void;
 
   public collide(hitBox: HitBox): Collision | undefined {
     let collision: Collision | undefined = this.hitBox.collide(hitBox);
@@ -42,7 +36,6 @@ export abstract class Obstacle {
   /**
    * Protected methods
    */
-
   protected abstract render(): void;
 
   /**

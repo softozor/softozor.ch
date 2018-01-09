@@ -127,6 +127,7 @@ function spriteRendererProto(sprite, widthW, heightW, distanceFactor) {
   };
 
   this.refreshSize = function() {
+    // TODO: this is the same as the coordinate transformation in positionProto, but for distances!
     if (this.distanceFactor === 0 || this.distanceFactor === Infinity) {
       this.heightPX = this.heightW;
       this.widthPX = this.widthW;
@@ -273,7 +274,7 @@ var banner = {
   // run the game
   run: function() {
     clearInterval(banner.runSpeed);
-    banner.runSpeed = setInterval(update, this.frameTime);
+    banner.runSpeed = setInterval(update, this.frameTime); // TODO: call the tick() method instead
     this.playState = 'starting';
   },
 
@@ -333,6 +334,7 @@ var banner = {
   },
 
   handleEventPosition: function(evt) {
+    // TODO: this is a pure playButton code --> should go in the playButton object
     if (
       evt.clientX >= playButton.xPX - playButton.clickDeltaPX &&
       evt.clientX <=
@@ -343,6 +345,7 @@ var banner = {
     ) {
       return 'playButton';
     } else if (
+      // TODO: this is a pure restartButton code --> should go in the restartButton object
       banner.gameState === 'over' &&
       evt.clientX >= restartButton.xPX - restartButton.clickDeltaPX &&
       evt.clientX <=
@@ -392,8 +395,10 @@ var banner = {
     //event.preventDefault();
     var zone = banner.handleEventPosition(event);
     if (zone === 'playButton') {
+      // TODO: do not implement a click method; instead, let the banner handle the playButton.click() code here directly
       playButton.click();
     } else if (zone === 'restartButton') {
+      // TODO: do not implement a click method; instead, let the banner handle the restartButton.click() code here directly
       restartButton.click();
     } else {
       softozor.stopFlap();
@@ -401,6 +406,7 @@ var banner = {
   }
 };
 
+/* ported */
 var playButton = {
   xPX: 5,
   yPX: 5,
@@ -410,6 +416,7 @@ var playButton = {
   clickDeltaPX: 50,
 
   click: function() {
+    // TODO: this definitely doesn't belong to this object; this must be implemented in the banner object
     if (banner.playState === 'paused' || banner.playState === 'pausing') {
       banner.run();
     } else if (
@@ -446,17 +453,20 @@ var playButton = {
     this.yPX = banner.heightPX - this.yBottomPX - this.heightPX;
   }
 };
+/**/
 
+/* ported */
 var restartButton = {
   xPX: 5,
-  xRightPX: 5,
   yPX: 5,
-  yBottomPX: 5,
   widthPX: 50,
   heightPX: 50,
   clickDeltaPX: 50,
+  xRightPX: 5,
+  yBottomPX: 5,
 
   click: function() {
+    // TODO: this definitely doesn't belong to this object; this must be implemented in the banner object
     if (banner.gameState === 'over' && banner.gameEndingTransition <= 0) {
       banner.run();
       banner.restart();
@@ -481,7 +491,9 @@ var restartButton = {
     this.yPX = banner.heightPX - this.yBottomPX - this.heightPX;
   }
 };
+/**/
 
+/* ported */
 // prototype of one layer of the banner
 function bandProto(sprite, distanceFactor) {
   this.spriteRenderer = new spriteRendererProto(
@@ -494,8 +506,9 @@ function bandProto(sprite, distanceFactor) {
   this.position = new positionProto(0, 0, distanceFactor);
 
   this.update = function() {
-    if (this.position.xW + this.widthW < scrollingPosition.xW)
+    if (this.position.xW + this.widthW < scrollingPosition.xW) {
       this.position.xW += this.widthW;
+    }
 
     var x0PX = this.position.xObsPX();
     var y0PX = this.position.yObsPX();
@@ -521,6 +534,7 @@ function bandProto(sprite, distanceFactor) {
     this.spriteRenderer.refreshSize();
   };
 }
+/**/
 
 // Softozor
 var softozor = {
@@ -977,6 +991,7 @@ function scorePopProto(pop) {
 }
 /**/
 
+/* ported */
 var gameStopped = {
   copyCanvas: undefined,
 
@@ -1102,6 +1117,7 @@ var gameStopped = {
     }
   }
 };
+/**/
 
 /* ported */
 function destroyDeadObjects(array) {

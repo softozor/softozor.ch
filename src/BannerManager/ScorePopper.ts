@@ -1,16 +1,15 @@
 import * as Helpers from './Helpers';
-import { Position } from './Position';
+import Position from './Position';
 
-export class ScorePopper {
+export default class ScorePopper {
   constructor(
     private readonly m_Pop: string | number,
     private readonly m_DeltaXPX: number
   ) {}
 
   /**
-   * getters / setters
+   * Public methods
    */
-
   get deltaXPX(): number {
     return this.m_DeltaXPX;
   }
@@ -45,10 +44,6 @@ export class ScorePopper {
     return this.m_Lifetime <= 0;
   }
 
-  /**
-   * public methods
-   */
-
   public update(): void {
     ++this.m_DeltaYPX;
     this.updateLifetime();
@@ -62,9 +57,8 @@ export class ScorePopper {
   }
 
   /**
-   * private methods
+   * Private methods
    */
-
   private updateLifetime(): void {
     --this.m_Lifetime;
   }
@@ -74,7 +68,7 @@ export class ScorePopper {
   }
 
   /**
-   * private members
+   * Private members
    */
   private readonly FONT: string = 'bold 15px Arial';
   private readonly OPACITY_FACTOR: number = 30;

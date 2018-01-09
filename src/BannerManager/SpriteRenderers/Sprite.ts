@@ -2,7 +2,7 @@ import { VoidSyncEvent } from 'ts-events';
 
 type ImgLoadedCallback = () => void;
 
-export class Sprite {
+export default class Sprite {
   constructor(imgSrc: string) {
     this.m_Img = new Image();
     let me: Sprite = this;
@@ -15,6 +15,18 @@ export class Sprite {
   /**
    * Public members
    */
+  get img(): HTMLImageElement {
+    return this.m_Img;
+  }
+
+  get naturalWidth(): number {
+    return this.m_Img.naturalWidth;
+  }
+
+  get naturalHeight(): number {
+    return this.m_Img.naturalHeight;
+  }
+
   public attachImgLoadedEvent(callback: ImgLoadedCallback): void {
     this.m_ImgLoadedEvent.attach(callback);
   }

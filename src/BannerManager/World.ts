@@ -1,6 +1,6 @@
-import { Position } from './Position';
+import Position from './Position';
 
-export class World {
+export default class World {
   constructor(startPos: number, maxYW: number) {
     this.m_ScrollingPosition = new Position(
       startPos,
@@ -11,9 +11,9 @@ export class World {
   }
 
   /**
-   * Getters / setters
+   * Public methods
    */
-  get scrollingPos(): Position {
+  public get scrollingPos(): Position {
     return this.m_ScrollingPosition;
   }
 

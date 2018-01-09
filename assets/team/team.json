@@ -2,7 +2,7 @@
   {
     "FirstName": "Laurent",
     "LastName": "Michel",
-    "ImgFilename": "laurosor_full_res.jpg",
+    "ImgFilename": "laurosor_polaroid.png",
     "ShortDescription":
       "Software architect with solid background in mathematics and physics as well as extensive experience as a SCRUM product owner. Skilled military simulation frameworks developer.",
     "ProfExp": [
@@ -103,13 +103,13 @@
   {
     "FirstName": "Florian",
     "LastName": "Pittet",
-    "ImgFilename": "floriosor_full_res.jpg",
+    "ImgFilename": "floriosor_polaroid.png",
     "ShortDescription": "Graphics designer"
   },
   {
     "FirstName": "Thomas",
     "LastName": "Michel",
-    "ImgFilename": "thomosor_full_res.jpg",
+    "ImgFilename": "thomosor_polaroid.png",
     "ShortDescription": "Software architect",
     "ProfExp": [
       {

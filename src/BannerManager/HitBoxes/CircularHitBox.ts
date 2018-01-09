@@ -1,9 +1,9 @@
-import { HitBox } from './HitBox';
+import HitBox from './HitBox';
 
-import { Position } from '../Position';
-import { Collision } from '../Collision';
+import Position from '../Position';
+import Collision from '../Collision';
 
-export class CircularHitBox extends HitBox {
+export default class CircularHitBox extends HitBox {
   constructor(
     private readonly m_PositionW: Position,
     private readonly m_RelativeCenterW: Position,
@@ -13,7 +13,7 @@ export class CircularHitBox extends HitBox {
   }
 
   /**
-   * Getters / setters
+   * Public methods
    */
   get positionW(): Position {
     return this.m_PositionW;
@@ -31,9 +31,6 @@ export class CircularHitBox extends HitBox {
     return Position.plus(this.relativeCenterW, this.positionW);
   }
 
-  /**
-   * Public methods
-   */
   public collide(other: HitBox): Collision | undefined {
     if (other instanceof CircularHitBox) {
       return this.collideWithCircularHitBox(other);

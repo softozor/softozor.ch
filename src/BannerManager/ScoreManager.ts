@@ -1,13 +1,12 @@
 import * as Helpers from './Helpers';
-import { Position } from './Position';
+import Position from './Position';
 
-export class ScoreManager {
+export default class ScoreManager {
   constructor() {}
 
   /**
-   * Getters / setters
+   * Public methods
    */
-
   get fillStyle(): string {
     return this.FILL_STYLE;
   }
@@ -15,10 +14,6 @@ export class ScoreManager {
   get strokeStyle(): string {
     return this.STROKE_STYLE;
   }
-
-  // get heightPX(): number {
-  //   return this.HEIGHT_PX;
-  // }
 
   get textPosition(): Position {
     return new Position(this.X_PX, this.Y_PX + this.HEIGHT_PX);
@@ -28,14 +23,6 @@ export class ScoreManager {
     return `bold ${this.HEIGHT_PX}px Arial`;
   }
 
-  // get xPX(): number {
-  //   return this.X_PX;
-  // }
-
-  // get yPX(): number {
-  //   return this.Y_PX;
-  // }
-
   get score(): number {
     return this.m_Score;
   }
@@ -44,9 +31,6 @@ export class ScoreManager {
     return `SCORE : ${this.score}`;
   }
 
-  /**
-   * Public methods
-   */
   public update(): void {}
 
   /**

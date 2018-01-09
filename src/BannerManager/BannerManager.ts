@@ -1,21 +1,25 @@
 import { forEach, remove } from 'lodash';
 
-import { ScoreManager } from './ScoreManager';
-import { ScorePopper } from './ScorePopper';
-import * as BubbleHelpers from './BubbleHelpers';
+import ScoreManager from './ScoreManager';
+import ScorePopper from './ScorePopper';
 import * as Helpers from './Helpers';
-import { Position } from './Position';
-import { Obstacle } from './Obstacle';
-import { World } from './World';
+import Position from './Position';
+import World from './World';
+import ObstacleManager from './Obstacles/ObstacleManager';
+import ParallaxManager from './ParallaxManager';
 
-export class BannerManager {
+export default class BannerManager {
   constructor() {
     // TODO: initialize World:
     // m_World = new World(softozorData.startPosition, softozorData.maxYW);
 
     $(window).resize(() => {
+      // TODO: maybe call resizeEvent.post(window.size), with resizeEvent: SyncEvent<size> (cf. Sprite.ts)
+      // in the configuration phase of the BannerManager, for each resizable item, call
+      // resizeEvent.attach(item.callback), where callback is the resize() method of each item (or onBannerResize)
+
       this.refreshSize();
-      this.update();
+      this.tick();
     });
   }
 
@@ -24,47 +28,6 @@ export class BannerManager {
   /**
    * private methods
    */
-  /**
-   *  fill image of bubbles
-   */
-  public static fillWorldSquare(): void {
-    while (
-      banner.gameState === 'on' &&
-      lastFilledSquareXW <
-        scrollingPosition.xW + banner.widthPX / worldBandRatioToBanner
-    ) {
-      for (var fillIndex = 0; fillIndex < badBubblePerSquare; fillIndex++) {
-        var x =
-          Math.random() * band[worldBandIndex].spriteRenderer.heightW +
-          lastFilledSquareXW;
-        var y =
-          BubbleHelpers.approachExtrema01(
-            BubbleHelpers.approachExtrema01(Math.random())
-          ) *
-            90 -
-          5;
-        var diameter = 10 + Math.random() * 20;
-        obstacle[obstacle.length] = BubbleHelpers.badBubble(x, y, diameter);
-        obstacle[obstacle.length - 1].refreshSize();
-      }
-      for (fillIndex = 0; fillIndex < goodBubblePerSquare; fillIndex++) {
-        var x =
-          Math.random() * band[worldBandIndex].spriteRenderer.heightW +
-          lastFilledSquareXW;
-        var y =
-          BubbleHelpers.approachCenter(
-            BubbleHelpers.approachCenter(Math.random())
-          ) *
-            90 -
-          5;
-        var diameter = 10 + Math.random() * 20;
-        obstacle[obstacle.length] = BubbleHelpers.goodBubble(x, y, diameter);
-        obstacle[obstacle.length - 1].refreshSize();
-      }
-      lastFilledSquareXW += band[worldBandIndex].spriteRenderer.heightW;
-    }
-  }
-
   private updateScore(): void {
     // TODO: add a reference to the banner's context in the ScoreMgr?
     let txt: string = this.m_ScoreMgr.text;
@@ -98,20 +61,13 @@ export class BannerManager {
   private graphicUpdate(): void {
     // world display
     banner.ctx.globalAlpha = 1;
-    for (var bandIndex = band.length - 1; bandIndex >= 0; bandIndex--)
-      band[bandIndex].update();
+
+    this.m_ParallaxMgr.tick();
 
     // game objects display
     banner.ctx.globalAlpha =
       1 * banner.stateTransition * banner.gameEndingTransition;
     softozor.graphicUpdate();
-    for (
-      var obstacleIndex = 0;
-      obstacleIndex < obstacle.length;
-      obstacleIndex++
-    ) {
-      obstacle[obstacleIndex].update();
-    }
 
     // dashboard display
     banner.ctx.globalAlpha = 0.6 * banner.stateTransition;
@@ -127,14 +83,6 @@ export class BannerManager {
     restartButton.update();
   }
 
-  private cleanupObstacles(): void {
-    remove(
-      this.m_Obstacles,
-      (element: Obstacle): Boolean =>
-        element.isOutOfBounds(scrollingPosition.xW) || element.hasCollided
-    );
-  }
-
   private cleanupScorePops(): void {
     // ScorePops is filled by the softozor class --> maybe softozor should clean that up directly!
     remove(
@@ -146,40 +94,39 @@ export class BannerManager {
   /**
    * game frame function
    */
-  private update(): void {
-    banner.transitionUpdate();
-
+  private tick(): void {
     softozor.physicUpdate();
     this.graphicUpdate();
-    this.cleanupObstacles();
+    this.m_ObstacleMgr.tick();
     this.cleanupScorePops();
-    this.fillWorldSquare();
   }
 
   private refreshSize(): void {
     banner.refreshSize();
-    for (var bandIndex = 0; bandIndex < band.length; bandIndex++) {
-      band[bandIndex].refreshSize();
-    }
-    softozor.refreshSize();
-    for (
-      var obstacleIndex = 0;
-      obstacleIndex < obstacle.length;
-      obstacleIndex++
-    ) {
-      obstacle[obstacleIndex].refreshSize();
-    }
-    gameStopped.refreshSize();
-    playButton.refreshSize();
-    restartButton.refreshSize();
-    console.log(banner.widthPX);
+    // TODO: get rid of all of these refreshSize methods
+    // playButton.refreshSize();
+    // restartButton.refreshSize();
   }
 
   /**
    * private members
    */
-  private m_Obstacles: Obstacle[] = [];
+  private m_Canvas: Canvas = new Canvas();
+  private m_ObstacleMgr: ObstacleManager = new ObstacleManager(
+    this.m_Canvas,
+    softozorData.startPosition,
+    (worldBandRatioToBanner - 1 + worldDistanceFactor) *
+      100 /
+      worldBandRatioToBanner
+    // see bandProto::refreshSize; indeed, the method ObstacleManager::fillWorldSquare bases on band[worldBandIndex].spriteRenderer.heightW
+    // and band[0] = new bandProto(spriteList.world, worldDistanceFactor);
+    // which means that the bandProto::refreshSize always end up with the same this.spriteRenderer.heightW value, which turns to be 100
+  );
+  // private m_Obstacles: Obstacle[] = [];
   private m_ScorePops: ScorePopper[] = [];
   private m_ScoreMgr: ScoreManager = new ScoreManager();
   private m_World: World;
+  private readonly m_ParallaxMgr: ParallaxManager = new ParallaxManager(
+    this.m_Canvas
+  );
 }
