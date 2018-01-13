@@ -2,6 +2,8 @@ import Canvas from '../Canvas';
 import SpriteRenderer from './SpriteRenderer';
 import Sprite from './Sprite';
 
+type ClickHandlerCallback = () => void;
+
 export default abstract class ButtonRenderer extends SpriteRenderer {
   constructor(
     canvas: Canvas,
@@ -18,6 +20,14 @@ export default abstract class ButtonRenderer extends SpriteRenderer {
   /**
    * Public methods
    */
+  public set clickHandler(callback: ClickHandlerCallback) {
+    this.m_ClickHandlerCallback = callback;
+  }
+
+  public click(): void {
+    this.m_ClickHandlerCallback();
+  }
+
   public hasMouse(event: MouseEvent): Boolean {
     return (
       event.clientX >= this.xPX - this.clickDeltaPX &&
@@ -25,6 +35,7 @@ export default abstract class ButtonRenderer extends SpriteRenderer {
       event.clientY >= this.yPX - this.clickDeltaPX &&
       event.clientY <= this.yPX + this.height + this.clickDeltaPX
     );
+    // TODO: add the condition that the button must also be visible! use the opacity property or so
   }
 
   /**
@@ -41,4 +52,9 @@ export default abstract class ButtonRenderer extends SpriteRenderer {
   protected get yPX(): number {
     return this.m_yPX;
   }
+
+  /**
+   * Private members
+   */
+  private m_ClickHandlerCallback: ClickHandlerCallback;
 }

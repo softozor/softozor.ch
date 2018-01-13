@@ -253,10 +253,10 @@ var banner = {
     this.gameState = 'restarting';
     obstacle = [];
     scorePop = [];
-    this.restartScore = score;
-    this.restartScrollingXW = scrollingPosition.xW;
-    this.restartSoftozorDeltaXW = softozor.deltaXW;
-    this.restartSoftozorYW = softozor.position.yW;
+    this.restartScore = score; // only used in transitionUpdate
+    this.restartScrollingXW = scrollingPosition.xW; // only used in transitionUpdate
+    this.restartSoftozorDeltaXW = softozor.deltaXW; // only used in transitionUpdate
+    this.restartSoftozorYW = softozor.position.yW; // only used in transitionUpdate
     softozor.flapWait = 0;
     softozor.deltaXSpeed = 0;
     lastFilledSquareXW = firstFilledSquareDistance + softozorData.startPosition;
@@ -392,13 +392,15 @@ var banner = {
   },
 
   handleMouseUp: function(event) {
+    // TODO: the buttons must have been initialized in the sense that we must have atached them a click callback!
+    // TODO: use lodash function to find which button we clicked on
     //event.preventDefault();
     var zone = banner.handleEventPosition(event);
     if (zone === 'playButton') {
-      // TODO: do not implement a click method; instead, let the banner handle the playButton.click() code here directly
+      // TODO: if we found the playButton, then click it!
       playButton.click();
     } else if (zone === 'restartButton') {
-      // TODO: do not implement a click method; instead, let the banner handle the restartButton.click() code here directly
+      // TODO: if we found the restartButton, then click it!
       restartButton.click();
     } else {
       softozor.stopFlap();
@@ -536,6 +538,7 @@ function bandProto(sprite, distanceFactor) {
 }
 /**/
 
+/* ported */
 // Softozor
 var softozor = {
   position: undefined,
@@ -701,6 +704,7 @@ var softozor = {
     this.spriteRenderer.refreshSize();
   }
 };
+/**/
 
 /* ported */
 var scrollingPosition = new positionProto(
