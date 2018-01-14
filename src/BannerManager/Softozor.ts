@@ -1,8 +1,12 @@
-import Position from "./Position";
+import Vector2D from './Vector2D';
 import CircularHitBox from './HitBoxes/CircularHitBox';
+import Obstacle from './Obstacles/Obstacle';
+import Collision from './Collision';
 
 // TODO: softozorData must be a json file that we import here
-// TODO: write state pattern with two states: On / Off (--> gameState = 'on' / 'restarted' / gameState = 'over')
+// TODO: upon setting the gameState to over, disconnect the tick method, i.e. don't trigger it any more!
+// TODO: upon setting the gameState to on, connect the Softozor::tick method
+// TODO: write renderer
 
 export default class Softozor {
   constructor() {
@@ -33,12 +37,26 @@ export default class Softozor {
   /**
    * Public methods
    */
-  public get position(): Position {
+  public get position(): Vector2D {
     return this.m_Position;
   }
 
-  public set position(value: Position) {
-    this.m_Position = value;
+  public get speed(): Vector2D {
+    return this.m_Speed;
+  }
+
+  public get isOutOfBounds(): Boolean {
+    return this.m_DeltaXW + softozorData.heightW <= 0;
+  }
+
+  public handleBadCollision(collision: Collision): void {
+    let diff: Vector2D = Vector2D.minus(collision.hitW, collision.centerW);
+    let speedChangeFactor: number =
+      2 *
+      ((this.m_DeltaXSpeed + this.vx) * diff.x + this.vy * diff.y) /
+      (diff.x * diff.x + diff.y * diff.y);
+    this.m_DeltaXSpeed -= diff.x * speedChangeFactor;
+    this.vy -= diff.y * speedChangeFactor;
   }
 
   public restart(): void {
@@ -53,12 +71,7 @@ export default class Softozor {
     this.fall();
     this.moveForward();
     this.flapUp();
-
-    // TODO: only call if gameState = on (i.e. not over and not restarting)
-    if (banner.gameState === 'on') {
-      this.hitCheck();
-      this.checkOut();
-    }
+    // TODO: call renderer.draw();
   }
 
   public startFlap(): void {
@@ -69,39 +82,8 @@ export default class Softozor {
     this.m_DoFlap = false;
   }
 
-  moveForward: function() {
-    if (banner.gameState === 'on')
-      this.xSpeed = softozorData.originalXSpeed + scrollingPosition.xW / 10000;
-    scrollingPosition.xW += this.xSpeed * banner.stateTransition;
-    this.deltaXW += this.deltaXSpeed * banner.stateTransition;
-    this.deltaXSpeed *= 0.9;
-  },
-
-  // hit check
-  hitCheck: function() {
-    var length = obstacle.length;
-    for (var obstacleIndex = 0; obstacleIndex < length; obstacleIndex++) {
-      var collision = this.hitbox.testHit(obstacle[obstacleIndex].hitbox);
-      if (collision.type === true) {
-        if (obstacle[obstacleIndex].type === 'bad') {
-          var dx = collision.hitXW - collision.centerXW;
-          var dy = collision.hitYW - collision.centerYW;
-          var speedChangeFactor =
-            2 *
-            ((this.deltaXSpeed + this.xSpeed) * dx + this.ySpeed * dy) /
-            (dx * dx + dy * dy);
-          this.deltaXSpeed -= dx * speedChangeFactor;
-          this.ySpeed -= dy * speedChangeFactor;
-          scorePop[scorePop.length] = new scorePopProto('xxx');
-          scoreIncrement = 1;
-        } else if (obstacle[obstacleIndex].type === 'good') {
-          scorePop[scorePop.length] = new scorePopProto(scoreIncrement);
-          score += scoreIncrement;
-          scoreIncrement++;
-        }
-        obstacle[obstacleIndex].mustBeDestroyed = true;
-      }
-    }
+  public collide(obstacle: Obstacle): Collision | undefined {
+    return obstacle.collide(this.m_Hitbox);
   }
 
   // TODO: shouldn't be necessary
@@ -112,14 +94,15 @@ export default class Softozor {
   /**
    * Private methods
    */
-  static private initialPosition(): Position {
-    return new Position(softozorData.startPosition + softozorData.originalDeltaXW, softozorData.originalYW - softozorData.heightW * worldBandRatioToBanner);
+  private static initialPosition(): Vector2D {
+    return new Vector2D(
+      softozorData.startPosition + softozorData.originalDeltaXW,
+      softozorData.originalYW - softozorData.heightW * worldBandRatioToBanner
+    );
   }
 
   private get canFlapUp(): Boolean {
-    return this.m_DoFlap &&
-    this.y > softozorData.minYW &&
-    this.m_FlapWait <= 0;
+    return this.m_DoFlap && this.y > softozorData.minYW && this.m_FlapWait <= 0;
   }
 
   private get x(): number {
@@ -138,20 +121,27 @@ export default class Softozor {
     this.m_Position.y = value;
   }
 
-  private get outOfBounds: Boolean {
-    return this.m_DeltaXW + softozorData.heightW <= 0;
+  private get vx(): number {
+    return this.m_Speed.x;
+  }
+
+  private set vx(value: number) {
+    this.m_Speed.x = value;
+  }
+
+  private get vy(): number {
+    return this.m_Speed.y;
+  }
+
+  private set vy(value: number) {
+    this.m_Speed.y = value;
   }
 
   private flapUp(): void {
     if (this.canFlapUp) {
-      if (banner.gameState === 'on') {
-        this.ySpeed -= softozorData.flapStrength;
-        this.flapWait = softozorData.flapDelay;
-      } else {
-        this.ySpeed -= softozorData.flapStrength / softozorData.flapDelay;
-      }
+      this.vy -= softozorData.flapStrength;
+      this.flapWait = softozorData.flapDelay;
     }
-    // TODO: only call this if the game isn't paused
     if (this.m_FlapWait > 0) {
       --this.m_FlapWait;
     }
@@ -162,38 +152,44 @@ export default class Softozor {
       this.y >
       softozorData.maxYW - softozorData.heightW * worldBandRatioToBanner
     ) {
-      // TODO: refactor the speeds --> create vector with x / y components and name it Speed
-      this.ySpeed = Math.min(this.ySpeed, 0);
+      this.vy = Math.min(this.vy, 0);
     } else if (this.y > softozorData.minYW) {
       // TODO: get rid of state transition
-      this.ySpeed += softozorData.gravity * banner.stateTransition;
+      this.vy += softozorData.gravity;
     } else {
-      this.ySpeed = Math.max(this.ySpeed, softozorData.hitDownSpeed);
-      this.ySpeed += softozorData.gravity * banner.stateTransition;
+      this.vy = Math.max(this.vy, softozorData.hitDownSpeed);
+      this.vy += softozorData.gravity;
     }
-    this.ySpeed = Math.min(
-      Math.max(this.ySpeed, softozorData.minSpeed),
+    this.vy = Math.min(
+      Math.max(this.vy, softozorData.minSpeed),
       softozorData.maxSpeed
     );
-    this.y += this.ySpeed * banner.stateTransition;
+    this.y += this.vy;
   }
 
-  private endGame(): void {
-      // banner.gameState = 'over';
-      // TODO: emit end of game!
+  private moveForward(): void {
+    this.vx = softozorData.originalXSpeed + scrollingPosition.xW / 10000;
+    scrollingPosition.xW += this.vx;
+    this.deltaXW += this.deltaXSpeed;
+    this.deltaXSpeed *= 0.9;
   }
 
   /**
    * Private members
    */
   // TODO: don't forget that all coordinate transformations are done with worldDistanceFactor here!
-  private m_Position: Position = Softozor.initialPosition();
+  private m_Position: Vector2D = Softozor.initialPosition();
   private m_DeltaXW: number = softozorData.originalDeltaXW;
   private m_DeltaXSpeed: number = 0;
-  private m_xSpeed: number = softozorData.originalXSpeed;
-  private m_ySpeed: number = softozorData.minSpeed;
+  private m_Speed: Vector2D = new Vector2D(
+    softozorData.originalXSpeed,
+    softozorData.minSpeed
+  );
   private m_FlapWait: number = 0;
-  private m_DoFlap: number = false;
-  private m_Hitbox: CircularHitBox = new CircularHitBox(this.position, new Position(softozorData.widthW * 0.5,
-    softozorData.heightW * 0.65), softozorData.heightW * 0.3);
+  private m_DoFlap: Boolean = false;
+  private m_Hitbox: CircularHitBox = new CircularHitBox(
+    this.position,
+    new Vector2D(softozorData.widthW * 0.5, softozorData.heightW * 0.65),
+    softozorData.heightW * 0.3
+  );
 }

@@ -1,8 +1,3 @@
-import Canvas from './Canvas';
-import BandRenderer from './SpriteRenderers/BandRenderer';
-import Sprite from './SpriteRenderers/Sprite';
-import Position from './Position';
-
 import { map, forEach } from 'lodash';
 
 import SKY_IMG from '../../assets/banner/sky.png';
@@ -11,6 +6,11 @@ import BACK_IMG from '../../assets/banner/back.png';
 import MID_IMG from '../../assets/banner/mid.png';
 import FRONT_IMG from '../../assets/banner/front.png';
 import WORLD_BAND_IMG from '../../assets/banner/worldBand.png';
+
+import Canvas from './Canvas';
+import BandRenderer from './SpriteRenderers/BandRenderer';
+import Sprite from './SpriteRenderers/Sprite';
+import Vector2D from './Vector2D';
 
 type SpriteList = { sprite: Sprite; distanceFactor: number }[];
 
@@ -42,7 +42,7 @@ export default class ParallaxManager {
     let distFact: number = bandRenderer.distanceFactor;
     let x0PX: number = CoordinatesAdapter.xObsPX(0, distFact);
     let y0PX: number = CoordinatesAdapter.yObsPX(0, distFact);
-    let pos0PX: Position = new Position(x0PX, y0PX);
+    let pos0PX: Vector2D = new Vector2D(x0PX, y0PX);
     while (pos0PX.x <= this.m_Canvas.widthPX) {
       bandRenderer.draw(pos0PX);
       pos0PX.x += bandRenderer.widthPX;

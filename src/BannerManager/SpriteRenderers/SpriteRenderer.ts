@@ -1,6 +1,6 @@
 import Canvas from '../Canvas'; // TODO: this is the old banner object
 import Sprite from './Sprite';
-import Position from '../Position';
+import Vector2D from '../Vector2D';
 
 // SpriteRenderer objects need a reference to the Canvas because
 // they write in the Canvas directly (within draw())
@@ -14,7 +14,7 @@ export default abstract class SpriteRenderer {
   /**
    * Public methods
    */
-  public abstract draw(pos?: Position): void;
+  public abstract draw(pos?: Vector2D): void;
 
   /**
    * Protected methods

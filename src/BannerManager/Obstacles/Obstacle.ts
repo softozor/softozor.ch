@@ -1,4 +1,4 @@
-import Position from '../Position';
+import Vector2D from '../Vector2D';
 import HitBox from '../HitBoxes/HitBox';
 import Collision from '../Collision';
 import Canvas from '../Canvas';
@@ -6,17 +6,15 @@ import Canvas from '../Canvas';
 export default abstract class Obstacle {
   constructor(
     protected readonly m_Canvas: Canvas,
-    protected readonly m_TopLeftCorner: Position
+    protected readonly m_TopLeftCorner: Vector2D
   ) {}
 
   /**
    * Public methods
    */
-  get hasCollided(): Boolean {
+  public get hasCollided(): Boolean {
     return this.m_HasCollided;
   }
-
-  abstract get hitBox(): HitBox;
 
   public tick(): void {
     this.render();
@@ -37,6 +35,7 @@ export default abstract class Obstacle {
    * Protected methods
    */
   protected abstract render(): void;
+  protected abstract get hitBox(): HitBox;
 
   /**
    * Private members

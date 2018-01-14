@@ -1,5 +1,5 @@
 import * as Helpers from './Helpers';
-import Position from './Position';
+import Vector2D from './Vector2D';
 
 export default class ScoreManager {
   constructor() {}
@@ -15,8 +15,8 @@ export default class ScoreManager {
     return this.STROKE_STYLE;
   }
 
-  get textPosition(): Position {
-    return new Position(this.X_PX, this.Y_PX + this.HEIGHT_PX);
+  get textPosition(): Vector2D {
+    return new Vector2D(this.X_PX, this.Y_PX + this.HEIGHT_PX);
   }
 
   get font(): string {

@@ -1,8 +1,8 @@
+import RESTART_IMG from '../../../assets/banner/restart.png';
+
 import ButtonRenderer from './ButtonRenderer';
 import Canvas from '../Canvas';
 import Sprite from './Sprite';
-
-import RESTART_IMG from '../../../assets/banner/restart.png';
 
 export default class RestartButtonRenderer extends ButtonRenderer {
   constructor(

@@ -1,7 +1,6 @@
 import Canvas from '../Canvas';
 import Sprite from './Sprite';
 import DynamicSpriteRenderer from './DynamicSpriteRenderer';
-import Position from '../Position';
 
 export default class BandRenderer extends DynamicSpriteRenderer {
   constructor(

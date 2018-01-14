@@ -1,10 +1,10 @@
-import Position from '../Position';
+import Vector2D from '../Vector2D';
 import Collision from '../Collision';
 
 export default abstract class HitBox {
   /**
    * Public methods
    */
-  abstract get centerW(): Position;
+  abstract get centerW(): Vector2D;
   public abstract collide(other: HitBox): Collision | undefined;
 }

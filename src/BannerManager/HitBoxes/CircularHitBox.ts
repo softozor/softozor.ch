@@ -1,12 +1,12 @@
 import HitBox from './HitBox';
 
-import Position from '../Position';
+import Vector2D from '../Vector2D';
 import Collision from '../Collision';
 
 export default class CircularHitBox extends HitBox {
   constructor(
-    private readonly m_PositionW: Position,
-    private readonly m_RelativeCenterW: Position,
+    private readonly m_PositionW: Vector2D,
+    private readonly m_RelativeCenterW: Vector2D,
     private readonly m_RadiusW: number
   ) {
     super();
@@ -15,11 +15,11 @@ export default class CircularHitBox extends HitBox {
   /**
    * Public methods
    */
-  get positionW(): Position {
+  get positionW(): Vector2D {
     return this.m_PositionW;
   }
 
-  get relativeCenterW(): Position {
+  get relativeCenterW(): Vector2D {
     return this.m_RelativeCenterW;
   }
 
@@ -27,8 +27,8 @@ export default class CircularHitBox extends HitBox {
     return this.m_RadiusW;
   }
 
-  get centerW(): Position {
-    return Position.plus(this.relativeCenterW, this.positionW);
+  get centerW(): Vector2D {
+    return Vector2D.plus(this.relativeCenterW, this.positionW);
   }
 
   public collide(other: HitBox): Collision | undefined {
@@ -45,7 +45,7 @@ export default class CircularHitBox extends HitBox {
   private collideWithCircularHitBox(
     other: CircularHitBox
   ): Collision | undefined {
-    let dW: Position = Position.minus(other.centerW, this.centerW); // actual distance vector between the two hitboxes
+    let dW: Vector2D = Vector2D.minus(other.centerW, this.centerW); // actual distance vector between the two hitboxes
     let dMinW: number = other.radiusW + this.radiusW; // minimal distance between two hitboxes
     let distSqW: number = dW.x * dW.x + dW.y * dW.y;
     let dMinSqW: number = dMinW * dMinW;
@@ -56,10 +56,10 @@ export default class CircularHitBox extends HitBox {
 
   private createCollision(
     other: CircularHitBox,
-    dW: Position,
+    dW: Vector2D,
     dMinW: number
   ): Collision {
-    let hitW: Position = Position.plus(
+    let hitW: Vector2D = Vector2D.plus(
       other.centerW,
       dW.times(other.radiusW / dMinW)
     );

@@ -1,8 +1,8 @@
-import Position from './Position';
+import Vector2D from './Vector2D';
 
 export default class World {
   constructor(startPos: number, maxYW: number) {
-    this.m_ScrollingPosition = new Position(
+    this.m_ScrollingPosition = new Vector2D(
       startPos,
       (this.WORLD_BAND_RATIO_TO_BANNER - 1) *
         maxYW /
@@ -13,7 +13,7 @@ export default class World {
   /**
    * Public methods
    */
-  public get scrollingPos(): Position {
+  public get scrollingPos(): Vector2D {
     return this.m_ScrollingPosition;
   }
 
@@ -24,5 +24,5 @@ export default class World {
   private readonly WORLD_BAND_RATIO_TO_BANNER = 2;
   private readonly WORLD_BAND_INDEX = 0;
 
-  private m_ScrollingPosition: Position;
+  private m_ScrollingPosition: Vector2D;
 }

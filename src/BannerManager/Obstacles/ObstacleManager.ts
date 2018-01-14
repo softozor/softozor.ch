@@ -1,18 +1,30 @@
+import { remove, forEach } from 'lodash';
+import { VoidSyncEvent } from 'ts-events';
+
 import ObstacleFactory from './ObstacleFactory';
 import Position from '../Position';
 import Obstacle from './Obstacle';
 import Canvas from '../Canvas';
+import Softozor from '../Softozor';
+import Collision from '../Collision';
+import BadBubble from './BadBubble';
+import GoodBubble from './GoodBubble';
+import Vector2D from '../Vector2D';
 
-import { remove, forEach } from 'lodash';
+type GoodScoreHandler = () => void;
+type BadScoreHandler = () => void;
 
 // TODO: may need a reference to the Softozor object; this can also be entered as argument to the functions of this class
+// TODO: upon setting the gameState to over, disconnect the tick method, i.e. don't trigger it any more!
+// TODO: upon setting the gameState to on, connect the Softozor::tick method
 export default class ObstacleManager {
   // TODO: must be called with movingObjectInitialX = softozorData.startPosition
   // TODO: m_BannerHeight is not really banner height (see bandProto::refreshSize); we need band[0].spriteRenderer.heightW
   constructor(
     private readonly m_Canvas: Canvas,
     movingObjectInitialX: number,
-    private readonly m_BannerHeight: number
+    private readonly m_BannerHeight: number,
+    private readonly m_MovingObject: Softozor // TODO: see if this is not redundant with the movingObjectInitialX
   ) {
     this.m_LastFilledSquareXW =
       ObstacleManager.FIRST_FILLED_SQUARE_DISTANCE + movingObjectInitialX;
@@ -32,17 +44,26 @@ export default class ObstacleManager {
     console.log('To be implemented');
   }
 
+  public attachGoodScoreHandler(callback: GoodScoreHandler): void {
+    this.m_GoodScoreEvent.attach(callback);
+  }
+
+  public attachBadScoreHandler(callback: BadScoreHandler): void {
+    this.m_BadScoreEvent.attach(callback);
+  }
+
   public tick(): void {
     this.cleanup();
     this.fillWorldSquare();
-    forEach(this.m_Obstacles, element => element.tick());
+    this.tickObstacles();
+    // TODO: it would probably make more sense to call cleanup() here
   }
 
   /**
    *  fill image of bubbles
    */
   public fillWorldSquare(): void {
-    while (banner.gameState === 'on' && this.mustFill()) {
+    while (this.mustFill()) {
       this.fillSquareWithBadBubbles();
       this.fillSquareWithGoodBubbles();
       this.m_LastFilledSquareXW += this.m_BannerHeight;
@@ -52,6 +73,37 @@ export default class ObstacleManager {
   /**
    * Private methods
    */
+  private tickObstacles(): void {
+    forEach(this.m_Obstacles, (element: Obstacle): void => {
+      element.tick();
+      this.handleCollision(element);
+    });
+  }
+
+  private handleCollision(obstacle: Obstacle): void {
+    let collision: Collision | undefined = this.m_MovingObject.collide(
+      obstacle
+    );
+    if (collision != undefined) {
+      if (obstacle instanceof BadBubble) {
+        this.handleCollisionWithBadBubble(collision);
+      } else if (obstacle instanceof GoodBubble) {
+        this.handleCollisionWithGoodBubble(collision);
+      } else {
+        console.log('Collision not supported.');
+      }
+    }
+  }
+
+  private handleCollisionWithBadBubble(collision: Collision): void {
+    this.m_MovingObject.handleBadCollision(collision);
+    this.m_BadScoreEvent.post();
+  }
+
+  private handleCollisionWithGoodBubble(collision: Collision): void {
+    this.m_GoodScoreEvent.post();
+  }
+
   private fillSquareWithBadBubbles(): void {
     for (
       let fillIndex: number = 0;
@@ -122,6 +174,9 @@ export default class ObstacleManager {
   private static readonly BAD_BUBBLE_PER_SQUARE: number = 3;
   private static readonly GOOD_BUBBLE_PER_SQUARE: number = 3;
   private static readonly FIRST_FILLED_SQUARE_DISTANCE: number = 300;
+
+  private m_BadScoreEvent: VoidSyncEvent = new VoidSyncEvent();
+  private m_GoodScoreEvent: VoidSyncEvent = new VoidSyncEvent();
 
   private m_LastFilledSquareXW: number;
   private m_Obstacles: Obstacle[] = [];

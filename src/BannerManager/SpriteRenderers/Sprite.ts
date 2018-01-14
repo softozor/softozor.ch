@@ -1,5 +1,6 @@
 import { VoidSyncEvent } from 'ts-events';
 
+// TODO: remove this type
 type ImgLoadedCallback = () => void;
 
 export default class Sprite {

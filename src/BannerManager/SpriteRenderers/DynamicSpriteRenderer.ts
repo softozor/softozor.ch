@@ -1,7 +1,7 @@
 import Sprite from './Sprite';
 import SpriteRenderer from './SpriteRenderer';
 import Canvas from '../Canvas'; // TODO: this is the old banner object
-import Position from '../Position';
+import Vector2D from '../Vector2D';
 
 type ClippingParams = {
   pos: number;
@@ -65,7 +65,7 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     return this.m_DistanceFactor;
   }
 
-  public draw(pos0PX: Position): void {
+  public draw(pos0PX: Vector2D): void {
     let vertParams: ClippingParams = getClippingParams(
       pos0PX.x,
       this.widthPX,

@@ -3,10 +3,21 @@ import { forEach, remove } from 'lodash';
 import ScoreManager from './ScoreManager';
 import ScorePopper from './ScorePopper';
 import * as Helpers from './Helpers';
-import Position from './Position';
+import Vector2D from './Vector2D';
 import World from './World';
 import ObstacleManager from './Obstacles/ObstacleManager';
 import ParallaxManager from './ParallaxManager';
+
+// TODO: rename this object "GameManager" instead of "BannerManager"
+// TODO: let this this object decide whether the game stops based on e.g. Softozor::outOfBounds
+// TODO: let this object connect / disconnect the Softozor::tick and ObstacleManager::tick
+// TODO: do not forget to call ObstacleManager::attachGoodScoreHandler with the following callback:
+// scorePop[scorePop.length] = new scorePopProto(scoreIncrement);
+// score += scoreIncrement;
+// scoreIncrement++;
+// TODO: do not forget to call ObstacleManager::attachBadScoreHandler with the following callback:
+// scorePop[scorePop.length] = new scorePopProto('xxx');
+// scoreIncrement = 1;
 
 export default class BannerManager {
   constructor() {
@@ -33,7 +44,7 @@ export default class BannerManager {
     let txt: string = this.m_ScoreMgr.text;
     banner.ctx.font = this.m_ScoreMgr.font;
     banner.ctx.fillStyle = this.m_ScoreMgr.fillStyle;
-    let textPos: Position = this.m_ScoreMgr.textPosition;
+    let textPos: Vector2D = this.m_ScoreMgr.textPosition;
     banner.ctx.fillText(txt, textPos.x, textPos.y);
     banner.ctx.strokeStyle = this.m_ScoreMgr.strokeStyle;
     banner.ctx.strokeText(txt, textPos.x, textPos.y);
@@ -43,11 +54,11 @@ export default class BannerManager {
     // TODO: add a reference to the banner's context in the ScorePopper?
     banner.ctx.font = element.font;
     banner.ctx.fillStyle = element.fillStyle;
-    let softozorPos: Position = new Position(
+    let softozorPos: Vector2D = new Vector2D(
       softozor.position.xObsPX(),
       softozor.position.yObsPX()
     );
-    let textPos: Position = element.textPosition(softozorPos);
+    let textPos: Vector2D = element.textPosition(softozorPos);
     banner.ctx.fillText(element.text, textPos.x, textPos.y);
     element.update();
   }

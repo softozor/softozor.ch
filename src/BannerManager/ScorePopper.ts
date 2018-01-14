@@ -1,5 +1,5 @@
 import * as Helpers from './Helpers';
-import Position from './Position';
+import Vector2D from './Vector2D';
 
 export default class ScorePopper {
   constructor(
@@ -49,8 +49,8 @@ export default class ScorePopper {
     this.updateLifetime();
   }
 
-  public textPosition(objectPos: Position): Position {
-    return new Position(
+  public textPosition(objectPos: Vector2D): Vector2D {
+    return new Vector2D(
       objectPos.x + this.deltaXPX,
       objectPos.y - this.deltaYPX
     );

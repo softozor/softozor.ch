@@ -1,10 +1,10 @@
-import SpriteRenderer from './SpriteRenderer';
-import Sprite from './Sprite';
-import Canvas from '../Canvas';
-
 import GAME_STOPPED_IMG from '../../../assets/banner/gameStopped.png';
 import GAME_STOPPED_SHADOW_IMG from '../../../assets/banner/gameStopped_shadow.png';
 import GAME_STOPPED_BACKGROUND_IMG from '../../../assets/banner/gameStopped_background.png';
+
+import SpriteRenderer from './SpriteRenderer';
+import Sprite from './Sprite';
+import Canvas from '../Canvas';
 
 export default class GameStoppedRenderer extends SpriteRenderer {
   constructor(canvas: Canvas) {

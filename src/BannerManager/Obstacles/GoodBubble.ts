@@ -1,16 +1,16 @@
-import Position from '../Position';
+import BUBBLE from '../../../assets/banner/goodbubble.png';
+
+import Vector2D from '../Vector2D';
 import CircularHitBox from '../HitBoxes/CircularHitBox';
 import SpriteRenderer from '../SpriteRenderers/DynamicSpriteRenderer';
 import CircularObstacle from './CircularObstacle';
 import Sprite from '../SpriteRenderers/Sprite';
 import Canvas from '../Canvas';
 
-import BUBBLE from '../../../assets/banner/goodbubble.png';
-
 export default class GoodBubble extends CircularObstacle {
   constructor(
     canvas: Canvas,
-    topLeftCorner: Position,
+    topLeftCorner: Vector2D,
     radius: number,
     hitbox: CircularHitBox
   ) {
@@ -29,7 +29,7 @@ export default class GoodBubble extends CircularObstacle {
    * Private methods
    */
   protected render(): void {
-    let pos: Position = new Position(
+    let pos: Vector2D = new Vector2D(
       this.m_TopLeftCorner.xObsPX,
       this.m_TopLeftCorner.yObsPX
     );

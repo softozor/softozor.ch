@@ -1,8 +1,8 @@
+import PLAY_PAUSE_IMG from '../../../assets/banner/play_pause.png';
+
 import ButtonRenderer from './ButtonRenderer';
 import Canvas from '../Canvas';
 import Sprite from './Sprite';
-
-import PLAY_PAUSE_IMG from '../../../assets/banner/play_pause.png';
 
 export default class PlayButtonRenderer extends ButtonRenderer {
   constructor(
