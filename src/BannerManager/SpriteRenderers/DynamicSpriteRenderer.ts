@@ -10,14 +10,13 @@ type ClippingParams = {
   sLength: number;
 };
 
-// TODO: probably need to write a generic SpriteRenderer and derive this one from it
 // TODO: must take the softozor scrolling position as reference
 export default class DynamicSpriteRenderer extends SpriteRenderer {
   constructor(
     canvas: Canvas,
     widthW: number,
     heightW: number,
-    protected readonly m_Sprite: Sprite,
+    protected m_Sprite: Sprite,
     protected readonly m_DistanceFactor: number
   ) {
     super(canvas, widthW, heightW);
@@ -26,45 +25,6 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   /**
    * Public methods
    */
-  // TODO: this is the same as the coordinate transformation in positionProto, but for distances!
-  get heightPX(): number {
-    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
-      return this.height;
-    }
-    return (
-      this.height *
-      worldBandRatioToBanner *
-      this.m_Canvas.heightPX /
-      100 /
-      this.m_DistanceFactor
-    );
-  }
-
-  get widthPX(): number {
-    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
-      return this.width;
-    }
-    return (
-      this.width *
-      worldBandRatioToBanner *
-      this.m_Canvas.heightPX /
-      100 /
-      this.m_DistanceFactor
-    );
-  }
-
-  get widthPXToN(): number {
-    return this.m_Sprite.naturalWidth / this.widthPX;
-  }
-
-  get heightPXToN(): number {
-    return this.m_Sprite.naturalHeight / this.heightPX;
-  }
-
-  get distanceFactor(): number {
-    return this.m_DistanceFactor;
-  }
-
   public draw(pos0PX: Vector2D): void {
     let vertParams: ClippingParams = getClippingParams(
       pos0PX.x,
@@ -97,8 +57,46 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   }
 
   /**
-   * Private methods
+   * Protected methods
    */
+  // TODO: this is the same as the coordinate transformation in positionProto, but for distances!
+  protected get heightPX(): number {
+    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
+      return this.height;
+    }
+    return (
+      this.height *
+      worldBandRatioToBanner *
+      this.m_Canvas.heightPX /
+      100 /
+      this.m_DistanceFactor
+    );
+  }
+
+  protected get widthPX(): number {
+    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
+      return this.width;
+    }
+    return (
+      this.width *
+      worldBandRatioToBanner *
+      this.m_Canvas.heightPX /
+      100 /
+      this.m_DistanceFactor
+    );
+  }
+
+  protected get widthPXToN(): number {
+    return this.m_Sprite.naturalWidth / this.widthPX;
+  }
+
+  protected get heightPXToN(): number {
+    return this.m_Sprite.naturalHeight / this.heightPX;
+  }
+
+  protected get distanceFactor(): number {
+    return this.m_DistanceFactor;
+  }
 
   /**
    * Private members

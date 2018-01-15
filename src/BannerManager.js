@@ -1,3 +1,4 @@
+/* ported */
 import SKY_IMG from '../assets/banner/sky.png';
 import CLOUDS_IMG from '../assets/banner/clouds.png';
 import BACK_IMG from '../assets/banner/back.png';
@@ -14,6 +15,7 @@ import GOOD_BUBBLE_IMG from '../assets/banner/goodbubble.png';
 import BAD_BUBBLE_IMG from '../assets/banner/badbubble.png';
 import PLAY_PAUSE_IMG from '../assets/banner/play_pause.png';
 import RESTART_IMG from '../assets/banner/restart.png';
+/**/
 
 ('use strict');
 
@@ -31,6 +33,7 @@ function spriteProto(src) {
 }
 /**/
 
+/* ported */
 var spriteList = {
   initialize: function() {
     this.sky = new spriteProto(SKY_IMG);
@@ -54,6 +57,7 @@ var spriteList = {
     //this.hitSpot = new spriteProto('../assets/banner/redCircle.png');
   }
 };
+/**/
 
 /* ported */
 function spriteRendererProto(sprite, widthW, heightW, distanceFactor) {

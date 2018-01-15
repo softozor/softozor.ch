@@ -1,0 +1,16 @@
+{
+  "originalDeltaXW": 50,
+  "startPosition": 500,
+  "widthW": 17,
+  "heightW": 10,
+  "minYW": 0,
+  "originalYW": 70,
+  "maxYW": 100,
+  "originalXSpeed": 0.4,
+  "gravity": 0.05,
+  "flapStrength": 0.9,
+  "flapDelay": 10,
+  "hitDownSpeed": 0.1,
+  "minSpeed": -1.2,
+  "maxSpeed": 0.8
+}

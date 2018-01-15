@@ -1,38 +1,18 @@
-import Vector2D from './Vector2D';
-import CircularHitBox from './HitBoxes/CircularHitBox';
-import Obstacle from './Obstacles/Obstacle';
-import Collision from './Collision';
+import SoftozorData from '../../../assets/banner/SoftozorData.json';
 
-// TODO: softozorData must be a json file that we import here
+import Vector2D from '../Vector2D';
+import CircularHitBox from '../HitBoxes/CircularHitBox';
+import Obstacle from '../Obstacles/Obstacle';
+import Collision from '../Collision';
+import Renderer from './Renderer';
+import Canvas from '../Canvas';
+
 // TODO: upon setting the gameState to over, disconnect the tick method, i.e. don't trigger it any more!
 // TODO: upon setting the gameState to on, connect the Softozor::tick method
-// TODO: write renderer
+// TODO: double-check that the json data are consistent!
 
 export default class Softozor {
-  constructor() {
-    // TODO: define the SoftozorSpriteRenderer!
-    // spriteRenderer: undefined,
-    // this.spriteRenderer = new spriteRendererProto(
-    //   spriteList.softozorIdle,
-    //   softozorData.widthW,
-    //   softozorData.heightW,
-    //   worldDistanceFactor
-    // );
-  }
-
-  // TODO: belongs to the spriteRenderer
-  // graphicUpdate: function() {
-  //   if (banner.gameState === 'on' || banner.gameState === 'restarting') {
-  //     if (this.flapWait >= softozorData.flapDelay - 3) {
-  //       this.spriteRenderer.sprite = spriteList.softozorFlap1;
-  //     } else if (this.flapWait >= softozorData.flapDelay - 6) {
-  //       this.spriteRenderer.sprite = spriteList.softozorFlap2;
-  //     } else {
-  //       this.spriteRenderer.sprite = spriteList.softozorIdle;
-  //     }
-  //     this.spriteRenderer.draw(this.position.xObsPX(), this.position.yObsPX());
-  //   }
-  // }
+  constructor(private readonly m_Canvas: Canvas) {}
 
   /**
    * Public methods
@@ -46,7 +26,7 @@ export default class Softozor {
   }
 
   public get isOutOfBounds(): Boolean {
-    return this.m_DeltaXW + softozorData.heightW <= 0;
+    return this.m_DeltaXW + SoftozorData.heightW <= 0;
   }
 
   public handleBadCollision(collision: Collision): void {
@@ -71,7 +51,7 @@ export default class Softozor {
     this.fall();
     this.moveForward();
     this.flapUp();
-    // TODO: call renderer.draw();
+    this.render();
   }
 
   public startFlap(): void {
@@ -86,23 +66,18 @@ export default class Softozor {
     return obstacle.collide(this.m_Hitbox);
   }
 
-  // TODO: shouldn't be necessary
-  // refreshSize: function() {
-  //   this.spriteRenderer.refreshSize();
-  // }
-
   /**
    * Private methods
    */
   private static initialPosition(): Vector2D {
     return new Vector2D(
-      softozorData.startPosition + softozorData.originalDeltaXW,
-      softozorData.originalYW - softozorData.heightW * worldBandRatioToBanner
+      SoftozorData.startPosition + SoftozorData.originalDeltaXW,
+      SoftozorData.originalYW - SoftozorData.heightW * worldBandRatioToBanner
     );
   }
 
   private get canFlapUp(): Boolean {
-    return this.m_DoFlap && this.y > softozorData.minYW && this.m_FlapWait <= 0;
+    return this.m_DoFlap && this.y > SoftozorData.minYW && this.m_FlapWait <= 0;
   }
 
   private get x(): number {
@@ -137,10 +112,23 @@ export default class Softozor {
     this.m_Speed.y = value;
   }
 
+  private render(): void {
+    if (this.m_FlapWait >= SoftozorData.flapDelay - 3) {
+      this.m_Renderer.setFlap1State();
+    } else if (this.m_FlapWait >= SoftozorData.flapDelay - 6) {
+      this.m_Renderer.setFlap2State();
+    } else {
+      this.m_Renderer.setIdleState();
+    }
+    // TODO: use the xObsPX / yObsPX coordinates
+    let pos0PX: Vector2D = CoordinatesAdapter.obsPX(this.position);
+    this.m_Renderer.draw(pos0PX);
+  }
+
   private flapUp(): void {
     if (this.canFlapUp) {
-      this.vy -= softozorData.flapStrength;
-      this.flapWait = softozorData.flapDelay;
+      this.vy -= SoftozorData.flapStrength;
+      this.m_FlapWait = SoftozorData.flapDelay;
     }
     if (this.m_FlapWait > 0) {
       --this.m_FlapWait;
@@ -150,28 +138,27 @@ export default class Softozor {
   private fall(): void {
     if (
       this.y >
-      softozorData.maxYW - softozorData.heightW * worldBandRatioToBanner
+      SoftozorData.maxYW - SoftozorData.heightW * worldBandRatioToBanner
     ) {
       this.vy = Math.min(this.vy, 0);
-    } else if (this.y > softozorData.minYW) {
-      // TODO: get rid of state transition
-      this.vy += softozorData.gravity;
+    } else if (this.y > SoftozorData.minYW) {
+      this.vy += SoftozorData.gravity;
     } else {
-      this.vy = Math.max(this.vy, softozorData.hitDownSpeed);
-      this.vy += softozorData.gravity;
+      this.vy = Math.max(this.vy, SoftozorData.hitDownSpeed);
+      this.vy += SoftozorData.gravity;
     }
     this.vy = Math.min(
-      Math.max(this.vy, softozorData.minSpeed),
-      softozorData.maxSpeed
+      Math.max(this.vy, SoftozorData.minSpeed),
+      SoftozorData.maxSpeed
     );
     this.y += this.vy;
   }
 
   private moveForward(): void {
-    this.vx = softozorData.originalXSpeed + scrollingPosition.xW / 10000;
-    scrollingPosition.xW += this.vx;
-    this.deltaXW += this.deltaXSpeed;
-    this.deltaXSpeed *= 0.9;
+    this.vx = SoftozorData.originalXSpeed + (this.x - this.m_DeltaXW) / 10000;
+    this.x += this.vx;
+    this.m_DeltaXW += this.m_DeltaXSpeed;
+    this.m_DeltaXSpeed *= 0.9;
   }
 
   /**
@@ -179,17 +166,23 @@ export default class Softozor {
    */
   // TODO: don't forget that all coordinate transformations are done with worldDistanceFactor here!
   private m_Position: Vector2D = Softozor.initialPosition();
-  private m_DeltaXW: number = softozorData.originalDeltaXW;
+  private m_DeltaXW: number = SoftozorData.originalDeltaXW;
   private m_DeltaXSpeed: number = 0;
   private m_Speed: Vector2D = new Vector2D(
-    softozorData.originalXSpeed,
-    softozorData.minSpeed
+    SoftozorData.originalXSpeed,
+    SoftozorData.minSpeed
   );
   private m_FlapWait: number = 0;
   private m_DoFlap: Boolean = false;
   private m_Hitbox: CircularHitBox = new CircularHitBox(
     this.position,
-    new Vector2D(softozorData.widthW * 0.5, softozorData.heightW * 0.65),
-    softozorData.heightW * 0.3
+    new Vector2D(SoftozorData.widthW * 0.5, SoftozorData.heightW * 0.65),
+    SoftozorData.heightW * 0.3
+  );
+  private m_Renderer: Renderer = new Renderer(
+    this.m_Canvas,
+    SoftozorData.widthW,
+    SoftozorData.heightW,
+    worldDistanceFactor
   );
 }
