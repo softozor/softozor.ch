@@ -1,10 +1,10 @@
-import Canvas from '../Canvas';
-import SpriteRenderer from './SpriteRenderer';
-import Sprite from './Sprite';
+import Canvas from './Canvas';
+import SpriteRenderer from '../SpriteRenderers/SpriteRenderer';
+import Sprite from '../SpriteRenderers/Sprite';
 
-type ClickHandlerCallback = () => void;
+export type ClickHandlerCallback = () => void;
 
-export default abstract class ButtonRenderer extends SpriteRenderer {
+export default abstract class Button extends SpriteRenderer {
   constructor(
     canvas: Canvas,
     protected readonly m_Sprite: Sprite,
@@ -24,6 +24,23 @@ export default abstract class ButtonRenderer extends SpriteRenderer {
     this.m_ClickHandlerCallback = callback;
   }
 
+  public get visible(): Boolean {
+    return this.m_Visible;
+  }
+
+  // TODO: do an animation on the globalAlpha value from 1 to 0 (or vice-versa) when we hide (or show) a button
+  public hide(): void {
+    this.m_Canvas.context.globalAlpha = 0;
+    this.draw();
+    this.m_Visible = false;
+  }
+
+  public show(): void {
+    this.m_Canvas.context.globalAlpha = 1;
+    this.draw();
+    this.m_Visible = true;
+  }
+
   public click(): void {
     this.m_ClickHandlerCallback();
   }
@@ -33,9 +50,9 @@ export default abstract class ButtonRenderer extends SpriteRenderer {
       event.clientX >= this.xPX - this.clickDeltaPX &&
       event.clientX <= this.xPX + this.width + this.clickDeltaPX &&
       event.clientY >= this.yPX - this.clickDeltaPX &&
-      event.clientY <= this.yPX + this.height + this.clickDeltaPX
+      event.clientY <= this.yPX + this.height + this.clickDeltaPX &&
+      this.visible
     );
-    // TODO: add the condition that the button must also be visible! use the opacity property or so
   }
 
   /**
@@ -57,4 +74,5 @@ export default abstract class ButtonRenderer extends SpriteRenderer {
    * Private members
    */
   private m_ClickHandlerCallback: ClickHandlerCallback;
+  private m_Visible: Boolean = false;
 }

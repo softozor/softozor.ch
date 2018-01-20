@@ -18,6 +18,10 @@ import ParallaxManager from './ParallaxManager';
 // TODO: do not forget to call ObstacleManager::attachBadScoreHandler with the following callback:
 // scorePop[scorePop.length] = new scorePopProto('xxx');
 // scoreIncrement = 1;
+// TODO: connect Canvas::upHandler with softozor.stopFlap();
+// TODO: connect Canvas::downHandler with softozor.startFlap();
+// TODO: connect Canvas::mouseEnterHandler with GameManager::run();
+// TODO: connect Canvas::mouseLeaveHandler with GameManager::pause();
 
 export default class GameManager {
   constructor() {

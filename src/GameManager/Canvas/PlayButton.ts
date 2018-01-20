@@ -1,13 +1,13 @@
 import PLAY_PAUSE_IMG from '../../../assets/banner/play_pause.png';
 
-import ButtonRenderer from './ButtonRenderer';
-import Canvas from '../Canvas';
-import Sprite from './Sprite';
+import Button from './Button';
+import Canvas from './Canvas';
+import Sprite from '../SpriteRenderers/Sprite';
 
-export default class PlayButtonRenderer extends ButtonRenderer {
+export default class PlayButton extends Button {
   constructor(
     canvas: Canvas,
-    xPX: number = 5,
+    xPX: number = 5, // TODO: put these numbers in a config file!
     yPX: number = 5,
     widthPX: number = 50,
     heightPX: number = 50,
@@ -38,7 +38,7 @@ export default class PlayButtonRenderer extends ButtonRenderer {
     // and then just toggle the direction!
     // The animation must be done here in this method!
     let xN: number = 0;
-    this.m_Canvas.ctx.drawImage(
+    this.m_Canvas.context.drawImage(
       this.m_Sprite.img,
       xN,
       0,
@@ -61,5 +61,5 @@ export default class PlayButtonRenderer extends ButtonRenderer {
   /**
    * Private members
    */
-  private readonly m_yBottomPX: 5;
+  private readonly m_yBottomPX: number = 5;
 }

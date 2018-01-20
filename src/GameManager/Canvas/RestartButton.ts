@@ -1,13 +1,13 @@
 import RESTART_IMG from '../../../assets/banner/restart.png';
 
-import ButtonRenderer from './ButtonRenderer';
-import Canvas from '../Canvas';
-import Sprite from './Sprite';
+import Button from './Button';
+import Canvas from './Canvas';
+import Sprite from '../SpriteRenderers/Sprite';
 
-export default class RestartButtonRenderer extends ButtonRenderer {
+export default class RestartButton extends Button {
   constructor(
     canvas: Canvas,
-    xPX: number = 5,
+    xPX: number = 5, // TODO: put these numbers in a config file!
     yPX: number = 5,
     widthPX: number = 50,
     heightPX: number = 50,
@@ -27,11 +27,8 @@ export default class RestartButtonRenderer extends ButtonRenderer {
   /**
    * Public methods
    */
-  // TODO: only call if gameState = 'over' or gameState = 'restarting'
   public draw(): void {
-    // TODO: do an animation on the globalAlpha value from 1 to 0 during the state transition from state = 'stopped' to 'started'
-    this.m_Canvas.ctx.globalAlpha = 1;
-    this.m_Canvas.ctx.drawImage(
+    this.m_Canvas.context.drawImage(
       this.m_Sprite.img,
       this.xPX,
       this.yPX,
