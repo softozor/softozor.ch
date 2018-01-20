@@ -2,7 +2,7 @@ import { isUndefined } from 'util';
 
 type LoadCallback = () => void;
 
-export class MainNavigationManager {
+export default class MainNavigationManager {
   private m_LineAnimationDuration: number = 4000; // in [ms]
 
   constructor() {}

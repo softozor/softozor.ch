@@ -19,7 +19,7 @@ import ParallaxManager from './ParallaxManager';
 // scorePop[scorePop.length] = new scorePopProto('xxx');
 // scoreIncrement = 1;
 
-export default class BannerManager {
+export default class GameManager {
   constructor() {
     // TODO: initialize World:
     // m_World = new World(softozorData.startPosition, softozorData.maxYW);
