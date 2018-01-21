@@ -4,7 +4,7 @@ import GAME_STOPPED_BACKGROUND_IMG from '../../../assets/banner/gameStopped_back
 
 import SpriteRenderer from './SpriteRenderer';
 import Sprite from './Sprite';
-import Canvas from '../Canvas';
+import Canvas from '../Canvas/Canvas';
 
 export default class GameStoppedRenderer extends SpriteRenderer {
   constructor(canvas: Canvas) {

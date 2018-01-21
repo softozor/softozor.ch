@@ -11,18 +11,27 @@ enum KEY {
   e_SPACE = 32
 }
 
-// TODO: don't forget to show the playButton / restartButton
 export default class Canvas {
   constructor() {
     this.connectMouseEvents();
     this.connectKeyboardEvents();
+    this.connectResizeEvent();
+    this.setupButtons();
   }
 
   /**
    * Public methods
    */
   public get context(): CanvasRenderingContext2D {
-    return this.m_CanvasElement.getContext('2d');
+    return this.m_RenderingContext;
+  }
+
+  public get width(): number {
+    return this.canvas.width;
+  }
+
+  public get height(): number {
+    return this.canvas.height;
   }
 
   public set playClickHandler(value: ClickHandlerCallback) {
@@ -52,18 +61,36 @@ export default class Canvas {
   /**
    * Private methods
    */
+  private get canvas(): HTMLCanvasElement {
+    return this.context.canvas;
+  }
+
   private connectMouseEvents(): void {
-    this.m_CanvasElement.onmousedown = this.handleMouseDown.bind(this);
-    this.m_CanvasElement.onmouseup = this.handleMouseUp.bind(this);
-    this.m_CanvasElement.ontouchstart = this.handleMouseDown.bind(this);
-    this.m_CanvasElement.ontouchend = this.handleMouseUp.bind(this);
-    this.m_CanvasElement.onmouseenter = this.m_MouseEnterHandler;
-    this.m_CanvasElement.onmouseleave = this.m_MouseLeaveHandler;
+    this.canvas.onmousedown = this.handleMouseDown.bind(this);
+    this.canvas.onmouseup = this.handleMouseUp.bind(this);
+    this.canvas.ontouchstart = this.handleMouseDown.bind(this);
+    this.canvas.ontouchend = this.handleMouseUp.bind(this);
+    this.canvas.onmouseenter = this.m_MouseEnterHandler;
+    this.canvas.onmouseleave = this.m_MouseLeaveHandler;
   }
 
   private connectKeyboardEvents(): void {
     document.onkeydown = this.handleKeyDown.bind(this);
     document.onkeyup = this.handleKeyUp.bind(this);
+  }
+
+  private resizeToWindow(): void {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+
+  private connectResizeEvent(): void {
+    $(window).resize(this.resizeToWindow.bind(this));
+  }
+
+  private setupButtons(): void {
+    this.m_Buttons.play.show();
+    this.m_Buttons.restart.hide();
   }
 
   private getClickedObject(event: MouseEvent): Button | undefined {
@@ -112,112 +139,10 @@ export default class Canvas {
     }
   }
 
-  /*reInitialize: function() {
-    this.gameState = 'on';
-    this.gameEndingTransition = 1;
-    obstacle = [];
-    scorePop = [];
-    scrollingPosition.xW = softozorData.startPosition;
-    softozor.position.yW =
-      softozorData.originalYW - softozorData.heightW * worldBandRatioToBanner;
-    softozor.updatePosition();
-    softozor.ySpeed = softozorData.minSpeed;
-    softozor.deltaXW = softozorData.originalDeltaXW;
-    softozor.flapWait = 0;
-    softozor.deltaXSpeed = 0;
-    lastFilledSquareXW = firstFilledSquareDistance + softozorData.startPosition;
-    score = 0;
-    scoreIncrement = 1;
-  },
-
-  restart: function() {
-    this.gameState = 'restarting';
-    obstacle = [];
-    scorePop = [];
-    this.restartScore = score;
-    this.restartScrollingXW = scrollingPosition.xW;
-    this.restartSoftozorDeltaXW = softozor.deltaXW;
-    this.restartSoftozorYW = softozor.position.yW;
-    softozor.flapWait = 0;
-    softozor.deltaXSpeed = 0;
-    lastFilledSquareXW = firstFilledSquareDistance + softozorData.startPosition;
-    score = 0;
-    scoreIncrement = 1;
-  },
-
-  refreshSize: function() {
-    this.widthPX = $('#banner').width();
-    this.heightPX = $('#banner').height();
-    this.canvas.width = this.widthPX;
-    this.canvas.height = this.heightPX;
-  },
-
-  // run the game
-  run: function() {
-    clearInterval(banner.runSpeed);
-    banner.runSpeed = setInterval(update, this.frameTime);
-    this.playState = 'starting';
-  },
-
-  // stop the game
-  pause: function() {
-    this.playState = 'pausing';
-  },
-
-  // transition between game started and game stopped
-  transitionUpdate: function() {
-    if (this.playState === 'paused') {
-    } else if (this.playState === 'pausing') {
-      if (this.stateTransition > 0)
-        this.stateTransition = Math.max(0, this.stateTransition - 0.03);
-      else {
-        this.playState = 'paused';
-        clearInterval(banner.runSpeed);
-      }
-    } else if (this.playState === 'running') {
-    } else if (this.playState === 'starting') {
-      if (this.stateTransition < 1)
-        this.stateTransition = Math.min(1, this.stateTransition + 0.03);
-      else this.playState = 'running';
-    }
-
-    if (this.gameState === 'over' && this.gameEndingTransition > 0) {
-      this.gameEndingTransition = Math.max(this.gameEndingTransition - 0.02, 0);
-    }
-
-    if (this.gameState === 'restarting') {
-      if (this.gameEndingTransition < 1) {
-        this.gameEndingTransition = Math.min(
-          this.gameEndingTransition + 0.01,
-          1
-        );
-        score = Math.round(this.restartScore * (1 - this.gameEndingTransition));
-        scrollingPosition.xW =
-          (softozorData.startPosition - this.restartScrollingXW) *
-            this.gameEndingTransition +
-          this.restartScrollingXW;
-        softozor.deltaXW =
-          (softozorData.originalDeltaXW - this.restartSoftozorDeltaXW) *
-            this.gameEndingTransition +
-          this.restartSoftozorDeltaXW;
-        softozor.position.yW =
-          (softozorData.originalYW -
-            softozorData.heightW * worldBandRatioToBanner -
-            this.restartSoftozorYW) *
-            this.gameEndingTransition +
-          this.restartSoftozorYW;
-        softozor.updatePosition();
-      } else {
-        this.gameState = 'on';
-        banner.reInitialize();
-      }
-    }
-  }*/
-
   /**
    * Private members
    */
-  private m_CanvasElement: HTMLCanvasElement = getCanvasElement();
+  private m_RenderingContext: CanvasRenderingContext2D = getRenderingContext();
 
   private m_TickHandle: number;
   private m_TickInterval: number = 20; // TODO: put this in a config file!
@@ -236,6 +161,6 @@ export default class Canvas {
 /**
  * Non-member methods
  */
-function getCanvasElement(): HTMLCanvasElement {
-  return <HTMLCanvasElement>$('#banner > canvas')[0];
+function getRenderingContext(): CanvasRenderingContext2D {
+  return (<HTMLCanvasElement>$('#banner > canvas')[0]).getContext('2d');
 }

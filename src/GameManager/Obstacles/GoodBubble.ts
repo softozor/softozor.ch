@@ -1,11 +1,11 @@
 import BUBBLE from '../../../assets/banner/goodbubble.png';
 
-import Vector2D from '../Vector2D';
+import Vector2D from '../Math/Vector2D';
 import CircularHitBox from '../HitBoxes/CircularHitBox';
 import SpriteRenderer from '../SpriteRenderers/DynamicSpriteRenderer';
 import CircularObstacle from './CircularObstacle';
 import Sprite from '../SpriteRenderers/Sprite';
-import Canvas from '../Canvas';
+import Canvas from '../Canvas/Canvas';
 
 export default class GoodBubble extends CircularObstacle {
   constructor(

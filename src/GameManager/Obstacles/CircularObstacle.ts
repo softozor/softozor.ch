@@ -1,13 +1,13 @@
-import Position from '../Position';
+import Vector2D from '../Math/Vector2D';
 import HitBox from '../HitBoxes/HitBox';
 import CircularHitBox from '../HitBoxes/CircularHitBox';
 import Obstacle from './Obstacle';
-import Canvas from '../Canvas';
+import Canvas from '../Canvas/Canvas';
 
 export default abstract class CircularObstacle extends Obstacle {
   constructor(
     canvas: Canvas,
-    topLeftCorner: Position,
+    topLeftCorner: Vector2D,
     private readonly m_Radius: number,
     private readonly m_Hitbox: CircularHitBox
   ) {

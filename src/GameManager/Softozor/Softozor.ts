@@ -1,11 +1,11 @@
 import SoftozorData from '../../../assets/banner/SoftozorData.json';
 
-import Vector2D from '../Vector2D';
+import Vector2D from '../Math/Vector2D';
 import CircularHitBox from '../HitBoxes/CircularHitBox';
 import Obstacle from '../Obstacles/Obstacle';
 import Collision from '../Collision';
 import Renderer from './Renderer';
-import Canvas from '../Canvas';
+import Canvas from '../Canvas/Canvas';
 
 // TODO: upon setting the gameState to over, disconnect the tick method, i.e. don't trigger it any more!
 // TODO: upon setting the gameState to on, connect the Softozor::tick method

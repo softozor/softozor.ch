@@ -1,5 +1,5 @@
 import * as Helpers from './Helpers';
-import Vector2D from './Vector2D';
+import Vector2D from './Math/Vector2D';
 
 export default class ScoreManager {
   constructor() {}

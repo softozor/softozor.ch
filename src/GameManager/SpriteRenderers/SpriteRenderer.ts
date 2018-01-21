@@ -1,6 +1,6 @@
-import Canvas from '../Canvas'; // TODO: this is the old banner object
+import Canvas from '../Canvas/Canvas';
 import Sprite from './Sprite';
-import Vector2D from '../Vector2D';
+import Vector2D from '../Math/Vector2D';
 
 // SpriteRenderer objects need a reference to the Canvas because
 // they write in the Canvas directly (within draw())

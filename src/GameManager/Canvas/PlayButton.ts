@@ -1,7 +1,7 @@
 import PLAY_PAUSE_IMG from '../../../assets/banner/play_pause.png';
 
 import Button from './Button';
-import Canvas from './Canvas';
+import Canvas from './Canvas/Canvas';
 import Sprite from '../SpriteRenderers/Sprite';
 
 export default class PlayButton extends Button {

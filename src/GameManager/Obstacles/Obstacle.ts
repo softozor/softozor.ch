@@ -1,7 +1,7 @@
-import Vector2D from '../Vector2D';
+import Vector2D from '../Math/Vector2D';
 import HitBox from '../HitBoxes/HitBox';
 import Collision from '../Collision';
-import Canvas from '../Canvas';
+import Canvas from '../Canvas/Canvas';
 
 export default abstract class Obstacle {
   constructor(

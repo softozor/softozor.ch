@@ -1,4 +1,4 @@
-import Vector2D from './Vector2D';
+import Vector2D from './Math/Vector2D';
 
 export default class World {
   constructor(startPos: number, maxYW: number) {

@@ -1,11 +1,11 @@
 import DynamicSpriteRenderer from '../SpriteRenderers/DynamicSpriteRenderer';
 import Sprite from '../SpriteRenderers/Sprite';
-import Canvas from '../Canvas';
+import Canvas from '../Canvas/Canvas';
 import RendererState from './RendererStates/RendererState';
 import IdleState from './RendererStates/IdleState';
 import Flap1State from './RendererStates/Flap1State';
 import Flap2State from './RendererStates/Flap2State';
-import Vector2D from '../Vector2D';
+import Vector2D from '../Math/Vector2D';
 
 export default class Renderer extends DynamicSpriteRenderer {
   constructor(

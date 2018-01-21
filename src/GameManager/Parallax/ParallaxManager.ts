@@ -1,16 +1,16 @@
 import { map, forEach } from 'lodash';
 
-import SKY_IMG from '../../assets/banner/sky.png';
-import CLOUDS_IMG from '../../assets/banner/clouds.png';
-import BACK_IMG from '../../assets/banner/back.png';
-import MID_IMG from '../../assets/banner/mid.png';
-import FRONT_IMG from '../../assets/banner/front.png';
-import WORLD_BAND_IMG from '../../assets/banner/worldBand.png';
+import SKY_IMG from '../../../assets/banner/sky.png';
+import CLOUDS_IMG from '../../../assets/banner/clouds.png';
+import BACK_IMG from '../../../assets/banner/back.png';
+import MID_IMG from '../../../assets/banner/mid.png';
+import FRONT_IMG from '../../../assets/banner/front.png';
+import WORLD_BAND_IMG from '../../../assets/banner/worldBand.png';
 
-import Canvas from './Canvas';
-import BandRenderer from './SpriteRenderers/BandRenderer';
-import Sprite from './SpriteRenderers/Sprite';
-import Vector2D from './Vector2D';
+import Canvas from '../Canvas/Canvas';
+import BandRenderer from './BandRenderer';
+import Sprite from '../SpriteRenderers/Sprite';
+import Vector2D from '../Math/Vector2D';
 
 type SpriteList = { sprite: Sprite; distanceFactor: number }[];
 

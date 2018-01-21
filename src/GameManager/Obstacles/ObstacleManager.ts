@@ -2,14 +2,13 @@ import { remove, forEach } from 'lodash';
 import { VoidSyncEvent } from 'ts-events';
 
 import ObstacleFactory from './ObstacleFactory';
-import Position from '../Position';
+import Vector2D from '../Math/Vector2D';
 import Obstacle from './Obstacle';
-import Canvas from '../Canvas';
+import Canvas from '../Canvas/Canvas';
 import Softozor from '../Softozor';
 import Collision from '../Collision';
 import BadBubble from './BadBubble';
 import GoodBubble from './GoodBubble';
-import Vector2D from '../Vector2D';
 
 type GoodScoreHandler = () => void;
 type BadScoreHandler = () => void;
@@ -134,19 +133,19 @@ export default class ObstacleManager {
     }
   }
 
-  private goodBubblePosition(): Position {
+  private goodBubblePosition(): Vector2D {
     let x: number =
       Math.random() * this.m_BannerHeight + this.m_LastFilledSquareXW;
     let y: number = approachCenter(approachCenter(Math.random())) * 90 - 5;
-    return new Position(x, y);
+    return new Vector2D(x, y);
   }
 
-  private badBubblePosition(): Position {
+  private badBubblePosition(): Vector2D {
     let x: number =
       Math.random() * this.m_BannerHeight + this.m_LastFilledSquareXW;
     let y: number =
       approachExtrema01(approachExtrema01(Math.random())) * 90 - 5;
-    return new Position(x, y);
+    return new Vector2D(x, y);
   }
 
   private cleanup(): void {

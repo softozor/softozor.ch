@@ -1,7 +1,7 @@
 import Sprite from './Sprite';
 import SpriteRenderer from './SpriteRenderer';
-import Canvas from '../Canvas'; // TODO: this is the old banner object
-import Vector2D from '../Vector2D';
+import Canvas from '../Canvas/Canvas';
+import Vector2D from '../Math/Vector2D';
 
 type ClippingParams = {
   pos: number;
@@ -25,6 +25,37 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   /**
    * Public methods
    */
+  public get distanceFactor(): number {
+    return this.m_DistanceFactor;
+  }
+
+  // TODO: this is the same as the coordinate transformation in positionProto, but for distances!
+  public get heightPX(): number {
+    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
+      return this.height;
+    }
+    return (
+      this.height *
+      worldBandRatioToBanner *
+      this.m_Canvas.heightPX /
+      100 /
+      this.m_DistanceFactor
+    );
+  }
+
+  public get widthPX(): number {
+    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
+      return this.width;
+    }
+    return (
+      this.width *
+      worldBandRatioToBanner *
+      this.m_Canvas.heightPX /
+      100 /
+      this.m_DistanceFactor
+    );
+  }
+
   public draw(pos0PX: Vector2D): void {
     let vertParams: ClippingParams = getClippingParams(
       pos0PX.x,
@@ -59,43 +90,12 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   /**
    * Protected methods
    */
-  // TODO: this is the same as the coordinate transformation in positionProto, but for distances!
-  protected get heightPX(): number {
-    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
-      return this.height;
-    }
-    return (
-      this.height *
-      worldBandRatioToBanner *
-      this.m_Canvas.heightPX /
-      100 /
-      this.m_DistanceFactor
-    );
-  }
-
-  protected get widthPX(): number {
-    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
-      return this.width;
-    }
-    return (
-      this.width *
-      worldBandRatioToBanner *
-      this.m_Canvas.heightPX /
-      100 /
-      this.m_DistanceFactor
-    );
-  }
-
   protected get widthPXToN(): number {
     return this.m_Sprite.naturalWidth / this.widthPX;
   }
 
   protected get heightPXToN(): number {
     return this.m_Sprite.naturalHeight / this.heightPX;
-  }
-
-  protected get distanceFactor(): number {
-    return this.m_DistanceFactor;
   }
 
   /**

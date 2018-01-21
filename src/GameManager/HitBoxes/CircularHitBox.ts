@@ -1,6 +1,6 @@
 import HitBox from './HitBox';
 
-import Vector2D from '../Vector2D';
+import Vector2D from '../Math/Vector2D';
 import Collision from '../Collision';
 
 export default class CircularHitBox extends HitBox {

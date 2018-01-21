@@ -1,6 +1,6 @@
-import Canvas from '../Canvas';
-import Sprite from './Sprite';
-import DynamicSpriteRenderer from './DynamicSpriteRenderer';
+import Canvas from '../Canvas/Canvas';
+import Sprite from '../SpriteRenderers/Sprite';
+import DynamicSpriteRenderer from '../SpriteRenderers/DynamicSpriteRenderer';
 
 export default class BandRenderer extends DynamicSpriteRenderer {
   constructor(

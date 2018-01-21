@@ -1,7 +1,7 @@
 import RESTART_IMG from '../../../assets/banner/restart.png';
 
 import Button from './Button';
-import Canvas from './Canvas';
+import Canvas from './Canvas/Canvas';
 import Sprite from '../SpriteRenderers/Sprite';
 
 export default class RestartButton extends Button {
