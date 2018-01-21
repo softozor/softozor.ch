@@ -33,6 +33,7 @@ export default class BadBubble extends CircularObstacle {
       this.m_TopLeftCorner.xObsPX,
       this.m_TopLeftCorner.yObsPX
     );
+    this.m_Canvas.context.globalAlpha = 1;
     this.m_SpriteRenderer.draw(pos);
   }
 

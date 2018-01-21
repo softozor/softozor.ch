@@ -1,6 +1,7 @@
 import Canvas from '../Canvas/Canvas';
 import Sprite from '../SpriteRenderers/Sprite';
 import DynamicSpriteRenderer from '../SpriteRenderers/DynamicSpriteRenderer';
+import Vector2D from '../Math/Vector2D';
 
 export default class BandRenderer extends DynamicSpriteRenderer {
   constructor(
@@ -11,6 +12,14 @@ export default class BandRenderer extends DynamicSpriteRenderer {
     distanceFactor: number
   ) {
     super(canvas, width, height, sprite, distanceFactor);
+  }
+
+  /**
+   * Public methods
+   */
+  public draw(pos0PX: Vector2D): void {
+    this.m_Canvas.context.globalAlpha = 1;
+    super.draw(pos0PX);
   }
 
   /**

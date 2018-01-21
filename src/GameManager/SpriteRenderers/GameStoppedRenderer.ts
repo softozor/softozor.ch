@@ -75,6 +75,7 @@ export default class GameStoppedRenderer extends SpriteRenderer {
 
   private drawStoppedSprite(): void {
     // make hole in canvas
+    this.m_Canvas.context.globalAlpha = 1;
     this.m_Canvas.context.globalCompositeOperation = 'destination-out';
     this.m_Canvas.context.drawImage(
       GameStoppedRenderer.SPRITES.stopped.img,
@@ -90,6 +91,7 @@ export default class GameStoppedRenderer extends SpriteRenderer {
   }
 
   private drawBackgroundSprite(): void {
+    this.m_Canvas.context.globalAlpha = 1;
     this.m_Canvas.context.globalCompositeOperation = 'destination-over';
     this.m_Canvas.context.drawImage(
       GameStoppedRenderer.SPRITES.background.img,
@@ -101,6 +103,7 @@ export default class GameStoppedRenderer extends SpriteRenderer {
   }
 
   private drawShadowSprite(): void {
+    this.m_Canvas.context.globalAlpha = 1;
     this.m_Canvas.context.globalCompositeOperation = 'source-over';
     this.m_Canvas.context.drawImage(
       GameStoppedRenderer.SPRITES.shadow.img,

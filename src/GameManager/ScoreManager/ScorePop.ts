@@ -1,8 +1,10 @@
-import * as Helpers from './Helpers';
-import Vector2D from './Math/Vector2D';
+import * as Helpers from '../Helpers';
+import Vector2D from '../Math/Vector2D';
+import Canvas from '../Canvas/Canvas';
 
-export default class ScorePopper {
+export default class ScorePop {
   constructor(
+    private readonly m_Canvas: Canvas,
     private readonly m_Pop: string | number,
     private readonly m_DeltaXPX: number
   ) {}
@@ -10,43 +12,43 @@ export default class ScorePopper {
   /**
    * Public methods
    */
-  get deltaXPX(): number {
+  public get deltaXPX(): number {
     return this.m_DeltaXPX;
   }
 
-  get deltaYPX(): number {
+  public get deltaYPX(): number {
     return this.m_DeltaYPX;
   }
 
-  get pop(): string | number {
+  public get pop(): string | number {
     return this.m_Pop;
   }
 
-  get fillStyle(): string {
+  public get fillStyle(): string {
     return this.m_Pop > 0
       ? Helpers.rgba(0, 50, 0, this.opacity())
       : Helpers.rgba(128, 0, 0, this.opacity());
   }
 
-  get token(): string {
+  public get token(): string {
     return this.m_Pop > 0 ? '+' : '';
   }
 
-  get font(): string {
+  public get font(): string {
     return this.FONT;
   }
 
-  get text(): string {
+  public get text(): string {
     return this.token + this.pop;
   }
 
-  get isTimedOut(): Boolean {
+  public get isTimedOut(): Boolean {
     return this.m_Lifetime <= 0;
   }
 
-  public update(): void {
-    ++this.m_DeltaYPX;
-    this.updateLifetime();
+  public tick(position: Vector2D): void {
+    this.updateText(position);
+    this.updateParams();
   }
 
   public textPosition(objectPos: Vector2D): Vector2D {
@@ -59,6 +61,20 @@ export default class ScorePopper {
   /**
    * Private methods
    */
+  private updateText(position: Vector2D): void {
+    let ctx: CanvasRenderingContext2D = this.m_Canvas.context;
+    ctx.globalAlpha = 0.6;
+    ctx.font = this.font;
+    ctx.fillStyle = this.fillStyle;
+    let textPos: Vector2D = this.textPosition(position);
+    ctx.fillText(this.text, textPos.x, textPos.y);
+  }
+
+  private updateParams(): void {
+    ++this.m_DeltaYPX;
+    this.updateLifetime();
+  }
+
   private updateLifetime(): void {
     --this.m_Lifetime;
   }

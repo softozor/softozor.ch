@@ -38,6 +38,7 @@ export default class PlayButton extends Button {
     // and then just toggle the direction!
     // The animation must be done here in this method!
     let xN: number = 0;
+    this.m_Canvas.context.globalAlpha = 1;
     this.m_Canvas.context.drawImage(
       this.m_Sprite.img,
       xN,

@@ -28,6 +28,7 @@ export default class RestartButton extends Button {
    * Public methods
    */
   public draw(): void {
+    this.m_Canvas.context.globalAlpha = 1;
     this.m_Canvas.context.drawImage(
       this.m_Sprite.img,
       this.xPX,

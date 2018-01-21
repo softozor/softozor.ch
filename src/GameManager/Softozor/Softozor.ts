@@ -122,6 +122,7 @@ export default class Softozor {
     }
     // TODO: use the xObsPX / yObsPX coordinates
     let pos0PX: Vector2D = CoordinatesAdapter.obsPX(this.position);
+    this.m_Canvas.context.globalAlpha = 1;
     this.m_Renderer.draw(pos0PX);
   }
 
