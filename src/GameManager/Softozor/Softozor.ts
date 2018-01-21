@@ -1,18 +1,22 @@
 import SoftozorData from '../../../assets/banner/SoftozorData.json';
 
 import Vector2D from '../Math/Vector2D';
+import * as CoordinatesAdapter from '../Math/CoordinatesAdapter';
 import CircularHitBox from '../HitBoxes/CircularHitBox';
 import Obstacle from '../Obstacles/Obstacle';
 import Collision from '../Collision';
 import Renderer from './Renderer';
 import Canvas from '../Canvas/Canvas';
+import MovingObject from '../MovingObject';
 
 // TODO: upon setting the gameState to over, disconnect the tick method, i.e. don't trigger it any more!
 // TODO: upon setting the gameState to on, connect the Softozor::tick method
 // TODO: double-check that the json data are consistent!
 
-export default class Softozor {
-  constructor(private readonly m_Canvas: Canvas) {}
+export default class Softozor extends MovingObject {
+  constructor(private readonly m_Canvas: Canvas) {
+    super();
+  }
 
   /**
    * Public methods
@@ -27,6 +31,10 @@ export default class Softozor {
 
   public get isOutOfBounds(): Boolean {
     return this.m_DeltaXW + SoftozorData.heightW <= 0;
+  }
+
+  public get deltaXW(): number {
+    return this.m_DeltaXW;
   }
 
   public handleBadCollision(collision: Collision): void {
@@ -72,7 +80,8 @@ export default class Softozor {
   private static initialPosition(): Vector2D {
     return new Vector2D(
       SoftozorData.startPosition + SoftozorData.originalDeltaXW,
-      SoftozorData.originalYW - SoftozorData.heightW * worldBandRatioToBanner
+      SoftozorData.originalYW -
+        SoftozorData.heightW * CoordinatesAdapter.WORLD_BAND_RATIO_TO_BANNER
     );
   }
 
@@ -120,8 +129,10 @@ export default class Softozor {
     } else {
       this.m_Renderer.setIdleState();
     }
-    // TODO: use the xObsPX / yObsPX coordinates
-    let pos0PX: Vector2D = CoordinatesAdapter.obsPX(this.position);
+    let pos0PX: Vector2D = CoordinatesAdapter.obsPX(
+      this.position,
+      this.m_DistanceFactor
+    );
     this.m_Canvas.context.globalAlpha = 1;
     this.m_Renderer.draw(pos0PX);
   }
@@ -139,7 +150,8 @@ export default class Softozor {
   private fall(): void {
     if (
       this.y >
-      SoftozorData.maxYW - SoftozorData.heightW * worldBandRatioToBanner
+      SoftozorData.maxYW -
+        SoftozorData.heightW * CoordinatesAdapter.WORLD_BAND_RATIO_TO_BANNER
     ) {
       this.vy = Math.min(this.vy, 0);
     } else if (this.y > SoftozorData.minYW) {
@@ -175,6 +187,7 @@ export default class Softozor {
   );
   private m_FlapWait: number = 0;
   private m_DoFlap: Boolean = false;
+  private m_DistanceFactor: number = CoordinatesAdapter.WORLD_DISTANCE_FACTOR;
   private m_Hitbox: CircularHitBox = new CircularHitBox(
     this.position,
     new Vector2D(SoftozorData.widthW * 0.5, SoftozorData.heightW * 0.65),
@@ -184,6 +197,6 @@ export default class Softozor {
     this.m_Canvas,
     SoftozorData.widthW,
     SoftozorData.heightW,
-    worldDistanceFactor
+    CoordinatesAdapter.WORLD_DISTANCE_FACTOR
   );
 }

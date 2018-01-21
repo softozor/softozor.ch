@@ -1,6 +1,7 @@
 import BUBBLE from '../../../assets/banner/goodbubble.png';
 
 import Vector2D from '../Math/Vector2D';
+import * as CoordinatesAdapter from '../Math/CoordinatesAdapter';
 import CircularHitBox from '../HitBoxes/CircularHitBox';
 import SpriteRenderer from '../SpriteRenderers/DynamicSpriteRenderer';
 import CircularObstacle from './CircularObstacle';
@@ -21,7 +22,7 @@ export default class GoodBubble extends CircularObstacle {
       diameter,
       diameter,
       GoodBubble.SPRITE,
-      worldDistanceFactor
+      this.m_DistanceFactor
     );
   }
 
@@ -29,9 +30,9 @@ export default class GoodBubble extends CircularObstacle {
    * Private methods
    */
   protected render(): void {
-    let pos: Vector2D = new Vector2D(
-      this.m_TopLeftCorner.xObsPX,
-      this.m_TopLeftCorner.yObsPX
+    let pos: Vector2D = CoordinatesAdapter.obsPX(
+      this.m_TopLeftCorner,
+      this.m_DistanceFactor
     );
     this.m_Canvas.context.globalAlpha = 1;
     this.m_SpriteRenderer.draw(pos);
@@ -42,5 +43,6 @@ export default class GoodBubble extends CircularObstacle {
    */
   private static SPRITE: Sprite = new Sprite(BUBBLE);
 
+  private m_DistanceFactor: number = CoordinatesAdapter.WORLD_DISTANCE_FACTOR;
   private m_SpriteRenderer: SpriteRenderer;
 }

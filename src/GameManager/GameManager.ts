@@ -3,11 +3,11 @@ import { forEach, remove } from 'lodash';
 import ScoreManager from './ScoreManager/ScoreManager';
 import * as Helpers from './Helpers';
 import Vector2D from './Math/Vector2D';
-import World from './World';
 import ObstacleManager from './Obstacles/ObstacleManager';
 import ParallaxManager from './Parallax/ParallaxManager';
 import Canvas from './Canvas/Canvas';
 import Softozor from './Softozor/Softozor';
+import * as CoordinatesAdapter from './Math/CoordinatesAdapter';
 
 // TODO: let this this object decide whether the game stops based on e.g. Softozor::outOfBounds
 // TODO: let this object connect / disconnect the Softozor::tick and ObstacleManager::tick
@@ -28,8 +28,8 @@ import Softozor from './Softozor/Softozor';
 
 export default class GameManager {
   constructor() {
-    // TODO: initialize World:
-    // m_World = new World(softozorData.startPosition, softozorData.maxYW);
+    CoordinatesAdapter.setCanvas(this.m_Canvas);
+    CoordinatesAdapter.setMovingObject(this.m_Softozor);
   }
 
   public onDocumentReady(): void {}

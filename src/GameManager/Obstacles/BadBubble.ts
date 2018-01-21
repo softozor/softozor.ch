@@ -6,6 +6,7 @@ import SpriteRenderer from '../SpriteRenderers/DynamicSpriteRenderer';
 import CircularObstacle from './CircularObstacle';
 import Sprite from '../SpriteRenderers/Sprite';
 import Canvas from '../Canvas/Canvas';
+import * as CoordinatesAdapter from '../Math/CoordinatesAdapter';
 
 export default class BadBubble extends CircularObstacle {
   constructor(
@@ -21,7 +22,7 @@ export default class BadBubble extends CircularObstacle {
       diameter,
       diameter,
       BadBubble.SPRITE,
-      worldDistanceFactor
+      this.m_DistanceFactor
     );
   }
 
@@ -29,9 +30,9 @@ export default class BadBubble extends CircularObstacle {
    * Private methods
    */
   protected render(): void {
-    let pos: Vector2D = new Vector2D(
-      this.m_TopLeftCorner.xObsPX,
-      this.m_TopLeftCorner.yObsPX
+    let pos: Vector2D = CoordinatesAdapter.obsPX(
+      this.m_TopLeftCorner,
+      this.m_DistanceFactor
     );
     this.m_Canvas.context.globalAlpha = 1;
     this.m_SpriteRenderer.draw(pos);
@@ -42,5 +43,6 @@ export default class BadBubble extends CircularObstacle {
    */
   private static SPRITE: Sprite = new Sprite(BUBBLE);
 
+  private m_DistanceFactor: number = CoordinatesAdapter.WORLD_DISTANCE_FACTOR;
   private m_SpriteRenderer: SpriteRenderer;
 }

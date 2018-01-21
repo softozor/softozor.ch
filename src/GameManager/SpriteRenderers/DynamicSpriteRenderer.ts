@@ -2,6 +2,7 @@ import Sprite from './Sprite';
 import SpriteRenderer from './SpriteRenderer';
 import Canvas from '../Canvas/Canvas';
 import Vector2D from '../Math/Vector2D';
+import * as CoordinatesAdapter from '../Math/CoordinatesAdapter';
 
 type ClippingParams = {
   pos: number;
@@ -36,7 +37,7 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     }
     return (
       this.height *
-      worldBandRatioToBanner *
+      CoordinatesAdapter.WORLD_BAND_RATIO_TO_BANNER *
       this.m_Canvas.height /
       100 /
       this.m_DistanceFactor
@@ -49,7 +50,7 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     }
     return (
       this.width *
-      worldBandRatioToBanner *
+      CoordinatesAdapter.WORLD_BAND_RATIO_TO_BANNER *
       this.m_Canvas.height /
       100 /
       this.m_DistanceFactor
@@ -57,19 +58,23 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   }
 
   public draw(pos0PX: Vector2D): void {
+    let obsScrollPos: Vector2D = CoordinatesAdapter.obsPX(
+      CoordinatesAdapter.scrollingPosition(),
+      this.m_DistanceFactor
+    ); // should be (0, 0)
     let vertParams: ClippingParams = getClippingParams(
       pos0PX.x,
       this.widthPX,
       this.m_Canvas.width,
       this.widthPXToN,
-      scrollingPosition.xObsPX()
+      obsScrollPos.x
     );
     let horizParams: ClippingParams = getClippingParams(
       pos0PX.y,
       this.heightPX,
       this.m_Canvas.height,
       this.heightPXToN,
-      scrollingPosition.yObsPX()
+      obsScrollPos.y
     );
 
     if (vertParams !== undefined && horizParams !== undefined) {

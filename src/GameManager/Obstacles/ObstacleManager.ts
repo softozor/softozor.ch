@@ -9,6 +9,7 @@ import Softozor from '../Softozor/Softozor';
 import Collision from '../Collision';
 import BadBubble from './BadBubble';
 import GoodBubble from './GoodBubble';
+import CoordinatesAdapter from '../Math/CoordinatesAdapter';
 
 type GoodScoreHandler = () => void;
 type BadScoreHandler = () => void;
@@ -149,10 +150,11 @@ export default class ObstacleManager {
   }
 
   private cleanup(): void {
+    let scrollX: number = CoordinatesAdapter.scrollingPosition().x;
     remove(
       this.m_Obstacles,
       (element: Obstacle): Boolean =>
-        element.isOutOfBounds(scrollingPosition.xW) || element.hasCollided
+        element.isOutOfBounds(scrollX) || element.hasCollided
     );
   }
 
@@ -161,9 +163,11 @@ export default class ObstacleManager {
   }
 
   private mustFill(): Boolean {
+    let scrollX: number = CoordinatesAdapter.scrollingPosition().x;
     return (
       this.m_LastFilledSquareXW <
-      scrollingPosition.xW + this.m_Canvas.width / worldBandRatioToBanner
+      scrollX +
+        this.m_Canvas.width / CoordinatesAdapter.WORLD_BAND_RATIO_TO_BANNER
     );
   }
 

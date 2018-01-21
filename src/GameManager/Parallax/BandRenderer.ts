@@ -2,6 +2,7 @@ import Canvas from '../Canvas/Canvas';
 import Sprite from '../SpriteRenderers/Sprite';
 import DynamicSpriteRenderer from '../SpriteRenderers/DynamicSpriteRenderer';
 import Vector2D from '../Math/Vector2D';
+import * as CoordinatesAdapter from '../Math/CoordinatesAdapter';
 
 export default class BandRenderer extends DynamicSpriteRenderer {
   constructor(
@@ -28,9 +29,11 @@ export default class BandRenderer extends DynamicSpriteRenderer {
   protected get height(): number {
     return this.m_DistanceFactor === Infinity || this.m_DistanceFactor === 0
       ? this.m_Canvas.height
-      : (worldBandRatioToBanner - 1 + this.m_DistanceFactor) *
+      : (CoordinatesAdapter.WORLD_BAND_RATIO_TO_BANNER -
+          1 +
+          this.m_DistanceFactor) *
           100 /
-          worldBandRatioToBanner;
+          CoordinatesAdapter.WORLD_BAND_RATIO_TO_BANNER;
   }
 
   protected get width(): number {
