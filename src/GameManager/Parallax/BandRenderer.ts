@@ -18,7 +18,7 @@ export default class BandRenderer extends DynamicSpriteRenderer {
    */
   protected get height(): number {
     return this.m_DistanceFactor === Infinity || this.m_DistanceFactor === 0
-      ? this.m_Canvas.heightPX
+      ? this.m_Canvas.height
       : (worldBandRatioToBanner - 1 + this.m_DistanceFactor) *
           100 /
           worldBandRatioToBanner;

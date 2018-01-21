@@ -5,7 +5,7 @@ import ObstacleFactory from './ObstacleFactory';
 import Vector2D from '../Math/Vector2D';
 import Obstacle from './Obstacle';
 import Canvas from '../Canvas/Canvas';
-import Softozor from '../Softozor';
+import Softozor from '../Softozor/Softozor';
 import Collision from '../Collision';
 import BadBubble from './BadBubble';
 import GoodBubble from './GoodBubble';
@@ -163,7 +163,7 @@ export default class ObstacleManager {
   private mustFill(): Boolean {
     return (
       this.m_LastFilledSquareXW <
-      scrollingPosition.xW + this.m_Canvas.widthPX / worldBandRatioToBanner
+      scrollingPosition.xW + this.m_Canvas.width / worldBandRatioToBanner
     );
   }
 

@@ -1,4 +1,4 @@
-import Canvas from './Canvas/Canvas';
+import Canvas from '../Canvas/Canvas';
 import SpriteRenderer from '../SpriteRenderers/SpriteRenderer';
 import Sprite from '../SpriteRenderers/Sprite';
 

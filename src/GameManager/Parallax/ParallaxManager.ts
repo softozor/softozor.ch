@@ -43,7 +43,7 @@ export default class ParallaxManager {
     let x0PX: number = CoordinatesAdapter.xObsPX(0, distFact);
     let y0PX: number = CoordinatesAdapter.yObsPX(0, distFact);
     let pos0PX: Vector2D = new Vector2D(x0PX, y0PX);
-    while (pos0PX.x <= this.m_Canvas.widthPX) {
+    while (pos0PX.x <= this.m_Canvas.width) {
       bandRenderer.draw(pos0PX);
       pos0PX.x += bandRenderer.widthPX;
     }

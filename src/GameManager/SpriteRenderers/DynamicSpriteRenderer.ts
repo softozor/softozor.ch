@@ -37,7 +37,7 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     return (
       this.height *
       worldBandRatioToBanner *
-      this.m_Canvas.heightPX /
+      this.m_Canvas.height /
       100 /
       this.m_DistanceFactor
     );
@@ -50,7 +50,7 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     return (
       this.width *
       worldBandRatioToBanner *
-      this.m_Canvas.heightPX /
+      this.m_Canvas.height /
       100 /
       this.m_DistanceFactor
     );
@@ -60,20 +60,20 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     let vertParams: ClippingParams = getClippingParams(
       pos0PX.x,
       this.widthPX,
-      this.m_Canvas.widthPX,
+      this.m_Canvas.width,
       this.widthPXToN,
       scrollingPosition.xObsPX()
     );
     let horizParams: ClippingParams = getClippingParams(
       pos0PX.y,
       this.heightPX,
-      this.m_Canvas.heightPX,
+      this.m_Canvas.height,
       this.heightPXToN,
       scrollingPosition.yObsPX()
     );
 
     if (vertParams !== undefined && horizParams !== undefined) {
-      this.m_Canvas.ctx.drawImage(
+      this.m_Canvas.context.drawImage(
         this.m_Sprite.img,
         vertParams.sPos,
         horizParams.sPos,

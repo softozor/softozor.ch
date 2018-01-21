@@ -1,7 +1,7 @@
 import PLAY_PAUSE_IMG from '../../../assets/banner/play_pause.png';
 
 import Button from './Button';
-import Canvas from './Canvas/Canvas';
+import Canvas from '../Canvas/Canvas';
 import Sprite from '../SpriteRenderers/Sprite';
 
 export default class PlayButton extends Button {
@@ -55,7 +55,7 @@ export default class PlayButton extends Button {
    * Protected methods
    */
   protected get yPX(): number {
-    return this.m_Canvas.heightPX - this.m_yBottomPX - this.height;
+    return this.m_Canvas.height - this.m_yBottomPX - this.height;
   }
 
   /**

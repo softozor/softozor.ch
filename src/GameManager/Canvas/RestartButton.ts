@@ -1,7 +1,7 @@
 import RESTART_IMG from '../../../assets/banner/restart.png';
 
 import Button from './Button';
-import Canvas from './Canvas/Canvas';
+import Canvas from '../Canvas/Canvas';
 import Sprite from '../SpriteRenderers/Sprite';
 
 export default class RestartButton extends Button {
@@ -41,11 +41,11 @@ export default class RestartButton extends Button {
    * Protected methods
    */
   protected get xPX(): number {
-    return this.m_Canvas.widthPX - this.m_xRightPX - this.width;
+    return this.m_Canvas.width - this.m_xRightPX - this.width;
   }
 
   protected get yPX(): number {
-    return this.m_Canvas.heightPX - this.m_yBottomPX - this.height;
+    return this.m_Canvas.height - this.m_yBottomPX - this.height;
   }
 
   /**

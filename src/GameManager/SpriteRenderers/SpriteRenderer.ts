@@ -2,8 +2,6 @@ import Canvas from '../Canvas/Canvas';
 import Sprite from './Sprite';
 import Vector2D from '../Math/Vector2D';
 
-// SpriteRenderer objects need a reference to the Canvas because
-// they write in the Canvas directly (within draw())
 export default abstract class SpriteRenderer {
   constructor(
     protected readonly m_Canvas: Canvas,

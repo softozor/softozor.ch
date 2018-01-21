@@ -1,9 +1,10 @@
 import Obstacle from './Obstacle';
 import GoodBubble from './GoodBubble';
 import BadBubble from './BadBubble';
-import Position from '../Position';
+import Position from '../Math/Vector2D';
 import CircularHitBox from '../HitBoxes/CircularHitBox';
-import Canvas from '../Canvas';
+import Canvas from '../Canvas/Canvas';
+import Vector2D from '../Math/Vector2D';
 
 export default class ObstacleFactory {
   /**
@@ -11,11 +12,11 @@ export default class ObstacleFactory {
    */
   public static createBadBubble(
     canvas: Canvas,
-    position: Position,
+    position: Vector2D,
     diameter: number
   ): Obstacle {
     let radius: number = diameter / 2;
-    let relCenter: Position = new Position(radius, radius);
+    let relCenter: Vector2D = new Vector2D(radius, radius);
     let hitbox: CircularHitBox = new CircularHitBox(
       position,
       relCenter,
@@ -26,11 +27,11 @@ export default class ObstacleFactory {
 
   public static createGoodBubble(
     canvas: Canvas,
-    position: Position,
+    position: Vector2D,
     diameter: number
   ): Obstacle {
     let radius: number = diameter / 2;
-    let relCenter: Position = new Position(radius, radius);
+    let relCenter: Vector2D = new Vector2D(radius, radius);
     let hitbox: CircularHitBox = new CircularHitBox(
       position,
       relCenter,
