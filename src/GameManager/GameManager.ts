@@ -24,6 +24,7 @@ import Softozor from './Softozor/Softozor';
 // TODO: connect Canvas::mouseEnterHandler with GameManager::run();
 // TODO: connect Canvas::mouseLeaveHandler with GameManager::pause();
 // TODO: don't forget to display the restart button when the game is over!
+// TODO: implement state pattern for paused / running
 
 export default class GameManager {
   constructor() {

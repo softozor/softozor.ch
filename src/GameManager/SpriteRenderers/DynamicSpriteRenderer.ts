@@ -57,7 +57,6 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   }
 
   public draw(pos0PX: Vector2D): void {
-    super.draw(pos0PX);
     let vertParams: ClippingParams = getClippingParams(
       pos0PX.x,
       this.widthPX,
