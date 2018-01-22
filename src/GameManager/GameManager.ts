@@ -8,6 +8,7 @@ import ParallaxManager from './Parallax/ParallaxManager';
 import Canvas from './Canvas/Canvas';
 import Softozor from './Softozor/Softozor';
 import * as CoordinatesAdapter from './Math/CoordinatesAdapter';
+import { setMovingObject } from './Math/CoordinatesAdapter';
 
 // TODO: let this this object decide whether the game stops based on e.g. Softozor::outOfBounds
 // TODO: let this object connect / disconnect the Softozor::tick and ObstacleManager::tick
@@ -29,7 +30,7 @@ import * as CoordinatesAdapter from './Math/CoordinatesAdapter';
 export default class GameManager {
   constructor() {
     CoordinatesAdapter.setCanvas(this.m_Canvas);
-    CoordinatesAdapter.setMovingObject(this.m_Softozor);
+    this.init();
   }
 
   public onDocumentReady(): void {}
@@ -37,6 +38,21 @@ export default class GameManager {
   /**
    * private methods
    */
+  private init(): void {
+    this.m_Softozor = new Softozor(this.m_Canvas);
+    this.m_ObstacleMgr.clear();
+    this.m_ScoreMgr.clear();
+    setMovingObject(this.m_Softozor);
+  }
+
+  /**
+   * This method needs to replace the reference to the Softozor object EVERYWHERE!
+   */
+  private setMovingObject(movingObject: Softozor): void {
+    CoordinatesAdapter.setMovingObject(movingObject);
+    this.m_ObstacleMgr.setMovingObject(movingObject);
+    this.m_ScoreMgr.setMovingObject(movingObject);
+  }
 
   //   // run the game
   // run: function() {
@@ -100,50 +116,13 @@ export default class GameManager {
   //   }
   // }
 
-  // reInitialize: function() {
-  //   this.gameState = 'on';
-  //   this.gameEndingTransition = 1;
-  //   obstacle = [];
-  //   scorePop = [];
-  //   scrollingPosition.xW = softozorData.startPosition;
-  //   softozor.position.yW =
-  //     softozorData.originalYW - softozorData.heightW * worldBandRatioToBanner;
-  //   softozor.updatePosition();
-  //   softozor.ySpeed = softozorData.minSpeed;
-  //   softozor.deltaXW = softozorData.originalDeltaXW;
-  //   softozor.flapWait = 0;
-  //   softozor.deltaXSpeed = 0;
-  //   lastFilledSquareXW = firstFilledSquareDistance + softozorData.startPosition;
-  //   score = 0;
-  //   scoreIncrement = 1;
-  // },
-
-  // restart: function() {
-  //   this.gameState = 'restarting';
-  //   obstacle = [];
-  //   scorePop = [];
-  //   this.restartScore = score;
-  //   this.restartScrollingXW = scrollingPosition.xW;
-  //   this.restartSoftozorDeltaXW = softozor.deltaXW;
-  //   this.restartSoftozorYW = softozor.position.yW;
-  //   softozor.flapWait = 0;
-  //   softozor.deltaXSpeed = 0;
-  //   lastFilledSquareXW = firstFilledSquareDistance + softozorData.startPosition;
-  //   score = 0;
-  //   scoreIncrement = 1;
-  // },
-
   /**
    * game frame function
    */
   private tick(): void {
     this.m_Softozor.tick();
     this.m_ParallaxMgr.tick();
-    let softozorPos: Vector2D = new Vector2D(
-      this.m_Softozor.position.xObsPX(),
-      this.m_Softozor.position.yObsPX()
-    );
-    this.m_ScoreMgr.tick(softozorPos);
+    this.m_ScoreMgr.tick();
     this.m_ObstacleMgr.tick();
   }
 
@@ -151,19 +130,13 @@ export default class GameManager {
    * private members
    */
   private readonly m_Canvas: Canvas = new Canvas();
-  private readonly m_Softozor: Softozor = new Softozor(this.m_Canvas);
+  private m_Softozor: Softozor = new Softozor(this.m_Canvas);
   private readonly m_ObstacleMgr: ObstacleManager = new ObstacleManager(
     this.m_Canvas,
-    softozorData.startPosition,
     (worldBandRatioToBanner - 1 + worldDistanceFactor) *
       100 /
-      worldBandRatioToBanner,
-    // see bandProto::refreshSize; indeed, the method ObstacleManager::fillWorldSquare bases on band[worldBandIndex].spriteRenderer.heightW
-    // and band[0] = new bandProto(spriteList.world, worldDistanceFactor);
-    // which means that the bandProto::refreshSize always end up with the same this.spriteRenderer.heightW value, which turns to be 100
-    this.m_Softozor
+      worldBandRatioToBanner
   );
-  private readonly m_World: World;
   private readonly m_ParallaxMgr: ParallaxManager = new ParallaxManager(
     this.m_Canvas
   );

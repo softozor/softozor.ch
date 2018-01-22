@@ -9,7 +9,9 @@ import Softozor from '../Softozor/Softozor';
 import Collision from '../Collision';
 import BadBubble from './BadBubble';
 import GoodBubble from './GoodBubble';
-import CoordinatesAdapter from '../Math/CoordinatesAdapter';
+import CoordinatesAdapter, {
+  setMovingObject
+} from '../Math/CoordinatesAdapter';
 
 type GoodScoreHandler = () => void;
 type BadScoreHandler = () => void;
@@ -22,26 +24,21 @@ export default class ObstacleManager {
   // TODO: m_BannerHeight is not really banner height (see bandProto::refreshSize); we need band[0].spriteRenderer.heightW
   constructor(
     private readonly m_Canvas: Canvas,
-    movingObjectInitialX: number,
-    private readonly m_BannerHeight: number,
-    private readonly m_MovingObject: Softozor // TODO: see if this is not redundant with the movingObjectInitialX
-  ) {
-    this.m_LastFilledSquareXW =
-      ObstacleManager.FIRST_FILLED_SQUARE_DISTANCE + movingObjectInitialX;
-  }
+    private readonly m_BannerHeight: number
+  ) {}
 
   /**
    * Public methods
    */
-
-  public reinitialize(): void {
-    // TODO: see the Banner::reinitialize method
-    console.log('To be implemented');
+  public clear(): void {
+    this.m_Obstacles.length = 0;
   }
 
-  public restart(): void {
-    // TODO: see the Banner::restart method
-    console.log('To be implemented');
+  public setMovingObject(movingObject: Softozor): void {
+    this.m_MovingObject = movingObject;
+    this.m_LastFilledSquareXW =
+      ObstacleManager.FIRST_FILLED_SQUARE_DISTANCE +
+      CoordinatesAdapter.scrollingPosition().x;
   }
 
   public attachGoodScoreHandler(callback: GoodScoreHandler): void {
@@ -174,15 +171,17 @@ export default class ObstacleManager {
   /**
    * Private members
    */
-  private static readonly BAD_BUBBLE_PER_SQUARE: number = 3;
+  private static readonly BAD_BUBBLE_PER_SQUARE: number = 3; // TODO: put these numbers in a config file!
   private static readonly GOOD_BUBBLE_PER_SQUARE: number = 3;
   private static readonly FIRST_FILLED_SQUARE_DISTANCE: number = 300;
 
-  private m_BadScoreEvent: VoidSyncEvent = new VoidSyncEvent();
+  private m_BadScoreEvent: VoidSyncEvent = new VoidSyncEvent(); // TODO: maybe not necessary; maybe just storing the callback is enough
   private m_GoodScoreEvent: VoidSyncEvent = new VoidSyncEvent();
 
+  private m_MovingObject: Softozor;
+
   private m_LastFilledSquareXW: number;
-  private m_Obstacles: Obstacle[] = [];
+  private m_Obstacles: Obstacle[];
 }
 
 // stretches a value between 0 and 1 to 0 or 1, symetric relative to 0.5

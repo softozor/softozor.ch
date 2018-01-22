@@ -86,7 +86,7 @@ export default class ScorePop {
   /**
    * Private members
    */
-  private readonly FONT: string = 'bold 15px Arial';
+  private readonly FONT: string = 'bold 15px Arial'; // TODO: put all these parameters in a config file!
   private readonly OPACITY_FACTOR: number = 30;
 
   private m_DeltaYPX: number = 0;

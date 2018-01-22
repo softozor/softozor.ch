@@ -2,6 +2,7 @@ import * as Helpers from '../Helpers';
 import Vector2D from '../Math/Vector2D';
 import Canvas from '../Canvas/Canvas';
 import ScorePopManager from './ScorePopManager';
+import Softozor from '../Softozor/Softozor';
 
 export default class ScoreManager {
   constructor(private readonly m_Canvas: Canvas) {}
@@ -9,10 +10,19 @@ export default class ScoreManager {
   /**
    * Public methods
    */
-  public tick(movingObjPosition: Vector2D): void {
-    this.updateScore();
+  public clear(): void {
+    this.m_Score = 0;
+    this.m_ScoreIncrement = 1;
+    this.m_ScorePopMgr.clear();
+  }
 
-    this.m_ScorePopMgr.tick(movingObjPosition);
+  public tick(): void {
+    this.updateScore();
+    this.m_ScorePopMgr.tick();
+  }
+
+  public setMovingObject(movingObject: Softozor): void {
+    this.m_ScorePopMgr.setMovingObject(movingObject);
   }
 
   /**
@@ -55,14 +65,14 @@ export default class ScoreManager {
   /**
    * Private members
    */
-  private readonly X_PX: number = 5;
+  private readonly X_PX: number = 5; // TODO: put these numbers in a config file!
   private readonly Y_PX: number = 5;
   private readonly HEIGHT_PX: number = 20;
   private readonly FILL_STYLE: string = Helpers.rgba(255, 255, 255);
   private readonly STROKE_STYLE: string = Helpers.rgba(0, 64, 128);
 
-  private m_Score: number = 0;
-  private m_ScoreIncrement: number = 1;
+  private m_Score: number;
+  private m_ScoreIncrement: number;
 
   private m_ScorePopMgr: ScorePopManager = new ScorePopManager(this.m_Canvas);
 }

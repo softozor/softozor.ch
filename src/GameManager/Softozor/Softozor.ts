@@ -177,7 +177,6 @@ export default class Softozor extends MovingObject {
   /**
    * Private members
    */
-  // TODO: don't forget that all coordinate transformations are done with worldDistanceFactor here!
   private m_Position: Vector2D = Softozor.initialPosition();
   private m_DeltaXW: number = SoftozorData.originalDeltaXW;
   private m_DeltaXSpeed: number = 0;
@@ -187,9 +186,9 @@ export default class Softozor extends MovingObject {
   );
   private m_FlapWait: number = 0;
   private m_DoFlap: Boolean = false;
-  private m_DistanceFactor: number = CoordinatesAdapter.WORLD_DISTANCE_FACTOR;
-  private m_Hitbox: CircularHitBox = new CircularHitBox(
-    this.position,
+  private readonly m_DistanceFactor: number = CoordinatesAdapter.WORLD_DISTANCE_FACTOR;
+  private readonly m_Hitbox: CircularHitBox = new CircularHitBox(
+    this.m_Position,
     new Vector2D(SoftozorData.widthW * 0.5, SoftozorData.heightW * 0.65),
     SoftozorData.heightW * 0.3
   );
@@ -197,6 +196,6 @@ export default class Softozor extends MovingObject {
     this.m_Canvas,
     SoftozorData.widthW,
     SoftozorData.heightW,
-    CoordinatesAdapter.WORLD_DISTANCE_FACTOR
+    this.m_DistanceFactor
   );
 }
