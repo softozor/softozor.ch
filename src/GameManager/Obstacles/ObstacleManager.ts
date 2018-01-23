@@ -16,12 +16,9 @@ import CoordinatesAdapter, {
 type GoodScoreHandler = () => void;
 type BadScoreHandler = () => void;
 
-// TODO: may need a reference to the Softozor object; this can also be entered as argument to the functions of this class
 // TODO: upon setting the gameState to over, disconnect the tick method, i.e. don't trigger it any more!
 // TODO: upon setting the gameState to on, connect the Softozor::tick method
 export default class ObstacleManager {
-  // TODO: must be called with movingObjectInitialX = softozorData.startPosition
-  // TODO: m_BannerHeight is not really banner height (see bandProto::refreshSize); we need band[0].spriteRenderer.heightW
   constructor(
     private readonly m_Canvas: Canvas,
     private readonly m_BannerHeight: number

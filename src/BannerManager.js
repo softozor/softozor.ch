@@ -23,9 +23,7 @@ import RESTART_IMG from '../assets/banner/restart.png';
 function spriteProto(src) {
   this.img = new Image();
 
-  this.img.isLoaded = false;
   this.img.onload = function() {
-    this.isLoaded = true;
     refreshSize();
     update();
   };

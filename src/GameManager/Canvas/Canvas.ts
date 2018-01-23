@@ -1,4 +1,4 @@
-import { values, filter } from 'lodash';
+import { values, filter, forEach } from 'lodash';
 
 import Button, { ClickHandlerCallback } from './Button';
 import PlayButton from './PlayButton';
@@ -58,6 +58,14 @@ export default class Canvas {
     this.m_MouseLeaveHandler = value;
   }
 
+  public showRestartButton(): void {
+    this.m_Buttons.restart.show();
+  }
+
+  public hideRestartButton(): void {
+    this.m_Buttons.restart.hide();
+  }
+
   /**
    * Private methods
    */
@@ -79,9 +87,22 @@ export default class Canvas {
     document.onkeyup = this.handleKeyUp.bind(this);
   }
 
-  private resizeToWindow(): void {
+  private resizeCanvasElement(): void {
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
+  }
+
+  private renderButtons(): void {
+    forEach(this.m_Buttons, (value: Button): void => value.draw());
+  }
+
+  private resizeToWindow(): void {
+    this.resizeCanvasElement();
+    this.renderButtons();
+    // TODO: in this class we probably need a VoidSyncEvent which we can attach resize events to (from objects that have a reference to the Canvas)
+    // then, here, we would then call this.m_ResizeEvents.post() which then will trigger all the attached events
+    // each object having a reference to the canvas should call Canvas::attachResizeHandler
+    // In that case, we can remove the call to this.renderButtons(), as the buttons all have a reference to the Canvas!
   }
 
   private connectResizeEvent(): void {

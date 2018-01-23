@@ -25,20 +25,18 @@ export default abstract class Button extends SpriteRenderer {
   }
 
   public get visible(): Boolean {
-    return this.m_Visible;
+    return this.m_Alpha > 0;
   }
 
   // TODO: do an animation on the globalAlpha value from 1 to 0 (or vice-versa) when we hide (or show) a button
   public hide(): void {
-    this.m_Canvas.context.globalAlpha = 0;
+    this.m_Alpha = 0;
     this.draw();
-    this.m_Visible = false;
   }
 
   public show(): void {
-    this.m_Canvas.context.globalAlpha = 1;
+    this.m_Alpha = 1;
     this.draw();
-    this.m_Visible = true;
   }
 
   public click(): void {
@@ -70,9 +68,13 @@ export default abstract class Button extends SpriteRenderer {
     return this.m_yPX;
   }
 
+  protected get alpha(): number {
+    return this.m_Alpha;
+  }
+
   /**
    * Private members
    */
   private m_ClickHandlerCallback: ClickHandlerCallback;
-  private m_Visible: Boolean = false;
+  private m_Alpha: number = 0;
 }
