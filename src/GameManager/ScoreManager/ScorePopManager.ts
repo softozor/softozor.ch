@@ -3,7 +3,7 @@ import { forEach, remove } from 'lodash';
 import Canvas from '../Canvas/Canvas';
 import ScorePop from './ScorePop';
 import Vector2D from '../Math/Vector2D';
-import * as CoordinatesAdapter from '../Math/CoordinatesAdapter';
+import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
 import Softozor from '../Softozor/Softozor';
 
 export default class ScorePopManager {
@@ -13,9 +13,9 @@ export default class ScorePopManager {
    * Public methods
    */
   public tick(): void {
-    let movingPos: Vector2D = CoordinatesAdapter.obsPX(
+    let movingPos: Vector2D = MovingCoordinateSystem.obsPX(
       this.m_MovingObject.position,
-      CoordinatesAdapter.WORLD_DISTANCE_FACTOR
+      MovingCoordinateSystem.WORLD_DISTANCE_FACTOR
     );
     forEach(this.m_ScorePops, (elem: ScorePop): void => elem.tick(movingPos));
     this.cleanup();

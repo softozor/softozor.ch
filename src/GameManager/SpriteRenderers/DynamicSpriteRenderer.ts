@@ -2,7 +2,7 @@ import Sprite from './Sprite';
 import SpriteRenderer from './SpriteRenderer';
 import Canvas from '../Canvas/Canvas';
 import Vector2D from '../Math/Vector2D';
-import * as CoordinatesAdapter from '../Math/CoordinatesAdapter';
+import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
 
 type ClippingParams = {
   pos: number;
@@ -37,7 +37,7 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     }
     return (
       this.height *
-      CoordinatesAdapter.WORLD_BAND_RATIO_TO_BANNER *
+      MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER *
       this.m_Canvas.height /
       100 /
       this.m_DistanceFactor
@@ -50,7 +50,7 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     }
     return (
       this.width *
-      CoordinatesAdapter.WORLD_BAND_RATIO_TO_BANNER *
+      MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER *
       this.m_Canvas.height /
       100 /
       this.m_DistanceFactor
@@ -58,8 +58,8 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   }
 
   public draw(pos0PX: Vector2D): void {
-    let obsScrollPos: Vector2D = CoordinatesAdapter.obsPX(
-      CoordinatesAdapter.scrollingPosition(),
+    let obsScrollPos: Vector2D = MovingCoordinateSystem.obsPX(
+      MovingCoordinateSystem.scrollingPosition(),
       this.m_DistanceFactor
     ); // should be (0, 0)
     let vertParams: ClippingParams = getClippingParams(

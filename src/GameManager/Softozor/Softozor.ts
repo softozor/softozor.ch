@@ -1,7 +1,7 @@
 import SoftozorData from '../../../assets/banner/SoftozorData.json';
 
 import Vector2D from '../Math/Vector2D';
-import * as CoordinatesAdapter from '../Math/CoordinatesAdapter';
+import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
 import CircularHitBox from '../HitBoxes/CircularHitBox';
 import Obstacle from '../Obstacles/Obstacle';
 import Collision from '../Collision';
@@ -81,7 +81,7 @@ export default class Softozor extends MovingObject {
     return new Vector2D(
       SoftozorData.startPosition + SoftozorData.originalDeltaXW,
       SoftozorData.originalYW -
-        SoftozorData.heightW * CoordinatesAdapter.WORLD_BAND_RATIO_TO_BANNER
+        SoftozorData.heightW * MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER
     );
   }
 
@@ -129,7 +129,7 @@ export default class Softozor extends MovingObject {
     } else {
       this.m_Renderer.setIdleState();
     }
-    let pos0PX: Vector2D = CoordinatesAdapter.obsPX(
+    let pos0PX: Vector2D = MovingCoordinateSystem.obsPX(
       this.position,
       this.m_DistanceFactor
     );
@@ -151,7 +151,7 @@ export default class Softozor extends MovingObject {
     if (
       this.y >
       SoftozorData.maxYW -
-        SoftozorData.heightW * CoordinatesAdapter.WORLD_BAND_RATIO_TO_BANNER
+        SoftozorData.heightW * MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER
     ) {
       this.vy = Math.min(this.vy, 0);
     } else if (this.y > SoftozorData.minYW) {
@@ -186,7 +186,7 @@ export default class Softozor extends MovingObject {
   );
   private m_FlapWait: number = 0;
   private m_DoFlap: Boolean = false;
-  private readonly m_DistanceFactor: number = CoordinatesAdapter.WORLD_DISTANCE_FACTOR;
+  private readonly m_DistanceFactor: number = MovingCoordinateSystem.WORLD_DISTANCE_FACTOR;
   private readonly m_Hitbox: CircularHitBox = new CircularHitBox(
     this.m_Position,
     new Vector2D(SoftozorData.widthW * 0.5, SoftozorData.heightW * 0.65),

@@ -7,8 +7,7 @@ import ObstacleManager from './Obstacles/ObstacleManager';
 import ParallaxManager from './Parallax/ParallaxManager';
 import Canvas from './Canvas/Canvas';
 import Softozor from './Softozor/Softozor';
-import * as CoordinatesAdapter from './Math/CoordinatesAdapter';
-import { setMovingObject } from './Math/CoordinatesAdapter';
+import * as MovingCoordinateSystem from './Math/MovingCoordinateSystem';
 
 // TODO: let this this object decide whether the game stops based on e.g. Softozor::outOfBounds
 // TODO: let this object connect / disconnect the Softozor::tick and ObstacleManager::tick
@@ -29,7 +28,7 @@ import { setMovingObject } from './Math/CoordinatesAdapter';
 
 export default class GameManager {
   constructor() {
-    CoordinatesAdapter.setCanvas(this.m_Canvas);
+    MovingCoordinateSystem.setCanvas(this.m_Canvas);
     this.init();
   }
 
@@ -42,14 +41,14 @@ export default class GameManager {
     this.m_Softozor = new Softozor(this.m_Canvas);
     this.m_ObstacleMgr.clear();
     this.m_ScoreMgr.clear();
-    setMovingObject(this.m_Softozor);
+    MovingCoordinateSystem.setMovingObject(this.m_Softozor);
   }
 
   /**
    * This method needs to replace the reference to the Softozor object EVERYWHERE!
    */
   private setMovingObject(movingObject: Softozor): void {
-    CoordinatesAdapter.setMovingObject(movingObject);
+    MovingCoordinateSystem.setMovingObject(movingObject);
     this.m_ObstacleMgr.setMovingObject(movingObject);
     this.m_ScoreMgr.setMovingObject(movingObject);
   }
@@ -133,9 +132,11 @@ export default class GameManager {
   private m_Softozor: Softozor = new Softozor(this.m_Canvas);
   private readonly m_ObstacleMgr: ObstacleManager = new ObstacleManager(
     this.m_Canvas,
-    (worldBandRatioToBanner - 1 + worldDistanceFactor) *
+    (MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER -
+      1 +
+      MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER) *
       100 /
-      worldBandRatioToBanner
+      MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER
   );
   private readonly m_ParallaxMgr: ParallaxManager = new ParallaxManager(
     this.m_Canvas

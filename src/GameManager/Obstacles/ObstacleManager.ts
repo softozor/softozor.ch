@@ -9,9 +9,7 @@ import Softozor from '../Softozor/Softozor';
 import Collision from '../Collision';
 import BadBubble from './BadBubble';
 import GoodBubble from './GoodBubble';
-import CoordinatesAdapter, {
-  setMovingObject
-} from '../Math/CoordinatesAdapter';
+import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
 
 type GoodScoreHandler = () => void;
 type BadScoreHandler = () => void;
@@ -35,7 +33,7 @@ export default class ObstacleManager {
     this.m_MovingObject = movingObject;
     this.m_LastFilledSquareXW =
       ObstacleManager.FIRST_FILLED_SQUARE_DISTANCE +
-      CoordinatesAdapter.scrollingPosition().x;
+      MovingCoordinateSystem.scrollingPosition().x;
   }
 
   public attachGoodScoreHandler(callback: GoodScoreHandler): void {
@@ -144,7 +142,7 @@ export default class ObstacleManager {
   }
 
   private cleanup(): void {
-    let scrollX: number = CoordinatesAdapter.scrollingPosition().x;
+    let scrollX: number = MovingCoordinateSystem.scrollingPosition().x;
     remove(
       this.m_Obstacles,
       (element: Obstacle): Boolean =>
@@ -157,11 +155,11 @@ export default class ObstacleManager {
   }
 
   private mustFill(): Boolean {
-    let scrollX: number = CoordinatesAdapter.scrollingPosition().x;
+    let scrollX: number = MovingCoordinateSystem.scrollingPosition().x;
     return (
       this.m_LastFilledSquareXW <
       scrollX +
-        this.m_Canvas.width / CoordinatesAdapter.WORLD_BAND_RATIO_TO_BANNER
+        this.m_Canvas.width / MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER
     );
   }
 
