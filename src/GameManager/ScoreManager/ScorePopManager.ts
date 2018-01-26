@@ -17,9 +17,7 @@ export default class ScorePopManager {
       this.m_MovingObject.position,
       CoordinatesAdapter.WORLD_DISTANCE_FACTOR
     );
-    forEach(this.m_ScorePops, function(elem) {
-      elem.tick(movingPos);
-    });
+    forEach(this.m_ScorePops, (elem: ScorePop): void => elem.tick(movingPos));
     this.cleanup();
   }
 
