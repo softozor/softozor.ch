@@ -1,4 +1,5 @@
-import SoftozorData from '../../../assets/banner/SoftozorData.json';
+import CONFIG from '../../../config/game/SoftozorData.json';
+import CONSTANTS from '../../../config/game/Constants.json';
 
 import Vector2D from '../Math/Vector2D';
 import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
@@ -16,6 +17,7 @@ import MovingObject from '../MovingObject';
 export default class Softozor extends MovingObject {
   constructor(private readonly m_Canvas: Canvas) {
     super();
+    this.m_Canvas.attachResizeEvent(this.render.bind(this));
   }
 
   /**
@@ -30,7 +32,7 @@ export default class Softozor extends MovingObject {
   }
 
   public get isOutOfBounds(): Boolean {
-    return this.m_DeltaXW + SoftozorData.heightW <= 0;
+    return this.m_DeltaXW + CONFIG.heightW <= 0;
   }
 
   public get deltaXW(): number {
@@ -45,14 +47,6 @@ export default class Softozor extends MovingObject {
       (diff.x * diff.x + diff.y * diff.y);
     this.m_DeltaXSpeed -= diff.x * speedChangeFactor;
     this.vy -= diff.y * speedChangeFactor;
-  }
-
-  public restart(): void {
-    // TODO: implement
-  }
-
-  public reinit(): void {
-    // TODO: implement
   }
 
   public tick(): void {
@@ -79,14 +73,13 @@ export default class Softozor extends MovingObject {
    */
   private static initialPosition(): Vector2D {
     return new Vector2D(
-      SoftozorData.startPosition + SoftozorData.originalDeltaXW,
-      SoftozorData.originalYW -
-        SoftozorData.heightW * MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER
+      CONFIG.startPosition + CONFIG.originalDeltaXW,
+      CONFIG.originalYW - CONFIG.heightW * CONSTANTS.WorldBandRatioToBanner
     );
   }
 
   private get canFlapUp(): Boolean {
-    return this.m_DoFlap && this.y > SoftozorData.minYW && this.m_FlapWait <= 0;
+    return this.m_DoFlap && this.y > CONFIG.minYW && this.m_FlapWait <= 0;
   }
 
   private get x(): number {
@@ -122,9 +115,9 @@ export default class Softozor extends MovingObject {
   }
 
   private render(): void {
-    if (this.m_FlapWait >= SoftozorData.flapDelay - 3) {
+    if (this.m_FlapWait >= CONFIG.flapDelay - 3) {
       this.m_Renderer.setFlap1State();
-    } else if (this.m_FlapWait >= SoftozorData.flapDelay - 6) {
+    } else if (this.m_FlapWait >= CONFIG.flapDelay - 6) {
       this.m_Renderer.setFlap2State();
     } else {
       this.m_Renderer.setIdleState();
@@ -133,14 +126,13 @@ export default class Softozor extends MovingObject {
       this.position,
       this.m_DistanceFactor
     );
-    this.m_Canvas.context.globalAlpha = 1;
-    this.m_Renderer.draw(pos0PX);
+    this.m_Renderer.draw(1, pos0PX);
   }
 
   private flapUp(): void {
     if (this.canFlapUp) {
-      this.vy -= SoftozorData.flapStrength;
-      this.m_FlapWait = SoftozorData.flapDelay;
+      this.vy -= CONFIG.flapStrength;
+      this.m_FlapWait = CONFIG.flapDelay;
     }
     if (this.m_FlapWait > 0) {
       --this.m_FlapWait;
@@ -150,52 +142,51 @@ export default class Softozor extends MovingObject {
   private fall(): void {
     if (
       this.y >
-      SoftozorData.maxYW -
-        SoftozorData.heightW * MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER
+      CONFIG.maxYW - CONFIG.heightW * CONSTANTS.WorldBandRatioToBanner
     ) {
       this.vy = Math.min(this.vy, 0);
-    } else if (this.y > SoftozorData.minYW) {
-      this.vy += SoftozorData.gravity;
+    } else if (this.y > CONFIG.minYW) {
+      this.vy += CONFIG.gravity;
     } else {
-      this.vy = Math.max(this.vy, SoftozorData.hitDownSpeed);
-      this.vy += SoftozorData.gravity;
+      this.vy = Math.max(this.vy, CONFIG.hitDownSpeed);
+      this.vy += CONFIG.gravity;
     }
-    this.vy = Math.min(
-      Math.max(this.vy, SoftozorData.minSpeed),
-      SoftozorData.maxSpeed
-    );
+    this.vy = Math.min(Math.max(this.vy, CONFIG.minSpeed), CONFIG.maxSpeed);
     this.y += this.vy;
   }
 
   private moveForward(): void {
-    this.vx = SoftozorData.originalXSpeed + (this.x - this.m_DeltaXW) / 10000;
+    this.vx = CONFIG.originalXSpeed + (this.x - this.m_DeltaXW) / 10000;
     this.x += this.vx;
     this.m_DeltaXW += this.m_DeltaXSpeed;
-    this.m_DeltaXSpeed *= 0.9;
+    this.m_DeltaXSpeed *= CONFIG.moveForward.deltaXSpeedFactor;
   }
 
   /**
    * Private members
    */
   private m_Position: Vector2D = Softozor.initialPosition();
-  private m_DeltaXW: number = SoftozorData.originalDeltaXW;
+  private m_DeltaXW: number = CONFIG.originalDeltaXW;
   private m_DeltaXSpeed: number = 0;
   private m_Speed: Vector2D = new Vector2D(
-    SoftozorData.originalXSpeed,
-    SoftozorData.minSpeed
+    CONFIG.originalXSpeed,
+    CONFIG.minSpeed
   );
   private m_FlapWait: number = 0;
   private m_DoFlap: Boolean = false;
-  private readonly m_DistanceFactor: number = MovingCoordinateSystem.WORLD_DISTANCE_FACTOR;
+  private readonly m_DistanceFactor: number = CONSTANTS.WorldDistanceFactor;
   private readonly m_Hitbox: CircularHitBox = new CircularHitBox(
     this.m_Position,
-    new Vector2D(SoftozorData.widthW * 0.5, SoftozorData.heightW * 0.65),
-    SoftozorData.heightW * 0.3
+    new Vector2D(
+      CONFIG.widthW * CONFIG.hitbox.relativeCenterWidthFactor,
+      CONFIG.heightW * CONFIG.hitbox.relativeCenterHeightFactor
+    ),
+    CONFIG.heightW * CONFIG.hitbox.radiusFactor
   );
   private m_Renderer: Renderer = new Renderer(
     this.m_Canvas,
-    SoftozorData.widthW,
-    SoftozorData.heightW,
+    CONFIG.widthW,
+    CONFIG.heightW,
     this.m_DistanceFactor
   );
 }

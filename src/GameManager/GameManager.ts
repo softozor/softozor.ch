@@ -1,5 +1,7 @@
 import { forEach, remove } from 'lodash';
 
+import CONFIG from '../../config/game/GameManager.json';
+
 import ScoreManager from './ScoreManager/ScoreManager';
 import * as Helpers from './Helpers';
 import Vector2D from './Math/Vector2D';
@@ -25,6 +27,7 @@ import * as MovingCoordinateSystem from './Math/MovingCoordinateSystem';
 // TODO: connect Canvas::mouseLeaveHandler with GameManager::pause();
 // TODO: don't forget to display the restart button when the game is over!
 // TODO: implement state pattern for paused / running
+// TODO: don't forget to load the GameStoppedRenderer (and to refresh it upon canvas resizing!)
 
 export default class GameManager {
   constructor() {
@@ -49,8 +52,6 @@ export default class GameManager {
    */
   private setMovingObject(movingObject: Softozor): void {
     MovingCoordinateSystem.setMovingObject(movingObject);
-    this.m_ObstacleMgr.setMovingObject(movingObject);
-    this.m_ScoreMgr.setMovingObject(movingObject);
   }
 
   //   // run the game
@@ -131,15 +132,13 @@ export default class GameManager {
   private readonly m_Canvas: Canvas = new Canvas();
   private m_Softozor: Softozor = new Softozor(this.m_Canvas);
   private readonly m_ObstacleMgr: ObstacleManager = new ObstacleManager(
-    this.m_Canvas,
-    (MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER -
-      1 +
-      MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER) *
-      100 /
-      MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER
+    this.m_Canvas
   );
   private readonly m_ParallaxMgr: ParallaxManager = new ParallaxManager(
     this.m_Canvas
   );
   private readonly m_ScoreMgr: ScoreManager = new ScoreManager(this.m_Canvas);
+
+  private m_TickHandle: number;
+  private m_TickInterval: number = CONFIG.tickIntervalInMs;
 }

@@ -1,10 +1,12 @@
 import { values, filter, forEach } from 'lodash';
+import { VoidSyncEvent } from 'ts-events';
 
 import Button, { ClickHandlerCallback } from './Button';
 import PlayButton from './PlayButton';
 import RestartButton from './RestartButton';
 
 type T_ButtonMap = { [key: string]: Button };
+type ResizeEvent = () => void;
 
 enum KEY {
   e_ESC = 27,
@@ -66,6 +68,10 @@ export default class Canvas {
     this.m_Buttons.restart.hide();
   }
 
+  public attachResizeEvent(event: ResizeEvent): void {
+    this.m_ResizeHandler.attach(event);
+  }
+
   /**
    * Private methods
    */
@@ -92,17 +98,9 @@ export default class Canvas {
     this.canvas.height = window.innerHeight;
   }
 
-  private renderButtons(): void {
-    forEach(this.m_Buttons, (value: Button): void => value.draw());
-  }
-
   private resizeToWindow(): void {
     this.resizeCanvasElement();
-    this.renderButtons();
-    // TODO: in this class we probably need a VoidSyncEvent which we can attach resize events to (from objects that have a reference to the Canvas)
-    // then, here, we would then call this.m_ResizeEvents.post() which then will trigger all the attached events
-    // each object having a reference to the canvas should call Canvas::attachResizeHandler
-    // In that case, we can remove the call to this.renderButtons(), as the buttons all have a reference to the Canvas!
+    this.m_ResizeHandler.post();
   }
 
   private connectResizeEvent(): void {
@@ -165,9 +163,6 @@ export default class Canvas {
    */
   private m_RenderingContext: CanvasRenderingContext2D = getRenderingContext();
 
-  private m_TickHandle: number;
-  private m_TickInterval: number = 20; // TODO: put this in a config file!
-
   private m_Buttons: T_ButtonMap = {
     play: new PlayButton(this),
     restart: new RestartButton(this)
@@ -177,6 +172,8 @@ export default class Canvas {
   private m_DownHandler: ClickHandlerCallback;
   private m_MouseEnterHandler: ClickHandlerCallback;
   private m_MouseLeaveHandler: ClickHandlerCallback;
+
+  private m_ResizeHandler: VoidSyncEvent = new VoidSyncEvent();
 }
 
 /**

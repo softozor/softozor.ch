@@ -1,6 +1,11 @@
+import CONSTANTS from '../../../config/game/Constants.json';
+import CONFIG from '../../../config/game/ScorePop.json';
+
 import * as Helpers from '../Helpers';
 import Vector2D from '../Math/Vector2D';
 import Canvas from '../Canvas/Canvas';
+import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
+import MovingObject from '../MovingObject';
 
 export default class ScorePop {
   constructor(
@@ -26,16 +31,22 @@ export default class ScorePop {
 
   public get fillStyle(): string {
     return this.m_Pop > 0
-      ? Helpers.rgba(0, 50, 0, this.opacity())
-      : Helpers.rgba(128, 0, 0, this.opacity());
+      ? Helpers.rgba(
+        CONFIG.fillStyle.good.r,
+        CONFIG.fillStyle.good.g,
+        CONFIG.fillStyle.good.b,
+        this.opacity()
+      )
+      : Helpers.rgba(
+        CONFIG.fillStyle.bad.r,
+        CONFIG.fillStyle.bad.g,
+        CONFIG.fillStyle.bad.b,
+        this.opacity()
+      );
   }
 
   public get token(): string {
     return this.m_Pop > 0 ? '+' : '';
-  }
-
-  public get font(): string {
-    return this.FONT;
   }
 
   public get text(): string {
@@ -46,8 +57,8 @@ export default class ScorePop {
     return this.m_Lifetime <= 0;
   }
 
-  public tick(position: Vector2D): void {
-    this.updateText(position);
+  public tick(): void {
+    this.render();
     this.updateParams();
   }
 
@@ -58,16 +69,23 @@ export default class ScorePop {
     );
   }
 
+  public render(): void {
+    let ctx: CanvasRenderingContext2D = this.m_Canvas.context;
+    ctx.globalAlpha = CONFIG.alpha;
+    ctx.font = CONFIG.font;
+    ctx.fillStyle = this.fillStyle;
+    let textPos: Vector2D = this.textPosition(this.movingPosition);
+    ctx.fillText(this.text, textPos.x, textPos.y);
+  }
+
   /**
    * Private methods
    */
-  private updateText(position: Vector2D): void {
-    let ctx: CanvasRenderingContext2D = this.m_Canvas.context;
-    ctx.globalAlpha = 0.6;
-    ctx.font = this.font;
-    ctx.fillStyle = this.fillStyle;
-    let textPos: Vector2D = this.textPosition(position);
-    ctx.fillText(this.text, textPos.x, textPos.y);
+  private get movingPosition(): Vector2D {
+    return MovingCoordinateSystem.obsPX(
+      movingObject().position,
+      CONSTANTS.WorldDistanceFactor
+    );
   }
 
   private updateParams(): void {
@@ -80,15 +98,16 @@ export default class ScorePop {
   }
 
   private opacity(): number {
-    return this.m_Lifetime / this.OPACITY_FACTOR;
+    return this.m_Lifetime / CONFIG.opacityFactor;
   }
 
   /**
    * Private members
    */
-  private readonly FONT: string = 'bold 15px Arial'; // TODO: put all these parameters in a config file!
-  private readonly OPACITY_FACTOR: number = 30;
+  private m_DeltaYPX: number = CONFIG.deltaY;
+  private m_Lifetime: number = CONFIG.lifeTime;
+}
 
-  private m_DeltaYPX: number = 0;
-  private m_Lifetime: number = 30;
+function movingObject(): MovingObject {
+  return MovingCoordinateSystem.movingObject();
 }

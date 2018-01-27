@@ -8,13 +8,14 @@ export default abstract class Button extends SpriteRenderer {
   constructor(
     canvas: Canvas,
     protected readonly m_Sprite: Sprite,
-    private readonly m_xPX: number,
-    private readonly m_yPX: number,
+    private readonly m_X: number,
+    private readonly m_Y: number,
     width: number,
     height: number,
-    private readonly m_ClickDeltaPX: number
+    private readonly m_ClickDelta: number
   ) {
     super(canvas, width, height);
+    this.m_Canvas.attachResizeEvent(this.render.bind(this));
   }
 
   /**
@@ -25,18 +26,18 @@ export default abstract class Button extends SpriteRenderer {
   }
 
   public get visible(): Boolean {
-    return this.m_Alpha > 0;
+    return this.alpha > 0;
   }
 
   // TODO: do an animation on the globalAlpha value from 1 to 0 (or vice-versa) when we hide (or show) a button
   public hide(): void {
-    this.m_Alpha = 0;
-    this.draw();
+    this.alpha = 0;
+    this.draw(this.alpha);
   }
 
   public show(): void {
-    this.m_Alpha = 1;
-    this.draw();
+    this.alpha = 1;
+    this.draw(this.alpha);
   }
 
   public click(): void {
@@ -45,10 +46,10 @@ export default abstract class Button extends SpriteRenderer {
 
   public hasMouse(event: MouseEvent): Boolean {
     return (
-      event.clientX >= this.xPX - this.clickDeltaPX &&
-      event.clientX <= this.xPX + this.width + this.clickDeltaPX &&
-      event.clientY >= this.yPX - this.clickDeltaPX &&
-      event.clientY <= this.yPX + this.height + this.clickDeltaPX &&
+      event.clientX >= this.x - this.clickDelta &&
+      event.clientX <= this.x + this.width + this.clickDelta &&
+      event.clientY >= this.y - this.clickDelta &&
+      event.clientY <= this.y + this.height + this.clickDelta &&
       this.visible
     );
   }
@@ -56,20 +57,31 @@ export default abstract class Button extends SpriteRenderer {
   /**
    * Protected methods
    */
-  protected get clickDeltaPX(): number {
-    return this.m_ClickDeltaPX;
+  protected get clickDelta(): number {
+    return this.m_ClickDelta;
   }
 
-  protected get xPX(): number {
-    return this.m_xPX;
+  protected get x(): number {
+    return this.m_X;
   }
 
-  protected get yPX(): number {
-    return this.m_yPX;
+  protected get y(): number {
+    return this.m_Y;
   }
 
-  protected get alpha(): number {
+  /**
+   * Private methods
+   */
+  private get alpha(): number {
     return this.m_Alpha;
+  }
+
+  private set alpha(value: number) {
+    this.m_Alpha = value;
+  }
+
+  private render(): void {
+    this.draw(this.alpha);
   }
 
   /**

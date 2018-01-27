@@ -4,25 +4,18 @@ import Canvas from '../Canvas/Canvas';
 import ScorePop from './ScorePop';
 import Vector2D from '../Math/Vector2D';
 import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
-import Softozor from '../Softozor/Softozor';
 
 export default class ScorePopManager {
-  constructor(private readonly m_Canvas: Canvas) {}
+  constructor(private readonly m_Canvas: Canvas) {
+    this.m_Canvas.attachResizeEvent(this.render.bind(this));
+  }
 
   /**
    * Public methods
    */
   public tick(): void {
-    let movingPos: Vector2D = MovingCoordinateSystem.obsPX(
-      this.m_MovingObject.position,
-      MovingCoordinateSystem.WORLD_DISTANCE_FACTOR
-    );
-    forEach(this.m_ScorePops, (elem: ScorePop): void => elem.tick(movingPos));
+    forEach(this.m_ScorePops, (elem: ScorePop): void => elem.tick());
     this.cleanup();
-  }
-
-  public setMovingObject(movingObject: Softozor): void {
-    this.m_MovingObject = movingObject;
   }
 
   public clear(): void {
@@ -39,9 +32,12 @@ export default class ScorePopManager {
     );
   }
 
+  private render(): void {
+    forEach(this.m_ScorePops, (elem: ScorePop): void => elem.render());
+  }
+
   /**
    * Private members
    */
   private readonly m_ScorePops: ScorePop[];
-  private m_MovingObject: Softozor;
 }

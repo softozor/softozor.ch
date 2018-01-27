@@ -1,41 +1,33 @@
 import { remove, forEach } from 'lodash';
 import { VoidSyncEvent } from 'ts-events';
 
+import SoftozorData from '../../../config/game/SoftozorData.json';
+import CONSTANTS from '../../../config/game/Constants.json';
+import CONFIG from '../../../config/game/Obstacles.json';
+
 import ObstacleFactory from './ObstacleFactory';
 import Vector2D from '../Math/Vector2D';
 import Obstacle from './Obstacle';
 import Canvas from '../Canvas/Canvas';
-import Softozor from '../Softozor/Softozor';
 import Collision from '../Collision';
 import BadBubble from './BadBubble';
 import GoodBubble from './GoodBubble';
 import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
+import MovingObject from '../MovingObject';
 
 type GoodScoreHandler = () => void;
 type BadScoreHandler = () => void;
 
 // TODO: upon setting the gameState to over, disconnect the tick method, i.e. don't trigger it any more!
-// TODO: upon setting the gameState to on, connect the Softozor::tick method
+// TODO: upon setting the gameState to on, connect the tick method
 export default class ObstacleManager {
-  constructor(
-    private readonly m_Canvas: Canvas,
-    private readonly m_BannerHeight: number
-  ) {}
+  constructor(private readonly m_Canvas: Canvas) {
+    this.m_Canvas.attachResizeEvent(this.render.bind(this));
+  }
 
   /**
    * Public methods
    */
-  public clear(): void {
-    this.m_Obstacles.length = 0;
-  }
-
-  public setMovingObject(movingObject: Softozor): void {
-    this.m_MovingObject = movingObject;
-    this.m_LastFilledSquareXW =
-      ObstacleManager.FIRST_FILLED_SQUARE_DISTANCE +
-      MovingCoordinateSystem.scrollingPosition().x;
-  }
-
   public attachGoodScoreHandler(callback: GoodScoreHandler): void {
     this.m_GoodScoreEvent.attach(callback);
   }
@@ -51,6 +43,11 @@ export default class ObstacleManager {
     // TODO: it would probably make more sense to call cleanup() here
   }
 
+  public clear(): void {
+    this.m_Obstacles.length = 0;
+    CONFIG.firstFilledSquareDistance + SoftozorData.startPosition;
+  }
+
   /**
    *  fill image of bubbles
    */
@@ -58,13 +55,19 @@ export default class ObstacleManager {
     while (this.mustFill()) {
       this.fillSquareWithBadBubbles();
       this.fillSquareWithGoodBubbles();
-      this.m_LastFilledSquareXW += this.m_BannerHeight;
+      this.m_LastFilledSquareXW += CONSTANTS.BannerUnit;
     }
   }
 
   /**
    * Private methods
    */
+  private render(): void {
+    forEach(this.m_Obstacles, (element: Obstacle): void => {
+      element.render();
+    });
+  }
+
   private tickObstacles(): void {
     forEach(this.m_Obstacles, (element: Obstacle): void => {
       element.tick();
@@ -73,9 +76,7 @@ export default class ObstacleManager {
   }
 
   private handleCollision(obstacle: Obstacle): void {
-    let collision: Collision | undefined = this.m_MovingObject.collide(
-      obstacle
-    );
+    let collision: Collision | undefined = movingObject().collide(obstacle);
     if (collision != undefined) {
       if (obstacle instanceof BadBubble) {
         this.handleCollisionWithBadBubble(collision);
@@ -88,7 +89,7 @@ export default class ObstacleManager {
   }
 
   private handleCollisionWithBadBubble(collision: Collision): void {
-    this.m_MovingObject.handleBadCollision(collision);
+    movingObject().handleBadCollision(collision);
     this.m_BadScoreEvent.post();
   }
 
@@ -99,7 +100,7 @@ export default class ObstacleManager {
   private fillSquareWithBadBubbles(): void {
     for (
       let fillIndex: number = 0;
-      fillIndex < ObstacleManager.BAD_BUBBLE_PER_SQUARE;
+      fillIndex < CONFIG.badBubblePerSquare;
       ++fillIndex
     ) {
       let bubble: Obstacle = ObstacleFactory.createBadBubble(
@@ -114,7 +115,7 @@ export default class ObstacleManager {
   private fillSquareWithGoodBubbles(): void {
     for (
       let fillIndex: number = 0;
-      fillIndex < ObstacleManager.GOOD_BUBBLE_PER_SQUARE;
+      fillIndex < CONFIG.goodBubblePerSquare;
       ++fillIndex
     ) {
       let bubble: Obstacle = ObstacleFactory.createGoodBubble(
@@ -128,52 +129,49 @@ export default class ObstacleManager {
 
   private goodBubblePosition(): Vector2D {
     let x: number =
-      Math.random() * this.m_BannerHeight + this.m_LastFilledSquareXW;
-    let y: number = approachCenter(approachCenter(Math.random())) * 90 - 5;
+      Math.random() * CONSTANTS.BannerUnit + this.m_LastFilledSquareXW;
+    let param1: number = CONFIG.bubblePosition.param1;
+    let param2: number = CONFIG.bubblePosition.param2;
+    let y: number =
+      approachCenter(approachCenter(Math.random())) * param1 - param2;
     return new Vector2D(x, y);
   }
 
   private badBubblePosition(): Vector2D {
     let x: number =
-      Math.random() * this.m_BannerHeight + this.m_LastFilledSquareXW;
+      Math.random() * CONSTANTS.BannerUnit + this.m_LastFilledSquareXW;
+    let param1: number = CONFIG.bubblePosition.param1;
+    let param2: number = CONFIG.bubblePosition.param2;
     let y: number =
-      approachExtrema01(approachExtrema01(Math.random())) * 90 - 5;
+      approachExtrema01(approachExtrema01(Math.random())) * param1 - param2;
     return new Vector2D(x, y);
   }
 
   private cleanup(): void {
-    let scrollX: number = MovingCoordinateSystem.scrollingPosition().x;
     remove(
       this.m_Obstacles,
       (element: Obstacle): Boolean =>
-        element.isOutOfBounds(scrollX) || element.hasCollided
+        element.isOutOfBounds || element.hasCollided
     );
   }
 
   private bubbleDiameter(): number {
-    return 10 + Math.random() * 20;
+    let param1: number = CONFIG.bubbleDiameter.param1;
+    let param2: number = CONFIG.bubbleDiameter.param2;
+    return param1 + Math.random() * param2;
   }
 
   private mustFill(): Boolean {
     let scrollX: number = MovingCoordinateSystem.scrollingPosition().x;
-    return (
-      this.m_LastFilledSquareXW <
-      scrollX +
-        this.m_Canvas.width / MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER
-    );
+    let ratio: number = CONSTANTS.WorldBandRatioToBanner;
+    return this.m_LastFilledSquareXW < scrollX + this.m_Canvas.width / ratio;
   }
 
   /**
    * Private members
    */
-  private static readonly BAD_BUBBLE_PER_SQUARE: number = 3; // TODO: put these numbers in a config file!
-  private static readonly GOOD_BUBBLE_PER_SQUARE: number = 3;
-  private static readonly FIRST_FILLED_SQUARE_DISTANCE: number = 300;
-
   private m_BadScoreEvent: VoidSyncEvent = new VoidSyncEvent(); // TODO: maybe not necessary; maybe just storing the callback is enough
   private m_GoodScoreEvent: VoidSyncEvent = new VoidSyncEvent();
-
-  private m_MovingObject: Softozor;
 
   private m_LastFilledSquareXW: number;
   private m_Obstacles: Obstacle[];
@@ -186,4 +184,8 @@ function approachExtrema01(value: number): number {
 
 function approachCenter(value: number): number {
   return ((2 * value - 3) * value + 2) * value;
+}
+
+function movingObject(): MovingObject {
+  return MovingCoordinateSystem.movingObject();
 }

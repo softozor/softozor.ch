@@ -3,6 +3,7 @@ import HitBox from '../HitBoxes/HitBox';
 import CircularHitBox from '../HitBoxes/CircularHitBox';
 import Obstacle from './Obstacle';
 import Canvas from '../Canvas/Canvas';
+import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
 
 export default abstract class CircularObstacle extends Obstacle {
   constructor(
@@ -17,8 +18,9 @@ export default abstract class CircularObstacle extends Obstacle {
   /**
    * Public methods
    */
-  public isOutOfBounds(scrollingXW: number): Boolean {
-    return this.m_TopLeftCorner.x + this.m_Radius <= scrollingXW;
+  public get isOutOfBounds(): Boolean {
+    let scrollX: number = MovingCoordinateSystem.scrollingPosition().x;
+    return this.m_TopLeftCorner.x + this.m_Radius <= scrollX;
   }
 
   /**

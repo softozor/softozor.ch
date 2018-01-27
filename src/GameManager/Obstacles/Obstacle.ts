@@ -12,6 +12,8 @@ export default abstract class Obstacle {
   /**
    * Public methods
    */
+  public abstract get isOutOfBounds(): Boolean;
+
   public get hasCollided(): Boolean {
     return this.m_HasCollided;
   }
@@ -29,12 +31,11 @@ export default abstract class Obstacle {
     return undefined;
   }
 
-  public abstract isOutOfBounds(scrollingXW: number): Boolean;
+  public abstract render(): void;
 
   /**
    * Protected methods
    */
-  protected abstract render(): void;
   protected abstract get hitBox(): HitBox;
 
   /**

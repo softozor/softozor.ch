@@ -3,7 +3,6 @@ import { VoidSyncEvent } from 'ts-events';
 export default class Sprite {
   constructor(imgSrc: string) {
     this.m_Img = new Image();
-    let me: Sprite = this;
     this.m_Img.src = imgSrc;
   }
 

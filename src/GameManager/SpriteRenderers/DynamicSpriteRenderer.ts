@@ -1,3 +1,5 @@
+import CONSTANTS from '../../../config/game/Constants.json';
+
 import Sprite from './Sprite';
 import SpriteRenderer from './SpriteRenderer';
 import Canvas from '../Canvas/Canvas';
@@ -37,7 +39,7 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     }
     return (
       this.height *
-      MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER *
+      CONSTANTS.WorldBandRatioToBanner *
       this.m_Canvas.height /
       100 /
       this.m_DistanceFactor
@@ -50,14 +52,14 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     }
     return (
       this.width *
-      MovingCoordinateSystem.WORLD_BAND_RATIO_TO_BANNER *
+      CONSTANTS.WorldBandRatioToBanner *
       this.m_Canvas.height /
       100 /
       this.m_DistanceFactor
     );
   }
 
-  public draw(pos0PX: Vector2D): void {
+  public draw(alpha: number, pos0PX: Vector2D): void {
     let obsScrollPos: Vector2D = MovingCoordinateSystem.obsPX(
       MovingCoordinateSystem.scrollingPosition(),
       this.m_DistanceFactor
@@ -78,6 +80,7 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     );
 
     if (vertParams !== undefined && horizParams !== undefined) {
+      this.m_Canvas.context.globalAlpha = alpha;
       this.m_Canvas.context.drawImage(
         this.m_Sprite.img,
         vertParams.sPos,

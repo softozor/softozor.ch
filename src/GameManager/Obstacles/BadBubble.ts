@@ -1,5 +1,7 @@
 import BUBBLE from '../../../assets/banner/badbubble.png';
 
+import CONSTANTS from '../../../config/game/Constants.json';
+
 import Vector2D from '../Math/Vector2D';
 import CircularHitBox from '../HitBoxes/CircularHitBox';
 import SpriteRenderer from '../SpriteRenderers/DynamicSpriteRenderer';
@@ -22,20 +24,19 @@ export default class BadBubble extends CircularObstacle {
       diameter,
       diameter,
       BadBubble.SPRITE,
-      this.m_DistanceFactor
+      CONSTANTS.WorldDistanceFactor
     );
   }
 
   /**
    * Private methods
    */
-  protected render(): void {
+  public render(): void {
     let pos: Vector2D = MovingCoordinateSystem.obsPX(
       this.m_TopLeftCorner,
-      this.m_DistanceFactor
+      CONSTANTS.WorldDistanceFactor
     );
-    this.m_Canvas.context.globalAlpha = 1;
-    this.m_SpriteRenderer.draw(pos);
+    this.m_SpriteRenderer.draw(1, pos);
   }
 
   /**
@@ -43,6 +44,5 @@ export default class BadBubble extends CircularObstacle {
    */
   private static SPRITE: Sprite = new Sprite(BUBBLE);
 
-  private m_DistanceFactor: number = MovingCoordinateSystem.WORLD_DISTANCE_FACTOR;
   private m_SpriteRenderer: SpriteRenderer;
 }

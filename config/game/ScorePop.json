@@ -1,0 +1,19 @@
+{
+  "font": "bold 15px Arial",
+  "opacityFactor": 30,
+  "deltaY": 0,
+  "lifeTime": 30,
+  "alpha": 0.6,
+  "fillStyle": {
+    "good": {
+      "r": 0,
+      "g": 50,
+      "b": 0
+    },
+    "bad": {
+      "r": 128,
+      "g": 0,
+      "b": 0
+    }
+  }
+}

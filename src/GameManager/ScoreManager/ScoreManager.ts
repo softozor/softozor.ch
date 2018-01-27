@@ -1,8 +1,9 @@
+import CONFIG from '../../../config/game/Score.json';
+
 import * as Helpers from '../Helpers';
 import Vector2D from '../Math/Vector2D';
 import Canvas from '../Canvas/Canvas';
 import ScorePopManager from './ScorePopManager';
-import Softozor from '../Softozor/Softozor';
 
 export default class ScoreManager {
   constructor(private readonly m_Canvas: Canvas) {}
@@ -21,27 +22,31 @@ export default class ScoreManager {
     this.m_ScorePopMgr.tick();
   }
 
-  public setMovingObject(movingObject: Softozor): void {
-    this.m_ScorePopMgr.setMovingObject(movingObject);
-  }
-
   /**
    * Private methods
    */
   private get fillStyle(): string {
-    return this.FILL_STYLE;
+    return Helpers.rgba(
+      CONFIG.fillStyle.r,
+      CONFIG.fillStyle.g,
+      CONFIG.fillStyle.b
+    );
   }
 
   private get strokeStyle(): string {
-    return this.STROKE_STYLE;
+    return Helpers.rgba(
+      CONFIG.strokeStyle.r,
+      CONFIG.strokeStyle.g,
+      CONFIG.strokeStyle.b
+    );
   }
 
   private get textPosition(): Vector2D {
-    return new Vector2D(this.X_PX, this.Y_PX + this.HEIGHT_PX);
+    return new Vector2D(CONFIG.x, CONFIG.y + CONFIG.height);
   }
 
   private get font(): string {
-    return `bold ${this.HEIGHT_PX}px Arial`;
+    return `bold ${CONFIG.height}px Arial`;
   }
 
   private get score(): number {
@@ -54,7 +59,7 @@ export default class ScoreManager {
 
   private updateScore(): void {
     let ctx: CanvasRenderingContext2D = this.m_Canvas.context;
-    ctx.globalAlpha = 0.6;
+    ctx.globalAlpha = CONFIG.alpha;
     ctx.font = this.font;
     ctx.fillStyle = this.fillStyle;
     ctx.fillText(this.text, this.textPosition.x, this.textPosition.y);
@@ -65,12 +70,6 @@ export default class ScoreManager {
   /**
    * Private members
    */
-  private readonly X_PX: number = 5; // TODO: put these numbers in a config file!
-  private readonly Y_PX: number = 5;
-  private readonly HEIGHT_PX: number = 20;
-  private readonly FILL_STYLE: string = Helpers.rgba(255, 255, 255);
-  private readonly STROKE_STYLE: string = Helpers.rgba(0, 64, 128);
-
   private m_Score: number;
   private m_ScoreIncrement: number;
 

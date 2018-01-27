@@ -52,6 +52,10 @@ var plugins = [
     {
       from: 'scripts',
       to: 'scripts'
+    },
+    {
+      from: 'config',
+      to: 'config'
     }
   ])
 ];

@@ -12,7 +12,7 @@ export default abstract class SpriteRenderer {
   /**
    * Public methods
    */
-  public abstract draw(pos?: Vector2D): void;
+  public abstract draw(alpha: number, pos?: Vector2D): void;
 
   /**
    * Protected methods

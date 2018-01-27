@@ -1,3 +1,5 @@
+import CONFIG from '../../../config/game/GameStopped.json';
+
 import GAME_STOPPED_IMG from '../../../assets/banner/gameStopped.png';
 import GAME_STOPPED_SHADOW_IMG from '../../../assets/banner/gameStopped_shadow.png';
 import GAME_STOPPED_BACKGROUND_IMG from '../../../assets/banner/gameStopped_background.png';
@@ -15,10 +17,10 @@ export default class GameStoppedRenderer extends SpriteRenderer {
    * Public methods
    */
   // TODO: call <==> banner.playState === 'paused'
-  public draw(): void {
-    this.drawStoppedSprite();
-    this.drawBackgroundSprite();
-    this.drawShadowSprite();
+  public draw(alpha: number): void {
+    this.drawStoppedSprite(alpha);
+    this.drawBackgroundSprite(alpha);
+    this.drawShadowSprite(alpha);
   }
 
   /**
@@ -26,7 +28,7 @@ export default class GameStoppedRenderer extends SpriteRenderer {
    */
   protected get height(): number {
     return this.isSmallAspectRatio
-      ? this.m_Canvas.height * GameStoppedRenderer.HEIGHT_RATIO
+      ? this.m_Canvas.height * CONFIG.heightRatio
       : this.width * this.sheight / this.swidth;
   }
 
@@ -42,8 +44,7 @@ export default class GameStoppedRenderer extends SpriteRenderer {
   private get isSmallAspectRatio(): Boolean {
     return (
       this.swidth / this.sheight <=
-      this.m_Canvas.width /
-        (this.m_Canvas.height * GameStoppedRenderer.HEIGHT_RATIO)
+      this.m_Canvas.width / (this.m_Canvas.height * CONFIG.heightRatio)
     );
   }
 
@@ -69,13 +70,13 @@ export default class GameStoppedRenderer extends SpriteRenderer {
 
   private get y(): number {
     return this.isSmallAspectRatio
-      ? this.m_Canvas.height * (1 - GameStoppedRenderer.HEIGHT_RATIO) / 2
+      ? this.m_Canvas.height * (1 - CONFIG.heightRatio) / 2
       : (this.m_Canvas.height - this.height) / 2;
   }
 
-  private drawStoppedSprite(): void {
+  private drawStoppedSprite(alpha: number): void {
     // make hole in canvas
-    this.m_Canvas.context.globalAlpha = 1;
+    this.m_Canvas.context.globalAlpha = alpha;
     this.m_Canvas.context.globalCompositeOperation = 'destination-out';
     this.m_Canvas.context.drawImage(
       GameStoppedRenderer.SPRITES.stopped.img,
@@ -90,8 +91,8 @@ export default class GameStoppedRenderer extends SpriteRenderer {
     );
   }
 
-  private drawBackgroundSprite(): void {
-    this.m_Canvas.context.globalAlpha = 1;
+  private drawBackgroundSprite(alpha: number): void {
+    this.m_Canvas.context.globalAlpha = alpha;
     this.m_Canvas.context.globalCompositeOperation = 'destination-over';
     this.m_Canvas.context.drawImage(
       GameStoppedRenderer.SPRITES.background.img,
@@ -102,8 +103,8 @@ export default class GameStoppedRenderer extends SpriteRenderer {
     );
   }
 
-  private drawShadowSprite(): void {
-    this.m_Canvas.context.globalAlpha = 1;
+  private drawShadowSprite(alpha: number): void {
+    this.m_Canvas.context.globalAlpha = alpha;
     this.m_Canvas.context.globalCompositeOperation = 'source-over';
     this.m_Canvas.context.drawImage(
       GameStoppedRenderer.SPRITES.shadow.img,
@@ -121,7 +122,6 @@ export default class GameStoppedRenderer extends SpriteRenderer {
   /**
    * Private members
    */
-  private static HEIGHT_RATIO: number = 0.6; // TODO: put that in a config file!
   private static SPRITES: {
     stopped: Sprite;
     background: Sprite;
