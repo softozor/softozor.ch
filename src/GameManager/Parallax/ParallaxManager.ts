@@ -9,26 +9,21 @@ import WORLD_BAND_IMG from '../../../assets/banner/worldBand.png';
 
 import Canvas from '../Canvas/Canvas';
 import BandRenderer from './BandRenderer';
-import Sprite from '../SpriteRenderers/Sprite';
 import Vector2D from '../Math/Vector2D';
 import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
+import SpriteListLoader, {
+  SpriteList,
+  DistantSprite
+} from '../SpriteRenderers/SpriteListLoader';
 
-type SpriteList = { sprite: Sprite; distanceFactor: number }[];
+type ImgList = { imgSrc: string; distanceFactor: number }[];
 
 export default class ParallaxManager {
   constructor(private readonly m_Canvas: Canvas) {
-    // TODO: write SpritesPreloader class and use it here!
-    const bands: SpriteList = sprites();
-    this.m_BandRenderers = map(bands, element => {
-      return new BandRenderer(
-        this.m_Canvas,
-        2000, // TODO: when we use the SpritesPreloader, we can set the naturalHeight / naturalWidth here!
-        200,
-        element.sprite,
-        element.distanceFactor
-      );
-    });
-    this.m_Canvas.attachResizeEvent(this.render.bind(this));
+    const loader: SpriteListLoader = new SpriteListLoader(
+      images(),
+      this.onImagesLoaded.bind(this)
+    );
   }
 
   /**
@@ -41,6 +36,20 @@ export default class ParallaxManager {
   /**
    * Private methods
    */
+  private onImagesLoaded(sprites: SpriteList): void {
+    sprites.sort(compareDescendingDistanceFactors);
+    this.m_BandRenderers = map(sprites, (element: DistantSprite) => {
+      return new BandRenderer(
+        this.m_Canvas,
+        element.sprite.naturalWidth,
+        element.sprite.naturalHeight,
+        element.sprite,
+        element.distanceFactor
+      );
+    });
+    this.m_Canvas.attachResizeEvent(this.render.bind(this));
+  }
+
   private render(): void {
     forEach(this.m_BandRenderers, element => this.renderBand(element));
   }
@@ -64,14 +73,25 @@ export default class ParallaxManager {
 /**
  * Helpers
  */
-function sprites(): SpriteList {
+function images(): ImgList {
   return [
-    // The order here is important as this is the order in which the bands are rendered
-    { sprite: new Sprite(SKY_IMG), distanceFactor: Infinity },
-    { sprite: new Sprite(CLOUDS_IMG), distanceFactor: 16 },
-    { sprite: new Sprite(BACK_IMG), distanceFactor: 8 },
-    { sprite: new Sprite(MID_IMG), distanceFactor: 4 },
-    { sprite: new Sprite(FRONT_IMG), distanceFactor: 2 },
-    { sprite: new Sprite(WORLD_BAND_IMG), distanceFactor: 1 }
+    { imgSrc: SKY_IMG, distanceFactor: Infinity },
+    { imgSrc: CLOUDS_IMG, distanceFactor: 16 },
+    { imgSrc: BACK_IMG, distanceFactor: 8 },
+    { imgSrc: MID_IMG, distanceFactor: 4 },
+    { imgSrc: FRONT_IMG, distanceFactor: 2 },
+    { imgSrc: WORLD_BAND_IMG, distanceFactor: 1 }
   ];
+}
+
+function compareDescendingDistanceFactors(
+  val1: DistantSprite,
+  val2: DistantSprite
+): number {
+  if (val1.distanceFactor < val2.distanceFactor) {
+    return 1;
+  } else if (val1.distanceFactor > val2.distanceFactor) {
+    return -1;
+  }
+  return 0;
 }

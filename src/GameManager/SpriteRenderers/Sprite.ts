@@ -1,8 +1,9 @@
-import { VoidSyncEvent } from 'ts-events';
+export type ImgLoadedCallback = () => void;
 
 export default class Sprite {
-  constructor(imgSrc: string) {
+  constructor(imgSrc: string, callback: ImgLoadedCallback) {
     this.m_Img = new Image();
+    this.m_Img.onload = callback;
     this.m_Img.src = imgSrc;
   }
 
