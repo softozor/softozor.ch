@@ -1,9 +1,11 @@
 export type ImgLoadedCallback = () => void;
 
 export default class Sprite {
-  constructor(imgSrc: string, callback: ImgLoadedCallback) {
+  constructor(imgSrc: string, callback?: ImgLoadedCallback) {
     this.m_Img = new Image();
-    this.m_Img.onload = callback;
+    if (callback !== undefined) {
+      this.m_Img.onload = callback;
+    }
     this.m_Img.src = imgSrc;
   }
 

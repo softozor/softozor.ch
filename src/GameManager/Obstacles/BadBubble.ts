@@ -42,7 +42,11 @@ export default class BadBubble extends CircularObstacle {
   /**
    * Private members
    */
-  private static SPRITE: Sprite = new Sprite(BUBBLE);
+  private static SPRITE: Sprite = new Sprite(BUBBLE, onImgLoaded);
 
   private m_SpriteRenderer: SpriteRenderer;
+}
+
+function onImgLoaded(): void {
+  console.log(`Loaded sprite ${BUBBLE}.`);
 }

@@ -3,6 +3,7 @@ import CONFIG from '../../../config/game/Constants.json';
 import Canvas from '../Canvas/Canvas';
 import MovingObject from '../MovingObject';
 import Vector2D from './Vector2D';
+import Size from './Size';
 
 let CANVAS: Canvas;
 let MOVING_OBJECT: MovingObject;
@@ -33,9 +34,8 @@ export function scrollingPosition(): Vector2D {
 function obsW(position: Vector2D, distFactor: number): Vector2D {
   if (distFactor === Infinity || distFactor === 0) {
     return position;
-  } else {
-    return Vector2D.minus(position, scrollingPosition()).times(1 / distFactor);
   }
+  return Vector2D.minus(position, scrollingPosition()).times(1 / distFactor);
 }
 
 function obsToPX(obs: Vector2D): Vector2D {
@@ -46,4 +46,22 @@ function obsToPX(obs: Vector2D): Vector2D {
 
 export function obsPX(position: Vector2D, distFactor: number): Vector2D {
   return obsToPX(obsW(position, distFactor));
+}
+
+export function obsSizePX(size: Size, distFactor: number): Size {
+  if (distFactor === Infinity || distFactor === 0) {
+    return size;
+  }
+  let ratio: number = CONFIG.WorldBandRatioToBanner;
+  let unit: number = CONFIG.BannerUnit;
+  return size.times(CANVAS.height * ratio / (unit * distFactor));
+}
+
+export function obsLengthPX(length: number, distFactor: number): number {
+  if (distFactor === Infinity || distFactor === 0) {
+    return length;
+  }
+  let ratio: number = CONFIG.WorldBandRatioToBanner;
+  let unit: number = CONFIG.BannerUnit;
+  return length * CANVAS.height * ratio / (unit * distFactor);
 }

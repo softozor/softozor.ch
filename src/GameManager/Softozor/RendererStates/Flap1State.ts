@@ -6,6 +6,10 @@ import RendererState from './RendererState';
 
 export default class Flap1State extends RendererState {
   constructor(renderer: Renderer) {
-    super(renderer, new Sprite(IMG));
+    super(renderer, new Sprite(IMG, onImgLoaded));
   }
+}
+
+function onImgLoaded(): void {
+  console.log(`Loaded sprite ${IMG}.`);
 }

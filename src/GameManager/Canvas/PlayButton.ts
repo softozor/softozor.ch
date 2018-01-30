@@ -1,4 +1,4 @@
-import PLAY_PAUSE_IMG from '../../../assets/banner/play_pause.png';
+import IMG from '../../../assets/banner/play_pause.png';
 import CONFIG from '../../../config/game/Buttons/Play.json';
 
 import Button from './Button';
@@ -14,7 +14,15 @@ export default class PlayButton extends Button {
     height: number = CONFIG.height,
     clickDelta: number = CONFIG.clickDelta
   ) {
-    super(canvas, new Sprite(PLAY_PAUSE_IMG), x, y, width, height, clickDelta);
+    super(
+      canvas,
+      new Sprite(IMG, onImgLoaded),
+      x,
+      y,
+      width,
+      height,
+      clickDelta
+    );
   }
 
   /**
@@ -63,4 +71,8 @@ export default class PlayButton extends Button {
   /**
    * Private members
    */
+}
+
+function onImgLoaded(): void {
+  console.log(`Loaded sprite ${IMG}.`);
 }

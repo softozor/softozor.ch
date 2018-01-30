@@ -127,8 +127,23 @@ export default class GameStoppedRenderer extends SpriteRenderer {
     background: Sprite;
     shadow: Sprite;
   } = {
-    stopped: new Sprite(GAME_STOPPED_IMG),
-    background: new Sprite(GAME_STOPPED_BACKGROUND_IMG),
-    shadow: new Sprite(GAME_STOPPED_SHADOW_IMG)
+    stopped: new Sprite(GAME_STOPPED_IMG, onGameStoppedImgLoaded),
+    background: new Sprite(
+      GAME_STOPPED_BACKGROUND_IMG,
+      onGameStoppedBackgroundImgLoaded
+    ),
+    shadow: new Sprite(GAME_STOPPED_SHADOW_IMG, onGameStoppedShadowImgLoaded)
   };
+}
+
+function onGameStoppedImgLoaded(): void {
+  console.log(`Loaded sprite ${GAME_STOPPED_IMG}.`);
+}
+
+function onGameStoppedBackgroundImgLoaded(): void {
+  console.log(`Loaded sprite ${GAME_STOPPED_BACKGROUND_IMG}.`);
+}
+
+function onGameStoppedShadowImgLoaded(): void {
+  console.log(`Loaded sprite ${GAME_STOPPED_SHADOW_IMG}.`);
 }

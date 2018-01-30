@@ -1,4 +1,4 @@
-import RESTART_IMG from '../../../assets/banner/restart.png';
+import IMG from '../../../assets/banner/restart.png';
 import CONFIG from '../../../config/game/Buttons/Restart.json';
 
 import Button from './Button';
@@ -14,7 +14,15 @@ export default class RestartButton extends Button {
     height: number = CONFIG.height,
     clickDelta: number = CONFIG.clickDelta
   ) {
-    super(canvas, new Sprite(RESTART_IMG), x, y, width, height, clickDelta);
+    super(
+      canvas,
+      new Sprite(IMG, onImgLoaded),
+      x,
+      y,
+      width,
+      height,
+      clickDelta
+    );
   }
 
   /**
@@ -45,4 +53,8 @@ export default class RestartButton extends Button {
   /**
    * Private members
    */
+}
+
+function onImgLoaded(): void {
+  console.log(`Loaded sprite ${IMG}.`);
 }

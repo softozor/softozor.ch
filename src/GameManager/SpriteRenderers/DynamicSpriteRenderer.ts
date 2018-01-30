@@ -13,7 +13,6 @@ type ClippingParams = {
   sLength: number;
 };
 
-// TODO: must take the softozor scrolling position as reference
 export default class DynamicSpriteRenderer extends SpriteRenderer {
   constructor(
     canvas: Canvas,
@@ -32,29 +31,16 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     return this.m_DistanceFactor;
   }
 
-  // TODO: this is the same as the coordinate transformation in positionProto, but for distances!
   public get heightPX(): number {
-    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
-      return this.height;
-    }
-    return (
-      this.height *
-      CONSTANTS.WorldBandRatioToBanner *
-      this.m_Canvas.height /
-      100 /
+    return MovingCoordinateSystem.obsLengthPX(
+      this.height,
       this.m_DistanceFactor
     );
   }
 
   public get widthPX(): number {
-    if (this.m_DistanceFactor === 0 || this.m_DistanceFactor === Infinity) {
-      return this.width;
-    }
-    return (
-      this.width *
-      CONSTANTS.WorldBandRatioToBanner *
-      this.m_Canvas.height /
-      100 /
+    return MovingCoordinateSystem.obsLengthPX(
+      this.width,
       this.m_DistanceFactor
     );
   }
