@@ -14,12 +14,12 @@ type ClippingParams = {
 export default class DynamicSpriteRenderer extends SpriteRenderer {
   constructor(
     canvas: Canvas,
-    widthW: number,
-    heightW: number,
+    private readonly m_Width: number,
+    private readonly m_Height: number,
     protected m_Sprite: Sprite,
     protected readonly m_DistanceFactor: number
   ) {
-    super(canvas, widthW, heightW);
+    super(canvas);
   }
 
   /**
@@ -82,6 +82,14 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   /**
    * Protected methods
    */
+  protected get width(): number {
+    return this.m_Width;
+  }
+
+  protected get height(): number {
+    return this.m_Height;
+  }
+
   protected get widthPXToN(): number {
     return this.m_Sprite.naturalWidth / this.widthPX;
   }

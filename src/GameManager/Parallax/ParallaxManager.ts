@@ -1,11 +1,11 @@
 import { map, forEach } from 'lodash';
 
-import SKY_IMG from '../../../assets/banner/sky.png';
-import CLOUDS_IMG from '../../../assets/banner/clouds.png';
-import BACK_IMG from '../../../assets/banner/back.png';
-import MID_IMG from '../../../assets/banner/mid.png';
-import FRONT_IMG from '../../../assets/banner/front.png';
-import WORLD_BAND_IMG from '../../../assets/banner/worldBand.png';
+import * as SKY_IMG from '../../../assets/banner/sky.png';
+import * as CLOUDS_IMG from '../../../assets/banner/clouds.png';
+import * as BACK_IMG from '../../../assets/banner/back.png';
+import * as MID_IMG from '../../../assets/banner/mid.png';
+import * as FRONT_IMG from '../../../assets/banner/front.png';
+import * as WORLD_BAND_IMG from '../../../assets/banner/worldBand.png';
 
 import Canvas from '../Canvas/Canvas';
 import BandRenderer from './BandRenderer';
@@ -13,10 +13,9 @@ import Vector2D from '../Math/Vector2D';
 import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
 import SpriteListLoader, {
   SpriteList,
-  DistantSprite
+  DistantSprite,
+  DistantImgList
 } from '../SpriteRenderers/SpriteListLoader';
-
-type ImgList = { imgSrc: string; distanceFactor: number }[];
 
 export default class ParallaxManager {
   constructor(private readonly m_Canvas: Canvas) {
@@ -71,9 +70,9 @@ export default class ParallaxManager {
 }
 
 /**
- * Helpers
+ * Non-member methods
  */
-function images(): ImgList {
+function images(): DistantImgList {
   return [
     { imgSrc: SKY_IMG, distanceFactor: Infinity },
     { imgSrc: CLOUDS_IMG, distanceFactor: 16 },

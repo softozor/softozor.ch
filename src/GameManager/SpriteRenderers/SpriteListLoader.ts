@@ -20,9 +20,15 @@ export default class SpriteListLoader {
   /**
    * Private methods
    */
+  private createSprite(imgSrc: string): Sprite {
+    let result: Sprite = new Sprite();
+    result.load(imgSrc, this.onImgLoaded.bind(this));
+    return result;
+  }
+
   private imgToSprite(img: DistantImg): DistantSprite {
     return {
-      sprite: new Sprite(img.imgSrc, this.onImgLoaded.bind(this)),
+      sprite: this.createSprite(img.imgSrc),
       distanceFactor: img.distanceFactor
     };
   }

@@ -1,4 +1,4 @@
-import IMG from '../../../assets/banner/play_pause.png';
+import * as IMG from '../../../assets/banner/play_pause.png';
 import * as CONFIG from '../../../config/game/Buttons/Play.json';
 
 import Button from './Button';
@@ -14,15 +14,8 @@ export default class PlayButton extends Button {
     height: number = (<any>CONFIG).height,
     clickDelta: number = (<any>CONFIG).clickDelta
   ) {
-    super(
-      canvas,
-      new Sprite(IMG, onImgLoaded),
-      x,
-      y,
-      width,
-      height,
-      clickDelta
-    );
+    super(canvas, x, y, width, height, clickDelta);
+    this.m_Sprite.load(IMG, onImgLoaded);
   }
 
   /**

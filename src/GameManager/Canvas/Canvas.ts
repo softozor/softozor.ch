@@ -80,6 +80,7 @@ export default class Canvas {
   }
 
   private connectMouseEvents(): void {
+    console.log('Connecting mouse events');
     this.canvas.onmousedown = this.handleMouseDown.bind(this);
     this.canvas.onmouseup = this.handleMouseUp.bind(this);
     this.canvas.ontouchstart = this.handleMouseDown.bind(this);
@@ -89,6 +90,7 @@ export default class Canvas {
   }
 
   private connectKeyboardEvents(): void {
+    console.log('Connecting keyboard events');
     document.onkeydown = this.handleKeyDown.bind(this);
     document.onkeyup = this.handleKeyUp.bind(this);
   }
@@ -104,10 +106,12 @@ export default class Canvas {
   }
 
   private connectResizeEvent(): void {
+    console.log('Connecting resize events');
     $(window).resize(this.resizeToWindow.bind(this));
   }
 
   private setupButtons(): void {
+    console.log('Setting up buttons');
     this.m_Buttons.play.show();
     this.m_Buttons.restart.hide();
   }
@@ -161,6 +165,8 @@ export default class Canvas {
   /**
    * Private members
    */
+  private m_ResizeHandler: VoidSyncEvent = new VoidSyncEvent();
+
   private m_RenderingContext: CanvasRenderingContext2D = getRenderingContext();
 
   private m_Buttons: T_ButtonMap = {
@@ -172,13 +178,18 @@ export default class Canvas {
   private m_DownHandler: ClickHandlerCallback;
   private m_MouseEnterHandler: ClickHandlerCallback;
   private m_MouseLeaveHandler: ClickHandlerCallback;
-
-  private m_ResizeHandler: VoidSyncEvent = new VoidSyncEvent();
 }
 
 /**
  * Non-member methods
  */
-function getRenderingContext(): CanvasRenderingContext2D {
-  return (<HTMLCanvasElement>$('#banner > canvas')[0]).getContext('2d');
+function getRenderingContext(): CanvasRenderingContext2D | never {
+  let context: CanvasRenderingContext2D | null = (<HTMLCanvasElement>$(
+    '#banner > canvas'
+  )[0]).getContext('2d');
+  if (context !== null) {
+    console.log('Found canvas context');
+    return context;
+  }
+  throw Error('No canvas context available!');
 }

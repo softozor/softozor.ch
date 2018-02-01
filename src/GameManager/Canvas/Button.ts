@@ -7,14 +7,13 @@ export type ClickHandlerCallback = () => void;
 export default abstract class Button extends SpriteRenderer {
   constructor(
     canvas: Canvas,
-    protected readonly m_Sprite: Sprite,
     private readonly m_X: number,
     private readonly m_Y: number,
-    width: number,
-    height: number,
+    private readonly m_Width: number,
+    private readonly m_Height: number,
     private readonly m_ClickDelta: number
   ) {
-    super(canvas, width, height);
+    super(canvas);
     this.m_Canvas.attachResizeEvent(this.render.bind(this));
   }
 
@@ -57,6 +56,14 @@ export default abstract class Button extends SpriteRenderer {
   /**
    * Protected methods
    */
+  protected get width(): number {
+    return this.m_Width;
+  }
+
+  protected get height(): number {
+    return this.m_Height;
+  }
+
   protected get clickDelta(): number {
     return this.m_ClickDelta;
   }
@@ -83,6 +90,11 @@ export default abstract class Button extends SpriteRenderer {
   private render(): void {
     this.draw(this.alpha);
   }
+
+  /**
+   * Protected members
+   */
+  protected readonly m_Sprite: Sprite = new Sprite();
 
   /**
    * Private members

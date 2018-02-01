@@ -1,16 +1,27 @@
+import { find } from 'lodash';
+
 import * as CONFIG from '../../../config/game/GameStopped.json';
 
-import GAME_STOPPED_IMG from '../../../assets/banner/gameStopped.png';
-import GAME_STOPPED_SHADOW_IMG from '../../../assets/banner/gameStopped_shadow.png';
-import GAME_STOPPED_BACKGROUND_IMG from '../../../assets/banner/gameStopped_background.png';
+import * as GAME_STOPPED_IMG from '../../../assets/banner/gameStopped.png';
+import * as GAME_STOPPED_SHADOW_IMG from '../../../assets/banner/gameStopped_shadow.png';
+import * as GAME_STOPPED_BACKGROUND_IMG from '../../../assets/banner/gameStopped_background.png';
 
 import SpriteRenderer from './SpriteRenderer';
 import Sprite from './Sprite';
 import Canvas from '../Canvas/Canvas';
+import SpriteListLoader, {
+  SpriteList,
+  DistantImgList,
+  DistantSprite
+} from './SpriteListLoader';
 
 export default class GameStoppedRenderer extends SpriteRenderer {
   constructor(canvas: Canvas) {
     super(canvas);
+    const loader: SpriteListLoader = new SpriteListLoader(
+      images(),
+      this.onSpritesLoaded.bind(this)
+    );
   }
 
   /**
@@ -44,16 +55,16 @@ export default class GameStoppedRenderer extends SpriteRenderer {
   private get isSmallAspectRatio(): Boolean {
     return (
       this.swidth / this.sheight <=
-      this.m_Canvas.width / (this.m_Canvas.height * CONFIG.heightRatio)
+      this.m_Canvas.width / (this.m_Canvas.height * (<any>CONFIG).heightRatio)
     );
   }
 
   private get swidth(): number {
-    return GameStoppedRenderer.SPRITES.stopped.naturalWidth;
+    return this.m_Sprites.stopped.naturalWidth;
   }
 
   private get sheight(): number {
-    return GameStoppedRenderer.SPRITES.stopped.naturalHeight;
+    return this.m_Sprites.stopped.naturalHeight;
   }
 
   private get sx(): number {
@@ -70,8 +81,25 @@ export default class GameStoppedRenderer extends SpriteRenderer {
 
   private get y(): number {
     return this.isSmallAspectRatio
-      ? this.m_Canvas.height * (1 - CONFIG.heightRatio) / 2
+      ? this.m_Canvas.height * (1 - (<any>CONFIG).heightRatio) / 2
       : (this.m_Canvas.height - this.height) / 2;
+  }
+
+  private getSprite(sprites: SpriteList, imgSrc: string): Sprite {
+    return find(
+      sprites,
+      (element: DistantSprite): Boolean => element.sprite.img.src === imgSrc
+    ).sprite;
+  }
+
+  private onSpritesLoaded(sprites: SpriteList): void {
+    console.log('List of sprites loaded!');
+    this.m_Sprites.stopped = this.getSprite(sprites, GAME_STOPPED_IMG);
+    this.m_Sprites.background = this.getSprite(
+      sprites,
+      GAME_STOPPED_BACKGROUND_IMG
+    );
+    this.m_Sprites.shadow = this.getSprite(sprites, GAME_STOPPED_SHADOW_IMG);
   }
 
   private drawStoppedSprite(alpha: number): void {
@@ -79,7 +107,7 @@ export default class GameStoppedRenderer extends SpriteRenderer {
     this.m_Canvas.context.globalAlpha = alpha;
     this.m_Canvas.context.globalCompositeOperation = 'destination-out';
     this.m_Canvas.context.drawImage(
-      GameStoppedRenderer.SPRITES.stopped.img,
+      this.m_Sprites.stopped.img,
       0,
       0,
       this.swidth,
@@ -95,7 +123,7 @@ export default class GameStoppedRenderer extends SpriteRenderer {
     this.m_Canvas.context.globalAlpha = alpha;
     this.m_Canvas.context.globalCompositeOperation = 'destination-over';
     this.m_Canvas.context.drawImage(
-      GameStoppedRenderer.SPRITES.background.img,
+      this.m_Sprites.background.img,
       this.x,
       this.y,
       this.width,
@@ -107,7 +135,7 @@ export default class GameStoppedRenderer extends SpriteRenderer {
     this.m_Canvas.context.globalAlpha = alpha;
     this.m_Canvas.context.globalCompositeOperation = 'source-over';
     this.m_Canvas.context.drawImage(
-      GameStoppedRenderer.SPRITES.shadow.img,
+      this.m_Sprites.shadow.img,
       this.sx,
       this.sy,
       this.swidth,
@@ -122,28 +150,23 @@ export default class GameStoppedRenderer extends SpriteRenderer {
   /**
    * Private members
    */
-  private static SPRITES: {
+  private m_Sprites: {
     stopped: Sprite;
     background: Sprite;
     shadow: Sprite;
-  } = {
-    stopped: new Sprite(GAME_STOPPED_IMG, onGameStoppedImgLoaded),
-    background: new Sprite(
-      GAME_STOPPED_BACKGROUND_IMG,
-      onGameStoppedBackgroundImgLoaded
-    ),
-    shadow: new Sprite(GAME_STOPPED_SHADOW_IMG, onGameStoppedShadowImgLoaded)
   };
 }
 
-function onGameStoppedImgLoaded(): void {
-  console.log(`Loaded sprite ${GAME_STOPPED_IMG}.`);
-}
-
-function onGameStoppedBackgroundImgLoaded(): void {
-  console.log(`Loaded sprite ${GAME_STOPPED_BACKGROUND_IMG}.`);
-}
-
-function onGameStoppedShadowImgLoaded(): void {
-  console.log(`Loaded sprite ${GAME_STOPPED_SHADOW_IMG}.`);
+/**
+ * Non-member methods
+ */
+/**
+ * Non-member methods
+ */
+function images(): DistantImgList {
+  return [
+    { imgSrc: GAME_STOPPED_IMG, distanceFactor: 1 },
+    { imgSrc: GAME_STOPPED_BACKGROUND_IMG, distanceFactor: 1 },
+    { imgSrc: GAME_STOPPED_SHADOW_IMG, distanceFactor: 1 }
+  ];
 }

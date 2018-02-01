@@ -3,10 +3,7 @@ import Sprite from '../../SpriteRenderers/Sprite';
 import Vector2D from '../../Math/Vector2D';
 
 export default class RendererState {
-  constructor(
-    protected readonly m_Renderer: Renderer,
-    private readonly m_Sprite: Sprite
-  ) {}
+  constructor(protected readonly m_Renderer: Renderer) {}
 
   /**
    * Public methods
@@ -16,4 +13,9 @@ export default class RendererState {
   }
 
   public exit(): void {}
+
+  /**
+   * Protected methods
+   */
+  protected readonly m_Sprite: Sprite = new Sprite();
 }

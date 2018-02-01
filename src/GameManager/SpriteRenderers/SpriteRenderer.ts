@@ -1,13 +1,8 @@
 import Canvas from '../Canvas/Canvas';
-import Sprite from './Sprite';
 import Vector2D from '../Math/Vector2D';
 
 export default abstract class SpriteRenderer {
-  constructor(
-    protected readonly m_Canvas: Canvas,
-    private readonly m_Width?: number,
-    private readonly m_Height?: number
-  ) {}
+  constructor(protected readonly m_Canvas: Canvas) {}
 
   /**
    * Public methods
@@ -17,11 +12,7 @@ export default abstract class SpriteRenderer {
   /**
    * Protected methods
    */
-  protected get width(): number {
-    return this.m_Width;
-  }
+  protected abstract get width(): number;
 
-  protected get height(): number {
-    return this.m_Height;
-  }
+  protected abstract get height(): number;
 }

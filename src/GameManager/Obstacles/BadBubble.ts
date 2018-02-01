@@ -1,4 +1,4 @@
-import BUBBLE from '../../../assets/banner/badbubble.png';
+import * as BUBBLE from '../../../assets/banner/badbubble.png';
 
 import * as CONSTANTS from '../../../config/game/Constants.json';
 
@@ -42,11 +42,20 @@ export default class BadBubble extends CircularObstacle {
   /**
    * Private members
    */
-  private static SPRITE: Sprite = new Sprite(BUBBLE, onImgLoaded);
+  private static SPRITE: Sprite = createSprite();
 
   private m_SpriteRenderer: SpriteRenderer;
 }
 
+/**
+ * Non-member methods
+ */
 function onImgLoaded(): void {
   console.log(`Loaded sprite ${BUBBLE}.`);
+}
+
+function createSprite(): Sprite {
+  let result: Sprite = new Sprite();
+  result.load(BUBBLE, onImgLoaded);
+  return result;
 }
