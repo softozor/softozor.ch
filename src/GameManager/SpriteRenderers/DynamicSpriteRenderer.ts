@@ -48,14 +48,14 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
       MovingCoordinateSystem.scrollingPosition(),
       this.m_DistanceFactor
     ); // should be (0, 0)
-    let vertParams: ClippingParams = getClippingParams(
+    let vertParams: ClippingParams | undefined = getClippingParams(
       pos0PX.x,
       this.widthPX,
       this.m_Canvas.width,
       this.widthPXToN,
       obsScrollPos.x
     );
-    let horizParams: ClippingParams = getClippingParams(
+    let horizParams: ClippingParams | undefined = getClippingParams(
       pos0PX.y,
       this.heightPX,
       this.m_Canvas.height,
@@ -104,7 +104,7 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
 }
 
 /**
- * Helper methods
+ * Non-member methods
  */
 function getClippingParams(
   pos0PX: number,
@@ -112,29 +112,35 @@ function getClippingParams(
   bannerLengthPX: number,
   lengthPXToN: number,
   scrollPX: number
-): ClippingParams {
+): ClippingParams | undefined {
   if (pos0PX <= -lengthPX) {
     return undefined;
   } else if (pos0PX <= 0) {
-    let result: ClippingParams;
-    result.pos = 0;
-    result.length = Math.min(bannerLengthPX, lengthPX + pos0PX);
-    result.sPos = -pos0PX * lengthPXToN;
-    result.sLength = result.length * lengthPXToN;
+    let l: number = Math.min(bannerLengthPX, lengthPX + pos0PX);
+    let result: ClippingParams = {
+      pos: 0,
+      length: l,
+      sPos: -pos0PX * lengthPXToN,
+      sLength: l * lengthPXToN
+    };
     return result;
   } else if (pos0PX <= scrollPX + bannerLengthPX - lengthPX) {
-    let result: ClippingParams;
-    result.pos = pos0PX;
-    result.length = Math.min(bannerLengthPX - pos0PX, lengthPX);
-    result.sPos = 0;
-    result.sLength = result.length * lengthPXToN;
+    let l: number = Math.min(bannerLengthPX - pos0PX, lengthPX);
+    let result: ClippingParams = {
+      pos: pos0PX,
+      length: l,
+      sPos: 0,
+      sLength: l * lengthPXToN
+    };
     return result;
   } else if (pos0PX < scrollPX + bannerLengthPX) {
-    let result: ClippingParams;
-    result.pos = pos0PX;
-    result.length = bannerLengthPX - pos0PX;
-    result.sPos = 0;
-    result.sLength = result.length * lengthPXToN;
+    let l: number = bannerLengthPX - pos0PX;
+    let result: ClippingParams = {
+      pos: pos0PX,
+      length: l,
+      sPos: 0,
+      sLength: l * lengthPXToN
+    };
     return result;
   } else {
     return undefined;

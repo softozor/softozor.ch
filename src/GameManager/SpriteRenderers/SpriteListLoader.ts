@@ -14,7 +14,7 @@ export default class SpriteListLoader {
     private readonly m_Callback: ImgsLoadedCallback
   ) {
     this.m_Counter = list.length;
-    this.m_SpriteList = $.map(list, this.imgToSprite);
+    this.m_SpriteList = $.map(list, this.imgToSprite.bind(this));
   }
 
   /**
