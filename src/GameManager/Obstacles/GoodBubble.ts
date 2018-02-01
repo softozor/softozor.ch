@@ -1,6 +1,6 @@
 import BUBBLE from '../../../assets/banner/goodbubble.png';
 
-import CONSTANTS from '../../../config/game/Constants.json';
+import * as CONSTANTS from '../../../config/game/Constants.json';
 
 import Vector2D from '../Math/Vector2D';
 import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
@@ -24,14 +24,14 @@ export default class GoodBubble extends CircularObstacle {
       diameter,
       diameter,
       GoodBubble.SPRITE,
-      CONSTANTS.WorldDistanceFactor
+      (<any>CONSTANTS).WorldDistanceFactor
     );
   }
 
   public render(): void {
     let pos: Vector2D = MovingCoordinateSystem.obsPX(
       this.m_TopLeftCorner,
-      CONSTANTS.WorldDistanceFactor
+      (<any>CONSTANTS).WorldDistanceFactor
     );
     this.m_SpriteRenderer.draw(1, pos);
   }

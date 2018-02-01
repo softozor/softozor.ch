@@ -1,4 +1,4 @@
-import CONFIG from '../../../config/game/Score.json';
+import * as CONFIG from '../../../config/game/Score.json';
 
 import * as Helpers from '../Helpers';
 import Vector2D from '../Math/Vector2D';
@@ -27,26 +27,29 @@ export default class ScoreManager {
    */
   private get fillStyle(): string {
     return Helpers.rgba(
-      CONFIG.fillStyle.r,
-      CONFIG.fillStyle.g,
-      CONFIG.fillStyle.b
+      (<any>CONFIG).fillStyle.r,
+      (<any>CONFIG).fillStyle.g,
+      (<any>CONFIG).fillStyle.b
     );
   }
 
   private get strokeStyle(): string {
     return Helpers.rgba(
-      CONFIG.strokeStyle.r,
-      CONFIG.strokeStyle.g,
-      CONFIG.strokeStyle.b
+      (<any>CONFIG).strokeStyle.r,
+      (<any>CONFIG).strokeStyle.g,
+      (<any>CONFIG).strokeStyle.b
     );
   }
 
   private get textPosition(): Vector2D {
-    return new Vector2D(CONFIG.x, CONFIG.y + CONFIG.height);
+    return new Vector2D(
+      (<any>CONFIG).x,
+      (<any>CONFIG).y + (<any>CONFIG).height
+    );
   }
 
   private get font(): string {
-    return `bold ${CONFIG.height}px Arial`;
+    return `bold ${(<any>CONFIG).height}px Arial`;
   }
 
   private get score(): number {
@@ -59,7 +62,7 @@ export default class ScoreManager {
 
   private updateScore(): void {
     let ctx: CanvasRenderingContext2D = this.m_Canvas.context;
-    ctx.globalAlpha = CONFIG.alpha;
+    ctx.globalAlpha = (<any>CONFIG).alpha;
     ctx.font = this.font;
     ctx.fillStyle = this.fillStyle;
     ctx.fillText(this.text, this.textPosition.x, this.textPosition.y);

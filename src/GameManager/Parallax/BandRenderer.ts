@@ -1,4 +1,4 @@
-import CONSTANTS from '../../../config/game/Constants.json';
+import * as CONSTANTS from '../../../config/game/Constants.json';
 
 import Canvas from '../Canvas/Canvas';
 import Sprite from '../SpriteRenderers/Sprite';
@@ -27,8 +27,8 @@ export default class BandRenderer extends DynamicSpriteRenderer {
    * Protected methods
    */
   protected get height(): number {
-    let ratio: number = CONSTANTS.WorldBandRatioToBanner;
-    let bannerUnit: number = CONSTANTS.BannerUnit;
+    let ratio: number = (<any>CONSTANTS).WorldBandRatioToBanner;
+    let bannerUnit: number = (<any>CONSTANTS).BannerUnit;
     return this.m_DistanceFactor === Infinity || this.m_DistanceFactor === 0
       ? this.m_Canvas.height
       : (ratio - 1 + this.m_DistanceFactor) * bannerUnit / ratio;

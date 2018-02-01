@@ -1,5 +1,5 @@
 import IMG from '../../../assets/banner/play_pause.png';
-import CONFIG from '../../../config/game/Buttons/Play.json';
+import * as CONFIG from '../../../config/game/Buttons/Play.json';
 
 import Button from './Button';
 import Canvas from '../Canvas/Canvas';
@@ -8,11 +8,11 @@ import Sprite from '../SpriteRenderers/Sprite';
 export default class PlayButton extends Button {
   constructor(
     canvas: Canvas,
-    x: number = CONFIG.x,
-    y: number = CONFIG.y,
-    width: number = CONFIG.width,
-    height: number = CONFIG.height,
-    clickDelta: number = CONFIG.clickDelta
+    x: number = (<any>CONFIG).x,
+    y: number = (<any>CONFIG).y,
+    width: number = (<any>CONFIG).width,
+    height: number = (<any>CONFIG).height,
+    clickDelta: number = (<any>CONFIG).clickDelta
   ) {
     super(
       canvas,
@@ -65,7 +65,7 @@ export default class PlayButton extends Button {
    * Protected methods
    */
   protected get y(): number {
-    return this.m_Canvas.height - CONFIG.bottomMargin - this.height;
+    return this.m_Canvas.height - (<any>CONFIG).bottomMargin - this.height;
   }
 
   /**

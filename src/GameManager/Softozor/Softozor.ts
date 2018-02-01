@@ -1,5 +1,5 @@
-import CONFIG from '../../../config/game/SoftozorData.json';
-import CONSTANTS from '../../../config/game/Constants.json';
+import * as CONFIG from '../../../config/game/SoftozorData.json';
+import * as CONSTANTS from '../../../config/game/Constants.json';
 
 import Vector2D from '../Math/Vector2D';
 import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
@@ -32,7 +32,7 @@ export default class Softozor extends MovingObject {
   }
 
   public get isOutOfBounds(): Boolean {
-    return this.m_DeltaXW + CONFIG.heightW <= 0;
+    return this.m_DeltaXW + (<any>CONFIG).heightW <= 0;
   }
 
   public get deltaXW(): number {
@@ -73,13 +73,16 @@ export default class Softozor extends MovingObject {
    */
   private static initialPosition(): Vector2D {
     return new Vector2D(
-      CONFIG.startPosition + CONFIG.originalDeltaXW,
-      CONFIG.originalYW - CONFIG.heightW * CONSTANTS.WorldBandRatioToBanner
+      (<any>CONFIG).startPosition + (<any>CONFIG).originalDeltaXW,
+      (<any>CONFIG).originalYW -
+        (<any>CONFIG).heightW * (<any>CONSTANTS).WorldBandRatioToBanner
     );
   }
 
   private get canFlapUp(): Boolean {
-    return this.m_DoFlap && this.y > CONFIG.minYW && this.m_FlapWait <= 0;
+    return (
+      this.m_DoFlap && this.y > (<any>CONFIG).minYW && this.m_FlapWait <= 0
+    );
   }
 
   private get x(): number {
@@ -115,9 +118,9 @@ export default class Softozor extends MovingObject {
   }
 
   private render(): void {
-    if (this.m_FlapWait >= CONFIG.flapDelay - 3) {
+    if (this.m_FlapWait >= (<any>CONFIG).flapDelay - 3) {
       this.m_Renderer.setFlap1State();
-    } else if (this.m_FlapWait >= CONFIG.flapDelay - 6) {
+    } else if (this.m_FlapWait >= (<any>CONFIG).flapDelay - 6) {
       this.m_Renderer.setFlap2State();
     } else {
       this.m_Renderer.setIdleState();
@@ -131,8 +134,8 @@ export default class Softozor extends MovingObject {
 
   private flapUp(): void {
     if (this.canFlapUp) {
-      this.vy -= CONFIG.flapStrength;
-      this.m_FlapWait = CONFIG.flapDelay;
+      this.vy -= (<any>CONFIG).flapStrength;
+      this.m_FlapWait = (<any>CONFIG).flapDelay;
     }
     if (this.m_FlapWait > 0) {
       --this.m_FlapWait;
@@ -142,51 +145,56 @@ export default class Softozor extends MovingObject {
   private fall(): void {
     if (
       this.y >
-      CONFIG.maxYW - CONFIG.heightW * CONSTANTS.WorldBandRatioToBanner
+      (<any>CONFIG).maxYW -
+        (<any>CONFIG).heightW * (<any>CONSTANTS).WorldBandRatioToBanner
     ) {
       this.vy = Math.min(this.vy, 0);
-    } else if (this.y > CONFIG.minYW) {
-      this.vy += CONFIG.gravity;
+    } else if (this.y > (<any>CONFIG).minYW) {
+      this.vy += (<any>CONFIG).gravity;
     } else {
-      this.vy = Math.max(this.vy, CONFIG.hitDownSpeed);
-      this.vy += CONFIG.gravity;
+      this.vy = Math.max(this.vy, (<any>CONFIG).hitDownSpeed);
+      this.vy += (<any>CONFIG).gravity;
     }
-    this.vy = Math.min(Math.max(this.vy, CONFIG.minSpeed), CONFIG.maxSpeed);
+    this.vy = Math.min(
+      Math.max(this.vy, (<any>CONFIG).minSpeed),
+      (<any>CONFIG).maxSpeed
+    );
     this.y += this.vy;
   }
 
   private moveForward(): void {
-    this.vx = CONFIG.originalXSpeed + (this.x - this.m_DeltaXW) / 10000;
+    this.vx = (<any>CONFIG).originalXSpeed + (this.x - this.m_DeltaXW) / 10000;
     this.x += this.vx;
     this.m_DeltaXW += this.m_DeltaXSpeed;
-    this.m_DeltaXSpeed *= CONFIG.moveForward.deltaXSpeedFactor;
+    this.m_DeltaXSpeed *= (<any>CONFIG).moveForward.deltaXSpeedFactor;
   }
 
   /**
    * Private members
    */
   private m_Position: Vector2D = Softozor.initialPosition();
-  private m_DeltaXW: number = CONFIG.originalDeltaXW;
+  private m_DeltaXW: number = (<any>CONFIG).originalDeltaXW;
   private m_DeltaXSpeed: number = 0;
   private m_Speed: Vector2D = new Vector2D(
-    CONFIG.originalXSpeed,
-    CONFIG.minSpeed
+    (<any>CONFIG).originalXSpeed,
+    (<any>CONFIG).minSpeed
   );
   private m_FlapWait: number = 0;
   private m_DoFlap: Boolean = false;
-  private readonly m_DistanceFactor: number = CONSTANTS.WorldDistanceFactor;
+  private readonly m_DistanceFactor: number = (<any>CONSTANTS)
+    .WorldDistanceFactor;
   private readonly m_Hitbox: CircularHitBox = new CircularHitBox(
     this.m_Position,
     new Vector2D(
-      CONFIG.widthW * CONFIG.hitbox.relativeCenterWidthFactor,
-      CONFIG.heightW * CONFIG.hitbox.relativeCenterHeightFactor
+      (<any>CONFIG).widthW * (<any>CONFIG).hitbox.relativeCenterWidthFactor,
+      (<any>CONFIG).heightW * (<any>CONFIG).hitbox.relativeCenterHeightFactor
     ),
-    CONFIG.heightW * CONFIG.hitbox.radiusFactor
+    (<any>CONFIG).heightW * (<any>CONFIG).hitbox.radiusFactor
   );
   private m_Renderer: Renderer = new Renderer(
     this.m_Canvas,
-    CONFIG.widthW,
-    CONFIG.heightW,
+    (<any>CONFIG).widthW,
+    (<any>CONFIG).heightW,
     this.m_DistanceFactor
   );
 }

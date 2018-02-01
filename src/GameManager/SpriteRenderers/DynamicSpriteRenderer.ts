@@ -1,5 +1,3 @@
-import CONSTANTS from '../../../config/game/Constants.json';
-
 import Sprite from './Sprite';
 import SpriteRenderer from './SpriteRenderer';
 import Canvas from '../Canvas/Canvas';

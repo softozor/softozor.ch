@@ -1,4 +1,4 @@
-import CONFIG from '../../../config/game/GameStopped.json';
+import * as CONFIG from '../../../config/game/GameStopped.json';
 
 import GAME_STOPPED_IMG from '../../../assets/banner/gameStopped.png';
 import GAME_STOPPED_SHADOW_IMG from '../../../assets/banner/gameStopped_shadow.png';
@@ -28,7 +28,7 @@ export default class GameStoppedRenderer extends SpriteRenderer {
    */
   protected get height(): number {
     return this.isSmallAspectRatio
-      ? this.m_Canvas.height * CONFIG.heightRatio
+      ? this.m_Canvas.height * (<any>CONFIG).heightRatio
       : this.width * this.sheight / this.swidth;
   }
 

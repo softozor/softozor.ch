@@ -1,9 +1,9 @@
 import { remove, forEach } from 'lodash';
 import { VoidSyncEvent } from 'ts-events';
 
-import SoftozorData from '../../../config/game/SoftozorData.json';
-import CONSTANTS from '../../../config/game/Constants.json';
-import CONFIG from '../../../config/game/Obstacles.json';
+import * as SoftozorData from '../../../config/game/SoftozorData.json';
+import * as CONSTANTS from '../../../config/game/Constants.json';
+import * as CONFIG from '../../../config/game/Obstacles.json';
 
 import ObstacleFactory from './ObstacleFactory';
 import Vector2D from '../Math/Vector2D';
@@ -45,7 +45,7 @@ export default class ObstacleManager {
 
   public clear(): void {
     this.m_Obstacles.length = 0;
-    CONFIG.firstFilledSquareDistance + SoftozorData.startPosition;
+    (<any>CONFIG).firstFilledSquareDistance + (<any>SoftozorData).startPosition;
   }
 
   /**
@@ -55,7 +55,7 @@ export default class ObstacleManager {
     while (this.mustFill()) {
       this.fillSquareWithBadBubbles();
       this.fillSquareWithGoodBubbles();
-      this.m_LastFilledSquareXW += CONSTANTS.BannerUnit;
+      this.m_LastFilledSquareXW += (<any>CONSTANTS).BannerUnit;
     }
   }
 
@@ -100,7 +100,7 @@ export default class ObstacleManager {
   private fillSquareWithBadBubbles(): void {
     for (
       let fillIndex: number = 0;
-      fillIndex < CONFIG.badBubblePerSquare;
+      fillIndex < (<any>CONFIG).badBubblePerSquare;
       ++fillIndex
     ) {
       let bubble: Obstacle = ObstacleFactory.createBadBubble(
@@ -115,7 +115,7 @@ export default class ObstacleManager {
   private fillSquareWithGoodBubbles(): void {
     for (
       let fillIndex: number = 0;
-      fillIndex < CONFIG.goodBubblePerSquare;
+      fillIndex < (<any>CONFIG).goodBubblePerSquare;
       ++fillIndex
     ) {
       let bubble: Obstacle = ObstacleFactory.createGoodBubble(
@@ -129,9 +129,9 @@ export default class ObstacleManager {
 
   private goodBubblePosition(): Vector2D {
     let x: number =
-      Math.random() * CONSTANTS.BannerUnit + this.m_LastFilledSquareXW;
-    let param1: number = CONFIG.bubblePosition.param1;
-    let param2: number = CONFIG.bubblePosition.param2;
+      Math.random() * (<any>CONSTANTS).BannerUnit + this.m_LastFilledSquareXW;
+    let param1: number = (<any>CONFIG).bubblePosition.param1;
+    let param2: number = (<any>CONFIG).bubblePosition.param2;
     let y: number =
       approachCenter(approachCenter(Math.random())) * param1 - param2;
     return new Vector2D(x, y);
@@ -139,9 +139,9 @@ export default class ObstacleManager {
 
   private badBubblePosition(): Vector2D {
     let x: number =
-      Math.random() * CONSTANTS.BannerUnit + this.m_LastFilledSquareXW;
-    let param1: number = CONFIG.bubblePosition.param1;
-    let param2: number = CONFIG.bubblePosition.param2;
+      Math.random() * (<any>CONSTANTS).BannerUnit + this.m_LastFilledSquareXW;
+    let param1: number = (<any>CONFIG).bubblePosition.param1;
+    let param2: number = (<any>CONFIG).bubblePosition.param2;
     let y: number =
       approachExtrema01(approachExtrema01(Math.random())) * param1 - param2;
     return new Vector2D(x, y);
@@ -156,14 +156,14 @@ export default class ObstacleManager {
   }
 
   private bubbleDiameter(): number {
-    let param1: number = CONFIG.bubbleDiameter.param1;
-    let param2: number = CONFIG.bubbleDiameter.param2;
+    let param1: number = (<any>CONFIG).bubbleDiameter.param1;
+    let param2: number = (<any>CONFIG).bubbleDiameter.param2;
     return param1 + Math.random() * param2;
   }
 
   private mustFill(): Boolean {
     let scrollX: number = MovingCoordinateSystem.scrollingPosition().x;
-    let ratio: number = CONSTANTS.WorldBandRatioToBanner;
+    let ratio: number = (<any>CONSTANTS).WorldBandRatioToBanner;
     return this.m_LastFilledSquareXW < scrollX + this.m_Canvas.width / ratio;
   }
 
