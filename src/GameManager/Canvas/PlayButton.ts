@@ -5,9 +5,12 @@ import Button from './Button';
 import Canvas from '../Canvas/Canvas';
 import Sprite from '../SpriteRenderers/Sprite';
 
+type ButtonReadyCallback = () => void;
+
 export default class PlayButton extends Button {
   constructor(
     canvas: Canvas,
+    callback: ButtonReadyCallback,
     x: number = (<any>CONFIG).x,
     y: number = (<any>CONFIG).y,
     width: number = (<any>CONFIG).width,
@@ -15,7 +18,7 @@ export default class PlayButton extends Button {
     clickDelta: number = (<any>CONFIG).clickDelta
   ) {
     super(canvas, x, y, width, height, clickDelta);
-    this.m_Sprite.load(IMG, onImgLoaded);
+    this.m_Sprite.load(IMG, callback);
   }
 
   /**
@@ -28,7 +31,7 @@ export default class PlayButton extends Button {
   // The button should be animated during the state transition from
   // 'paused' to 'running' and vice-versa!
   // We don't need the actual state; we only need to initialize this
-  // position at the correct button (xN = 0 ==> play; xN = 600 ==> pause)
+  // position at the correct button (xN = 0 ==> pause; xN = 600 ==> play)
   // and then just toggle the direction!
   // The animation must be done here in this "animate()" method!
 
@@ -37,10 +40,11 @@ export default class PlayButton extends Button {
     // the animation gets played, which is not what we want! Instead, it must remember at what xN it stayed
     // and render the button with that xN value!
     this.m_Canvas.context.globalAlpha = alpha;
-    let xN: number = 0;
-    // xN = 0 ==> play button
-    // xN = 600 ==> pause button
+    let xN: number = 600;
+    // xN = 600 ==> play button
+    // xN = 0 ==> pause button
     // available via CONFIG.playPosition / CONFIG.pausePosition
+
     this.m_Canvas.context.drawImage(
       this.m_Sprite.img,
       xN,
@@ -64,8 +68,4 @@ export default class PlayButton extends Button {
   /**
    * Private members
    */
-}
-
-function onImgLoaded(): void {
-  console.log(`Loaded sprite ${IMG}.`);
 }

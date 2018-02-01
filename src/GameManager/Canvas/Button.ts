@@ -53,6 +53,10 @@ export default abstract class Button extends SpriteRenderer {
     );
   }
 
+  public render(): void {
+    this.draw(this.alpha);
+  }
+
   /**
    * Protected methods
    */
@@ -85,10 +89,6 @@ export default abstract class Button extends SpriteRenderer {
 
   private set alpha(value: number) {
     this.m_Alpha = value;
-  }
-
-  private render(): void {
-    this.draw(this.alpha);
   }
 
   /**

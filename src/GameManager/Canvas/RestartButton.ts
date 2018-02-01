@@ -5,9 +5,12 @@ import Button from './Button';
 import Canvas from '../Canvas/Canvas';
 import Sprite from '../SpriteRenderers/Sprite';
 
+type ButtonReadyCallback = () => void;
+
 export default class RestartButton extends Button {
   constructor(
     canvas: Canvas,
+    callback: ButtonReadyCallback,
     x: number = (<any>CONFIG).x,
     y: number = (<any>CONFIG).y,
     width: number = (<any>CONFIG).width,
@@ -15,7 +18,7 @@ export default class RestartButton extends Button {
     clickDelta: number = (<any>CONFIG).clickDelta
   ) {
     super(canvas, x, y, width, height, clickDelta);
-    this.m_Sprite.load(IMG, onImgLoaded);
+    this.m_Sprite.load(IMG, callback);
   }
 
   /**
@@ -46,8 +49,4 @@ export default class RestartButton extends Button {
   /**
    * Private members
    */
-}
-
-function onImgLoaded(): void {
-  console.log(`Loaded sprite ${IMG}.`);
 }

@@ -4,6 +4,7 @@ import { VoidSyncEvent } from 'ts-events';
 import Button, { ClickHandlerCallback } from './Button';
 import PlayButton from './PlayButton';
 import RestartButton from './RestartButton';
+import Size from '../Math/Size';
 
 type T_ButtonMap = { [key: string]: Button };
 type ResizeEvent = () => void;
@@ -18,7 +19,7 @@ export default class Canvas {
     this.connectMouseEvents();
     this.connectKeyboardEvents();
     this.connectResizeEvent();
-    this.setupButtons();
+    this.setCanvasSize(getCanvasSize());
   }
 
   /**
@@ -72,11 +73,20 @@ export default class Canvas {
     this.m_ResizeHandler.attach(event);
   }
 
+  public tick(): void {
+    this.render();
+  }
+
   /**
    * Private methods
    */
   private get canvas(): HTMLCanvasElement {
     return this.context.canvas;
+  }
+
+  private setCanvasSize(size: Size): void {
+    this.canvas.width = size.width;
+    this.canvas.height = size.height;
   }
 
   private connectMouseEvents(): void {
@@ -96,11 +106,13 @@ export default class Canvas {
   }
 
   private resizeCanvasElement(): void {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
+    this.setCanvasSize(getCanvasSize());
+    console.log('New canvas width  = ' + this.canvas.width);
+    console.log('New canvas height = ' + this.canvas.height);
   }
 
   private resizeToWindow(): void {
+    console.log('Resizing canvas to new window size');
     this.resizeCanvasElement();
     this.m_ResizeHandler.post();
   }
@@ -108,12 +120,6 @@ export default class Canvas {
   private connectResizeEvent(): void {
     console.log('Connecting resize events');
     $(window).resize(this.resizeToWindow.bind(this));
-  }
-
-  private setupButtons(): void {
-    console.log('Setting up buttons');
-    this.m_Buttons.play.show();
-    this.m_Buttons.restart.hide();
   }
 
   private getClickedObject(event: MouseEvent): Button | undefined {
@@ -162,6 +168,20 @@ export default class Canvas {
     }
   }
 
+  private render(): void {
+    forEach(this.m_Buttons, (value: Button): void => value.render());
+  }
+
+  private onPlayButtonReady(): void {
+    console.log('Play button ready');
+    this.m_Buttons.play.show();
+  }
+
+  private onRestartButtonReady(): void {
+    console.log('Restart button ready');
+    this.m_Buttons.restart.hide();
+  }
+
   /**
    * Private members
    */
@@ -170,8 +190,8 @@ export default class Canvas {
   private m_RenderingContext: CanvasRenderingContext2D = getRenderingContext();
 
   private m_Buttons: T_ButtonMap = {
-    play: new PlayButton(this),
-    restart: new RestartButton(this)
+    play: new PlayButton(this, this.onPlayButtonReady.bind(this)),
+    restart: new RestartButton(this, this.onRestartButtonReady.bind(this))
   };
 
   private m_UpHandler: ClickHandlerCallback;
@@ -192,4 +212,17 @@ function getRenderingContext(): CanvasRenderingContext2D | never {
     return context;
   }
   throw Error('No canvas context available!');
+}
+
+function getCanvasSize(): Size {
+  let result: Size = new Size();
+  let width: number | undefined = $('#banner').width();
+  if (width !== undefined) {
+    result.width = width;
+  }
+  let height: number | undefined = $('#banner').height();
+  if (height !== undefined) {
+    result.height = height;
+  }
+  return result;
 }
