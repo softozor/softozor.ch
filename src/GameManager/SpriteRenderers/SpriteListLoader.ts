@@ -1,4 +1,4 @@
-import { forEach } from 'lodash';
+import { find, indexOf, split, forEach } from 'lodash';
 
 import Sprite from './Sprite';
 
@@ -44,4 +44,16 @@ export default class SpriteListLoader {
    */
   private m_Counter: number;
   private readonly m_SpriteList: SpriteList;
+}
+
+/**
+ * Helper functions
+ */
+export function getSpriteWithSrc(sprites: SpriteList, imgSrc: string): Sprite {
+  let result: DistantSprite | undefined = find(
+    sprites,
+    (element: DistantSprite): Boolean =>
+      indexOf(split(element.sprite.img.src, '/'), imgSrc) !== -1
+  );
+  return result !== undefined ? result.sprite : new Sprite();
 }

@@ -21,9 +21,7 @@ type BadScoreHandler = () => void;
 // TODO: upon setting the gameState to over, disconnect the tick method, i.e. don't trigger it any more!
 // TODO: upon setting the gameState to on, connect the tick method
 export default class ObstacleManager {
-  constructor(private readonly m_Canvas: Canvas) {
-    this.m_Canvas.attachResizeEvent(this.render.bind(this));
-  }
+  constructor(private readonly m_Canvas: Canvas) {}
 
   /**
    * Public methods
@@ -59,15 +57,15 @@ export default class ObstacleManager {
     }
   }
 
-  /**
-   * Private methods
-   */
-  private render(): void {
+  public render(): void {
     forEach(this.m_Obstacles, (element: Obstacle): void => {
       element.render();
     });
   }
 
+  /**
+   * Private methods
+   */
   private tickObstacles(): void {
     forEach(this.m_Obstacles, (element: Obstacle): void => {
       element.tick();

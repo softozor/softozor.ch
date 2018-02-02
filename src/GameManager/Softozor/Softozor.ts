@@ -17,7 +17,6 @@ import MovingObject from '../MovingObject';
 export default class Softozor extends MovingObject {
   constructor(private readonly m_Canvas: Canvas) {
     super();
-    this.m_Canvas.attachResizeEvent(this.render.bind(this));
   }
 
   /**
@@ -68,6 +67,28 @@ export default class Softozor extends MovingObject {
     return obstacle.collide(this.m_Hitbox);
   }
 
+  public render(): void {
+    console.log('rendering softozor');
+    if (this.m_FlapWait >= (<any>CONFIG).flapDelay - 3) {
+      console.log('rendering flap1');
+      this.m_Renderer.setFlap1State();
+    } else if (this.m_FlapWait >= (<any>CONFIG).flapDelay - 6) {
+      console.log('rendering flap2');
+      this.m_Renderer.setFlap2State();
+    } else {
+      console.log('rendering idle');
+      this.m_Renderer.setIdleState();
+    }
+    let pos0PX: Vector2D = MovingCoordinateSystem.obsPX(
+      this.position,
+      this.m_DistanceFactor
+    );
+    console.log(
+      'rendering softozor at position: ' + pos0PX.x + ', ' + pos0PX.y
+    );
+    this.m_Renderer.draw(1, pos0PX);
+  }
+
   /**
    * Private methods
    */
@@ -115,21 +136,6 @@ export default class Softozor extends MovingObject {
 
   private set vy(value: number) {
     this.m_Speed.y = value;
-  }
-
-  private render(): void {
-    if (this.m_FlapWait >= (<any>CONFIG).flapDelay - 3) {
-      this.m_Renderer.setFlap1State();
-    } else if (this.m_FlapWait >= (<any>CONFIG).flapDelay - 6) {
-      this.m_Renderer.setFlap2State();
-    } else {
-      this.m_Renderer.setIdleState();
-    }
-    let pos0PX: Vector2D = MovingCoordinateSystem.obsPX(
-      this.position,
-      this.m_DistanceFactor
-    );
-    this.m_Renderer.draw(1, pos0PX);
   }
 
   private flapUp(): void {
@@ -191,7 +197,7 @@ export default class Softozor extends MovingObject {
     ),
     (<any>CONFIG).heightW * (<any>CONFIG).hitbox.radiusFactor
   );
-  private m_Renderer: Renderer = new Renderer(
+  private readonly m_Renderer: Renderer = new Renderer(
     this.m_Canvas,
     (<any>CONFIG).widthW,
     (<any>CONFIG).heightW,

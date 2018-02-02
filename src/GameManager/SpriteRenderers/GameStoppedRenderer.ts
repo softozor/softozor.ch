@@ -1,5 +1,3 @@
-import { find } from 'lodash';
-
 import * as CONFIG from '../../../config/game/GameStopped.json';
 
 import * as GAME_STOPPED_IMG from '../../../assets/banner/gameStopped.png';
@@ -12,7 +10,8 @@ import Canvas from '../Canvas/Canvas';
 import SpriteListLoader, {
   SpriteList,
   DistantImgList,
-  DistantSprite
+  DistantSprite,
+  getSpriteWithSrc
 } from './SpriteListLoader';
 
 export default class GameStoppedRenderer extends SpriteRenderer {
@@ -85,21 +84,14 @@ export default class GameStoppedRenderer extends SpriteRenderer {
       : (this.m_Canvas.height - this.height) / 2;
   }
 
-  private getSprite(sprites: SpriteList, imgSrc: string): Sprite {
-    return find(
-      sprites,
-      (element: DistantSprite): Boolean => element.sprite.img.src === imgSrc
-    ).sprite;
-  }
-
   private onSpritesLoaded(sprites: SpriteList): void {
     console.log('List of sprites loaded!');
-    this.m_Sprites.stopped = this.getSprite(sprites, GAME_STOPPED_IMG);
-    this.m_Sprites.background = this.getSprite(
+    this.m_Sprites.stopped = getSpriteWithSrc(sprites, GAME_STOPPED_IMG);
+    this.m_Sprites.background = getSpriteWithSrc(
       sprites,
       GAME_STOPPED_BACKGROUND_IMG
     );
-    this.m_Sprites.shadow = this.getSprite(sprites, GAME_STOPPED_SHADOW_IMG);
+    this.m_Sprites.shadow = getSpriteWithSrc(sprites, GAME_STOPPED_SHADOW_IMG);
   }
 
   private drawStoppedSprite(alpha: number): void {
@@ -157,9 +149,6 @@ export default class GameStoppedRenderer extends SpriteRenderer {
   };
 }
 
-/**
- * Non-member methods
- */
 /**
  * Non-member methods
  */

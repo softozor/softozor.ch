@@ -73,8 +73,17 @@ export default class Canvas {
     this.m_ResizeHandler.attach(event);
   }
 
+  public clearResizeEvents(): void {
+    this.m_ResizeHandler.detach();
+  }
+
   public tick(): void {
     this.render();
+  }
+
+  public render(): void {
+    console.log('rendering buttons');
+    forEach(this.m_Buttons, (value: Button): void => value.render());
   }
 
   /**
@@ -166,10 +175,6 @@ export default class Canvas {
     default:
       break;
     }
-  }
-
-  private render(): void {
-    forEach(this.m_Buttons, (value: Button): void => value.render());
   }
 
   private onPlayButtonReady(): void {

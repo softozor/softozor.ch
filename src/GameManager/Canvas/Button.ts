@@ -14,7 +14,6 @@ export default abstract class Button extends SpriteRenderer {
     private readonly m_ClickDelta: number
   ) {
     super(canvas);
-    this.m_Canvas.attachResizeEvent(this.render.bind(this));
   }
 
   /**

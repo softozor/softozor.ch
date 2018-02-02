@@ -32,6 +32,11 @@ export default class ParallaxManager {
     this.render();
   }
 
+  public render(): void {
+    console.log('rendering parallax');
+    forEach(this.m_BandRenderers, element => this.renderBand(element));
+  }
+
   /**
    * Private methods
    */
@@ -46,11 +51,6 @@ export default class ParallaxManager {
         element.distanceFactor
       );
     });
-    this.m_Canvas.attachResizeEvent(this.render.bind(this));
-  }
-
-  private render(): void {
-    forEach(this.m_BandRenderers, element => this.renderBand(element));
   }
 
   private renderBand(bandRenderer: BandRenderer): void {

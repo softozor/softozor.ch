@@ -44,21 +44,22 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   }
 
   public draw(alpha: number, pos0PX: Vector2D): void {
-    if (this.m_Sprite === undefined) {
+    if (this.sprite === undefined) {
+      console.log('Undefined sprite');
       return;
     }
     let obsScrollPos: Vector2D = MovingCoordinateSystem.obsPX(
       MovingCoordinateSystem.scrollingPosition(),
       this.m_DistanceFactor
     ); // should be (0, 0)
-    let vertParams: ClippingParams | undefined = getClippingParams(
+    let horizParams: ClippingParams | undefined = getClippingParams(
       pos0PX.x,
       this.widthPX,
       this.m_Canvas.width,
       this.widthPXToN,
       obsScrollPos.x
     );
-    let horizParams: ClippingParams | undefined = getClippingParams(
+    let vertParams: ClippingParams | undefined = getClippingParams(
       pos0PX.y,
       this.heightPX,
       this.m_Canvas.height,
@@ -69,15 +70,15 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     if (vertParams !== undefined && horizParams !== undefined) {
       this.m_Canvas.context.globalAlpha = alpha;
       this.m_Canvas.context.drawImage(
-        this.m_Sprite.img,
-        vertParams.sPos,
+        this.sprite.img,
         horizParams.sPos,
-        vertParams.sLength,
+        vertParams.sPos,
         horizParams.sLength,
-        vertParams.pos,
+        vertParams.sLength,
         horizParams.pos,
-        vertParams.length,
-        horizParams.length
+        vertParams.pos,
+        horizParams.length,
+        vertParams.length
       );
     }
   }
@@ -94,15 +95,19 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   }
 
   protected get widthPXToN(): number {
-    return this.m_Sprite !== undefined
-      ? this.m_Sprite.naturalWidth / this.widthPX
+    return this.sprite !== undefined
+      ? this.sprite.naturalWidth / this.widthPX
       : 0;
   }
 
   protected get heightPXToN(): number {
-    return this.m_Sprite !== undefined
-      ? this.m_Sprite.naturalHeight / this.heightPX
+    return this.sprite !== undefined
+      ? this.sprite.naturalHeight / this.heightPX
       : 0;
+  }
+
+  protected get sprite(): Sprite | undefined {
+    return this.m_Sprite;
   }
 
   /**

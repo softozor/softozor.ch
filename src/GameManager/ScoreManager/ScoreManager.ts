@@ -18,8 +18,18 @@ export default class ScoreManager {
   }
 
   public tick(): void {
-    this.updateScore();
+    this.render();
     this.m_ScorePopMgr.tick();
+  }
+
+  public render(): void {
+    let ctx: CanvasRenderingContext2D = this.m_Canvas.context;
+    ctx.globalAlpha = (<any>CONFIG).alpha;
+    ctx.font = this.font;
+    ctx.fillStyle = this.fillStyle;
+    ctx.fillText(this.text, this.textPosition.x, this.textPosition.y);
+    ctx.strokeStyle = this.strokeStyle;
+    ctx.strokeText(this.text, this.textPosition.x, this.textPosition.y);
   }
 
   /**
@@ -58,16 +68,6 @@ export default class ScoreManager {
 
   private get text(): string {
     return `SCORE : ${this.score}`;
-  }
-
-  private updateScore(): void {
-    let ctx: CanvasRenderingContext2D = this.m_Canvas.context;
-    ctx.globalAlpha = (<any>CONFIG).alpha;
-    ctx.font = this.font;
-    ctx.fillStyle = this.fillStyle;
-    ctx.fillText(this.text, this.textPosition.x, this.textPosition.y);
-    ctx.strokeStyle = this.strokeStyle;
-    ctx.strokeText(this.text, this.textPosition.x, this.textPosition.y);
   }
 
   /**
