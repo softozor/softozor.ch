@@ -13,7 +13,7 @@ export default class BandRenderer extends DynamicSpriteRenderer {
     sprite: Sprite,
     distanceFactor: number
   ) {
-    super(canvas, width, height, sprite, distanceFactor);
+    super(canvas, width, height, distanceFactor, sprite);
     console.log(
       `Creating band with size ${width} x ${height} and image ${sprite.img.src}`
     );
@@ -38,8 +38,8 @@ export default class BandRenderer extends DynamicSpriteRenderer {
   }
 
   protected get width(): number {
-    return (
-      this.height * this.m_Sprite.naturalWidth / this.m_Sprite.naturalHeight
-    );
+    return this.m_Sprite !== undefined
+      ? this.height * this.m_Sprite.naturalWidth / this.m_Sprite.naturalHeight
+      : 0;
   }
 }

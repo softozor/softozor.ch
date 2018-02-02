@@ -14,7 +14,7 @@ export default class Renderer extends DynamicSpriteRenderer {
     heightW: number,
     distanceFactor: number
   ) {
-    super(canvas, widthW, heightW, undefined, distanceFactor);
+    super(canvas, widthW, heightW, distanceFactor);
   }
 
   /**

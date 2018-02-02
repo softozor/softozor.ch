@@ -16,8 +16,8 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
     canvas: Canvas,
     private readonly m_Width: number,
     private readonly m_Height: number,
-    protected m_Sprite: Sprite,
-    protected readonly m_DistanceFactor: number
+    protected readonly m_DistanceFactor: number,
+    protected m_Sprite?: Sprite
   ) {
     super(canvas);
   }
@@ -44,6 +44,9 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   }
 
   public draw(alpha: number, pos0PX: Vector2D): void {
+    if (this.m_Sprite === undefined) {
+      return;
+    }
     let obsScrollPos: Vector2D = MovingCoordinateSystem.obsPX(
       MovingCoordinateSystem.scrollingPosition(),
       this.m_DistanceFactor
@@ -91,11 +94,15 @@ export default class DynamicSpriteRenderer extends SpriteRenderer {
   }
 
   protected get widthPXToN(): number {
-    return this.m_Sprite.naturalWidth / this.widthPX;
+    return this.m_Sprite !== undefined
+      ? this.m_Sprite.naturalWidth / this.widthPX
+      : 0;
   }
 
   protected get heightPXToN(): number {
-    return this.m_Sprite.naturalHeight / this.heightPX;
+    return this.m_Sprite !== undefined
+      ? this.m_Sprite.naturalHeight / this.heightPX
+      : 0;
   }
 
   /**
