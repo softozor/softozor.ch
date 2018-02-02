@@ -90,7 +90,7 @@ module.exports = {
         loader: 'ts-loader'
       },
       {
-        test: /\.js$/,
+        test: /\.(js|pug)$/,
         exclude: /(node_modules|dist)/,
         use: {
           loader: 'babel-loader',
