@@ -42,8 +42,10 @@ export default class ObstacleManager {
   }
 
   public clear(): void {
-    this.m_Obstacles.length = 0;
-    (<any>CONFIG).firstFilledSquareDistance + (<any>SoftozorData).startPosition;
+    if (this.m_Obstacles !== undefined) {
+      this.m_Obstacles.length = 0;
+    }
+    this.m_LastFilledSquareXW = initLastFilledSquare();
   }
 
   /**
@@ -171,8 +173,17 @@ export default class ObstacleManager {
   private m_BadScoreEvent: VoidSyncEvent = new VoidSyncEvent(); // TODO: maybe not necessary; maybe just storing the callback is enough
   private m_GoodScoreEvent: VoidSyncEvent = new VoidSyncEvent();
 
-  private m_LastFilledSquareXW: number;
+  private m_LastFilledSquareXW: number = initLastFilledSquare();
   private m_Obstacles: Obstacle[];
+}
+
+/**
+ * Non-member methods
+ */
+function initLastFilledSquare(): number {
+  return (
+    (<any>CONFIG).firstFilledSquareDistance + (<any>SoftozorData).startPosition
+  );
 }
 
 // stretches a value between 0 and 1 to 0 or 1, symetric relative to 0.5

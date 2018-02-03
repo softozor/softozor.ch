@@ -6,10 +6,10 @@ import Softozor from './Softozor/Softozor';
 import ParallaxManager from './Parallax/ParallaxManager';
 import Banner from './Banner/Banner';
 import ScoreManager from './ScoreManager/ScoreManager';
+import ObstacleManager from './Obstacles/ObstacleManager';
 
 // import * as Helpers from './Helpers';
 // import Vector2D from './Math/Vector2D';
-// import ObstacleManager from './Obstacles/ObstacleManager';
 
 // TODO: let this this object decide whether the game stops based on e.g. Softozor::outOfBounds
 // TODO: let this object connect / disconnect the Softozor::tick and ObstacleManager::tick
@@ -43,9 +43,9 @@ export default class GameManager {
     this.m_Canvas.attachResizeEvent(
       this.m_ParallaxMgr.render.bind(this.m_ParallaxMgr)
     );
-    // this.m_Canvas.attachResizeEvent(
-    //   this.m_ObstacleMgr.render.bind(this.m_ObstacleMgr)
-    // );
+    this.m_Canvas.attachResizeEvent(
+      this.m_ObstacleMgr.render.bind(this.m_ObstacleMgr)
+    );
     this.m_Canvas.attachResizeEvent(
       this.m_Softozor.render.bind(this.m_Softozor)
     );
@@ -59,16 +59,13 @@ export default class GameManager {
   private init(): void {
     MovingCoordinateSystem.setCanvas(this.m_Canvas);
     this.m_Softozor = new Softozor(this.m_Canvas);
-    // this.m_ObstacleMgr.clear();
+    this.m_ObstacleMgr.clear();
     this.m_ScoreMgr.clear();
     this.setMovingObject(this.m_Softozor);
 
     this.connectResizeEvents();
   }
 
-  /**
-   * This method needs to replace the reference to the Softozor object EVERYWHERE!
-   */
   private setMovingObject(movingObject: Softozor): void {
     MovingCoordinateSystem.setMovingObject(movingObject);
   }
@@ -156,9 +153,9 @@ export default class GameManager {
   private readonly m_ParallaxMgr: ParallaxManager = new ParallaxManager(
     this.m_Canvas
   );
-  // private readonly m_ObstacleMgr: ObstacleManager = new ObstacleManager(
-  //   this.m_Canvas
-  // );
+  private readonly m_ObstacleMgr: ObstacleManager = new ObstacleManager(
+    this.m_Canvas
+  );
   private readonly m_ScoreMgr: ScoreManager = new ScoreManager(this.m_Canvas);
   private readonly m_Banner: Banner = new Banner(this.m_Canvas);
 

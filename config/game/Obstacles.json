@@ -1,7 +1,7 @@
 {
   "badBubblePerSquare": 3,
   "goodBubblePerSquare": 3, 
-  "firstFilledSquareDistance": 300
+  "firstFilledSquareDistance": 300,
   "bubblePosition": {
     "param1": 90,
     "param2": 5
