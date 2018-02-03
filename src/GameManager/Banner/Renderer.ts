@@ -1,32 +1,23 @@
-import * as CONFIG from '../../../config/game/GameStopped.json';
+import * as CONFIG from '../../../config/banner/Renderer.json';
 
-import * as GAME_STOPPED_IMG from '../../../assets/banner/gameStopped.png';
-import * as GAME_STOPPED_SHADOW_IMG from '../../../assets/banner/gameStopped_shadow.png';
-import * as GAME_STOPPED_BACKGROUND_IMG from '../../../assets/banner/gameStopped_background.png';
-
-import SpriteRenderer from './SpriteRenderer';
-import Sprite from './Sprite';
+import SpriteRenderer from '../SpriteRenderers/SpriteRenderer';
+import Sprite from '../SpriteRenderers/Sprite';
 import Canvas from '../Canvas/Canvas';
-import SpriteListLoader, {
-  SpriteList,
-  DistantImgList,
-  DistantSprite,
-  getSpriteWithSrc
-} from './SpriteListLoader';
+
+export type BannerSprites = {
+  stopped: Sprite;
+  background: Sprite;
+  shadow: Sprite;
+};
 
 export default class GameStoppedRenderer extends SpriteRenderer {
-  constructor(canvas: Canvas) {
+  constructor(canvas: Canvas, private readonly m_Sprites: BannerSprites) {
     super(canvas);
-    const loader: SpriteListLoader = new SpriteListLoader(
-      images(),
-      this.onSpritesLoaded.bind(this)
-    );
   }
 
   /**
    * Public methods
    */
-  // TODO: call <==> banner.playState === 'paused'
   public draw(alpha: number): void {
     this.drawStoppedSprite(alpha);
     this.drawBackgroundSprite(alpha);
@@ -84,16 +75,6 @@ export default class GameStoppedRenderer extends SpriteRenderer {
       : (this.m_Canvas.height - this.height) / 2;
   }
 
-  private onSpritesLoaded(sprites: SpriteList): void {
-    console.log('List of sprites loaded!');
-    this.m_Sprites.stopped = getSpriteWithSrc(sprites, GAME_STOPPED_IMG);
-    this.m_Sprites.background = getSpriteWithSrc(
-      sprites,
-      GAME_STOPPED_BACKGROUND_IMG
-    );
-    this.m_Sprites.shadow = getSpriteWithSrc(sprites, GAME_STOPPED_SHADOW_IMG);
-  }
-
   private drawStoppedSprite(alpha: number): void {
     // make hole in canvas
     this.m_Canvas.context.globalAlpha = alpha;
@@ -142,20 +123,4 @@ export default class GameStoppedRenderer extends SpriteRenderer {
   /**
    * Private members
    */
-  private m_Sprites: {
-    stopped: Sprite;
-    background: Sprite;
-    shadow: Sprite;
-  };
-}
-
-/**
- * Non-member methods
- */
-function images(): DistantImgList {
-  return [
-    { imgSrc: GAME_STOPPED_IMG, distanceFactor: 1 },
-    { imgSrc: GAME_STOPPED_BACKGROUND_IMG, distanceFactor: 1 },
-    { imgSrc: GAME_STOPPED_SHADOW_IMG, distanceFactor: 1 }
-  ];
 }

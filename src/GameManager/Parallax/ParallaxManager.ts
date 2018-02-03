@@ -34,7 +34,9 @@ export default class ParallaxManager {
 
   public render(): void {
     console.log('rendering parallax');
-    forEach(this.m_BandRenderers, element => this.renderBand(element));
+    forEach(this.m_BandRenderers, (element: BandRenderer): void =>
+      this.renderBand(element)
+    );
   }
 
   /**
@@ -42,15 +44,18 @@ export default class ParallaxManager {
    */
   private onImagesLoaded(sprites: SpriteList): void {
     sprites.sort(compareDescendingDistanceFactors);
-    this.m_BandRenderers = map(sprites, (element: DistantSprite) => {
-      return new BandRenderer(
-        this.m_Canvas,
-        element.sprite.naturalWidth,
-        element.sprite.naturalHeight,
-        element.sprite,
-        element.distanceFactor
-      );
-    });
+    this.m_BandRenderers = map(
+      sprites,
+      (element: DistantSprite): BandRenderer => {
+        return new BandRenderer(
+          this.m_Canvas,
+          element.sprite.naturalWidth,
+          element.sprite.naturalHeight,
+          element.sprite,
+          element.distanceFactor
+        );
+      }
+    );
   }
 
   private renderBand(bandRenderer: BandRenderer): void {
