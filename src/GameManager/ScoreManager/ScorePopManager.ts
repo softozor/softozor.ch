@@ -19,7 +19,9 @@ export default class ScorePopManager {
   }
 
   public clear(): void {
-    this.m_ScorePops.length = 0;
+    if (this.m_ScorePops !== undefined) {
+      this.m_ScorePops.length = 0;
+    }
   }
 
   /**

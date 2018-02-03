@@ -12,8 +12,8 @@ export default class ScoreManager {
    * Public methods
    */
   public clear(): void {
-    this.m_Score = 0;
-    this.m_ScoreIncrement = 1;
+    this.m_Score = initScore();
+    this.m_ScoreIncrement = initScoreIncrement();
     this.m_ScorePopMgr.clear();
   }
 
@@ -73,8 +73,19 @@ export default class ScoreManager {
   /**
    * Private members
    */
-  private m_Score: number;
-  private m_ScoreIncrement: number;
+  private m_Score: number = initScore();
+  private m_ScoreIncrement: number = initScoreIncrement();
 
   private m_ScorePopMgr: ScorePopManager = new ScorePopManager(this.m_Canvas);
+}
+
+/**
+ * Non-member methods
+ */
+function initScore(): number {
+  return 0;
+}
+
+function initScoreIncrement(): number {
+  return 1;
 }
