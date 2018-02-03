@@ -5,6 +5,7 @@ import Button, { ClickHandlerCallback } from './Button';
 import PlayButton from './PlayButton';
 import RestartButton from './RestartButton';
 import Size from '../Math/Size';
+import BannerLoader from '../BannerLoader';
 
 type T_ButtonMap = { [key: string]: Button };
 type ResizeEvent = () => void;
@@ -61,6 +62,17 @@ export default class Canvas {
     this.m_MouseLeaveHandler = value;
   }
 
+  public load(): void {
+    this.m_Buttons = {
+      play: new PlayButton(this, this.onButtonReady.bind(this)),
+      restart: new RestartButton(this, this.onButtonReady.bind(this))
+    };
+  }
+
+  public attachLoader(loader: BannerLoader): void {
+    loader.addEvent(this.m_ReadyEvent);
+  }
+
   public showRestartButton(): void {
     this.m_Buttons.restart.show();
   }
@@ -82,7 +94,6 @@ export default class Canvas {
   }
 
   public render(): void {
-    console.log('rendering buttons');
     forEach(this.m_Buttons, (value: Button): void => value.render());
   }
 
@@ -177,27 +188,26 @@ export default class Canvas {
     }
   }
 
-  private onPlayButtonReady(): void {
-    console.log('Play button ready');
-    this.m_Buttons.play.show();
-  }
-
-  private onRestartButtonReady(): void {
-    console.log('Restart button ready');
-    this.m_Buttons.restart.hide();
+  private onButtonReady(): void {
+    if (--this.m_ReadyCounter === 0) {
+      this.m_Buttons.play.show();
+      this.m_Buttons.restart.hide();
+      this.m_ReadyEvent.post();
+      this.m_ReadyCounter = initReadyCounter();
+      console.log('Buttons loaded');
+    }
   }
 
   /**
    * Private members
    */
+  private m_ReadyCounter: number = initReadyCounter(); // number of buttons
   private m_ResizeHandler: VoidSyncEvent = new VoidSyncEvent();
+  private m_ReadyEvent: VoidSyncEvent = new VoidSyncEvent();
 
   private m_RenderingContext: CanvasRenderingContext2D = getRenderingContext();
 
-  private m_Buttons: T_ButtonMap = {
-    play: new PlayButton(this, this.onPlayButtonReady.bind(this)),
-    restart: new RestartButton(this, this.onRestartButtonReady.bind(this))
-  };
+  private m_Buttons: T_ButtonMap;
 
   private m_UpHandler: ClickHandlerCallback;
   private m_DownHandler: ClickHandlerCallback;
@@ -208,6 +218,10 @@ export default class Canvas {
 /**
  * Non-member methods
  */
+function initReadyCounter(): number {
+  return 2;
+}
+
 function getRenderingContext(): CanvasRenderingContext2D | never {
   let context: CanvasRenderingContext2D | null = (<HTMLCanvasElement>$(
     '#banner > canvas'

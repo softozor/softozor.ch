@@ -22,9 +22,19 @@ export default class ScoreManager {
     this.m_ScorePopMgr.tick();
   }
 
+  public show(): void {
+    this.m_Alpha = 1;
+    this.render();
+  }
+
+  public hide(): void {
+    this.m_Alpha = 0;
+    this.render();
+  }
+
   public render(): void {
     let ctx: CanvasRenderingContext2D = this.m_Canvas.context;
-    ctx.globalAlpha = (<any>CONFIG).alpha;
+    ctx.globalAlpha = this.m_Alpha * (<any>CONFIG).alpha;
     ctx.font = this.font;
     ctx.fillStyle = this.fillStyle;
     ctx.fillText(this.text, this.textPosition.x, this.textPosition.y);
@@ -73,6 +83,7 @@ export default class ScoreManager {
   /**
    * Private members
    */
+  private m_Alpha: number = 0;
   private m_Score: number = initScore();
   private m_ScoreIncrement: number = initScoreIncrement();
 

@@ -67,26 +67,29 @@ export default class Softozor extends MovingObject {
     return obstacle.collide(this.m_Hitbox);
   }
 
+  public show(): void {
+    this.m_Alpha = 1;
+    this.render();
+  }
+
+  public hide(): void {
+    this.m_Alpha = 0;
+    this.render();
+  }
+
   public render(): void {
-    console.log('rendering softozor');
     if (this.m_FlapWait >= (<any>CONFIG).flapDelay - 3) {
-      console.log('rendering flap1');
       this.m_Renderer.setFlap1State();
     } else if (this.m_FlapWait >= (<any>CONFIG).flapDelay - 6) {
-      console.log('rendering flap2');
       this.m_Renderer.setFlap2State();
     } else {
-      console.log('rendering idle');
       this.m_Renderer.setIdleState();
     }
     let pos0PX: Vector2D = MovingCoordinateSystem.obsPX(
       this.position,
       this.m_DistanceFactor
     );
-    console.log(
-      'rendering softozor at position: ' + pos0PX.x + ', ' + pos0PX.y
-    );
-    this.m_Renderer.draw(1, pos0PX);
+    this.m_Renderer.draw(this.m_Alpha, pos0PX);
   }
 
   /**
@@ -178,6 +181,7 @@ export default class Softozor extends MovingObject {
   /**
    * Private members
    */
+  private m_Alpha: number = 0;
   private m_Position: Vector2D = Softozor.initialPosition();
   private m_DeltaXW: number = (<any>CONFIG).originalDeltaXW;
   private m_DeltaXSpeed: number = 0;

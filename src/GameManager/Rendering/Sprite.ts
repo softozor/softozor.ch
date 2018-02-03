@@ -24,7 +24,6 @@ export default class Sprite {
   }
 
   public load(imgSrc: string, callback: ImgLoadedCallback): void {
-    console.log('constructing sprite with img <' + imgSrc + '>');
     this.m_LoadedEvent.attach(callback);
     this.m_Img.src = imgSrc;
   }

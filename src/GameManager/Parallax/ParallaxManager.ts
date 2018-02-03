@@ -1,4 +1,5 @@
 import { map, forEach } from 'lodash';
+import { VoidSyncEvent } from 'ts-events';
 
 import * as SKY_IMG from '../../../assets/banner/sky.png';
 import * as CLOUDS_IMG from '../../../assets/banner/clouds.png';
@@ -16,24 +17,30 @@ import SpriteListLoader, {
   DistantSprite,
   DistantImgList
 } from '../Rendering/SpriteListLoader';
+import BannerLoader from '../BannerLoader';
 
 export default class ParallaxManager {
-  constructor(private readonly m_Canvas: Canvas) {
+  constructor(private readonly m_Canvas: Canvas) {}
+
+  /**
+   * Public methods
+   */
+  public load(): void {
     const loader: SpriteListLoader = new SpriteListLoader(
       images(),
       this.onImagesLoaded.bind(this)
     );
   }
 
-  /**
-   * Public methods
-   */
+  public attachLoader(loader: BannerLoader): void {
+    loader.addEvent(this.m_ReadyEvent);
+  }
+
   public tick(): void {
     this.render();
   }
 
   public render(): void {
-    console.log('rendering parallax');
     forEach(this.m_BandRenderers, (element: BandRenderer): void =>
       this.renderBand(element)
     );
@@ -56,6 +63,8 @@ export default class ParallaxManager {
         );
       }
     );
+    this.m_ReadyEvent.post();
+    console.log('Parallax loaded');
   }
 
   private renderBand(bandRenderer: BandRenderer): void {
@@ -72,6 +81,7 @@ export default class ParallaxManager {
    * Private members
    */
   private m_BandRenderers: BandRenderer[];
+  private readonly m_ReadyEvent: VoidSyncEvent = new VoidSyncEvent();
 }
 
 /**

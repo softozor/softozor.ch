@@ -25,7 +25,6 @@ export default class Renderer extends DynamicSpriteRenderer {
     distanceFactor: number
   ) {
     super(canvas, widthW, heightW, distanceFactor);
-    console.log(`Softozor renderer size ${widthW} x ${heightW}`);
     const loader: SpriteListLoader = new SpriteListLoader(
       images(),
       this.onSpritesLoaded.bind(this)
@@ -70,16 +69,13 @@ export default class Renderer extends DynamicSpriteRenderer {
   }
 
   private onSpritesLoaded(sprites: SpriteList): void {
-    console.log('List of softozor sprites loaded!');
+    console.log('Softozor loaded');
     this.m_States = {
       idle: new IdleState(this, getSpriteWithSrc(sprites, IDLE_IMG)),
       flap1: new Flap1State(this, getSpriteWithSrc(sprites, FLAP1_IMG)),
       flap2: new Flap2State(this, getSpriteWithSrc(sprites, FLAP2_IMG))
     };
     this.m_CurrentState = this.m_States.idle;
-    console.log(
-      'current softozor image = ' + this.m_CurrentState.sprite.img.src
-    );
   }
 
   /**

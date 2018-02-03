@@ -51,7 +51,7 @@ export default class BadBubble extends CircularObstacle {
  * Non-member methods
  */
 function onImgLoaded(): void {
-  console.log(`Loaded sprite ${BUBBLE}.`);
+  console.log('Bad bubble loaded');
 }
 
 function createSprite(): Sprite {

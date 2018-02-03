@@ -14,9 +14,6 @@ export default class BandRenderer extends DynamicSpriteRenderer {
     distanceFactor: number
   ) {
     super(canvas, width, height, distanceFactor, sprite);
-    console.log(
-      `Creating band with size ${width} x ${height} and image ${sprite.img.src}`
-    );
   }
 
   /**

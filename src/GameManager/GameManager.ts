@@ -7,6 +7,7 @@ import ParallaxManager from './Parallax/ParallaxManager';
 import Banner from './Banner/Banner';
 import ScoreManager from './ScoreManager/ScoreManager';
 import ObstacleManager from './Obstacles/ObstacleManager';
+import BannerLoader from './BannerLoader';
 
 // import * as Helpers from './Helpers';
 // import Vector2D from './Math/Vector2D';
@@ -33,10 +34,11 @@ import ObstacleManager from './Obstacles/ObstacleManager';
 export default class GameManager {
   constructor() {
     this.init();
+    this.load();
   }
 
   /**
-   * private methods
+   * Private methods
    */
   private connectResizeEvents(): void {
     this.m_Canvas.clearResizeEvents(); // removes all current references to existing objects
@@ -56,6 +58,16 @@ export default class GameManager {
     this.m_Canvas.attachResizeEvent(this.m_Canvas.render.bind(this.m_Canvas));
   }
 
+  private load(): void {
+    this.m_Loader.attachReadyEvent(this.onComponentsReady.bind(this));
+    this.m_ParallaxMgr.attachLoader(this.m_Loader);
+    this.m_ParallaxMgr.load();
+    this.m_Banner.attachLoader(this.m_Loader);
+    this.m_Banner.load();
+    this.m_Canvas.attachLoader(this.m_Loader);
+    this.m_Canvas.load();
+  }
+
   private init(): void {
     MovingCoordinateSystem.setCanvas(this.m_Canvas);
     this.m_Softozor = new Softozor(this.m_Canvas);
@@ -68,6 +80,15 @@ export default class GameManager {
 
   private setMovingObject(movingObject: Softozor): void {
     MovingCoordinateSystem.setMovingObject(movingObject);
+  }
+
+  private onComponentsReady(): void {
+    this.m_ParallaxMgr.render();
+    this.m_Softozor.hide();
+    this.m_ObstacleMgr.render();
+    this.m_ScoreMgr.hide();
+    this.m_Banner.show();
+    this.m_Canvas.render();
   }
 
   //   // run the game
@@ -132,22 +153,19 @@ export default class GameManager {
   //   }
   // }
 
-  /**
-   * game frame function
-   */
   private tick(): void {
     // The order here is very important! there is no z-index in an HTML5 canvas!
-    // this.m_ParallaxMgr.tick();
-    // this.m_Softozor.tick();
-    // this.m_ObstacleMgr.tick();
-    // this.m_ScoreMgr.tick();
-    // TODO: render the gamestopped stuff
+    this.m_ParallaxMgr.tick();
+    this.m_Softozor.tick();
+    this.m_ObstacleMgr.tick();
+    this.m_ScoreMgr.tick();
     this.m_Canvas.tick();
   }
 
   /**
    * private members
    */
+  private readonly m_Loader: BannerLoader = new BannerLoader();
   private readonly m_Canvas: Canvas = new Canvas();
   private m_Softozor: Softozor;
   private readonly m_ParallaxMgr: ParallaxManager = new ParallaxManager(

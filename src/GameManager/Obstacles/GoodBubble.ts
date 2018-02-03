@@ -45,7 +45,7 @@ export default class GoodBubble extends CircularObstacle {
 }
 
 function onImgLoaded(): void {
-  console.log(`Loaded sprite ${BUBBLE}.`);
+  console.log('Good bubble loaded');
 }
 
 function createSprite(): Sprite {
