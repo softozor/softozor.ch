@@ -2,8 +2,8 @@ import * as IDLE_IMG from '../../../assets/banner/softozor.png';
 import * as FLAP1_IMG from '../../../assets/banner/softozor_flap1.png';
 import * as FLAP2_IMG from '../../../assets/banner/softozor_flap2.png';
 
-import DynamicSpriteRenderer from '../SpriteRenderers/DynamicSpriteRenderer';
-import Sprite from '../SpriteRenderers/Sprite';
+import DynamicSpriteRenderer from '../Rendering/DynamicSpriteRenderer';
+import Sprite from '../Rendering/Sprite';
 import Canvas from '../Canvas/Canvas';
 import RendererState from './RendererStates/RendererState';
 import IdleState from './RendererStates/IdleState';
@@ -15,7 +15,7 @@ import SpriteListLoader, {
   SpriteList,
   DistantSprite,
   getSpriteWithSrc
-} from '../SpriteRenderers/SpriteListLoader';
+} from '../Rendering/SpriteListLoader';
 
 export default class Renderer extends DynamicSpriteRenderer {
   constructor(

@@ -15,7 +15,7 @@ import SpriteListLoader, {
   SpriteList,
   DistantSprite,
   DistantImgList
-} from '../SpriteRenderers/SpriteListLoader';
+} from '../Rendering/SpriteListLoader';
 
 export default class ParallaxManager {
   constructor(private readonly m_Canvas: Canvas) {

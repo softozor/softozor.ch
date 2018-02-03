@@ -5,9 +5,9 @@ import * as CONSTANTS from '../../../config/game/Constants.json';
 import Vector2D from '../Math/Vector2D';
 import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
 import CircularHitBox from '../HitBoxes/CircularHitBox';
-import SpriteRenderer from '../SpriteRenderers/DynamicSpriteRenderer';
+import SpriteRenderer from '../Rendering/DynamicSpriteRenderer';
 import CircularObstacle from './CircularObstacle';
-import Sprite from '../SpriteRenderers/Sprite';
+import Sprite from '../Rendering/Sprite';
 import Canvas from '../Canvas/Canvas';
 
 export default class GoodBubble extends CircularObstacle {
@@ -23,8 +23,8 @@ export default class GoodBubble extends CircularObstacle {
       canvas,
       diameter,
       diameter,
-      GoodBubble.SPRITE,
-      (<any>CONSTANTS).WorldDistanceFactor
+      (<any>CONSTANTS).WorldDistanceFactor,
+      GoodBubble.SPRITE
     );
   }
 

@@ -3,7 +3,7 @@ import * as CONFIG from '../../../config/game/Buttons/Play.json';
 
 import Button from './Button';
 import Canvas from '../Canvas/Canvas';
-import Sprite from '../SpriteRenderers/Sprite';
+import Sprite from '../Rendering/Sprite';
 
 type ButtonReadyCallback = () => void;
 

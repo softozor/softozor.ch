@@ -1,8 +1,8 @@
 import * as CONSTANTS from '../../../config/game/Constants.json';
 
 import Canvas from '../Canvas/Canvas';
-import Sprite from '../SpriteRenderers/Sprite';
-import DynamicSpriteRenderer from '../SpriteRenderers/DynamicSpriteRenderer';
+import Sprite from '../Rendering/Sprite';
+import DynamicSpriteRenderer from '../Rendering/DynamicSpriteRenderer';
 import Vector2D from '../Math/Vector2D';
 
 export default class BandRenderer extends DynamicSpriteRenderer {

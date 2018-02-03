@@ -1,6 +1,6 @@
 import Canvas from '../Canvas/Canvas';
-import SpriteRenderer from '../SpriteRenderers/SpriteRenderer';
-import Sprite from '../SpriteRenderers/Sprite';
+import SpriteRenderer from '../Rendering/SpriteRenderer';
+import Sprite from '../Rendering/Sprite';
 
 export type ClickHandlerCallback = () => void;
 

@@ -9,7 +9,7 @@ import SpriteListLoader, {
   DistantSprite,
   DistantImgList,
   getSpriteWithSrc
-} from '../SpriteRenderers/SpriteListLoader';
+} from '../Rendering/SpriteListLoader';
 
 export default class Banner {
   constructor(private readonly m_Canvas: Canvas) {
