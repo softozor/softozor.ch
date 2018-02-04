@@ -85,8 +85,10 @@ export default class Canvas {
     this.m_ResizeHandler.attach(event);
   }
 
-  public clearResizeEvents(): void {
+  public clearEvents(): void {
     this.m_ResizeHandler.detach();
+    this.m_ReadyEvent.detach();
+    //if the click events were SyncEvents, then we would need to detach them!
   }
 
   public tick(): void {
@@ -115,8 +117,8 @@ export default class Canvas {
     this.canvas.onmouseup = this.handleMouseUp.bind(this);
     this.canvas.ontouchstart = this.handleMouseDown.bind(this);
     this.canvas.ontouchend = this.handleMouseUp.bind(this);
-    this.canvas.onmouseenter = this.m_MouseEnterHandler;
-    this.canvas.onmouseleave = this.m_MouseLeaveHandler;
+    this.canvas.onmouseenter = this.handleMouseEnter.bind(this);
+    this.canvas.onmouseleave = this.handleMouseLeave.bind(this);
   }
 
   private connectKeyboardEvents(): void {
@@ -148,6 +150,14 @@ export default class Canvas {
       elem.hasMouse(event)
     );
     return clickedBtns.length === 1 ? clickedBtns.pop() : undefined;
+  }
+
+  private handleMouseEnter(event: MouseEvent): void {
+    this.m_MouseEnterHandler();
+  }
+
+  private handleMouseLeave(event: MouseEvent): void {
+    this.m_MouseLeaveHandler();
   }
 
   private handleMouseDown(event: MouseEvent): void {
@@ -202,7 +212,7 @@ export default class Canvas {
    * Private members
    */
   private m_ReadyCounter: number = initReadyCounter(); // number of buttons
-  private m_ResizeHandler: VoidSyncEvent = new VoidSyncEvent();
+  private readonly m_ResizeHandler: VoidSyncEvent = new VoidSyncEvent();
   private m_ReadyEvent: VoidSyncEvent = new VoidSyncEvent();
 
   private m_RenderingContext: CanvasRenderingContext2D = getRenderingContext();
