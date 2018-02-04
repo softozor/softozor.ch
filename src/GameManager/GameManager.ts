@@ -1,3 +1,5 @@
+import { forEach } from 'lodash';
+
 import * as CONFIG from '../../config/game/GameManager.json';
 
 import * as MovingCoordinateSystem from './Math/MovingCoordinateSystem';
@@ -11,34 +13,14 @@ import BannerLoader from './BannerLoader';
 import GameState from './GameStates/GameState';
 import PlayState from './GameStates/PlayState';
 import PauseState from './GameStates/PauseState';
-
-// import * as Helpers from './Helpers';
-// import Vector2D from './Math/Vector2D';
-
-// TODO: let this this object decide whether the game stops based on e.g. Softozor::outOfBounds
-// TODO: let this object connect / disconnect the Softozor::tick and ObstacleManager::tick
-// TODO: do not forget to call ObstacleManager::attachGoodScoreHandler with the following callback:
-// scorePop[scorePop.length] = new scorePopProto(scoreIncrement);
-// score += scoreIncrement;
-// scoreIncrement++;
-// maybe also pass the softozor's position in the event posting
-// TODO: do not forget to call ObstacleManager::attachBadScoreHandler with the following callback:
-// scorePop[scorePop.length] = new scorePopProto('xxx');
-// scoreIncrement = 1;
-// TODO: connect Canvas::upHandler with softozor.stopFlap();
-// TODO: connect Canvas::downHandler with softozor.startFlap();
-// TODO: connect Canvas::mouseEnterHandler with GameManager::run();
-// TODO: connect Canvas::mouseLeaveHandler with GameManager::pause();
-// TODO: don't forget to display the restart button when the game is over!
-// TODO: implement state pattern for paused / running
-// TODO: don't forget to load the GameStoppedRenderer (and to refresh it upon canvas resizing!)
-// TODO: attach functionality to the restart and play buttons!
+import GameOverState from './GameStates/GameOverState';
 
 export default class GameManager {
   constructor() {
     this.init();
     this.load();
     this.setupStates();
+    this.setupScoring();
   }
 
   /**
@@ -73,6 +55,15 @@ export default class GameManager {
     this.m_Canvas.attachResizeEvent(this.m_Canvas.render.bind(this.m_Canvas));
   }
 
+  private setupScoring(): void {
+    this.m_ObstacleMgr.attachBadScoreHandler(
+      this.m_ScoreMgr.addBadScore.bind(this.m_ScoreMgr)
+    );
+    this.m_ObstacleMgr.attachGoodScoreHandler(
+      this.m_ScoreMgr.addGoodScore.bind(this.m_ScoreMgr)
+    );
+  }
+
   private load(): void {
     this.m_Loader.attachReadyEvent(this.onComponentsReady.bind(this));
     this.m_ParallaxMgr.attachLoader(this.m_Loader);
@@ -85,9 +76,10 @@ export default class GameManager {
 
   private init(): void {
     MovingCoordinateSystem.setCanvas(this.m_Canvas);
-    this.m_Softozor = new Softozor(this.m_Canvas);
     this.connectMouseEvents();
+    this.m_Softozor.reset();
     this.m_ObstacleMgr.clear();
+    this.m_ObstacleMgr.setGameOnState();
     this.m_ScoreMgr.clear();
     this.setMovingObject(this.m_Softozor);
     this.m_Canvas.clearEvents();
@@ -98,26 +90,22 @@ export default class GameManager {
     MovingCoordinateSystem.setMovingObject(movingObject);
   }
 
+  private connectState(state: GameState): void {
+    state.attachStartTickHandler(this.startTick.bind(this));
+    state.attachStopTickHandler(this.stopTick.bind(this));
+    state.attachSetPlayStateHandler(this.setPlayState.bind(this));
+    state.attachSetPauseStateHandler(this.setPauseState.bind(this));
+    state.attachHideBannerHandler(this.hideBanner.bind(this));
+    state.attachShowBannerHandler(this.showBanner.bind(this));
+    state.attachClearGameHandler(this.clearGame.bind(this));
+  }
+
   private setupStates(): void {
-    this.m_States.play.attachStartTickHandler(this.startTick.bind(this));
-    this.m_States.play.attachStopTickHandler(this.stopTick.bind(this));
-    this.m_States.play.attachSetPlayStateHandler(this.setPlayState.bind(this));
-    this.m_States.play.attachSetPauseStateHandler(
-      this.setPauseState.bind(this)
-    );
-    this.m_States.play.attachHideBannerHandler(this.hideBanner.bind(this));
-    this.m_States.play.attachShowBannerHandler(this.showBanner.bind(this));
-    this.m_States.pause.attachStartTickHandler(this.startTick.bind(this));
-    this.m_States.pause.attachStopTickHandler(this.stopTick.bind(this));
-    this.m_States.pause.attachSetPlayStateHandler(this.setPlayState.bind(this));
-    this.m_States.pause.attachSetPauseStateHandler(
-      this.setPauseState.bind(this)
-    );
-    this.m_States.pause.attachHideBannerHandler(this.hideBanner.bind(this));
-    this.m_States.pause.attachShowBannerHandler(this.showBanner.bind(this));
+    forEach(this.m_States, this.connectState.bind(this));
   }
 
   private onComponentsReady(): void {
+    // The order here is very important! there is no z-index in an HTML5 canvas!
     this.m_ParallaxMgr.render();
     this.m_Softozor.hide();
     this.m_ObstacleMgr.render();
@@ -129,6 +117,7 @@ export default class GameManager {
   }
 
   private hideBanner(): void {
+    // The order here is very important! there is no z-index in an HTML5 canvas!
     this.m_ParallaxMgr.render();
     this.m_Softozor.show();
     this.m_ObstacleMgr.render();
@@ -138,6 +127,7 @@ export default class GameManager {
   }
 
   private showBanner(): void {
+    // The order here is very important! there is no z-index in an HTML5 canvas!
     this.m_ParallaxMgr.render();
     this.m_Softozor.hide();
     this.m_ScoreMgr.hide();
@@ -150,7 +140,10 @@ export default class GameManager {
   }
 
   private onRestartClick(): void {
-    console.log('Restart!');
+    this.init();
+    this.m_Canvas.hideRestartButton();
+    this.m_Softozor.show();
+    this.setPlayState();
   }
 
   private onUpPress(): void {
@@ -162,11 +155,11 @@ export default class GameManager {
   }
 
   private onCanvasEnter(): void {
-    console.log('Entered canvas!');
+    this.setPlayState();
   }
 
   private onCanvasLeave(): void {
-    console.log('Left canvas!');
+    this.setPauseState();
   }
 
   private startTick(): void {
@@ -178,67 +171,29 @@ export default class GameManager {
     clearInterval(this.m_TickHandle);
   }
 
-  // transition between game started and game stopped
-  // transitionUpdate: function() {
-  //   if (this.playState === 'paused') {
-  //   } else if (this.playState === 'pausing') {
-  //     if (this.stateTransition > 0)
-  //       this.stateTransition = Math.max(0, this.stateTransition - 0.03);
-  //     else {
-  //       this.playState = 'paused';
-  //       clearInterval(banner.runSpeed);
-  //     }
-  //   } else if (this.playState === 'running') {
-  //   } else if (this.playState === 'starting') {
-  //     if (this.stateTransition < 1)
-  //       this.stateTransition = Math.min(1, this.stateTransition + 0.03);
-  //     else this.playState = 'running';
-  //   }
-
-  //   if (this.gameState === 'over' && this.gameEndingTransition > 0) {
-  //     this.gameEndingTransition = Math.max(this.gameEndingTransition - 0.02, 0);
-  //   }
-
-  //   if (this.gameState === 'restarting') {
-  //     if (this.gameEndingTransition < 1) {
-  //       this.gameEndingTransition = Math.min(
-  //         this.gameEndingTransition + 0.01,
-  //         1
-  //       );
-  //       score = Math.round(this.restartScore * (1 - this.gameEndingTransition));
-  //       scrollingPosition.xW =
-  //         (softozorData.startPosition - this.restartScrollingXW) *
-  //           this.gameEndingTransition +
-  //         this.restartScrollingXW;
-  //       softozor.deltaXW =
-  //         (softozorData.originalDeltaXW - this.restartSoftozorDeltaXW) *
-  //           this.gameEndingTransition +
-  //         this.restartSoftozorDeltaXW;
-  //       softozor.position.yW =
-  //         (softozorData.originalYW -
-  //           softozorData.heightW * worldBandRatioToBanner -
-  //           this.restartSoftozorYW) *
-  //           this.gameEndingTransition +
-  //         this.restartSoftozorYW;
-  //       softozor.updatePosition();
-  //     } else {
-  //       this.gameState = 'on';
-  //       banner.reInitialize();
-  //     }
-  //   }
-  // }
+  private clearGame(): void {
+    this.m_ObstacleMgr.setGameOverState();
+    this.m_Canvas.showRestartButton();
+    this.m_Softozor.hide();
+  }
 
   private tick(): void {
-    console.log('tick');
     // The order here is very important! there is no z-index in an HTML5 canvas!
     this.m_ParallaxMgr.tick();
     this.m_Softozor.tick();
     this.m_ObstacleMgr.tick();
     this.m_ScoreMgr.tick();
     this.m_Canvas.tick();
+
+    if (this.m_Softozor.isOutOfBounds) {
+      this.setGameOverState();
+    }
   }
 
   private switchState(target: GameState): void {
+    if (target === this.m_CurrentState) {
+      return;
+    }
     this.m_CurrentState.exit();
     this.m_CurrentState = target;
     this.m_CurrentState.enter();
@@ -252,12 +207,16 @@ export default class GameManager {
     this.switchState(this.m_States.play);
   }
 
+  private setGameOverState(): void {
+    this.switchState(this.m_States.gameOver);
+  }
+
   /**
    * private members
    */
   private readonly m_Loader: BannerLoader = new BannerLoader();
   private readonly m_Canvas: Canvas = new Canvas();
-  private m_Softozor: Softozor;
+  private m_Softozor: Softozor = new Softozor(this.m_Canvas);
   private readonly m_ParallaxMgr: ParallaxManager = new ParallaxManager(
     this.m_Canvas
   );
@@ -272,7 +231,8 @@ export default class GameManager {
 
   private m_States: { [key: string]: GameState } = {
     play: new PlayState(),
-    pause: new PauseState()
+    pause: new PauseState(),
+    gameOver: new GameOverState()
   };
   private m_CurrentState: GameState = this.m_States.pause;
 }

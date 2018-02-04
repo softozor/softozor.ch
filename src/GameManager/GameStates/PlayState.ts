@@ -10,14 +10,18 @@ export default class PlayState extends GameState {
    */
 
   public enter(): void {
+    console.log('entering play state');
     this.m_HideBanner();
+    this.m_StartTick();
   }
 
-  public exit(): void {}
+  public exit(): void {
+    console.log('leaving play state');
+  }
 
   public onPlayClick(): void {
-    console.log('pause');
-    this.m_StopTick();
     this.m_SetPauseState();
   }
+
+  public onRestartClick(): void {}
 }

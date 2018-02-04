@@ -1,4 +1,5 @@
 import * as CONSTANTS from '../../../config/game/Constants.json';
+import * as SOFTOZOR from '../../../config/game/SoftozorData.json';
 import * as CONFIG from '../../../config/game/ScorePop.json';
 
 import * as Helpers from '../Helpers';
@@ -10,21 +11,12 @@ import MovingObject from '../MovingObject';
 export default class ScorePop {
   constructor(
     private readonly m_Canvas: Canvas,
-    private readonly m_Pop: string | number,
-    private readonly m_DeltaXPX: number
+    private readonly m_Pop: string | number
   ) {}
 
   /**
    * Public methods
    */
-  public get deltaXPX(): number {
-    return this.m_DeltaXPX;
-  }
-
-  public get deltaYPX(): number {
-    return this.m_DeltaYPX;
-  }
-
   public get pop(): string | number {
     return this.m_Pop;
   }
@@ -81,6 +73,14 @@ export default class ScorePop {
   /**
    * Private methods
    */
+  private get deltaXPX(): number {
+    return this.m_DeltaXPX;
+  }
+
+  private get deltaYPX(): number {
+    return this.m_DeltaYPX;
+  }
+
   private get movingPosition(): Vector2D {
     return MovingCoordinateSystem.obsPX(
       movingObject().position,
@@ -106,6 +106,9 @@ export default class ScorePop {
    */
   private m_DeltaYPX: number = (<any>CONFIG).deltaY;
   private m_Lifetime: number = (<any>CONFIG).lifeTime;
+  private readonly m_DeltaXPX: number = (<any>SOFTOZOR).widthW *
+    (<any>CONSTANTS).WorldBandRatioToBanner *
+    (<any>CONFIG).deltaXRatio;
 }
 
 function movingObject(): MovingObject {

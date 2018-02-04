@@ -14,12 +14,13 @@ import BadBubble from './BadBubble';
 import GoodBubble from './GoodBubble';
 import * as MovingCoordinateSystem from '../Math/MovingCoordinateSystem';
 import MovingObject from '../MovingObject';
+import ManagerState from './ManagerStates/ManagerState';
+import GameOnState from './ManagerStates/GameOnState';
+import GameOverState from './ManagerStates/GameOverState';
 
 type GoodScoreHandler = () => void;
 type BadScoreHandler = () => void;
 
-// TODO: upon setting the gameState to over, disconnect the tick method, i.e. don't trigger it any more!
-// TODO: upon setting the gameState to on, connect the tick method
 export default class ObstacleManager {
   constructor(private readonly m_Canvas: Canvas) {}
 
@@ -35,10 +36,13 @@ export default class ObstacleManager {
   }
 
   public tick(): void {
-    this.cleanup();
+    this.m_CurrentState.tick();
+  }
+
+  public doTick(): void {
     this.fillWorldSquare();
     this.tickObstacles();
-    // TODO: it would probably make more sense to call cleanup() here
+    this.cleanup();
   }
 
   public clear(): void {
@@ -63,6 +67,14 @@ export default class ObstacleManager {
     forEach(this.m_Obstacles, (element: Obstacle): void => {
       element.render();
     });
+  }
+
+  public setGameOverState(): void {
+    this.switchState(this.m_States.gameOver);
+  }
+
+  public setGameOnState(): void {
+    this.switchState(this.m_States.gameOn);
   }
 
   /**
@@ -167,14 +179,28 @@ export default class ObstacleManager {
     return this.m_LastFilledSquareXW < scrollX + this.m_Canvas.width / ratio;
   }
 
+  private switchState(target: ManagerState): void {
+    if (target === this.m_CurrentState) {
+      return;
+    }
+    this.m_CurrentState.exit();
+    this.m_CurrentState = target;
+    this.m_CurrentState.enter();
+  }
+
   /**
    * Private members
    */
+  private m_States: { [key: string]: ManagerState } = {
+    gameOn: new GameOnState(this),
+    gameOver: new GameOverState(this)
+  };
+  private m_CurrentState: ManagerState = this.m_States.gameOver;
   private m_BadScoreEvent: VoidSyncEvent = new VoidSyncEvent(); // TODO: maybe not necessary; maybe just storing the callback is enough
   private m_GoodScoreEvent: VoidSyncEvent = new VoidSyncEvent();
 
   private m_LastFilledSquareXW: number = initLastFilledSquare();
-  private m_Obstacles: Obstacle[];
+  private m_Obstacles: Obstacle[] = new Array<Obstacle>();
 }
 
 /**
