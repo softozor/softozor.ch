@@ -231,11 +231,11 @@ export default class GameManager {
   private tick(): void {
     console.log('tick');
     // The order here is very important! there is no z-index in an HTML5 canvas!
-    /*this.m_ParallaxMgr.tick();
+    this.m_ParallaxMgr.tick();
     this.m_Softozor.tick();
     this.m_ObstacleMgr.tick();
     this.m_ScoreMgr.tick();
-    this.m_Canvas.tick();*/
+    this.m_Canvas.tick();
   }
 
   private switchState(target: GameState): void {
