@@ -1,3 +1,4 @@
+/* ported */
 import SKY_IMG from '../assets/banner/sky.png';
 import CLOUDS_IMG from '../assets/banner/clouds.png';
 import BACK_IMG from '../assets/banner/back.png';
@@ -14,6 +15,7 @@ import GOOD_BUBBLE_IMG from '../assets/banner/goodbubble.png';
 import BAD_BUBBLE_IMG from '../assets/banner/badbubble.png';
 import PLAY_PAUSE_IMG from '../assets/banner/play_pause.png';
 import RESTART_IMG from '../assets/banner/restart.png';
+/**/
 
 ('use strict');
 
@@ -21,9 +23,7 @@ import RESTART_IMG from '../assets/banner/restart.png';
 function spriteProto(src) {
   this.img = new Image();
 
-  this.img.isLoaded = false;
   this.img.onload = function() {
-    this.isLoaded = true;
     refreshSize();
     update();
   };
@@ -31,6 +31,7 @@ function spriteProto(src) {
 }
 /**/
 
+/* ported */
 var spriteList = {
   initialize: function() {
     this.sky = new spriteProto(SKY_IMG);
@@ -54,6 +55,7 @@ var spriteList = {
     //this.hitSpot = new spriteProto('../assets/banner/redCircle.png');
   }
 };
+/**/
 
 /* ported */
 function spriteRendererProto(sprite, widthW, heightW, distanceFactor) {
@@ -253,10 +255,10 @@ var banner = {
     this.gameState = 'restarting';
     obstacle = [];
     scorePop = [];
-    this.restartScore = score;
-    this.restartScrollingXW = scrollingPosition.xW;
-    this.restartSoftozorDeltaXW = softozor.deltaXW;
-    this.restartSoftozorYW = softozor.position.yW;
+    this.restartScore = score; // only used in transitionUpdate
+    this.restartScrollingXW = scrollingPosition.xW; // only used in transitionUpdate
+    this.restartSoftozorDeltaXW = softozor.deltaXW; // only used in transitionUpdate
+    this.restartSoftozorYW = softozor.position.yW; // only used in transitionUpdate
     softozor.flapWait = 0;
     softozor.deltaXSpeed = 0;
     lastFilledSquareXW = firstFilledSquareDistance + softozorData.startPosition;
@@ -392,13 +394,15 @@ var banner = {
   },
 
   handleMouseUp: function(event) {
+    // TODO: the buttons must have been initialized in the sense that we must have atached them a click callback!
+    // TODO: use lodash function to find which button we clicked on
     //event.preventDefault();
     var zone = banner.handleEventPosition(event);
     if (zone === 'playButton') {
-      // TODO: do not implement a click method; instead, let the banner handle the playButton.click() code here directly
+      // TODO: if we found the playButton, then click it!
       playButton.click();
     } else if (zone === 'restartButton') {
-      // TODO: do not implement a click method; instead, let the banner handle the restartButton.click() code here directly
+      // TODO: if we found the restartButton, then click it!
       restartButton.click();
     } else {
       softozor.stopFlap();
@@ -536,6 +540,7 @@ function bandProto(sprite, distanceFactor) {
 }
 /**/
 
+/* ported */
 // Softozor
 var softozor = {
   position: undefined,
@@ -701,6 +706,7 @@ var softozor = {
     this.spriteRenderer.refreshSize();
   }
 };
+/**/
 
 /* ported */
 var scrollingPosition = new positionProto(

@@ -1,0 +1,10 @@
+{
+  "x": 5,
+  "y": 5,
+  "width": 50,
+  "height": 50,
+  "clickDelta": 50,
+  "bottomMargin": 5, 
+  "playPosition": 0,
+  "pausePosition": 600
+}

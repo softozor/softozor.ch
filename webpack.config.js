@@ -52,6 +52,10 @@ var plugins = [
     {
       from: 'scripts',
       to: 'scripts'
+    },
+    {
+      from: 'config',
+      to: 'config'
     }
   ])
 ];
@@ -86,7 +90,7 @@ module.exports = {
         loader: 'ts-loader'
       },
       {
-        test: /\.js$/,
+        test: /\.(js|pug)$/,
         exclude: /(node_modules|dist)/,
         use: {
           loader: 'babel-loader',

@@ -1,7 +1,7 @@
 import * as team from '../assets/team/team.json';
 import * as memberTemplate from './templates/TeamMember.pug';
 
-export class TeamRenderer {
+export default class TeamRenderer {
   constructor() {
     this.showTeam('div#teamContent');
   }

@@ -10,3 +10,6 @@ dist/
 .vscode
 push.sh
 todo.txt
+*.sh
+src/Application_new.ts
+src/Application_old.ts
