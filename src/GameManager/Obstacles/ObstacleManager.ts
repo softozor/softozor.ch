@@ -196,7 +196,7 @@ export default class ObstacleManager {
     gameOver: new GameOverState(this)
   };
   private m_CurrentState: ManagerState = this.m_States.gameOver;
-  private m_BadScoreEvent: VoidSyncEvent = new VoidSyncEvent(); // TODO: maybe not necessary; maybe just storing the callback is enough
+  private m_BadScoreEvent: VoidSyncEvent = new VoidSyncEvent();
   private m_GoodScoreEvent: VoidSyncEvent = new VoidSyncEvent();
 
   private m_LastFilledSquareXW: number = initLastFilledSquare();
