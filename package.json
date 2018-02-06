@@ -24,6 +24,7 @@
   "homepage": "https://github.com/zadigus/softozor.ch#readme",
   "dependencies": {
     "autoprefixer": "^7.2.3",
+    "axios": "^0.17.1",
     "bourbon": "^5.0.0-beta.8",
     "bourbon-bitters": "^1.2.1",
     "bourbon-neat": "^2.1.0",
@@ -37,6 +38,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.35",
     "@babel/preset-env": "^7.0.0-beta.35",
+    "@types/axios": "^0.14.0",
     "@types/jquery": "^3.2.17",
     "@types/lodash": "^4.14.91",
     "@types/pug": "^2.0.4",

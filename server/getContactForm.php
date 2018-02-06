@@ -1,13 +1,12 @@
 <?php
+ header("Access-Control-Allow-Origin: *");
 require 'getConnection.php';
 $lang = strval($_GET['lang']);
 $conn = getConnection("michella_contact");
 
-echo "<form id='contactForm' class='contactForm' action='scripts/sendMail.php' method='post'>";
-
+echo "<form class='contactForm'>";
 buildFieldSet($conn, $lang);  
 mysqli_close($conn);
-
 echo "</form>";
 ?>
 

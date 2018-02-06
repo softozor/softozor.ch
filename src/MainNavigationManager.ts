@@ -3,23 +3,25 @@ import { isUndefined } from 'util';
 type LoadCallback = () => void;
 
 export default class MainNavigationManager {
-  private m_LineAnimationDuration: number = 4000; // in [ms]
-
-  constructor() {}
-
-  set LineAnimationDuration(value: number) {
-    this.m_LineAnimationDuration = value;
-  }
-
-  get LineAnimationDuration() {
-    return this.m_LineAnimationDuration;
-  }
-
-  public onDocumentReady(): void {
+  constructor() {
     this.animateMenuLine();
     this.setupMenu();
   }
 
+  /**
+   * Public methods
+   */
+  public set LineAnimationDuration(value: number) {
+    this.m_LineAnimationDuration = value;
+  }
+
+  public get LineAnimationDuration(): number {
+    return this.m_LineAnimationDuration;
+  }
+
+  /**
+   * Private methods
+   */
   private load(file: string, callback?: LoadCallback): void {
     if (!isUndefined(callback)) {
       $('#content').load(file, callback);
@@ -74,4 +76,9 @@ export default class MainNavigationManager {
   private setupMenu(): void {
     $('nav#navigation a, footer a').click(e => this.onClick(e.target));
   }
+
+  /**
+   * Private members
+   */
+  private m_LineAnimationDuration: number = 4000; // in [ms]
 }

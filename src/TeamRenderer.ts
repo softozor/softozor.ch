@@ -4,17 +4,20 @@ import * as memberTemplate from './templates/TeamMember.pug';
 export default class TeamRenderer {
   constructor() {
     this.showTeam('div#teamContent');
-  }
-
-  public showTeam(elementId): void {
-    var html = memberTemplate({ Members: team });
-    $('div#teamContent').html(html);
-  }
-
-  public onDocumentReady(): void {
     $('button.accordion').click(e => this.toggle(e.target));
   }
 
+  /**
+   * Public methods
+   */
+  public showTeam(elementId: string): void {
+    let html: string = memberTemplate({ Members: team });
+    $('div#teamContent').html(html);
+  }
+
+  /**
+   * Private methods
+   */
   private toggle(elem: HTMLElement): void {
     if ($(elem).hasClass('active')) {
       $(elem)
@@ -40,7 +43,10 @@ export default class TeamRenderer {
     }
   }
 
-  private m_DisabledPanelCss: {} = {
+  /**
+   * Private members
+   */
+  private m_DisabledPanelCss: { [key: string]: string } = {
     maxHeight: '0',
     borderWidth: '0',
     borderColor: 'white'
