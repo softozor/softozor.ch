@@ -24,6 +24,10 @@ export default class ScorePopManager {
     }
   }
 
+  public pop(score: number | string): void {
+    this.m_ScorePops.push(new ScorePop(this.m_Canvas, score));
+  }
+
   /**
    * Private methods
    */
@@ -41,5 +45,5 @@ export default class ScorePopManager {
   /**
    * Private members
    */
-  private readonly m_ScorePops: ScorePop[];
+  private readonly m_ScorePops: ScorePop[] = new Array<ScorePop>();
 }

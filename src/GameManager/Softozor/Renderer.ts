@@ -59,7 +59,7 @@ export default class Renderer extends DynamicSpriteRenderer {
    * Private methods
    */
   private switchState(target: RendererState): void {
-    if (this.m_CurrentState === undefined) {
+    if (this.m_CurrentState === target) {
       return;
     }
 

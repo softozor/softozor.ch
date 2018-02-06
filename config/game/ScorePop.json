@@ -4,6 +4,7 @@
   "deltaY": 0,
   "lifeTime": 30,
   "alpha": 0.6,
+  "deltaXRatio": 0.6,
   "fillStyle": {
     "good": {
       "r": 0,

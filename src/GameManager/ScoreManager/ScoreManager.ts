@@ -42,6 +42,16 @@ export default class ScoreManager {
     ctx.strokeText(this.text, this.textPosition.x, this.textPosition.y);
   }
 
+  public addGoodScore(): void {
+    this.m_ScorePopMgr.pop(this.m_ScoreIncrement);
+    this.m_Score += this.m_ScoreIncrement++;
+  }
+
+  public addBadScore(): void {
+    this.m_ScorePopMgr.pop('xxx');
+    this.m_ScoreIncrement = initScoreIncrement();
+  }
+
   /**
    * Private methods
    */

@@ -14,16 +14,9 @@ const env = (process.env.NODE_ENV || 'development').trim();
 const isProd = env === 'production';
 
 var plugins = [
-  new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: env // --> will be accessible in the application code
-    }
-  }),
   new webpack.ProvidePlugin({
     $: 'jquery',
-    jQuery: 'jquery',
-    _: 'lodash',
-    lodash: 'lodash'
+    jQuery: 'jquery'
   }),
   new ExtractTextPlugin({
     filename: '[name].[chunkhash].css',
@@ -50,8 +43,8 @@ var plugins = [
       to: 'assets/team'
     },
     {
-      from: 'scripts',
-      to: 'scripts'
+      from: 'server',
+      to: 'server'
     },
     {
       from: 'config',

@@ -10,10 +10,6 @@ import Renderer from './Renderer';
 import Canvas from '../Canvas/Canvas';
 import MovingObject from '../MovingObject';
 
-// TODO: upon setting the gameState to over, disconnect the tick method, i.e. don't trigger it any more!
-// TODO: upon setting the gameState to on, connect the Softozor::tick method
-// TODO: double-check that the json data are consistent!
-
 export default class Softozor extends MovingObject {
   constructor(private readonly m_Canvas: Canvas) {
     super();
@@ -31,11 +27,33 @@ export default class Softozor extends MovingObject {
   }
 
   public get isOutOfBounds(): Boolean {
+    // console.log(this.m_DeltaXW + ', ' + this.m_DeltaXW + (<any>CONFIG).heightW);
     return this.m_DeltaXW + (<any>CONFIG).heightW <= 0;
   }
 
   public get deltaXW(): number {
     return this.m_DeltaXW;
+  }
+
+  public reset(): void {
+    this.m_Alpha = 0;
+    this.m_Position = Softozor.initialPosition();
+    this.m_DeltaXW = (<any>CONFIG).originalDeltaXW;
+    this.m_DeltaXSpeed = 0;
+    this.m_Speed = new Vector2D(
+      (<any>CONFIG).originalXSpeed,
+      (<any>CONFIG).minSpeed
+    );
+    this.m_FlapWait = 0;
+    this.m_DoFlap = false;
+    this.m_Hitbox = new CircularHitBox(
+      this.m_Position,
+      new Vector2D(
+        (<any>CONFIG).widthW * (<any>CONFIG).hitbox.relativeCenterWidthFactor,
+        (<any>CONFIG).heightW * (<any>CONFIG).hitbox.relativeCenterHeightFactor
+      ),
+      (<any>CONFIG).heightW * (<any>CONFIG).hitbox.radiusFactor
+    );
   }
 
   public handleBadCollision(collision: Collision): void {
@@ -181,26 +199,16 @@ export default class Softozor extends MovingObject {
   /**
    * Private members
    */
-  private m_Alpha: number = 0;
-  private m_Position: Vector2D = Softozor.initialPosition();
-  private m_DeltaXW: number = (<any>CONFIG).originalDeltaXW;
-  private m_DeltaXSpeed: number = 0;
-  private m_Speed: Vector2D = new Vector2D(
-    (<any>CONFIG).originalXSpeed,
-    (<any>CONFIG).minSpeed
-  );
-  private m_FlapWait: number = 0;
-  private m_DoFlap: Boolean = false;
+  private m_Alpha: number;
+  private m_Position: Vector2D;
+  private m_DeltaXW: number;
+  private m_DeltaXSpeed: number;
+  private m_Speed: Vector2D;
+  private m_FlapWait: number;
+  private m_DoFlap: Boolean;
   private readonly m_DistanceFactor: number = (<any>CONSTANTS)
     .WorldDistanceFactor;
-  private readonly m_Hitbox: CircularHitBox = new CircularHitBox(
-    this.m_Position,
-    new Vector2D(
-      (<any>CONFIG).widthW * (<any>CONFIG).hitbox.relativeCenterWidthFactor,
-      (<any>CONFIG).heightW * (<any>CONFIG).hitbox.relativeCenterHeightFactor
-    ),
-    (<any>CONFIG).heightW * (<any>CONFIG).hitbox.radiusFactor
-  );
+  private m_Hitbox: CircularHitBox;
   private readonly m_Renderer: Renderer = new Renderer(
     this.m_Canvas,
     (<any>CONFIG).widthW,

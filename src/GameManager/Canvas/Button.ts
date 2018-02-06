@@ -27,7 +27,6 @@ export default abstract class Button extends SpriteRenderer {
     return this.alpha > 0;
   }
 
-  // TODO: do an animation on the globalAlpha value from 1 to 0 (or vice-versa) when we hide (or show) a button
   public hide(): void {
     this.alpha = 0;
     this.draw(this.alpha);

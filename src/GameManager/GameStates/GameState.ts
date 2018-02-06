@@ -8,6 +8,7 @@ export default abstract class GameState {
    */
   public abstract enter(): void;
   public abstract exit(): void;
+
   public abstract onPlayClick(): void;
 
   public attachStartTickHandler(callback: ActionHandler): void {
@@ -34,6 +35,10 @@ export default abstract class GameState {
     this.m_HideBanner = callback;
   }
 
+  public attachClearGameHandler(callback: ActionHandler): void {
+    this.m_ClearGame = callback;
+  }
+
   /**
    * Protected members
    */
@@ -43,4 +48,5 @@ export default abstract class GameState {
   protected m_SetPauseState: ActionHandler;
   protected m_ShowBanner: ActionHandler;
   protected m_HideBanner: ActionHandler;
+  protected m_ClearGame: ActionHandler;
 }
