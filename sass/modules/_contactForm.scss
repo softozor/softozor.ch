@@ -1,21 +1,23 @@
-.contactForm {
-  width: 90%;
+$formWidth: 90%;
+
+#contactForm {
+  width: $formWidth;
   fieldset {
     padding: 0;
     width: 100%;
   }
 }
 
-.contactForm input[type="url"] {
+#contactForm input[type='url'] {
   display: none;
 }
 
-.contactForm textarea {
+#contactForm textarea {
   height: 100px;
   resize: none;
 }
 
-.contactForm button[type="submit"] {
+#contactForm button[name='submit'] {
   cursor: pointer;
   width: 50%;
   border: 1px solid $principal-color;
@@ -32,14 +34,23 @@
   }
 }
 
-.contactForm button[type="submit"]:active {
+#contactForm button[name='submit']:active {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.contactForm input:focus,
-.contactForm textarea:focus {
+#contactForm input:focus,
+#contactForm textarea:focus {
   outline: 0;
   border: 1px solid $principal-color;
+}
+
+#emailFeedback {
+  width: $formWidth;
+  color: $principal-color;
+  text-align: center;
+  &.failure {
+    color: red;
+  }
 }
 
 input-placeholder {
