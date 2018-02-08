@@ -1,13 +1,14 @@
-﻿import MainNavigationManager from './MainNavigationManager';
+﻿import { polyfill } from 'es6-promise';
 
+import MainNavigationManager from './MainNavigationManager';
 import GameManager from './GameManager/GameManager';
-
 import TeamRenderer from './TeamRenderer';
-// import { ContactLoader } from './ContactLoader.js';
 import ContactFormManager from './ContactFormManager';
 
 export class Application {
-  constructor() {}
+  constructor() {
+    polyfill();
+  }
 
   /**
    * Public methods
