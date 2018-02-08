@@ -6,6 +6,7 @@ export default class MainNavigationManager {
   constructor() {
     this.animateMenuLine();
     this.setupMenu();
+    this.init();
   }
 
   /**
@@ -22,6 +23,13 @@ export default class MainNavigationManager {
   /**
    * Private methods
    */
+  private init(): void {
+    $('section#welcome')
+      .show()
+      .siblings('section')
+      .hide();
+  }
+
   private menuWidth(): number {
     let width: number = 0;
     $('#navigation > ul')
