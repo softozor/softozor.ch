@@ -10,7 +10,7 @@
   position: absolute;
   bottom: - $height - $banner-border-width - $padding;
   left: - $banner-border-width;
-  z-index: 0;
+  z-index: 10;
   text-align: left;
   font-variant: small-caps;
   padding: 0 $padding $padding $padding;

@@ -11,6 +11,8 @@ export default class HighScoresRenderer {
     let height: number | undefined = $('#highScores').height();
     this.m_OriginalHeight = height !== undefined ? height : 0;
 
+    $('#highScores table').hide();
+
     axios
       .get(`${this.SERVER}/${this.GET_API}/`)
       .then(res => this.fillScores(res.data))
@@ -25,7 +27,6 @@ export default class HighScoresRenderer {
    * Private methods
    */
   private fillScores(data: ScoreData): void {
-    console.log('data = ' + JSON.stringify(data));
     let html: string = scoresTemplate({
       Scores: data
     });
@@ -34,9 +35,6 @@ export default class HighScoresRenderer {
 
   private expand(event): void {
     let dh: number | undefined = $('#highScores table').height();
-    console.log(
-      'current height = ' + $(event.currentTarget).height() + ', ' + dh
-    );
     if (dh !== undefined) {
       $(event.currentTarget).animate(
         {
@@ -46,6 +44,7 @@ export default class HighScoresRenderer {
         'slow'
       );
     }
+    $('#highScores table').show();
   }
 
   private collapse(event): void {
@@ -59,6 +58,7 @@ export default class HighScoresRenderer {
         'slow'
       );
     }
+    $('#highScores table').hide();
   }
 
   private onMouseClick(event): void {
