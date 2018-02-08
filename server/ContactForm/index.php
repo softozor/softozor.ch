@@ -1,13 +1,11 @@
 <?php
- header("Access-Control-Allow-Origin: *");
-require 'getConnection.php';
+header("Access-Control-Allow-Origin: *");
+require '../getConnection.php';
 $lang = strval($_GET['lang']);
 $conn = getConnection("michella_contact");
 
-echo "<form class='contactForm'>";
 buildFieldSet($conn, $lang);  
 mysqli_close($conn);
-echo "</form>";
 ?>
 
   <?php
@@ -34,7 +32,7 @@ function buildFieldSet($conn, $lang)
   {
     echo "<";
     echo $row['field'] . " ";
-    if(isset($row['type']))
+    if(!empty($row['type']))
     {
       echo "type='" . $row['type'] . "' ";
     }
