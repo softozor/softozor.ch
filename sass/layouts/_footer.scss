@@ -1,58 +1,35 @@
-// Uncomment this for a sticky footer.
-//
-// .wrapper-for-content-outside-of-footer {
-//   min-height: 100%;
-//   height: auto !important;
-//   height: 100%;
-//   margin: 0 auto -4em;
-// }
-// html, body {
-//  height: 100%;
-// }
-// .wrapper-for-content-outside-of-footer::after {
-//   content: "";
-//   display: block;
-// }
-// .footer, .wrapper-for-content-outside-of-footer::after {
-//   height: 17em;
-//   @include media($large-screen) {
-//     height: 4em;
-//   }
-// }
 .footer {
   $base-spacing: 1.5em;
-  $action-color: #ffffff;
+  $action-color: white;
   $footer-background: $action-color;
   $footer-color: #000;
-  $footer-link-color: $footer-color; 
+  $footer-link-color: $footer-color;
   background: $footer-background;
   display: inline-block;
   padding: $base-spacing;
   box-sizing: border-box;
   width: 100%;
-  $custom-neat-grid: ( columns: 1, gutter: 50px, media: $large-screen, );
-
+  $custom-neat-grid: (
+    columns: 1,
+    gutter: 50px,
+    media: $large-screen
+  );
   border-top: 1px solid black;
-
   .footer-logo {
     margin-bottom: 1em;
     margin-right: 1em;
-
     @include grid-media($custom-neat-grid) {
       float: left;
       margin-bottom: 0;
     }
   }
-
   .footer-logo img {
     height: 1.6em;
   }
-
   ul {
     line-height: 1.5em;
     margin: 0 0 1em 0;
     padding: 0;
-
     @include grid-media($custom-neat-grid) {
       float: left;
       line-height: 1.8em;
@@ -60,61 +37,49 @@
       margin-left: 1em;
     }
   }
-
   ul li {
     list-style: none;
     padding-right: 1em;
-
     @include grid-media($custom-neat-grid) {
       display: inline;
       text-align: left;
     }
   }
-
   ul li a {
     color: $footer-link-color;
     text-decoration: none;
-
     &:focus,
     &:hover {
-      color: $principal-color; //transparentize($footer-color, 0);
+      color: $principal-color;
     }
   }
-
   .footer-secondary-links {
     @include grid-media($custom-neat-grid) {
       float: right;
     }
-
     li {
       font-size: 0.8em;
     }
-
     ul.footer-social {
       margin: 1em 0 0 0;
-
       @include grid-media($custom-neat-grid) {
         float: right;
         margin-top: 0;
       }
-
       li {
         float: left;
         font-size: 1em;
         line-height: 0;
         margin: 0;
         padding-right: 0.7em;
-
         &:last-child {
           padding-right: 0;
         }
       }
-
       img {
         height: 1.6em;
         opacity: 1;
         padding: 1px;
-
         &:focus,
         &:hover {
           opacity: 1;

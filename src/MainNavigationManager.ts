@@ -22,14 +22,6 @@ export default class MainNavigationManager {
   /**
    * Private methods
    */
-  private load(file: string, callback?: LoadCallback): void {
-    if (!isUndefined(callback)) {
-      $('#content').load(file, callback);
-    } else {
-      $('#content').load(file);
-    }
-  }
-
   private menuWidth(): number {
     let width: number = 0;
     $('#navigation > ul')
@@ -74,7 +66,10 @@ export default class MainNavigationManager {
   }
 
   private setupMenu(): void {
-    $('nav#navigation a, footer a').click(e => this.onClick(e.target));
+    $('nav#navigation a, footer a').click(e => {
+      e.preventDefault();
+      this.onClick(e.target);
+    });
   }
 
   /**

@@ -24,12 +24,14 @@ export default class ContactFormManager {
   }
 
   private displayForm(formText: string): void {
-    $(this.m_AnchorId).html(formText);
+    let currentHtml: string = $(this.m_AnchorId).html();
+    $(this.m_AnchorId).html(currentHtml + formText);
     $('#contactForm').submit(this.onFormSubmit.bind(this));
   }
 
   private onFormSubmit(): Boolean {
     console.log('Submitting contact data');
+    $('#contactForm').hide();
     axios
       .post(
         `${this.SERVER}/${this.MAIL_API}/`,
@@ -44,10 +46,10 @@ export default class ContactFormManager {
     $('#emailFeedback')
       .removeClass('failure')
       .html('Email successfully sent');
-    $('#contactForm button').hide();
   }
 
   private onFormSubmitFailure(err: string): void {
+    $('#contactForm').show();
     $('#emailFeedback')
       .addClass('failure')
       .html('Email could not be sent: ' + err);
