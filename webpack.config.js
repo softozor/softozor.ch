@@ -49,6 +49,10 @@ var plugins = [
     {
       from: 'config',
       to: 'config'
+    },
+    {
+      from: 'images/icon/icon1.ico',
+      to: 'favicon.ico'
     }
   ])
 ];

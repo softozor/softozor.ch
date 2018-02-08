@@ -1,5 +1,5 @@
 import * as team from '../assets/team/team.json';
-import * as memberTemplate from './templates/TeamMember.pug';
+import * as memberTemplate from './templates/TeamMembers.pug';
 
 export default class TeamRenderer {
   constructor() {
@@ -12,7 +12,7 @@ export default class TeamRenderer {
    */
   public showTeam(elementId: string): void {
     let html: string = memberTemplate({ Members: team });
-    $('div#teamContent').html(html);
+    $(elementId).html(html);
   }
 
   /**

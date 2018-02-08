@@ -1,4 +1,5 @@
 #banner {
   height: 200px;
-  border: 2px solid black;
+  border: $banner-border-width solid black;
+  position: relative;
 }

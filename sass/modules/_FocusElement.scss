@@ -1,0 +1,21 @@
+.element-content {
+  $text-margin: 1rem;
+  $border-radius: 5px;
+  border: 2px solid black;
+  border-radius: $border-radius;
+  overflow: hidden;
+  font-size: 1rem;
+  margin-left: $text-margin;
+  margin-right: $text-margin;
+  margin-top: $text-margin;
+  text-align: center;
+  hr {
+    height: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    color: #000;
+    background-color: #000;
+    border: 0;
+  }
+}

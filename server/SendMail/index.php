@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'OPTIONS') {
     http_response_code(200);
   }
   else {
-    http_response_code(401);
+    http_response_code(500);
   }
 }
 ?>

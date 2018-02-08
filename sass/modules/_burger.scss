@@ -53,7 +53,7 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: $large-screen) {
   #burger {
     display: inline-block;
     border: 0;

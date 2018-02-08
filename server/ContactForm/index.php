@@ -3,12 +3,11 @@ header("Access-Control-Allow-Origin: *");
 require '../getConnection.php';
 $lang = strval($_GET['lang']);
 $conn = getConnection("michella_contact");
-
 buildFieldSet($conn, $lang);  
 mysqli_close($conn);
 ?>
 
-  <?php
+<?php
 function getPlaceHolder($conn, $lang, $id)
 {
   $req = "SELECT " . $lang . " FROM placeholders WHERE id = '" . $id . "'";

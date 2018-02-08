@@ -15,6 +15,17 @@ import PlayState from './GameStates/PlayState';
 import PauseState from './GameStates/PauseState';
 import GameOverState from './GameStates/GameOverState';
 
+// TODO: publish the score
+// axios
+//   .post(`${this.SERVER}/PublishScore/`, {
+//     username: 'comteharbour',
+//     score: '1'
+//   })
+//   .then(res =>
+//     console.log('Score published with success: ' + JSON.stringify(res))
+//   )
+//   .catch((err: string): void => this.onFormSubmitFailure(err));
+
 export default class GameManager {
   constructor() {
     this.init();

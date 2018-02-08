@@ -2,6 +2,8 @@
   "server": "https://www.softozor.ch/server/",
   "api": {
     "contactForm": "ContactForm",
-    "sendMail": "SendMail"
+    "sendMail": "SendMail",
+    "getScores": "GetScores",
+    "publishScore": "PublishScore"
   }
 }

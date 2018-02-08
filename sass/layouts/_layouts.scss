@@ -4,3 +4,4 @@ $mobile-layout: (media: '(max-width: $large-screen)');
 // this will include any layout stuff like header, article, section, footer styling
 @import 'footer';
 @import 'section';
+@import 'header';
