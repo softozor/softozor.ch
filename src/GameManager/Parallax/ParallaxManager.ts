@@ -80,7 +80,7 @@ export default class ParallaxManager {
   /**
    * Private members
    */
-  private m_BandRenderers: BandRenderer[];
+  private m_BandRenderers: BandRenderer[] = [];
   private readonly m_ReadyEvent: VoidSyncEvent = new VoidSyncEvent();
 }
 

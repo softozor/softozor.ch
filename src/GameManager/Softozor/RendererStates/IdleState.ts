@@ -3,8 +3,8 @@ import Sprite from '../../Rendering/Sprite';
 import RendererState from './RendererState';
 
 export default class IdleState extends RendererState {
-  constructor(renderer: Renderer, sprite: Sprite) {
-    super(renderer, sprite);
+  constructor(renderer: Renderer) {
+    super(renderer);
   }
 }
 

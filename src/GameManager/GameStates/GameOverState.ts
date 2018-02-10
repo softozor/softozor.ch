@@ -1,3 +1,4 @@
+import { VoidSyncEvent } from 'ts-events';
 import GameState from './GameState';
 
 export default class PauseState extends GameState {
@@ -10,7 +11,7 @@ export default class PauseState extends GameState {
    */
   public enter(): void {
     console.log('entering game over state');
-    this.m_ClearGame();
+    this.m_ClearGame.post();
   }
 
   public exit(): void {

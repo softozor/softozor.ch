@@ -70,12 +70,9 @@ export default class Renderer extends DynamicSpriteRenderer {
 
   private onSpritesLoaded(sprites: SpriteList): void {
     console.log('Softozor loaded');
-    this.m_States = {
-      idle: new IdleState(this, getSpriteWithSrc(sprites, IDLE_IMG)),
-      flap1: new Flap1State(this, getSpriteWithSrc(sprites, FLAP1_IMG)),
-      flap2: new Flap2State(this, getSpriteWithSrc(sprites, FLAP2_IMG))
-    };
-    this.m_CurrentState = this.m_States.idle;
+    this.m_States.idle.load(getSpriteWithSrc(sprites, IDLE_IMG));
+    this.m_States.flap1.load(getSpriteWithSrc(sprites, FLAP1_IMG));
+    this.m_States.flap2.load(getSpriteWithSrc(sprites, FLAP2_IMG));
   }
 
   /**
@@ -85,8 +82,12 @@ export default class Renderer extends DynamicSpriteRenderer {
     idle: RendererState;
     flap1: RendererState;
     flap2: RendererState;
+  } = {
+    idle: new RendererState(this),
+    flap1: new RendererState(this),
+    flap2: new RendererState(this)
   };
-  private m_CurrentState: RendererState;
+  private m_CurrentState: RendererState = this.m_States.idle;
 }
 
 /**

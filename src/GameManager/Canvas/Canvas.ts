@@ -39,27 +39,27 @@ export default class Canvas {
   }
 
   public set playClickHandler(value: ClickHandlerCallback) {
-    this.m_Buttons.play.clickHandler = value;
+    this.m_Buttons.play.attachClickHandler(value);
   }
 
   public set restartClickHandler(value: ClickHandlerCallback) {
-    this.m_Buttons.restart.clickHandler = value;
+    this.m_Buttons.restart.attachClickHandler(value);
   }
 
   public set upHandler(value: ClickHandlerCallback) {
-    this.m_UpHandler = value;
+    this.m_UpHandler.attach(value);
   }
 
   public set downHandler(value: ClickHandlerCallback) {
-    this.m_DownHandler = value;
+    this.m_DownHandler.attach(value);
   }
 
   public set mouseEnterHandler(value: ClickHandlerCallback) {
-    this.m_MouseEnterHandler = value;
+    this.m_MouseEnterHandler.attach(value);
   }
 
   public set mouseLeaveHandler(value: ClickHandlerCallback) {
-    this.m_MouseLeaveHandler = value;
+    this.m_MouseLeaveHandler.attach(value);
   }
 
   public load(): void {
@@ -153,17 +153,17 @@ export default class Canvas {
   }
 
   private handleMouseEnter(event: MouseEvent): void {
-    this.m_MouseEnterHandler();
+    this.m_MouseEnterHandler.post();
   }
 
   private handleMouseLeave(event: MouseEvent): void {
-    this.m_MouseLeaveHandler();
+    this.m_MouseLeaveHandler.post();
   }
 
   private handleMouseDown(event: MouseEvent): void {
     let btn: Button | undefined = this.getClickedObject(event);
     if (btn === undefined) {
-      this.m_DownHandler();
+      this.m_DownHandler.post();
     }
   }
 
@@ -172,14 +172,14 @@ export default class Canvas {
     if (btn !== undefined) {
       btn.click();
     } else {
-      this.m_UpHandler();
+      this.m_UpHandler.post();
     }
   }
 
   private handleKeyDown(event: KeyboardEvent): void {
     switch (event.keyCode) {
     case KEY.e_SPACE:
-      this.m_DownHandler();
+      this.m_DownHandler.post();
       break;
     case KEY.e_ESC:
       this.m_Buttons.play.click();
@@ -191,7 +191,7 @@ export default class Canvas {
   private handleKeyUp(event: KeyboardEvent): void {
     switch (event.keyCode) {
     case KEY.e_SPACE:
-      this.m_UpHandler();
+      this.m_UpHandler.post();
       break;
     default:
       break;
@@ -217,12 +217,12 @@ export default class Canvas {
 
   private m_RenderingContext: CanvasRenderingContext2D = getRenderingContext();
 
-  private m_Buttons: T_ButtonMap;
+  private m_Buttons: T_ButtonMap = {};
 
-  private m_UpHandler: ClickHandlerCallback;
-  private m_DownHandler: ClickHandlerCallback;
-  private m_MouseEnterHandler: ClickHandlerCallback;
-  private m_MouseLeaveHandler: ClickHandlerCallback;
+  private m_UpHandler: VoidSyncEvent = new VoidSyncEvent();
+  private m_DownHandler: VoidSyncEvent = new VoidSyncEvent();
+  private m_MouseEnterHandler: VoidSyncEvent = new VoidSyncEvent();
+  private m_MouseLeaveHandler: VoidSyncEvent = new VoidSyncEvent();
 }
 
 /**

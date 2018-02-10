@@ -11,13 +11,17 @@ export type BannerSprites = {
 };
 
 export default class GameStoppedRenderer extends SpriteRenderer {
-  constructor(canvas: Canvas, private readonly m_Sprites: BannerSprites) {
+  constructor(canvas: Canvas) {
     super(canvas);
   }
 
   /**
    * Public methods
    */
+  public load(sprites: BannerSprites): void {
+    this.m_Sprites = sprites;
+  }
+
   public draw(alpha: number): void {
     this.drawStoppedSprite(alpha);
     this.drawBackgroundSprite(alpha);
@@ -44,8 +48,8 @@ export default class GameStoppedRenderer extends SpriteRenderer {
    */
   private get isSmallAspectRatio(): Boolean {
     return (
-      this.swidth / this.sheight <=
-      this.m_Canvas.width / (this.m_Canvas.height * (<any>CONFIG).heightRatio)
+      this.swidth / this.sheight
+      <= this.m_Canvas.width / (this.m_Canvas.height * (<any>CONFIG).heightRatio)
     );
   }
 
@@ -123,4 +127,9 @@ export default class GameStoppedRenderer extends SpriteRenderer {
   /**
    * Private members
    */
+  private m_Sprites: BannerSprites = {
+    background: new Sprite(),
+    shadow: new Sprite(),
+    stopped: new Sprite()
+  };
 }

@@ -54,7 +54,7 @@ export default class Banner {
       background: getSpriteWithSrc(sprites, BACKGROUND_IMG),
       shadow: getSpriteWithSrc(sprites, SHADOW_IMG)
     };
-    this.m_Renderer = new Renderer(this.m_Canvas, result);
+    this.m_Renderer.load(result);
     this.m_ReadyEvent.post();
     console.log('Banner loaded');
   }
@@ -62,7 +62,7 @@ export default class Banner {
   /**
    * Private members
    */
-  private m_Renderer: Renderer;
+  private m_Renderer: Renderer = new Renderer(this.m_Canvas);
   private m_Alpha: number = 0;
   private readonly m_ReadyEvent: VoidSyncEvent = new VoidSyncEvent();
 }

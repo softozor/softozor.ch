@@ -1,3 +1,4 @@
+import { VoidSyncEvent } from 'ts-events';
 import GameState from './GameState';
 
 export default class PlayState extends GameState {
@@ -11,8 +12,8 @@ export default class PlayState extends GameState {
 
   public enter(): void {
     console.log('entering play state');
-    this.m_HideBanner();
-    this.m_StartTick();
+    this.m_HideBanner.post();
+    this.m_StartTick.post();
   }
 
   public exit(): void {
@@ -20,7 +21,7 @@ export default class PlayState extends GameState {
   }
 
   public onPlayClick(): void {
-    this.m_SetPauseState();
+    this.m_SetPauseState.post();
   }
 
   public onRestartClick(): void {}

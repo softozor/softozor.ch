@@ -237,7 +237,7 @@ export default class GameManager {
   private readonly m_ScoreMgr: ScoreManager = new ScoreManager(this.m_Canvas);
   private readonly m_Banner: Banner = new Banner(this.m_Canvas);
 
-  private m_TickHandle: number;
+  private m_TickHandle: number = 0;
   private m_TickInterval: number = (<any>CONFIG).tickIntervalInMs;
 
   private m_States: { [key: string]: GameState } = {

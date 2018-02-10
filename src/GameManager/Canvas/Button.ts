@@ -1,3 +1,5 @@
+import { VoidSyncEvent } from 'ts-events';
+
 import Canvas from '../Canvas/Canvas';
 import SpriteRenderer from '../Rendering/SpriteRenderer';
 import Sprite from '../Rendering/Sprite';
@@ -19,12 +21,12 @@ export default abstract class Button extends SpriteRenderer {
   /**
    * Public methods
    */
-  public set clickHandler(callback: ClickHandlerCallback) {
-    this.m_ClickHandlerCallback = callback;
-  }
-
   public get visible(): Boolean {
     return this.alpha > 0;
+  }
+
+  public attachClickHandler(callback: ClickHandlerCallback) {
+    this.m_ClickHandlerCallback.attach(callback);
   }
 
   public hide(): void {
@@ -38,16 +40,16 @@ export default abstract class Button extends SpriteRenderer {
   }
 
   public click(): void {
-    this.m_ClickHandlerCallback();
+    this.m_ClickHandlerCallback.post();
   }
 
   public hasMouse(event: MouseEvent): Boolean {
     return (
-      event.clientX >= this.x - this.clickDelta &&
-      event.clientX <= this.x + this.width + this.clickDelta &&
-      event.clientY >= this.y - this.clickDelta &&
-      event.clientY <= this.y + this.height + this.clickDelta &&
-      this.visible
+      event.clientX >= this.x - this.clickDelta
+      && event.clientX <= this.x + this.width + this.clickDelta
+      && event.clientY >= this.y - this.clickDelta
+      && event.clientY <= this.y + this.height + this.clickDelta
+      && this.visible
     );
   }
 
@@ -97,6 +99,6 @@ export default abstract class Button extends SpriteRenderer {
   /**
    * Private members
    */
-  private m_ClickHandlerCallback: ClickHandlerCallback;
+  private m_ClickHandlerCallback: VoidSyncEvent = new VoidSyncEvent();
   private m_Alpha: number = 0;
 }

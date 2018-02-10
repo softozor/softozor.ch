@@ -58,10 +58,10 @@ export default class Softozor extends MovingObject {
 
   public handleBadCollision(collision: Collision): void {
     let diff: Vector2D = Vector2D.minus(collision.hitW, collision.centerW);
-    let speedChangeFactor: number =
-      2 *
-      ((this.m_DeltaXSpeed + this.vx) * diff.x + this.vy * diff.y) /
-      (diff.x * diff.x + diff.y * diff.y);
+    let speedChangeFactor: number
+      = 2
+      * ((this.m_DeltaXSpeed + this.vx) * diff.x + this.vy * diff.y)
+      / (diff.x * diff.x + diff.y * diff.y);
     this.m_DeltaXSpeed -= diff.x * speedChangeFactor;
     this.vy -= diff.y * speedChangeFactor;
   }
@@ -116,8 +116,8 @@ export default class Softozor extends MovingObject {
   private static initialPosition(): Vector2D {
     return new Vector2D(
       (<any>CONFIG).startPosition + (<any>CONFIG).originalDeltaXW,
-      (<any>CONFIG).originalYW -
-        (<any>CONFIG).heightW * (<any>CONSTANTS).WorldBandRatioToBanner
+      (<any>CONFIG).originalYW
+        - (<any>CONFIG).heightW * (<any>CONSTANTS).WorldBandRatioToBanner
     );
   }
 
@@ -171,9 +171,9 @@ export default class Softozor extends MovingObject {
 
   private fall(): void {
     if (
-      this.y >
-      (<any>CONFIG).maxYW -
-        (<any>CONFIG).heightW * (<any>CONSTANTS).WorldBandRatioToBanner
+      this.y
+      > (<any>CONFIG).maxYW
+        - (<any>CONFIG).heightW * (<any>CONSTANTS).WorldBandRatioToBanner
     ) {
       this.vy = Math.min(this.vy, 0);
     } else if (this.y > (<any>CONFIG).minYW) {
@@ -199,16 +199,20 @@ export default class Softozor extends MovingObject {
   /**
    * Private members
    */
-  private m_Alpha: number;
-  private m_Position: Vector2D;
-  private m_DeltaXW: number;
-  private m_DeltaXSpeed: number;
-  private m_Speed: Vector2D;
-  private m_FlapWait: number;
-  private m_DoFlap: Boolean;
+  private m_Alpha: number = 0;
+  private m_Position: Vector2D = new Vector2D();
+  private m_DeltaXW: number = 0;
+  private m_DeltaXSpeed: number = 0;
+  private m_Speed: Vector2D = new Vector2D();
+  private m_FlapWait: number = 0;
+  private m_DoFlap: Boolean = false;
   private readonly m_DistanceFactor: number = (<any>CONSTANTS)
     .WorldDistanceFactor;
-  private m_Hitbox: CircularHitBox;
+  private m_Hitbox: CircularHitBox = new CircularHitBox(
+    new Vector2D(),
+    new Vector2D(),
+    0
+  );
   private readonly m_Renderer: Renderer = new Renderer(
     this.m_Canvas,
     (<any>CONFIG).widthW,
