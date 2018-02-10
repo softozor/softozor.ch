@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as SERVER from '../config/server/api.json';
 
 export default class ContactFormManager {
-  constructor(private readonly m_AnchorId: string) {
+  constructor() {
     this.showForm();
   }
 
@@ -61,6 +61,8 @@ export default class ContactFormManager {
   private readonly SERVER: string = (<any>SERVER).server;
   private readonly FORM_API: string = (<any>SERVER).api.contactForm;
   private readonly MAIL_API: string = (<any>SERVER).api.sendMail;
+
+  private m_AnchorId: string = '#contactForm';
 }
 
 /**
