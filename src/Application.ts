@@ -16,7 +16,6 @@ export class Application {
    * Public methods
    */
   public exec(): void {
-    // $(document).ready(() => this.onDocumentReady());
     this.onDocumentReady();
   }
 

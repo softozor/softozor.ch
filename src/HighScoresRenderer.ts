@@ -8,9 +8,6 @@ type ScoreData = { username: string; score: string }[];
 export default class HighScoresRenderer {
   constructor() {
     $('#highScores').click(this.onMouseClick.bind(this));
-    let height: number | undefined = $('#highScores').height();
-    this.m_OriginalHeight = height !== undefined ? height : 0;
-
     $('#highScores table').hide();
 
     axios
@@ -45,6 +42,7 @@ export default class HighScoresRenderer {
       );
     }
     $('#highScores table').show();
+    this.m_Collapsed = false;
   }
 
   private collapse(event): void {
@@ -59,14 +57,11 @@ export default class HighScoresRenderer {
       );
     }
     $('#highScores table').hide();
+    this.m_Collapsed = true;
   }
 
   private onMouseClick(event): void {
-    if ($(event.currentTarget).height() === this.m_OriginalHeight) {
-      this.expand(event);
-    } else {
-      this.collapse(event);
-    }
+    this.m_Collapsed ? this.expand(event) : this.collapse(event);
   }
 
   /**
@@ -76,5 +71,5 @@ export default class HighScoresRenderer {
   private readonly SET_API: string = (<any>SERVER).api.publishScore;
   private readonly GET_API: string = (<any>SERVER).api.getScores;
 
-  private m_OriginalHeight: number;
+  private m_Collapsed: Boolean = true;
 }
