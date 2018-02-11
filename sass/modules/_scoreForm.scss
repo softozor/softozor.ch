@@ -8,9 +8,10 @@
   width: $width;
   height: $height;
   border: 0px solid black;
+  border-radius: 10px;
   background: white;
   opacity: 0.9;
-  border-radius: 10px;
+  display: none;
   .close {
     $font-size: 2rem;
     font-weight: bold;
@@ -19,6 +20,8 @@
     position: absolute;
     top: 0;
     right: 0;
+    z-index: 10; // without this z-index, it is not possible to click on the button
+    cursor: pointer;
   }
   form {
     position: relative;

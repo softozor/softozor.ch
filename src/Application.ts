@@ -6,11 +6,11 @@ import TeamRenderer from './TeamRenderer';
 import ContactFormManager from './ContactFormManager';
 import FocusRenderer from './FocusRenderer';
 import HighScoresRenderer from './HighScoresRenderer';
-import HighScoresDialog from './HighScoresDialog';
 
 export class Application {
   constructor() {
     polyfill();
+    this.connectHandlers();
   }
 
   /**
@@ -23,6 +23,11 @@ export class Application {
   /**
    * Private methods
    */
+  private connectHandlers(): void {
+    this.m_GameMgr.attachRefreshHighScoresHandler(
+      this.m_HighScoresRenderer.refreshScores.bind(this.m_HighScoresRenderer)
+    );
+  }
 
   /**
    * Private members
@@ -33,7 +38,6 @@ export class Application {
   private readonly m_ContactFormMgr: ContactFormManager = new ContactFormManager();
   private readonly m_FocusRenderer: FocusRenderer = new FocusRenderer();
   private readonly m_HighScoresRenderer: HighScoresRenderer = new HighScoresRenderer();
-  private readonly m_HighScoresDialog: HighScoresDialog = new HighScoresDialog();
 }
 /**
  * Non-member methods

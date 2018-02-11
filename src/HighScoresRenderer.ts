@@ -9,7 +9,14 @@ export default class HighScoresRenderer {
   constructor() {
     $('#highScores').click(this.onMouseClick.bind(this));
     $('#highScores table').hide();
+    this.refreshScores();
+  }
 
+  /**
+   * Public methods
+   */
+  public refreshScores(): void {
+    console.log('Refresh scores!');
     axios
       .get(`${this.SERVER}/${this.GET_API}/`)
       .then(res => this.fillScores(res.data))
@@ -17,14 +24,10 @@ export default class HighScoresRenderer {
   }
 
   /**
-   * Public methods
-   */
-
-  /**
    * Private methods
    */
   private fillScores(data: ScoreData): void {
-    let html: string = 'Empty scores';
+    let html: string = '<tr><td colspan=2 align=center>Empty scores</td></tr>';
     if (data.length > 0) {
       html = scoresTemplate({
         Scores: data

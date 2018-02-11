@@ -14,17 +14,9 @@ import GameState from './GameStates/GameState';
 import PlayState from './GameStates/PlayState';
 import PauseState from './GameStates/PauseState';
 import GameOverState from './GameStates/GameOverState';
+import HighScoresDialog from './HighScoresDialog';
 
-// TODO: publish the score
-// axios
-//   .post(`${this.SERVER}/PublishScore/`, {
-//     username: 'comteharbour',
-//     score: '1'
-//   })
-//   .then(res =>
-//     console.log('Score published with success: ' + JSON.stringify(res))
-//   )
-//   .catch((err: string): void => this.onFormSubmitFailure(err));
+type RefreshHighScoresHandler = () => void;
 
 export default class GameManager {
   constructor() {
@@ -32,6 +24,15 @@ export default class GameManager {
     this.load();
     this.setupStates();
     this.setupScoring();
+  }
+
+  /**
+   * Public methods
+   */
+  public attachRefreshHighScoresHandler(
+    callback: RefreshHighScoresHandler
+  ): void {
+    this.m_HighScoresDialog.attachPublishHandler(callback);
   }
 
   /**
@@ -95,6 +96,7 @@ export default class GameManager {
     this.setMovingObject(this.m_Softozor);
     this.m_Canvas.clearEvents();
     this.connectResizeEvents();
+    this.m_HighScoresDialog.reset();
   }
 
   private setMovingObject(movingObject: Softozor): void {
@@ -186,6 +188,7 @@ export default class GameManager {
     this.m_ObstacleMgr.setGameOverState();
     this.m_Canvas.showRestartButton();
     this.m_Softozor.hide();
+    this.m_HighScoresDialog.open();
   }
 
   private tick(): void {
@@ -246,4 +249,8 @@ export default class GameManager {
     gameOver: new GameOverState()
   };
   private m_CurrentState: GameState = this.m_States.pause;
+
+  private readonly m_HighScoresDialog: HighScoresDialog = new HighScoresDialog(
+    this.m_ScoreMgr
+  );
 }

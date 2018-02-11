@@ -2,6 +2,8 @@ import axios from 'axios';
 
 import * as SERVER from '../config/server/api.json';
 
+import { objectifyForm } from './Helpers';
+
 export default class ContactFormManager {
   constructor() {
     this.showForm();
@@ -68,10 +70,3 @@ export default class ContactFormManager {
 /**
  * Non-member methods
  */
-function objectifyForm(array: JQuery.NameValuePair[]) {
-  let returnArray: { [key: string]: string } = {};
-  for (var i = 0; i < array.length; i++) {
-    returnArray[array[i]['name']] = array[i]['value'];
-  }
-  return returnArray;
-}

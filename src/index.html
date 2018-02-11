@@ -14,16 +14,12 @@
     <div id="banner">
       <div id="scoreForm" title="Report high score">
         <div class="close">&times;</div>
-        <!-- <div id="formContainer"> -->
-        <form>
+        <form method='post'>
           <fieldset>
-            <!-- <h3>Will you dare share your score?</h3> -->
-            <input type="text" name="name" id="name" placeholder="username">
-            <!-- <input type="text" name="email" id="email" placeholder="jane@smith.com"> -->
+            <input type="text" name="username" placeholder="username" maxlength="10" required>
             <button type="submit" tabindex="-1">Publish score</button>
           </fieldset>
         </form>
-        <!-- </div> -->
       </div>
       <canvas>
       </canvas>

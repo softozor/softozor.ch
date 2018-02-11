@@ -1,6 +1,4 @@
 <?php
-require '../getConnection.php';
-
 header("access-control-allow-origin: *");
 header("access-control-allow-methods: POST");
 header("access-control-allow-headers: Content-Type");
@@ -10,6 +8,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $username = $data['username'];
 $score = $data['score'];
 
+require '../getConnection.php';
 $conn = getConnection("michella_game");
 
 $maxNbScores = 20;

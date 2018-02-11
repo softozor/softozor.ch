@@ -11,6 +11,10 @@ export default class ScoreManager {
   /**
    * Public methods
    */
+  public get score(): number {
+    return this.m_Score;
+  }
+
   public clear(): void {
     this.m_Score = initScore();
     this.m_ScoreIncrement = initScoreIncrement();
@@ -80,10 +84,6 @@ export default class ScoreManager {
 
   private get font(): string {
     return `bold ${(<any>CONFIG).height}px Arial`;
-  }
-
-  private get score(): number {
-    return this.m_Score;
   }
 
   private get text(): string {
