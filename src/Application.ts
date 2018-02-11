@@ -6,6 +6,7 @@ import TeamRenderer from './TeamRenderer';
 import ContactFormManager from './ContactFormManager';
 import FocusRenderer from './FocusRenderer';
 import HighScoresRenderer from './HighScoresRenderer';
+import HighScoresDialog from './HighScoresDialog';
 
 export class Application {
   constructor() {
@@ -16,30 +17,23 @@ export class Application {
    * Public methods
    */
   public exec(): void {
-    this.onDocumentReady();
+    console.log('Executing application');
   }
 
   /**
    * Private methods
    */
-  private onDocumentReady(): void {
-    this.m_MainNavMgr = new MainNavigationManager();
-    this.m_TeamRenderer = new TeamRenderer();
-    this.m_GameMgr = new GameManager();
-    this.m_ContactFormMgr = new ContactFormManager('#contactForm');
-    this.m_FocusRenderer = new FocusRenderer();
-    this.m_HighScoresRenderer = new HighScoresRenderer();
-  }
 
   /**
    * Private members
    */
-  private m_MainNavMgr: MainNavigationManager;
-  private m_TeamRenderer: TeamRenderer;
-  private m_GameMgr: GameManager;
-  private m_ContactFormMgr: ContactFormManager;
-  private m_FocusRenderer: FocusRenderer;
-  private m_HighScoresRenderer: HighScoresRenderer;
+  private readonly m_MainNavMgr: MainNavigationManager = new MainNavigationManager();
+  private readonly m_TeamRenderer: TeamRenderer = new TeamRenderer();
+  private readonly m_GameMgr: GameManager = new GameManager();
+  private readonly m_ContactFormMgr: ContactFormManager = new ContactFormManager();
+  private readonly m_FocusRenderer: FocusRenderer = new FocusRenderer();
+  private readonly m_HighScoresRenderer: HighScoresRenderer = new HighScoresRenderer();
+  private readonly m_HighScoresDialog: HighScoresDialog = new HighScoresDialog();
 }
 /**
  * Non-member methods

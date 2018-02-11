@@ -12,7 +12,21 @@
 
   <header>
     <div id="banner">
-      <canvas></canvas>
+      <div id="scoreForm" title="Report high score">
+        <div class="close">&times;</div>
+        <!-- <div id="formContainer"> -->
+        <form>
+          <fieldset>
+            <!-- <h3>Will you dare share your score?</h3> -->
+            <input type="text" name="name" id="name" placeholder="username">
+            <!-- <input type="text" name="email" id="email" placeholder="jane@smith.com"> -->
+            <button type="submit" tabindex="-1">Publish score</button>
+          </fieldset>
+        </form>
+        <!-- </div> -->
+      </div>
+      <canvas>
+      </canvas>
       <div id="highScores">
         High Scores
         <table></table>

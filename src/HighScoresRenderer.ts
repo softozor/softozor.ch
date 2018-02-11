@@ -24,9 +24,12 @@ export default class HighScoresRenderer {
    * Private methods
    */
   private fillScores(data: ScoreData): void {
-    let html: string = scoresTemplate({
-      Scores: data
-    });
+    let html: string = 'Empty scores';
+    if (data.length > 0) {
+      html = scoresTemplate({
+        Scores: data
+      });
+    }
     $('#highScores table').html(html);
   }
 
