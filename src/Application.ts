@@ -1,6 +1,4 @@
-﻿import { polyfill } from 'es6-promise';
-
-import MainNavigationManager from './MainNavigationManager';
+﻿import MainNavigationManager from './MainNavigationManager';
 import GameManager from './GameManager/GameManager';
 import TeamRenderer from './TeamRenderer';
 import ContactFormManager from './ContactFormManager';
@@ -9,7 +7,6 @@ import HighScoresRenderer from './HighScoresRenderer';
 
 export class Application {
   constructor() {
-    polyfill();
     this.connectHandlers();
   }
 

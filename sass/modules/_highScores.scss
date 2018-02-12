@@ -2,6 +2,7 @@
   $height: 20px;
   $padding: 5px;
   width: 200px;
+  overflow-y: auto;
   height: $height;
   background-color: $secondary-color;
   color: white;
@@ -14,6 +15,13 @@
   text-align: left;
   font-variant: small-caps;
   padding: 0 $padding $padding $padding;
+  user-select: none;
+  p {
+    display: inline-block;
+    &:hover {
+      cursor: pointer;
+    }
+  }
   table,
   tr,
   td {
@@ -22,8 +30,13 @@
     border-top-color: white;
     border-top-style: solid;
     border-top-width: 0px;
+    max-height: 200px;
   }
-  &:hover {
-    cursor: pointer;
+  &:before {
+    content: '\25B6';
+    margin-right: 5px;
+  }
+  &.active:before {
+    content: '\25BC';
   }
 }

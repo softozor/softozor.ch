@@ -7,7 +7,7 @@ type ScoreData = { username: string; score: string }[];
 
 export default class HighScoresRenderer {
   constructor() {
-    $('#highScores').click(this.onMouseClick.bind(this));
+    $('#highScores p').click(this.onMouseClick.bind(this));
     $('#highScores table').hide();
     this.refreshScores();
   }
@@ -37,33 +37,35 @@ export default class HighScoresRenderer {
   }
 
   private expand(event): void {
-    let dh: number | undefined = $('#highScores table').height();
-    if (dh !== undefined) {
-      $(event.currentTarget).animate(
-        {
-          height: `+=${dh}px`,
-          bottom: `-=${dh}px`
-        },
-        'slow'
-      );
-    }
+    let dh: string = $('#highScores table').css('max-height');
     $('#highScores table').show();
+    $('#highScores').animate(
+      {
+        height: `+=${dh}`,
+        bottom: `-=${dh}`
+      },
+      'slow'
+    );
+    $('#highScores').addClass('active');
     this.m_Collapsed = false;
   }
 
   private collapse(event): void {
-    let dh: number | undefined = $('#highScores table').height();
-    if (dh !== undefined) {
-      $(event.currentTarget).animate(
-        {
-          height: `-=${dh}px`,
-          bottom: `+=${dh}px`
-        },
-        'slow'
-      );
-    }
-    $('#highScores table').hide();
+    let dh: string = $('#highScores table').css('max-height');
+    $('#highScores').animate(
+      {
+        height: `-=${dh}`,
+        bottom: `+=${dh}`
+      },
+      'slow',
+      this.onCollapse.bind(this)
+    );
     this.m_Collapsed = true;
+  }
+
+  private onCollapse(): void {
+    $('#highScores table').hide();
+    $('#highScores').removeClass('active');
   }
 
   private onMouseClick(event): void {
