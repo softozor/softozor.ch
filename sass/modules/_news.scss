@@ -1,0 +1,15 @@
+.news {
+  display: flex;
+  flex-direction: row;
+  .date {
+    width: 25%;
+    font-style: italic;
+  }
+
+  .description {
+    flex: 1;
+    p {
+      text-align: justify;
+    }
+  }
+}
