@@ -2,7 +2,7 @@
   $height: 20px;
   $padding: 5px;
   width: 200px;
-  overflow-y: auto;
+  // overflow-y: auto;
   height: $height;
   background-color: $secondary-color;
   color: white;
@@ -36,7 +36,10 @@
     content: '\25B6';
     margin-right: 5px;
   }
-  &.active:before {
+  &.active {
+    overflow-y: auto;
+    &:before {
     content: '\25BC';
+    }
   }
 }
