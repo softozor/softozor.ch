@@ -1,10 +1,14 @@
 [
   {
     "Title": "Serious gaming",
-    "Description": "Our skills converge to high-performance computing and gaming. To complete them, we have a great deal of interest in pedagogy. As a result, coupling our interest to our skills results in the realisation of pedagogical applications for children. We are starting producing apps that aim at helping children understanding mathematics."
+    "Description": "Our skills converge to high-performance computing and gaming. To complete them, we have a great deal of interest in pedagogy. Coupling our interests to our skills results in the realization of pedagogical applications for children. We started producing apps that aim at supporting children in their learning mathematics."
   },
   {
     "Title": "Tailored applications",
     "Description": "We have the expertise to realize web, desktop, and mobile applications for private individuals as well as for businesses."
+  }, 
+  {
+    "Title": "Consulting",
+    "Description": "We can provide you with scientific, computer scientific, and design advice for your own projects."
   }
 ]
