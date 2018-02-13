@@ -20,7 +20,7 @@ export default abstract class CircularObstacle extends Obstacle {
    */
   public get isOutOfBounds(): Boolean {
     let scrollX: number = MovingCoordinateSystem.scrollingPosition().x;
-    return this.m_TopLeftCorner.x + this.m_Radius <= scrollX;
+    return this.m_TopLeftCorner.x + 2 * this.m_Radius <= scrollX;
   }
 
   /**
