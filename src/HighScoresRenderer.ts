@@ -7,8 +7,10 @@ type ScoreData = { username: string; score: string }[];
 
 export default class HighScoresRenderer {
   constructor() {
-    $('#highScores p').click(this.onMouseClick.bind(this));
-    $('#highScores table').hide();
+    $(`${this.ELEMENT} p`).click(this.onMouseClick.bind(this));
+    $(document).click(this.onMouseClickOutside.bind(this));
+
+    $(`${this.ELEMENT} table`).hide();
     this.refreshScores();
   }
 
@@ -26,6 +28,14 @@ export default class HighScoresRenderer {
   /**
    * Private methods
    */
+  private onMouseClickOutside(event): void {
+    if (!$(event.target).closest(this.ELEMENT).length) {
+      if ($(this.ELEMENT).is(':visible')) {
+        this.collapse(event);
+      }
+    }
+  }
+
   private fillScores(data: ScoreData): void {
     let html: string = '<tr><td colspan=2 align=center>Empty scores</td></tr>';
     if (data.length > 0) {
@@ -33,26 +43,32 @@ export default class HighScoresRenderer {
         Scores: data
       });
     }
-    $('#highScores table').html(html);
+    $(`${this.ELEMENT} table`).html(html);
   }
 
   private expand(event): void {
-    let dh: string = $('#highScores table').css('max-height');
-    $('#highScores table').show();
-    $('#highScores').animate(
+    if (!this.m_Collapsed) {
+      return;
+    }
+    let dh: string = $(`${this.ELEMENT} table`).css('max-height');
+    $(`${this.ELEMENT} table`).show();
+    $(this.ELEMENT).animate(
       {
         height: `+=${dh}`,
         bottom: `-=${dh}`
       },
       'slow'
     );
-    $('#highScores').addClass('active');
+    $(this.ELEMENT).addClass('active');
     this.m_Collapsed = false;
   }
 
   private collapse(event): void {
-    let dh: string = $('#highScores table').css('max-height');
-    $('#highScores').animate(
+    if (this.m_Collapsed) {
+      return;
+    }
+    let dh: string = $(`${this.ELEMENT} table`).css('max-height');
+    $(this.ELEMENT).animate(
       {
         height: `-=${dh}`,
         bottom: `+=${dh}`
@@ -64,8 +80,8 @@ export default class HighScoresRenderer {
   }
 
   private onCollapse(): void {
-    $('#highScores table').hide();
-    $('#highScores').removeClass('active');
+    $(`${this.ELEMENT} table`).hide();
+    $(this.ELEMENT).removeClass('active');
   }
 
   private onMouseClick(event): void {
@@ -79,5 +95,6 @@ export default class HighScoresRenderer {
   private readonly SET_API: string = (<any>SERVER).api.publishScore;
   private readonly GET_API: string = (<any>SERVER).api.getScores;
 
+  private readonly ELEMENT: string = '#highScores';
   private m_Collapsed: Boolean = true;
 }
