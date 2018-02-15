@@ -123,8 +123,8 @@ export default class Canvas {
 
   private connectKeyboardEvents(): void {
     console.log('Connecting keyboard events');
-    document.onkeydown = this.handleKeyDown.bind(this);
-    document.onkeyup = this.handleKeyUp.bind(this);
+    document.addEventListener('keydown', this.handleKeyDown.bind(this));
+    document.addEventListener('keyup', this.handleKeyUp.bind(this));
   }
 
   private resizeCanvasElement(): void {
@@ -176,7 +176,8 @@ export default class Canvas {
     }
   }
 
-  private handleKeyDown(event: KeyboardEvent): void {
+  private handleKeyDown(event): void {
+    event.preventDefault();
     switch (event.keyCode) {
     case KEY.e_SPACE:
       this.m_DownHandler.post();
