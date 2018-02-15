@@ -24,12 +24,25 @@
   table,
   tr,
   td {
-    border: 0px;
     font-variant: normal;
     border-top-color: white;
     border-top-style: solid;
     border-top-width: 0px;
     max-height: 200px;
+    margin-right: 2px;
+    margin-left: 2px;
+    &.rank {
+      text-align: left;
+      width: 15%;
+    }
+    &.username {
+      text-align: left;
+      width: 55%;
+    }
+    &.score {
+      text-align: right;
+      width: 30%;
+    }
   }
   &:before {
     content: '\25B6';
@@ -38,7 +51,7 @@
   &.active {
     overflow-y: auto;
     &:before {
-    content: '\25BC';
+      content: '\25BC';
     }
   }
 }

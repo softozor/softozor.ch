@@ -1,4 +1,9 @@
+include ./helpers/LeadingZeros
+
+-let i=1
 each scoreElement in Scores
   tr
-    td(align='left') #{scoreElement.username} 
-    td(align='right') #{scoreElement.score}
+    td(class='rank')= rank(i, 2)
+    td(class='username')  #{scoreElement.username} 
+    td(class='score') #{scoreElement.score}
+  - ++i
