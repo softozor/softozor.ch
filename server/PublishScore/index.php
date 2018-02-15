@@ -5,7 +5,9 @@ header("access-control-allow-headers: Content-Type");
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-$username = $data['username'];
+$maxUsernameLength = 10;
+
+$username = substr($data['username'], 0, $maxUsernameLength);
 $score = $data['score'];
 
 require '../getConnection.php';
