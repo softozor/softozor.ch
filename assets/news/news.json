@@ -1,22 +1,38 @@
 [
   {
+    "Date": "Feb 25th 2018",
+    "Title": "Desktop version of Softozor website available",
+    "Description":
+      "The first production version of our website has been released. Our totally \"non-serious\" game in the banner is up and running modulo a few little cosmetic details. Though it is looking nice on Desktop computers, it's a bit too early to browse it with a mobile device as none of it has been adapted for smaller screens yet. Because our current small team is already full of on-going projects, you will need to wait a bit more to use our website on your favorite mobile device, unfortunately."
+  },
+  {
     "Date": "Feb 1st 2018",
     "Title": "Initialized investigations on the Shopozor project",
-    "Description": "Etiam imperdiet ex sed ante accumsan, eget dictum nunc efficitur. Maecenas tempus lacinia urna, in varius eros rutrum lacinia. Vestibulum ut porta leo. Donec fermentum tempus suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consequat, enim sit amet vulputate mattis, arcu ligula tincidunt lacus, quis luctus felis augue at metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam suscipit commodo dui, at sodales justo auctor non. Quisque tristique quis diam ut accumsan. Donec eget enim ac purus malesuada faucibus. Maecenas gravida lacus in diam pulvinar, eu tincidunt leo condimentum. Nam lacus quam, laoreet et tempus at, euismod eget leo. "
+    "Description":
+      "Farmers and artisans in our neighbourhood brought to our attention that they are unhappy with the commercial platform they are using to share products as it is managed by people in another country which tax them too much for the service. We are starting investigating that problem from a consulting point of view in order to address the various possibilities. One of them is that we build up our own platform with yet unseen functionalities that will make our local artisans' lifes happy."
   },
   {
     "Date": "Nov 1st 2017",
     "Title": "Initialized the Softozor Website project",
-    "Description": "Fusce ac erat non purus sollicitudin aliquet. Etiam eu nulla sem. Phasellus ultricies dui et turpis pulvinar tempor. In hac habitasse platea dictumst. Fusce tincidunt leo ac urna pretium volutpat. Nullam convallis nibh quis commodo vestibulum. Vivamus turpis dolor, luctus dignissim sodales eu, lacinia id dolor. Fusce vel vehicula turpis, et posuere sem. Etiam elit nisl, porta non interdum vel, accumsan quis elit. Nunc nisi risus, fermentum ut urna sed, accumsan rhoncus magna. Praesent tempus leo nec sapien scelerisque ornare. Aliquam faucibus lacus nibh, ut congue libero varius vitae."
+    "Description":
+      "Aim of the website is to present our team and products. A basic version will be ready for 2018."
   },
   {
-    "Date": "Aug 31st 2017",
-    "Title": "Produced the first Fotozor cabin",
-    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique eros velit, at gravida tortor laoreet in. Donec pulvinar elit vel erat vehicula, quis commodo dolor cursus. Pellentesque tincidunt massa feugiat nisi fringilla scelerisque. Ut vel sodales quam. Nullam diam sapien, lobortis ut luctus vel, ornare at nulla. Vivamus condimentum nibh id ipsum aliquet convallis. Pellentesque sagittis, lorem at malesuada dignissim, sem justo lacinia arcu, eget gravida nulla tortor nec est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas sagittis congue purus, vitae volutpat sapien pharetra eget. Phasellus tortor metus, placerat non lacinia vel, tempus id nunc."
-  }, 
+    "Date": "Sep 30th 2017",
+    "Title": "Produced first Fotozor",
+    "Description":
+      "The complete photo booth's cabin and software application are ready. The first instance of this Fotozor was called \"Choupimaton\" after the nicknames of the wedding's groom and bride. The Fotozor is customizable for anybody interested and is available for rent. Please feel free to contact us if you need more details on that product."
+  },
   {
-    "Date": "July 1st 2017",
+    "Date": "Aug 15th 2017",
     "Title": "Initialized the Fotozor project",
-    "Description": "Cras pharetra nisi ac enim feugiat, ac volutpat leo ullamcorper. Praesent et posuere metus. Proin dolor urna, consequat id dolor auctor, congue ultricies ex. Phasellus lacinia nunc dui, in cursus magna ultrices non. Sed vehicula elit sed ex maximus pharetra. Nam eget feugiat enim, a auctor ex. Cras et volutpat justo. Vestibulum nulla lacus, imperdiet eget sagittis eget, porta quis justo. Cras hendrerit scelerisque nunc vel malesuada. Etiam aliquet, leo vitae egestas scelerisque, elit lorem sollicitudin dui, vitae euismod arcu nunc a elit. Aenean et nulla tristique nisi fringilla semper pulvinar vel nisl."
+    "Description":
+      "For the wedding of one of us, someone came up with the crazy idea to build a complete photo booth from A to Z. Challenge accepted."
+  },
+  {
+    "Date": "July 14th 2017",
+    "Title": "Founded Softozor",
+    "Description":
+      "Softozor was born during one of our numerous after-work cocktails. We have been nourishing the idea of collaborating on professional projects since a long time."
   }
 ]
