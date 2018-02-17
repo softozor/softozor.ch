@@ -10,10 +10,6 @@
   overflow: hidden;
   font-size: 1rem;
   @include grid-container;
-  &:hover {
-    background-color: $principal-color;
-    cursor: pointer;
-  }
   .image-wrapper {
     @include grid-column(2, $custom-grid);
     float: left;
