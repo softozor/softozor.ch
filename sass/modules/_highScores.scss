@@ -1,12 +1,15 @@
 #highScores {
   $height: 20px;
   $padding: 5px;
+  $table-width: 120%;
+  $rank-fraction: 0.1;
+  $username-fraction: 0.5;
+  $score-fraction: 0.25;
+
   width: 200px;
   height: $height;
   background-color: $secondary-color;
   color: white;
-  border-bottom-left-radius: 5%;
-  border-bottom-right-radius: 5%;
   position: absolute;
   bottom: - $height - $banner-border-width - $padding;
   left: - $banner-border-width;
@@ -15,6 +18,10 @@
   font-variant: small-caps;
   padding: 0 $padding $padding $padding;
   user-select: none;
+  overflow: hidden;
+  $shadow-color: rgba(0, 0, 0, 0.302);
+  box-shadow: 10px 10px 10px $shadow-color;
+
   p {
     display: inline-block;
     &:hover {
@@ -28,28 +35,33 @@
     border-top-color: white;
     border-top-style: solid;
     border-top-width: 0px;
-    max-height: 200px;
     margin-right: 2px;
     margin-left: 2px;
     &.rank {
       text-align: left;
-      width: 15%;
+      width: $rank-fraction * $table-width;
     }
     &.username {
       text-align: left;
-      width: 55%;
+      width: $username-fraction * $table-width;
     }
     &.score {
       text-align: right;
-      width: 30%;
+      width: $score-fraction * $table-width;
     }
   }
+  table {
+    display: block;
+    overflow-y: auto;
+    width: $table-width;
+    height: 100%;
+  }
+
   &:before {
     content: '\25B6';
     margin-right: 5px;
   }
   &.active {
-    overflow-y: auto;
     &:before {
       content: '\25BC';
     }

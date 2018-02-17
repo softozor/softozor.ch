@@ -46,20 +46,30 @@ export default class HighScoresRenderer {
     $(`${this.ELEMENT} table`).html(html);
   }
 
+  private computeDH(): string {
+    let y: number | undefined = $(this.ELEMENT).position().top;
+    let h: number | undefined = $(this.ELEMENT).height();
+    let wh: number | undefined = $(window).height();
+    return h !== undefined && y !== undefined && wh !== undefined
+      ? `${wh - (y + h)}px`
+      : '0px';
+  }
+
   private expand(event): void {
     if (!this.m_Collapsed) {
       return;
     }
-    let dh: string = $(`${this.ELEMENT} table`).css('max-height');
+
+    this.m_Dh = this.computeDH();
     $(`${this.ELEMENT} table`).show();
     $(this.ELEMENT).animate(
       {
-        height: `+=${dh}`,
-        bottom: `-=${dh}`
+        height: `+=${this.m_Dh}`,
+        bottom: `-=${this.m_Dh}`
       },
       'slow'
     );
-    $(this.ELEMENT).addClass('active');
+    $(`${this.ELEMENT}`).addClass('active');
     this.m_Collapsed = false;
   }
 
@@ -67,11 +77,10 @@ export default class HighScoresRenderer {
     if (this.m_Collapsed) {
       return;
     }
-    let dh: string = $(`${this.ELEMENT} table`).css('max-height');
     $(this.ELEMENT).animate(
       {
-        height: `-=${dh}`,
-        bottom: `+=${dh}`
+        height: `-=${this.m_Dh}`,
+        bottom: `+=${this.m_Dh}`
       },
       'slow',
       this.onCollapse.bind(this)
@@ -97,4 +106,5 @@ export default class HighScoresRenderer {
 
   private readonly ELEMENT: string = '#highScores';
   private m_Collapsed: Boolean = true;
+  private m_Dh: string = '0px';
 }
