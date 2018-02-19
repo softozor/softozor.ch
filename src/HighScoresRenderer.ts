@@ -7,7 +7,7 @@ type ScoreData = { username: string; score: string }[];
 
 export default class HighScoresRenderer {
   constructor() {
-    $(`${this.ELEMENT} p`).click(this.onMouseClick.bind(this));
+    this.connectMouseClick();
     $(document).click(this.onMouseClickOutside.bind(this));
 
     $(`${this.ELEMENT} table`).hide();
@@ -28,6 +28,11 @@ export default class HighScoresRenderer {
   /**
    * Private methods
    */
+  private connectMouseClick(): void {
+    console.log('connect mouse click');
+    $(`${this.ELEMENT} p`).one('click', this.onMouseClick.bind(this));
+  }
+
   private onMouseClickOutside(event): void {
     if (!$(event.target).closest(this.ELEMENT).length) {
       if ($(this.ELEMENT).is(':visible')) {
@@ -67,10 +72,9 @@ export default class HighScoresRenderer {
         height: `+=${this.m_Dh}`,
         bottom: `-=${this.m_Dh}`
       },
-      'slow'
+      'slow', this.onExpand.bind(this)
     );
     $(`${this.ELEMENT}`).addClass('active');
-    this.m_Collapsed = false;
   }
 
   private collapse(event): void {
@@ -85,12 +89,18 @@ export default class HighScoresRenderer {
       'slow',
       this.onCollapse.bind(this)
     );
-    this.m_Collapsed = true;
+  }
+
+  private onExpand(): void {
+    this.connectMouseClick();
+    this.m_Collapsed = false;
   }
 
   private onCollapse(): void {
     $(`${this.ELEMENT} table`).hide();
     $(this.ELEMENT).removeClass('active');
+    this.connectMouseClick();
+    this.m_Collapsed = true;
   }
 
   private onMouseClick(event): void {
