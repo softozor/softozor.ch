@@ -7,8 +7,7 @@ type ScoreData = { username: string; score: string }[];
 
 export default class HighScoresRenderer {
   constructor() {
-    this.connectMouseClick();
-    $(document).click(this.onMouseClickOutside.bind(this));
+    this.bindMouseClick();
 
     $(`${this.ELEMENT} table`).hide();
     this.refreshScores();
@@ -28,15 +27,23 @@ export default class HighScoresRenderer {
   /**
    * Private methods
    */
-  private connectMouseClick(): void {
-    console.log('connect mouse click');
-    $(`${this.ELEMENT} p`).one('click', this.onMouseClick.bind(this));
+  private bindMouseClick(): void {
+    $(`${this.ELEMENT} p`).click(this.onMouseClick.bind(this));
+    $(document).click(this.onMouseClickOutside.bind(this));
+  }
+
+  private unbindMouseClick(): void {
+    $(`${this.ELEMENT} p`).unbind('click');
+    $(document).unbind('click');
   }
 
   private onMouseClickOutside(event): void {
     if (!$(event.target).closest(this.ELEMENT).length) {
       if ($(this.ELEMENT).is(':visible')) {
-        this.collapse(event);
+        if (!this.m_Collapsed) {
+          this.unbindMouseClick();
+          this.collapse(event);
+        }
       }
     }
   }
@@ -64,7 +71,6 @@ export default class HighScoresRenderer {
     if (!this.m_Collapsed) {
       return;
     }
-
     this.m_Dh = this.computeDH();
     $(`${this.ELEMENT} table`).show();
     $(this.ELEMENT).animate(
@@ -72,15 +78,16 @@ export default class HighScoresRenderer {
         height: `+=${this.m_Dh}`,
         bottom: `-=${this.m_Dh}`
       },
-      'slow', this.onExpand.bind(this)
+      'slow',
+      this.onExpand.bind(this)
     );
-    $(`${this.ELEMENT}`).addClass('active');
   }
 
   private collapse(event): void {
     if (this.m_Collapsed) {
       return;
     }
+
     $(this.ELEMENT).animate(
       {
         height: `-=${this.m_Dh}`,
@@ -92,18 +99,22 @@ export default class HighScoresRenderer {
   }
 
   private onExpand(): void {
-    this.connectMouseClick();
+    console.log('onExpand');
+    $(`${this.ELEMENT}`).addClass('active');
+    this.bindMouseClick();
     this.m_Collapsed = false;
   }
 
   private onCollapse(): void {
+    console.log('onCollapse');
     $(`${this.ELEMENT} table`).hide();
     $(this.ELEMENT).removeClass('active');
-    this.connectMouseClick();
+    this.bindMouseClick();
     this.m_Collapsed = true;
   }
 
   private onMouseClick(event): void {
+    this.unbindMouseClick();
     this.m_Collapsed ? this.expand(event) : this.collapse(event);
   }
 
