@@ -48,6 +48,11 @@ export default class HighScoresRenderer {
     }
   }
 
+  private onMouseClick(event): void {
+    this.unbindMouseClick();
+    this.m_Collapsed ? this.expand(event) : this.collapse(event);
+  }
+
   private fillScores(data: ScoreData): void {
     let html: string = '<tr><td colspan=2 align=center>Empty scores</td></tr>';
     if (data.length > 0) {
@@ -111,11 +116,6 @@ export default class HighScoresRenderer {
     $(this.ELEMENT).removeClass('active');
     this.bindMouseClick();
     this.m_Collapsed = true;
-  }
-
-  private onMouseClick(event): void {
-    this.unbindMouseClick();
-    this.m_Collapsed ? this.expand(event) : this.collapse(event);
   }
 
   /**
