@@ -12,7 +12,7 @@ mysqli_close($conn);
 
 <?php
 function getScores($conn) {
-  $req = "SELECT username, score FROM scores ORDER BY score DESC";
+  $req = "SELECT DISTINCT username, score FROM scores ORDER BY score DESC";
   $result = array();
   if($res = $conn->query($req)) {
     while($row = $res->fetch_array()) {

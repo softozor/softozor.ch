@@ -177,9 +177,9 @@ export default class Canvas {
   }
 
   private handleKeyDown(event): void {
-    event.preventDefault();
     switch (event.keyCode) {
     case KEY.e_SPACE:
+      event.preventDefault();
       this.m_DownHandler.post();
       break;
     case KEY.e_ESC:
