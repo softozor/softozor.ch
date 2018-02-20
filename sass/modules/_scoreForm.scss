@@ -23,6 +23,11 @@
     z-index: 10; // without this z-index, it is not possible to click on the button
     cursor: pointer;
   }
+  .feedback {
+    text-align: center;
+    width: 100%;
+    color: black;
+  }
   form {
     position: relative;
     width: 100%;

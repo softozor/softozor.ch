@@ -11,6 +11,7 @@ type PublishHandler = () => void;
 export default class HighScoresDialog {
   constructor(private readonly m_ScoreMgr: ScoreManager) {
     this.connectHandlers();
+    $('#scoreForm .feedback').hide();
   }
 
   /**
@@ -45,6 +46,8 @@ export default class HighScoresDialog {
 
   private publishScore(): Boolean {
     console.log('Publishing score...');
+    $('#scoreForm button').hide();
+    $('#scoreForm .feedback').show();
     let formObject: { [key: string]: string } = objectifyForm(
       $('#scoreForm form').serializeArray()
     );
@@ -60,6 +63,7 @@ export default class HighScoresDialog {
     console.log('Score successfully published');
     this.onClose();
     this.m_PublishHandler.post();
+    $('#scoreForm .feedback').hide();
   }
 
   private onFormSubmitFailure(err: string): void {
