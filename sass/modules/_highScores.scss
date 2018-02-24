@@ -1,12 +1,13 @@
 #highScores {
   $height: 20px;
   $padding: 5px;
-  $table-width: 120%;
+  $width: 400px;
+  $table-width: 435px;
   $rank-fraction: 0.1;
   $username-fraction: 0.5;
-  $score-fraction: 0.25;
+  $score-fraction: 0.4;
 
-  width: 200px;
+  width: $width;
   height: $height;
   background-color: $secondary-color;
   color: white;
@@ -28,8 +29,6 @@
       cursor: pointer;
     }
   }
-  table,
-  tr,
   td {
     font-variant: normal;
     border: 0;
@@ -37,15 +36,15 @@
     margin-left: 2px;
     &.rank {
       text-align: left;
-      width: $rank-fraction * $table-width;
+      width: $rank-fraction * $width;
     }
     &.username {
       text-align: left;
-      width: $username-fraction * $table-width;
+      width: $username-fraction * $width;
     }
     &.score {
       text-align: right;
-      width: $score-fraction * $table-width;
+      width: $score-fraction * $width;
     }
   }
   table {
