@@ -29,12 +29,12 @@ export default class HighScoresRenderer {
    */
   private bindMouseClick(): void {
     $(`${this.ELEMENT} p`).click(this.onMouseClick.bind(this));
-    $(document).click(this.onMouseClickOutside.bind(this));
+    $(document).on('click touchstart', this.onMouseClickOutside.bind(this));
   }
 
   private unbindMouseClick(): void {
     $(`${this.ELEMENT} p`).unbind('click');
-    $(document).unbind('click');
+    $(document).unbind('click touchstart');
   }
 
   private onMouseClickOutside(event): void {
