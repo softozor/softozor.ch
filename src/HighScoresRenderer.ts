@@ -77,6 +77,7 @@ export default class HighScoresRenderer {
       return;
     }
     this.m_Dh = this.computeDH();
+    $(`${this.ELEMENT}`).addClass('active');
     $(`${this.ELEMENT} table`).show();
     $(this.ELEMENT).animate(
       {
@@ -105,7 +106,6 @@ export default class HighScoresRenderer {
 
   private onExpand(): void {
     console.log('onExpand');
-    $(`${this.ELEMENT}`).addClass('active');
     this.bindMouseClick();
     this.m_Collapsed = false;
   }

@@ -21,7 +21,6 @@
   user-select: none;
   overflow: hidden;
   $shadow-color: rgba(0, 0, 0, 0.302);
-  box-shadow: 10px 10px 10px $shadow-color;
 
   p {
     display: inline-block;
@@ -29,6 +28,7 @@
       cursor: pointer;
     }
   }
+
   td {
     font-variant: normal;
     border: 0;
@@ -59,6 +59,7 @@
     margin-right: 5px;
   }
   &.active {
+    box-shadow: 10px 10px 10px $shadow-color;
     &:before {
       content: '\25BC';
     }
