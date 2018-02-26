@@ -105,13 +105,11 @@ export default class HighScoresRenderer {
   }
 
   private onExpand(): void {
-    console.log('onExpand');
     this.bindMouseClick();
     this.m_Collapsed = false;
   }
 
   private onCollapse(): void {
-    console.log('onCollapse');
     $(`${this.ELEMENT} table`).hide();
     $(this.ELEMENT).removeClass('active');
     this.bindMouseClick();
