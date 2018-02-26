@@ -1,7 +1,3 @@
-import { isUndefined } from 'util';
-
-type LoadCallback = () => void;
-
 export default class MainNavigationManager {
   constructor() {
     this.animateMenuLine();
