@@ -5,7 +5,7 @@
 // Avoid using IDs (#) and element selectors; rather stick to class names (.)
 // A module will likely contain a number of elements and there is likely to be a desire to use child selectors to target those elements
 
-@import 'burger'; // refactor this!
+@import 'navigation';
 @import 'contactForm';
 @import 'cvEntry';
 @import 'banner';
