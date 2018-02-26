@@ -64,7 +64,8 @@ export default class HighScoresRenderer {
   }
 
   private computeDH(): string {
-    let y: number | undefined = $(this.ELEMENT).position().top;
+    let offset: JQuery.Coordinates | undefined = $(this.ELEMENT).offset();
+    let y: number | undefined = offset !== undefined ? offset.top : undefined;
     let h: number | undefined = $(this.ELEMENT).height();
     let wh: number | undefined = $(window).height();
     return h !== undefined && y !== undefined && wh !== undefined
