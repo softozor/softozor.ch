@@ -1,6 +1,10 @@
 section#welcome {
   width: 50%;
 
+  @media screen and (max-width: $large-screen) {
+    width: 100%;
+  }
+
   $custom-grid: (
     columns: 12,
     gutter: 0
@@ -19,6 +23,9 @@ section#welcome {
     img {
       display: block;
       z-index: -1;
+      @media screen and (max-width: $large-screen) {
+        max-width: 50%;
+      }
     }
   }
   .side-image-content {
