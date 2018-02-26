@@ -30,6 +30,7 @@ export default class MainNavigationManager {
     let width: number = 0;
     $('#navigation > ul')
       .children()
+      .not('.highScores')
       .each(function(index: number, element: HTMLElement): void {
         let outerWidth: number | undefined = $(element).outerWidth(true);
         if (outerWidth !== undefined) {

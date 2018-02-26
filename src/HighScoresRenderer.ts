@@ -28,12 +28,12 @@ export default class HighScoresRenderer {
    * Private methods
    */
   private bindMouseClick(): void {
-    $(`${this.ELEMENT} p`).click(this.onMouseClick.bind(this));
+    $(`${this.ELEMENT} a`).click(this.onMouseClick.bind(this));
     $(document).on('click touchstart', this.onMouseClickOutside.bind(this));
   }
 
   private unbindMouseClick(): void {
-    $(`${this.ELEMENT} p`).unbind('click');
+    $(`${this.ELEMENT} a`).unbind('click');
     $(document).unbind('click touchstart');
   }
 
@@ -123,7 +123,7 @@ export default class HighScoresRenderer {
   private readonly SET_API: string = (<any>SERVER).api.publishScore;
   private readonly GET_API: string = (<any>SERVER).api.getScores;
 
-  private readonly ELEMENT: string = '#highScores';
+  private readonly ELEMENT: string = 'li.highScores';
   private m_Collapsed: Boolean = true;
   private m_Dh: string = '0px';
 }
