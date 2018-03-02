@@ -19,6 +19,7 @@
     padding: 0 $padding $padding $padding;
     user-select: none;
     overflow: hidden;
+    border-bottom-right-radius: 10px;
     $shadow-color: rgba(0, 0, 0, 0.302);
 
     display: flex;
