@@ -1,22 +1,27 @@
+$margin: 25px;
+
 .vignette {
   $separator-width: 1px;
+  $tabs-height: 50px;
   width: 100%;
-  margin-bottom: 25px;
+  margin: $margin 0;
   display: grid;
   grid-template-columns: 25% 75%;
-  grid-template-rows: auto $separator-width auto;
+  grid-template-rows: auto $separator-width auto $tabs-height;
   grid-template-areas:
-    'i t'
-    'i s'
-    'i d';
+    'i title      '
+    'i separator  '
+    'i description'
+    'i tabs       ';
   @media screen and (max-width: $large-screen) {
     grid-template-columns: 100%;
     grid-template-rows: auto;
     grid-template-areas:
-      't'
-      's'
-      'i'
-      'd';
+      'title      '
+      'separator  '
+      'i          '
+      'description'
+      'tabs       ';
   }
   border: 2px solid black;
   border-radius: 5px;
@@ -28,7 +33,7 @@
     height: 100%;
   }
   .title {
-    grid-area: t;
+    grid-area: title;
     text-align: center;
     display: contents;
     h2 {
@@ -36,7 +41,7 @@
     }
   }
   .separator {
-    grid-area: s;
+    grid-area: separator;
     width: 50%;
     border-bottom: $separator-width solid black;
     margin: 0px auto;
@@ -45,11 +50,46 @@
     }
   }
   .description {
-    grid-area: d;
+    grid-area: description;
     text-align: center;
     display: contents;
     p {
       margin: auto 25px;
+    }
+  }
+  .tabs {
+    grid-area: tabs;
+    display: flex;
+    justify-content: center;
+    img {
+      height: $tabs-height;
+      margin: 0px 10px;
+    }
+  }
+}
+
+.career {
+  display: none;
+  width: 50%;
+  border: 1px solid red;
+  margin-bottom: $margin;
+  .entry {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'date        title      '
+      'date        description';
+    .date {
+      grid-area: date;
+      font-style: italic;
+    }
+    .title {
+      grid-area: title;
+      font-weight: bold;
+    }
+    .description {
+      grid-area: description;
     }
   }
 }
