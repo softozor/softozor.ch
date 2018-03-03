@@ -8,6 +8,15 @@
     'i t'
     'i s'
     'i d';
+  @media screen and (max-width: $large-screen) {
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    grid-template-areas:
+      't'
+      's'
+      'i'
+      'd';
+  }
   border: 2px solid black;
   border-radius: 5px;
   overflow: hidden;
@@ -30,6 +39,9 @@
     width: 50%;
     border-bottom: $separator-width solid black;
     margin: 0px auto;
+    @media screen and (max-width: $large-screen) {
+      border: 0;
+    }
   }
   .description {
     grid-area: d;
