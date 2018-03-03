@@ -2,7 +2,7 @@ include ./helpers/ImgPaths
 
 each member in Members
   .vignette
-    img(src=pathToTeamImg(member.ImgFilename))
+    img(src=pathToImg('team', member.ImgFilename))
     .title
       h2 #{member.FirstName} #{member.LastName}
     .separator
