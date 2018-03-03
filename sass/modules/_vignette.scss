@@ -1,0 +1,42 @@
+.vignette {
+  $separator-width: 1px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: auto $separator-width auto;
+  grid-template-areas:
+    'i t'
+    'i s'
+    'i d';
+  border: 2px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+  font-size: 1rem;
+  font-size: normal;
+  img {
+    grid-area: i;
+    height: 100%;
+  }
+  .title {
+    grid-area: t;
+    text-align: center;
+    display: contents;
+    h2 {
+      margin: auto 0px;
+    }
+  }
+  .separator {
+    grid-area: s;
+    width: 50%;
+    border-bottom: $separator-width solid black;
+    margin: 0px auto;
+  }
+  .description {
+    grid-area: d;
+    text-align: center;
+    display: contents;
+    p {
+      margin: auto 0px;
+    }
+  }
+}
