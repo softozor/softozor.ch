@@ -30,12 +30,12 @@ $margin: 25px;
   font-size: normal;
   img {
     grid-area: i;
-    height: 100%;
+    width: 100%;
   }
   .title {
     grid-area: title;
     text-align: center;
-    display: contents;
+    display: inline-grid;
     h2 {
       margin: auto 0px;
     }
@@ -52,7 +52,7 @@ $margin: 25px;
   .description {
     grid-area: description;
     text-align: center;
-    display: contents;
+    display: inline-grid;
     p {
       margin: auto 25px;
     }
@@ -62,6 +62,7 @@ $margin: 25px;
     display: flex;
     justify-content: center;
     img {
+      width: auto;
       height: $tabs-height;
       margin: 0px 10px;
     }
