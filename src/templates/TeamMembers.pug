@@ -9,10 +9,15 @@ each member in Members
     .description
       p #{member.ShortDescription}
     .tabs
-      img.career-image(src=pathToImg('team', 'career.png'))
-      img.education-image(src=pathToImg('team', 'education.png'))
-      img.achievements-image(src=pathToImg('team', 'achievements.png'))
+      .tab-image
+        img.career-image(src=pathToImg('team', 'career.png'))
+      //- .tab-image
+      //-   img.education-image(src=pathToImg('team', 'education.png'))
+      //- .tab-image
+      //-   img.achievements-image(src=pathToImg('team', 'achievements.png'))
+  //- .cv
   .career
+    h2 Professional experience
     each item in member.Career 
       .entry
         .date #{item.start} &#8211; #{item.end}
