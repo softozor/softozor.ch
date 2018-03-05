@@ -11,8 +11,8 @@ each member in Members
     .tabs
       .tab-image
         img.career-image(src=pathToImg('team', 'career.png'))
-      //- .tab-image
-      //-   img.education-image(src=pathToImg('team', 'education.png'))
+      .tab-image
+        img.education-image(src=pathToImg('team', 'education.png'))
       //- .tab-image
       //-   img.achievements-image(src=pathToImg('team', 'achievements.png'))
   //- .cv
@@ -24,4 +24,10 @@ each member in Members
         .title #{item.title}
         .description!= item.details
   .education
+    h2 Education
+    each item in member.Education 
+      .entry
+        .date #{item.start} &#8211; #{item.end}
+        .title #{item.title}
+        .description!= item.details
   .achievements
