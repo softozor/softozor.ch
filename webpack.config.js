@@ -59,8 +59,8 @@ var plugins = [
       to: 'config'
     },
     {
-      from: 'images/icon/icon1.ico',
-      to: 'favicon.ico'
+      from: 'images/icon/favicon_all_size',
+      to: 'icons'
     }
   ])
 ];
