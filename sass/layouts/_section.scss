@@ -6,6 +6,7 @@ section {
   font-size: 1em;
   @media screen and (max-width: $large-screen) {
     font-size: 1.5vw;
+    width: 100%;
   }
   &#focus > h2 {
     text-align: center;

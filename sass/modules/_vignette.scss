@@ -1,0 +1,111 @@
+$margin: 25px;
+
+.vignette {
+  $separator-width: 1px;
+  $tabs-height: 50px;
+  $tab-image-height: $tabs-height * 1.5;
+  $tab-images-margin: 15px;
+  width: 100%;
+  margin: $margin 0;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: auto $separator-width auto ($tab-image-height + $tab-images-margin * 2);
+  grid-template-areas:
+    'i title      '
+    'i separator  '
+    'i description'
+    'i tabs       ';
+  @media screen and (max-width: $large-screen) {
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'title      '
+      'separator  '
+      'i          '
+      'description'
+      'tabs       ';
+  }
+  border: 2px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+  font-size: 1rem;
+  font-size: normal;
+  img {
+    grid-area: i;
+    width: 100%;
+  }
+  .title {
+    grid-area: title;
+    text-align: center;
+    display: inline-grid;
+    h2 {
+      margin: auto 0px;
+    }
+  }
+  .separator {
+    grid-area: separator;
+    width: 50%;
+    border-bottom: $separator-width solid black;
+    margin: 0px auto;
+    @media screen and (max-width: $large-screen) {
+      border: 0;
+    }
+  }
+  .description {
+    grid-area: description;
+    text-align: center;
+    display: inline-grid;
+    p {
+      margin: auto 25px;
+    }
+  }
+  .tabs {
+    grid-area: tabs;
+    display: flex;
+    justify-content: center;
+    .tab-image {
+      border: 2px solid $principal-color;
+      border-radius: 5px;
+      width: $tab-image-height;
+      height: $tab-image-height;
+      margin: auto 10px;
+      display: flex;
+      &:hover {
+        background-color: $secondary-color;
+      }
+      img {
+        width: auto;
+        height: $tabs-height;
+        margin: auto;
+      }
+    }
+  }
+}
+
+$panel-width: 80%;
+
+.career {
+  display: none;
+  width: $panel-width;
+  margin-bottom: $margin;
+  margin-left: (100% - $panel-width) / 2;
+  .entry {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'date        title      '
+      'date        description';
+    .date {
+      grid-area: date;
+      font-style: italic;
+    }
+    .title {
+      grid-area: title;
+      font-weight: bold;
+    }
+    .description {
+      grid-area: description;
+    }
+  }
+}

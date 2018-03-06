@@ -4,7 +4,10 @@ import * as memberTemplate from './templates/TeamMembers.pug';
 export default class TeamRenderer {
   constructor() {
     this.showTeam('div#teamContent');
-    $('button.accordion').click(e => this.toggle(e.target));
+    $('.vignette .tab-image').click(e => {
+      e.preventDefault();
+      this.toggle(e.target);
+    });
   }
 
   /**
@@ -18,37 +21,51 @@ export default class TeamRenderer {
   /**
    * Private methods
    */
+  private reduceAll(): void {
+    $('.career').slideUp(1000);
+    $('.education').slideUp(1000);
+    $('.achievements').slideUp(1000);
+  }
+
   private toggle(elem: HTMLElement): void {
-    if ($(elem).hasClass('active')) {
-      $(elem)
-        .removeClass('active')
-        .next('.portfolio')
-        .css(this.m_DisabledPanelCss);
-    } else {
-      $('button.accordion')
-        .removeClass('active')
-        .next('.portfolio')
-        .css(this.m_DisabledPanelCss);
-      let scrollHeight: number = $(elem)
-        .next('.portfolio')
-        .prop('scrollHeight');
-      $(elem)
-        .addClass('active')
-        .next('.portfolio')
-        .css({
-          maxHeight: scrollHeight + 'px',
-          borderStyle: 'solid',
-          borderWidth: '2px'
-        });
+    let parentVignette: JQuery<HTMLElement> = $(elem).closest('.vignette');
+    let tab: JQuery<HTMLElement> | undefined;
+
+    switch (elem.className) {
+    case 'career-image':
+      {
+        tab = parentVignette.next('.career');
+      }
+      break;
+    case 'education-image':
+      {
+        tab = parentVignette.next('.education');
+      }
+      break;
+    case 'achievements-image':
+      {
+        tab = parentVignette.next('.achievements');
+      }
+      break;
+    default:
+      console.log('Unsupported element');
+      return;
+    }
+
+    this.reduceAll();
+
+    if (tab !== undefined) {
+      if (tab.is(':visible')) {
+        tab.slideUp(1000);
+        parentVignette.siblings('.vignette').slideDown(500);
+      } else {
+        tab.slideDown(1000);
+        parentVignette.siblings('.vignette').slideUp(500);
+      }
     }
   }
 
   /**
    * Private members
    */
-  private m_DisabledPanelCss: { [key: string]: string } = {
-    maxHeight: '0',
-    borderWidth: '0',
-    borderColor: 'white'
-  };
 }

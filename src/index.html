@@ -14,7 +14,7 @@
     <div id="banner">
       <div id="scoreForm" title="Report high score">
         <div class="close">&times;</div>
-        <form method='post'>
+        <form method="post">
           <fieldset>
             <input type="text" name="username" placeholder="username" maxlength="10" required>
             <button type="submit" tabindex="-1">Publish score</button>
@@ -24,12 +24,10 @@
       </div>
       <canvas>
       </canvas>
-      <div id="highScores">
-        <p>High Scores</p>
-        <table></table>
-      </div>
     </div>
     <nav id="navigation">
+      <input type="checkbox" id="burger-check">
+      <label for="burger-check" id="burger"></label>
       <ul>
         <li>
           <a href="#welcome">Home</a>
@@ -43,11 +41,13 @@
         <li>
           <a href="#products">Products</a>
         </li>
+        <li class="highScores">
+          <a>High Scores</a>
+          <table></table>
+        </li>
       </ul>
       <div id="bottomLine"></div>
     </nav>
-    <input id="burger-check" type="checkbox">
-    <label for="burger-check" id="burger"></label>
   </header>
 
   <div id='content'>

@@ -1,3 +1,6 @@
 header {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0; // this makes flexbox work on Chrome
 }

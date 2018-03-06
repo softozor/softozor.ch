@@ -157,7 +157,10 @@ export default class Canvas {
   }
 
   private handleMouseLeave(event: MouseEvent): void {
-    this.m_MouseLeaveHandler.post();
+    if (event.relatedTarget !== null) {
+      // this handles the case on Chrome where the mouseleave event is buggy
+      this.m_MouseLeaveHandler.post();
+    }
   }
 
   private handleMouseDown(event: MouseEvent): void {

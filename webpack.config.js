@@ -43,6 +43,10 @@ var plugins = [
       to: 'assets/team'
     },
     {
+      from: 'assets/focus',
+      to: 'assets/focus'
+    },
+    {
       from: 'assets/news.png',
       to: 'assets/news.png'
     },

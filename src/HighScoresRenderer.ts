@@ -28,13 +28,13 @@ export default class HighScoresRenderer {
    * Private methods
    */
   private bindMouseClick(): void {
-    $(`${this.ELEMENT} p`).click(this.onMouseClick.bind(this));
-    $(document).click(this.onMouseClickOutside.bind(this));
+    $(`${this.ELEMENT} a`).click(this.onMouseClick.bind(this));
+    $(document).on('click touchstart', this.onMouseClickOutside.bind(this));
   }
 
   private unbindMouseClick(): void {
-    $(`${this.ELEMENT} p`).unbind('click');
-    $(document).unbind('click');
+    $(`${this.ELEMENT} a`).unbind('click');
+    $(document).unbind('click touchstart');
   }
 
   private onMouseClickOutside(event): void {
@@ -64,7 +64,8 @@ export default class HighScoresRenderer {
   }
 
   private computeDH(): string {
-    let y: number | undefined = $(this.ELEMENT).position().top;
+    let offset: JQuery.Coordinates | undefined = $(this.ELEMENT).offset();
+    let y: number | undefined = offset !== undefined ? offset.top : undefined;
     let h: number | undefined = $(this.ELEMENT).height();
     let wh: number | undefined = $(window).height();
     return h !== undefined && y !== undefined && wh !== undefined
@@ -77,6 +78,7 @@ export default class HighScoresRenderer {
       return;
     }
     this.m_Dh = this.computeDH();
+    $(`${this.ELEMENT}`).addClass('active');
     $(`${this.ELEMENT} table`).show();
     $(this.ELEMENT).animate(
       {
@@ -104,14 +106,11 @@ export default class HighScoresRenderer {
   }
 
   private onExpand(): void {
-    console.log('onExpand');
-    $(`${this.ELEMENT}`).addClass('active');
     this.bindMouseClick();
     this.m_Collapsed = false;
   }
 
   private onCollapse(): void {
-    console.log('onCollapse');
     $(`${this.ELEMENT} table`).hide();
     $(this.ELEMENT).removeClass('active');
     this.bindMouseClick();
@@ -125,7 +124,7 @@ export default class HighScoresRenderer {
   private readonly SET_API: string = (<any>SERVER).api.publishScore;
   private readonly GET_API: string = (<any>SERVER).api.getScores;
 
-  private readonly ELEMENT: string = '#highScores';
+  private readonly ELEMENT: string = 'li.highScores';
   private m_Collapsed: Boolean = true;
   private m_Dh: string = '0px';
 }

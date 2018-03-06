@@ -1,7 +1,3 @@
-import { isUndefined } from 'util';
-
-type LoadCallback = () => void;
-
 export default class MainNavigationManager {
   constructor() {
     this.animateMenuLine();
@@ -34,6 +30,7 @@ export default class MainNavigationManager {
     let width: number = 0;
     $('#navigation > ul')
       .children()
+      .not('.highScores')
       .each(function(index: number, element: HTMLElement): void {
         let outerWidth: number | undefined = $(element).outerWidth(true);
         if (outerWidth !== undefined) {
@@ -65,7 +62,12 @@ export default class MainNavigationManager {
     return undefined;
   }
 
-  private onClick(elem: HTMLElement): void {
+  private closeBurger(): void {
+    $('#navigation').removeClass('open');
+    $('#burger-check').prop('checked', false);
+  }
+
+  private openSection(elem: HTMLElement): void {
     let menuName: string | undefined = this.menuName(elem);
     $(`section#${menuName}`)
       .show()
@@ -73,13 +75,33 @@ export default class MainNavigationManager {
       .hide();
   }
 
-  private setupMenu(): void {
+  private onClick(elem: HTMLElement): void {
+    this.openSection(elem);
+    this.closeBurger();
+  }
+
+  private setupLinks(): void {
     $('nav#navigation a, footer a')
       .not('.external')
       .click(e => {
         e.preventDefault();
         this.onClick(e.target);
       });
+  }
+
+  private setupBurger(): void {
+    $('#burger').click((event): void => {
+      if ($('#burger-check').is(':checked')) {
+        $('#navigation').removeClass('open');
+      } else {
+        $('#navigation').addClass('open');
+      }
+    });
+  }
+
+  private setupMenu(): void {
+    this.setupLinks();
+    this.setupBurger();
   }
 
   /**

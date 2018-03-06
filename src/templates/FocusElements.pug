@@ -1,6 +1,10 @@
+include ./helpers/ImgPaths
+
 each element in FocusElements
-  .element-content
-    h2 #{element.Title}
-    hr
-    p #{element.Description}
-  br
+  .vignette
+    img(src=pathToImg('focus', element.ImgFilename))
+    .title
+      h2 #{element.Title}
+    .separator
+    .description
+      p #{element.Description}

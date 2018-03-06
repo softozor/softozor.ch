@@ -1,0 +1,145 @@
+#burger-check {
+  display: none;
+  position: absolute;
+}
+
+#navigation {
+  ul {
+    position: relative;
+    li {
+      display: flex;
+    }
+    a {
+      color: #000;
+      text-decoration: none;
+      width: 100%;
+      display: block;
+    }
+  }
+}
+
+@media screen and (min-width: $large-screen) {
+  #navigation {
+    height: auto;
+    width: 100%;
+
+    a {
+      text-align: right;
+      font-size: 1em;
+
+      &:hover {
+        color: $principal-color;
+      }
+    }
+
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      list-style: none;
+      flex-direction: row;
+      width: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      box-sizing: border-box;
+
+      li {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  #bottomLine {
+    border-top: 1px solid #000000;
+    float: right;
+    position: relative;
+    width: 0;
+    height: 2px;
+    display: block;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: $large-screen) {
+  $burger-size: 28px;
+
+  #navigation {
+    overflow: auto;
+    font-style: italic;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 120%;
+    height: $burger-size;
+    background-color: transparent;
+    z-index: 1;
+    &.open {
+      height: 100vh;
+      background-color: $secondary-color;
+    }
+    a {
+      text-align: left;
+      font-size: 5vw;
+    }
+    ul {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      li {
+        padding: 25px 5px 25px 5px;
+        &:hover {
+          background-color: $principal-color;
+        }
+      }
+    }
+  }
+
+  #burger {
+    display: inline-block;
+    border: 0;
+    background: none;
+    outline: 0;
+    padding: 0;
+    margin: 6px 0 0 6px;
+    cursor: pointer;
+    border-bottom: 4px solid currentColor;
+    width: $burger-size;
+    position: relative;
+    &:before {
+      content: '';
+      display: block;
+      border-bottom: 4px solid currentColor;
+      width: 100%;
+      margin-bottom: 5px;
+      transition: transform 0.5s ease-in-out;
+    }
+    &:after {
+      content: '';
+      display: block;
+      border-bottom: 4px solid currentColor;
+      width: 100%;
+      margin-bottom: 5px;
+      transition: transform 0.5s ease-in-out;
+    }
+  }
+
+  #burger-check {
+    &:checked {
+      & ~ #burger:before {
+        transform: rotate(-405deg) translateY(1px) translateX(-3px);
+        transition: transform 0.5s ease-in-out;
+      }
+      & ~ #burger:after {
+        transform: rotate(405deg) translateY(-4px) translateX(-5px);
+        transition: transform 0.5s ease-in-out;
+      }
+      & ~ #burger {
+        border-bottom: 4px solid transparent;
+        transition: border-bottom 0.8s ease-in-out;
+      }
+      & ~ #navigation {
+        height: auto;
+        transition: max-height 0.5s ease-in-out;
+      }
+    }
+  }
+}

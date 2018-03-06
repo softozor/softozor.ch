@@ -2,13 +2,19 @@
   {
     "FirstName": "Laurent",
     "LastName": "Michel",
-    "ImgFilename": "laurosor_polaroid.png",
+    "ImgFilename": "laurosor_full_res.jpg",
     "ShortDescription":
-      "Software architect with solid background in mathematics and physics as well as extensive experience as a SCRUM product owner. Skilled military simulation frameworks developer.",
-    "ProfExp": [
+      "Product owner, software architect, and back-end / front-end developer",
+    "Career": [
+      {
+        "start": 2017,
+        "end": "present",
+        "title": "Product owner, Softozor"
+      },
       {
         "start": 2016,
-        "title": "Product Owner, RUAG Defence, Bern"
+        "end": "present",
+        "title": "Product owner, RUAG Defence, Bern"
       },
       {
         "start": 2014,
@@ -41,7 +47,7 @@
           "Teaching assistant in physics for physicians, chemists, and biologists."
       }
     ],
-    "Publications": [
+    "Achievements": [
       {
         "date": "February 2013",
         "title":
@@ -103,39 +109,52 @@
   {
     "FirstName": "Florian",
     "LastName": "Pittet",
-    "ImgFilename": "floriosor_polaroid.png",
-    "ShortDescription": "Graphics designer"
+    "ImgFilename": "floriosor_full_res.jpg",
+    "ShortDescription": "Front-end developer and graphics designer",
+    "Career": [
+      {
+        "start": 2017,
+        "end": "present",
+        "title": "Front-end developer, Softozor" 
+      }
+    ]
   },
   {
     "FirstName": "Thomas",
     "LastName": "Michel",
-    "ImgFilename": "thomosor_polaroid.png",
-    "ShortDescription": "Software architect",
-    "ProfExp": [
+    "ImgFilename": "thomosor_full_res.jpg",
+    "ShortDescription": "Software architect and back-end developer",
+    "Career": [
       {
-        "start": "May 2016",
+        "start": 2017,
+        "end": "present",
+        "title": "Back-end developer, Softozor"
+      },
+      {
+        "start": 2016,
+        "end": "present",
         "title": "Software Engineer, RUAG Defence, Bern, Switzerland",
         "details":
           "I worked in the Simulation &amp; Training department, on just one project which was the biggest project this department had ever had. I was the lead “visual system programmer”, which means I was in charge of everything our customer can ultimately see in the simulator. The job involved making a C++ plugin for VR-Vantage (VRV) to control VRV so that it does what we want, this includes a variety of features and in particular the ability to communicate with our vehicle simulations, display the various reticles of the various supported tanks with the correct information on them, making and configuring the various visual effects we need (explosions, ammunition tracers, ...), making sure the performance of the system was acceptable and making the correct compromises to achieve them if required, etc... I also trained and supervised several developpers so they could assist me on the visual system tasks."
       },
       {
-        "start": "May 2015",
-        "end": "May 2016",
+        "start": 2015,
+        "end": 2016,
         "title": "Programmer, Abstraction Games, Valkenswaard, The Netherlands",
         "details":
           "Porting/Adapting various games from PC Steam to the consoles market. Most of my work for this company has been with Unity, but I also had to write C++ plugins for Unity for the consoles in order to interact with the native console (PS4/Xbox) APIs. I have also been in charge of all the publishing related work for Whispering Willows on WiiU and Xbox One (paperwork and actual technical work). Project turnaround was fairly high and so I had to change from one codebase to the other quite frequently, as a result I’m able to adapt to new codebases and coding style rapidly.<br /> The tasks varied from random bug fixing in the games, performance analysis and improvement, development of new game features and various platform specific requirements.<br />I have worked on Verdun, Whispering Willows, Pixel Piracy and BroForce."
       },
       {
-        "start": "February 2014",
-        "end": "November 2014",
+        "start": 2014,
+        "end": 2014,
         "title":
           "Render Technology Programmer, Traveller’s Tales, Knutsford, United Kingdom",
         "details":
           "My work there mostly consisted in maintaining our in house game engine. This included enhancing supported rendering effects, researching differences with next gen consoles in the way they work (crash dump mechanism, rendering, ...), supporting new systems for other departments such as new blending modes for artists, ... It also includes various improvements in our complex game building system and our build server system (which was all Python scripts working together with TeamCity). <br />I worked on LEGO Fusion, LEGO The Hobbit and LEGO Batman: Beyond Gotham."
       },
       {
-        "start": "October 2012",
-        "end": "February 2014",
+        "start": 2012,
+        "end": 2014,
         "title":
           "Software Engineer, SG Gaming (Barcrest), Oldham, United Kingdom",
         "details":
@@ -159,7 +178,7 @@
           "Thesis about multi mobile platforms (Android and iOS) multiplayer game, completed at Northeastern University in Boston, Massachusetts, USA"
       }
     ],
-    "Portfolio": [
+    "Achievements": [
       {
         "start": 2011,
         "title": "<a name='solaire'>Sol@ire</a>",

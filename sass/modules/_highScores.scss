@@ -1,67 +1,88 @@
-#highScores {
-  $height: 20px;
-  $padding: 5px;
-  $table-width: 120%;
-  $rank-fraction: 0.1;
-  $username-fraction: 0.5;
-  $score-fraction: 0.25;
+@media screen and (min-width: $large-screen) {
+  .highScores {
+    $height: 20px;
+    $padding: 5px;
+    $width: 400px;
+    $table-width: 435px;
+    $rank-fraction: 0.1;
+    $username-fraction: 0.5;
+    $score-fraction: 0.4;
 
-  width: 200px;
-  height: $height;
-  background-color: $secondary-color;
-  color: white;
-  position: absolute;
-  bottom: - $height - $banner-border-width - $padding;
-  left: - $banner-border-width;
-  z-index: 10;
-  text-align: left;
-  font-variant: small-caps;
-  padding: 0 $padding $padding $padding;
-  user-select: none;
-  overflow: hidden;
-  $shadow-color: rgba(0, 0, 0, 0.302);
-  box-shadow: 10px 10px 10px $shadow-color;
+    background-color: $secondary-color;
+    color: white;
+    position: absolute;
+    top: -6px;
+    left: -10px;
+    z-index: 10;
+    text-align: left;
+    font-variant: small-caps;
+    padding: 0 $padding $padding $padding;
+    user-select: none;
+    overflow: hidden;
+    border-bottom-right-radius: 10px;
+    $shadow-color: rgba(0, 0, 0, 0.302);
 
-  p {
-    display: inline-block;
-    &:hover {
-      cursor: pointer;
-    }
-  }
-  table,
-  tr,
-  td {
-    font-variant: normal;
-    border: 0;
-    margin-right: 2px;
-    margin-left: 2px;
-    &.rank {
-      text-align: left;
-      width: $rank-fraction * $table-width;
-    }
-    &.username {
-      text-align: left;
-      width: $username-fraction * $table-width;
-    }
-    &.score {
-      text-align: right;
-      width: $score-fraction * $table-width;
-    }
-  }
-  table {
-    display: block;
-    overflow-y: auto;
-    width: $table-width;
-    height: 100%;
-  }
+    display: flex;
+    flex-direction: column;
 
-  &:before {
-    content: '\25B6';
-    margin-right: 5px;
+    width: $width;
+    height: $height;
+
+    a {
+      color: white !important;
+      text-align: left !important;
+      &:hover {
+        cursor: pointer;
+      }
+      &:before {
+        content: '\25BA';
+        margin-right: 5px;
+      }
+    }
+
+    &.active a {
+      &:before {
+        content: '\25BC';
+      }
+    }
+
+    td {
+      font-variant: normal;
+      border: 0;
+      margin-right: 2px;
+      margin-left: 2px;
+      &.rank {
+        text-align: left;
+        width: $rank-fraction * $width;
+      }
+      &.username {
+        text-align: left;
+        width: $username-fraction * $width;
+      }
+      &.score {
+        text-align: right;
+        width: $score-fraction * $width;
+      }
+    }
+    table {
+      display: block;
+      overflow-y: auto;
+      width: $table-width;
+      height: 100%;
+    }
+
+    &.active {
+      box-shadow: 10px 10px 10px $shadow-color;
+    }
   }
-  &.active {
-    &:before {
-      content: '\25BC';
+}
+
+@media screen and (max-width: $large-screen) {
+  .highScores {
+    a {
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

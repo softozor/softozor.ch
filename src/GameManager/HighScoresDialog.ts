@@ -44,10 +44,18 @@ export default class HighScoresDialog {
     $('#scoreForm').hide();
   }
 
-  private publishScore(): Boolean {
-    console.log('Publishing score...');
+  private showFeedback(): void {
     $('#scoreForm button').hide();
     $('#scoreForm .feedback').show();
+  }
+
+  private hideFeedback(): void {
+    $('#scoreForm .feedback').hide();
+    $('#scoreForm button').show();
+  }
+
+  private publishScore(): Boolean {
+    this.showFeedback();
     let formObject: { [key: string]: string } = objectifyForm(
       $('#scoreForm form').serializeArray()
     );
@@ -63,7 +71,7 @@ export default class HighScoresDialog {
     console.log('Score successfully published');
     this.onClose();
     this.m_PublishHandler.post();
-    $('#scoreForm .feedback').hide();
+    this.hideFeedback();
   }
 
   private onFormSubmitFailure(err: string): void {

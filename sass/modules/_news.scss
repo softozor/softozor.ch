@@ -1,8 +1,14 @@
 .news {
   display: flex;
   flex-direction: row;
+  @media screen and (max-width: $large-screen) {
+    flex-direction: column;
+  }
   .date {
     width: 25%;
+    @media screen and (max-width: $large-screen) {
+      width: 100%;
+    }
     font-style: italic;
   }
 
@@ -10,6 +16,9 @@
     flex: 1;
     p {
       text-align: justify;
+      @media screen and (max-width: $large-screen) {
+        margin: 0 1em 0 1em;
+      }
     }
   }
 }
