@@ -4,9 +4,14 @@ import * as memberTemplate from './templates/TeamMembers.pug';
 export default class TeamRenderer {
   constructor() {
     this.showTeam('div#teamContent');
+    this.hideTabs();
     $('.vignette .tab-image').click(e => {
       e.preventDefault();
       this.toggle(e.target);
+    });
+    $('.cv .close').click(e => {
+      e.preventDefault();
+      this.closeCurrentTab(e.target);
     });
   }
 
@@ -21,10 +26,24 @@ export default class TeamRenderer {
   /**
    * Private methods
    */
+
+  private hideTabs(): void {
+    $('.career').hide();
+    $('.education').hide();
+    $('.achievements').hide();
+  }
+
   private reduceAll(): void {
-    $('.career').slideUp(1000);
-    $('.education').slideUp(1000);
-    $('.achievements').slideUp(1000);
+    $('.career').slideUp(this.m_SlideTimer);
+    $('.education').slideUp(this.m_SlideTimer);
+    $('.achievements').slideUp(this.m_SlideTimer);
+  }
+
+  private closeCurrentTab(elem: HTMLElement): void {
+    $(elem)
+      .parent()
+      .slideUp(this.m_SlideTimer);
+    $('.vignette').slideDown(this.m_SlideTimer);
   }
 
   private toggle(elem: HTMLElement): void {
@@ -34,17 +53,17 @@ export default class TeamRenderer {
     switch (elem.className) {
     case 'career-image':
       {
-        tab = parentVignette.next('.career');
+        tab = parentVignette.next('.cv').children('.career');
       }
       break;
     case 'education-image':
       {
-        tab = parentVignette.next('.education');
+        tab = parentVignette.next('.cv').children('.education');
       }
       break;
     case 'achievements-image':
       {
-        tab = parentVignette.next('.achievements');
+        tab = parentVignette.next('.cv').children('.achievements');
       }
       break;
     default:
@@ -56,11 +75,11 @@ export default class TeamRenderer {
 
     if (tab !== undefined) {
       if (tab.is(':visible')) {
-        tab.slideUp(1000);
-        parentVignette.siblings('.vignette').slideDown(500);
+        tab.slideUp(this.m_SlideTimer);
+        parentVignette.siblings('.vignette').slideDown(this.m_SlideTimer);
       } else {
-        tab.slideDown(1000);
-        parentVignette.siblings('.vignette').slideUp(500);
+        tab.slideDown(this.m_SlideTimer);
+        parentVignette.siblings('.vignette').slideUp(this.m_SlideTimer);
       }
     }
   }
@@ -68,4 +87,5 @@ export default class TeamRenderer {
   /**
    * Private members
    */
+  private m_SlideTimer: number = 500;
 }

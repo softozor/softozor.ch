@@ -84,11 +84,25 @@ $margin: 25px;
 
 $panel-width: 80%;
 
-.career, .education {
-  display: none;
+.cv {
   width: $panel-width;
   margin-bottom: $margin;
   margin-left: (100% - $panel-width) / 2;
+  position: relative;
+
+  .close {
+    $font-size: 2rem;
+    font-weight: bold;
+    font-size: $font-size;
+    margin: - $font-size / 4 $font-size / 8;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10; // without this z-index, it is not possible to click on the button
+    cursor: pointer;
+    content: "X";
+  }
+
   .entry {
     display: grid;
     grid-template-columns: 25% 75%;

@@ -49,32 +49,28 @@
     ],
     "Achievements": [
       {
-        "date": "February 2013",
+        "date": "August 2014",
         "title":
-          "Estimating the ice thickness of mountain glaciers with an inverse approach using surface topography and mass-balance",
-        "link":
-          "http://iopscience.iop.org/article/10.1088/0266-5611/29/3/035002/meta;jsessionid=9066A8362AB73C9FEE199FE08099C3F7.c5.iopscience.cld.iop.org"
-      },
-      {
-        "date": "November 2013",
-        "title":
-          "Estimating the ice thickness of mountain glaciers with a shape optimization algorithm using surface topography and mass-balance",
-        "link":
-          "https://www.degruyter.com/view/j/jip.ahead-of-print/jip-2013-0016/jip-2013-0016.xml"
+          "<a href='https://link.springer.com/article/10.1007/s10596-014-9439-6?sa_campaign=email/event/articleAuthor/onlineFirst' target='_blank'>Bedrock topography reconstruction of glaciers from surface topography and mass-balance data</a>",
+        "details": ""
       },
       {
         "date": "May 2014",
         "title":
-          "Estimating the ice thickness of shallow glaciers from surface topography and mass-balance data with a shape optimization algorithm",
-        "link":
-          "http://www.sciencedirect.com/science/article/pii/S0098300414000235"
+          "<a href='http://www.sciencedirect.com/science/article/pii/S0098300414000235' target='_blank'>Estimating the ice thickness of shallow glaciers from surface topography and mass-balance data with a shape optimization algorithm</a>",
+        "details": ""
       },
       {
-        "date": "August 2014",
+        "date": "November 2013",
         "title":
-          "Bedrock topography reconstruction of glaciers from surface topography and mass-balance data",
-        "link":
-          "https://link.springer.com/article/10.1007/s10596-014-9439-6?sa_campaign=email/event/articleAuthor/onlineFirst"
+          "<a href='https://www.degruyter.com/view/j/jip.ahead-of-print/jip-2013-0016/jip-2013-0016.xml' target='_blank'>Estimating the ice thickness of mountain glaciers with a shape optimization algorithm using surface topography and mass-balance</a>",
+        "details": ""
+      },
+      {
+        "date": "February 2013",
+        "title":
+          "<a href='http://iopscience.iop.org/article/10.1088/0266-5611/29/3/035002/meta;jsessionid=9066A8362AB73C9FEE199FE08099C3F7.c5.iopscience.cld.iop.org' target='_blank'>Estimating the ice thickness of mountain glaciers with an inverse approach using surface topography and mass-balance</a>",
+        "details": ""
       }
     ],
     "Education": [
@@ -83,7 +79,7 @@
         "end": 2013,
         "title": "PhD in mathematics, EPFL, Lausanne",
         "details":
-          "<a href='https://infoscience.epfl.ch/record/188621/files/EPFL_TH5940.pdf'>Estimating the ice thickness of mountain glaciers using surface topography and mass-balance</a>"
+          "<a href='https://infoscience.epfl.ch/record/188621/files/EPFL_TH5940.pdf' target='_blank'>Estimating the ice thickness of mountain glaciers using surface topography and mass-balance</a>"
       },
       {
         "start": 2006,
@@ -115,14 +111,22 @@
       {
         "start": 2017,
         "end": "present",
-        "title": "Front-end developer, Softozor" 
+        "title": "Front-end developer, Softozor"
       }
     ],
     "Education": [
       {
         "start": 2007,
         "end": 2008,
-        "title": "Msc in Mathematics, The University of Fribourg, Fribourg, Minor of physics"
+        "title":
+          "Msc in Mathematics, The University of Fribourg, Fribourg, Minor of physics"
+      }
+    ],
+    "Achievements": [
+      {
+        "date": "2008",
+        "title": "Navion",
+        "details": ""
       }
     ]
   },
@@ -187,13 +191,13 @@
     ],
     "Achievements": [
       {
-        "start": 2011,
+        "date": 2011,
         "title": "<a name='solaire'>Sol@ire</a>",
         "details":
           "This project was completed with Matthew Smith for our Games Programming master dissertation at the University of Hull. The idea for the project came when we realized that we were both very enthusiastic about making a game for our dissertation. We thought that by working together, we would be able to make a better and more complete product. Matt wanted to do game design, game logic and mechanics-related work, while I was looking for something more technical involving game engine and networking and so this project was born. We decided to make a space combat game which we decided to call Sol@ire and that can be played alone or over the local area network (LAN). Most of the work consisted of coming up with game mechanics and game concepts and supporting these on the multiplayer version of the game.<br /><br />The key concepts in the game are ship modules and locking a ship. The modules are the weapon you can equip to your ship, some are restricted to specific ships. Locking a ship is the process of targeting a ship, in our game this is done by using one of the \"change target\" action key and point towards that enemy for long enough, in order to use some more advanced weapons such as homing missiles, turrets, etc.<br /><br />The video shows the game in single player against bots, but the LAN game is essentially identical in the current version, except that a few more steps to start playing because you have to connect with each other and form teams, but after that you can play your death match games with your mates!<br /><br /><iframe width='560' height='315' src='https://www.youtube.com/embed/e9mq-2hKc9U?rel=0' frameborder='0' allowfullscreen></iframe>"
       },
       {
-        "start": 2011,
+        "date": 2011,
         "title": "X-Sledding 3000",
         "details":
           "This project is a complete game developed as part of the master's degree in game programming at the University of Hull. We were a team of 6 developers and decided to make a fake studio for the occasion called TExstudio :) We developed this over 5 weeks and made almost everything from scratch. We made our own game engine, the TEXEngine that supports both the Windows and the PS3 platforms. Initially the engine should have supported the PSP as well but we had to drop that support.<br /><br />The engine supports LUA scripted UI, procedural meshes and textures. It also has its own custom scripting language to script scene content. It uses CG shaders and supports keyboard - mouse and multiple xbox controllers for input. The physics uses Bullet and our audio system uses Fmod. All the textures, audio sounds, models and other assets were made by ourselves.<br /><br />The video shows the game running on Windows however it runs on the PS3 as well. <br /> Basically the way the game plays is that you select your pack of \"huskies\" (which may or may not be actual huskies :)), each have different characteristics in terms of E (energy) / D (discipline) / M (morale). The more you whip your pack, the less morale they will have but the faster you will go, energy decreases over time and discipline varies based on your energy and thrust. The discipline of your pack controls how they will obey you.<br /><br /><iframe width='560' height='315' src='https://www.youtube.com/embed/x9Du6oRotGA?rel=0' frameborder='0' allowfullscreen></iframe>"
