@@ -12,7 +12,6 @@ export default class HighScoresDialog {
   constructor(private readonly m_ScoreMgr: ScoreManager) {
     this.connectHandlers();
     $('#scoreForm .feedback').hide();
-    this.open();
   }
 
   /**
