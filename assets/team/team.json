@@ -111,8 +111,7 @@
       {
         "start": 2017,
         "end": "present",
-<<<<<<< HEAD
-        "title": "Front-end developer, Softozor" 
+        "title": "Front-end developer, Softozor"
       },
       {
         "start": 2013,
@@ -167,22 +166,10 @@
         "end": 2002,
         "title": "Federal maturity, Coll&egrave;ge Sainte-Croix.",
         "details": "Options Spanish, Pedagogy and Psychology."
-=======
-        "title": "Front-end developer, Softozor"
-      }
-    ],
-    "Education": [
-      {
-        "start": 2007,
-        "end": 2008,
-        "title":
-          "Msc in Mathematics, The University of Fribourg, Fribourg, Minor of physics"
->>>>>>> master
       }
     ],
     "Achievements": [
       {
-<<<<<<< HEAD
         "start": 2017,
         "title": "N'avion",
         "details": "The game I made to learn using Unity.<br /><br /><iframe src='./Navion/navionweb/index.html' frameborder='0' allowfullscreen></iframe><br /><br /><a href='./Navion/navion.winx64.zip'>Download for windows</a>"
@@ -201,11 +188,6 @@
         "start": 2006,
         "title": "Second prize at the <a href='http://www.bedemania.ch'>bedeMANIA</a> contest",
         "details": "<image href='./assets/Team/florian_BD.jpg'/>"
-=======
-        "date": "2008",
-        "title": "Navion",
-        "details": ""
->>>>>>> master
       }
     ]
   },
