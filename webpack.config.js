@@ -62,6 +62,11 @@ var plugins = [
       from: 'images/icon/favicon_all_size',
       to: 'icons'
     }
+    ,
+    {
+      from: 'Navion',
+      to: 'Navion'
+    }
   ])
 ];
 
