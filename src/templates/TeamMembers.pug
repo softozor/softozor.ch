@@ -11,17 +11,32 @@ each member in Members
     .tabs
       .tab-image
         img.career-image(src=pathToImg('team', 'career.png'))
-      //- .tab-image
-      //-   img.education-image(src=pathToImg('team', 'education.png'))
-      //- .tab-image
-      //-   img.achievements-image(src=pathToImg('team', 'achievements.png'))
-  //- .cv
-  .career
-    h2 Professional experience
-    each item in member.Career 
-      .entry
-        .date #{item.start} &#8211; #{item.end}
-        .title #{item.title}
-        .description!= item.details
-  .education
-  .achievements
+      .tab-image
+        img.education-image(src=pathToImg('team', 'education.png'))
+      .tab-image
+        img.achievements-image(src=pathToImg('team', 'achievements.png'))
+  .cv
+    .career
+      .close X
+      h2 Professional experience
+      each item in member.Career 
+        .entry
+          .date #{item.start} &#8211; #{item.end}
+          .title!= item.title
+          .description!= item.details
+    .education
+      .close X
+      h2 Education
+      each item in member.Education 
+        .entry
+          .date #{item.start} &#8211; #{item.end}
+          .title!= item.title
+          .description!= item.details
+    .achievements
+      .close X
+      h2 Achievements
+      each item in member.Achievements 
+        .entry
+          .date #{item.date}
+          .title!= item.title
+          .description!= item.details

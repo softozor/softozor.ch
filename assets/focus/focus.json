@@ -1,17 +1,20 @@
 [
   {
     "Title": "Serious gaming",
-    "ImgFilename": "placeholder.png",
-    "Description": "Our skills converge to high-performance computing and gaming. To complete them, we have a great deal of interest in pedagogy. Coupling our interests to our skills results in the realization of pedagogical applications for children. We started producing apps that aim at supporting children in their learning mathematics."
+    "ImgFilename": "serious_gaming.png",
+    "Description":
+      "Our skills converge to high-performance computing and gaming. To complete them, we have a great deal of interest in pedagogy. Coupling our interests to our skills results in the realization of pedagogical applications for children. We started producing apps that aim at supporting children in their learning mathematics."
   },
   {
     "Title": "Tailored applications",
-    "ImgFilename": "placeholder.png",
-    "Description": "We have the expertise to realize web, desktop, and mobile applications for private individuals as well as for businesses."
-  }, 
+    "ImgFilename": "tailored_applications.png",
+    "Description":
+      "We have the expertise to realize web, desktop, and mobile applications for private individuals as well as for businesses."
+  },
   {
     "Title": "Consulting",
-    "ImgFilename": "placeholder.png",
-    "Description": "We can provide you with scientific, computer scientific, and design advice for your own projects."
+    "ImgFilename": "consulting.png",
+    "Description":
+      "We can provide you with scientific, computer scientific, and design advice for your own projects."
   }
 ]
