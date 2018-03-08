@@ -172,12 +172,12 @@
       {
         "start": 2017,
         "title": "N'avion",
-        "details": "The game I made to learn using Unity.<br /><br /><iframe src='./Navion/navionweb/index.html' frameborder='0' allowfullscreen></iframe><br /><br /><a href='./Navion/navion.winx64.zip'>Download for windows</a>"
+        "details": "The game I made to learn using Unity.<br /><br /><a href='./Navion/navion.winx64.zip'>Download for windows</a>"
       },
       {
         "start": 2015,
         "title": "Youtube channel: <a href='https://www.youtube.com/channel/UC5k_6tN3xdEgSs9JnFEiGzw'>Pourquoi Bordel</a>",
-        "details": "Proving mathematics concepts with simple words <br /><br /><iframe src='https://youtu.be/K2qlOfA_-QU' frameborder='0' allowfullscreen></iframe>"
+        "details": "Proving mathematics concepts with simple words <br /><br /><iframe src='https://www.youtube.com/embed/K2qlOfA_-QU' frameborder='0' allowfullscreen></iframe>"
       },
       {
         "start": 2013,
