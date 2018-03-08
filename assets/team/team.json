@@ -116,6 +116,82 @@
         "start": 2017,
         "end": "present",
         "title": "Front-end developer, Softozor" 
+      },
+      {
+        "start": 2013,
+        "end": 2017,
+        "title": "Mathematics and Physics teacher, <a href='http://www.college2520.net'>Coll&egrave;ge de la Neuveville</a>."
+      },
+      {
+        "start": 2010,
+        "end": 2012,
+        "title": "Mathematics teacher, <a href='http://wwww.emf.ch'>École des Métiers de Fribourg</a>."
+      },
+      {
+        "start": 2004,
+        "end": 2008,
+        "title": "Substitute and support teacher, mostly in mathematics."
+      },
+      {
+        "start": 2002,
+        "end": 2003,
+        "title": "Mathematics and DIY teacher, École Internationale Les Écureuils, Gryon."
+      }
+    ],
+    "Education":[
+      {
+        "start": 2017,
+        "end": "present",
+        "title": "Self-education in <a href='http://unity3d.com'>Unity</a> (C#), HTML, CSS, Javascript, Typescript and React."
+      },
+      {
+        "start": 2013,
+        "end": 2016,
+        "title": "Self-education in Java using <a href='http://www.greenfoot.org'>Greenfoot</a>."
+      },
+      {
+        "start": 2009,
+        "end": 2010,
+        "title": "DAES 2 (diploma for high school teaching) in mathematics and physics."
+      },
+      {
+        "start": 2006,
+        "end": 2008,
+        "title": "MSc in Mathematics, University of Fribourg.",
+        "details": "Modèle de l'évolution des opinions"
+      },
+      {
+        "start": 2003,
+        "end": 2006,
+        "title": "BSc in Mathematics, University of Fribourg, Minor of physics."
+      },
+      {
+        "start": 1997,
+        "end": 2002,
+        "title": "Federal maturity, Coll&egrave;ge Sainte-Croix.",
+        "details": "Options Spanish, Pedagogy and Psychology."
+      }
+    ],
+    "Achievements": [
+      {
+        "start": 2017,
+        "title": "N'avion",
+        "details": "The game I made to learn using Unity.<br /><br /><iframe src='./Navion/navionweb/index.html' frameborder='0' allowfullscreen></iframe><br /><br /><a href='./Navion/navion.winx64.zip'>Download for windows</a>"
+      },
+      {
+        "start": 2015,
+        "title": "Youtube channel: <a href='https://www.youtube.com/channel/UC5k_6tN3xdEgSs9JnFEiGzw'>Pourquoi Bordel</a>",
+        "details": "Proving mathematics concepts with simple words <br /><br /><iframe src='https://youtu.be/K2qlOfA_-QU' frameborder='0' allowfullscreen></iframe>"
+      },
+      {
+        "start": 2013,
+        "title": "Drawings to teach French to migrants, mandated by the <a href='http://oseo-fr.ch/'>OSEO</a>",
+        "details": "Some of these...<br /><br /><image src='./assets/Team/florian_extrait_OSEO.jpg'/>"
+      },
+      {
+        "start": 2006,
+        "title": "Second prize at the <a href='http://www.bedemania.ch'>bedeMANIA</a> contest",
+        "details": "<image href='./assets/Team/florian_BD.jpg'/>"
       }
     ]
   },
