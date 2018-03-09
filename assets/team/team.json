@@ -116,12 +116,14 @@
       {
         "start": 2013,
         "end": 2017,
-        "title": "Mathematics and Physics teacher, <a href='http://www.college2520.net' target='_blank'>Coll&egrave;ge de la Neuveville</a>."
+        "title":
+          "Mathematics and Physics teacher, <a href='http://www.college2520.net' target='_blank'>Coll&egrave;ge de la Neuveville</a>."
       },
       {
         "start": 2010,
         "end": 2012,
-        "title": "Mathematics teacher, <a href='http://www.emf.ch' target='_blank'>École des Métiers de Fribourg</a>."
+        "title":
+          "Mathematics teacher, <a href='http://www.emf.ch' target='_blank'>École des Métiers de Fribourg</a>."
       },
       {
         "start": 2004,
@@ -131,24 +133,28 @@
       {
         "start": 2002,
         "end": 2003,
-        "title": "Mathematics and DIY teacher, École Internationale Les Écureuils, Gryon."
+        "title":
+          "Mathematics and DIY teacher, École Internationale Les Écureuils, Gryon."
       }
     ],
-    "Education":[
+    "Education": [
       {
         "start": 2017,
         "end": "present",
-        "title": "Self-education in <a href='http://unity3d.com' target='_blank'>Unity</a> (C#), HTML, CSS, Javascript, Typescript and React."
+        "title":
+          "Self-education in <a href='http://unity3d.com' target='_blank'>Unity</a> (C#), HTML, CSS, Javascript, Typescript and React."
       },
       {
         "start": 2013,
         "end": 2016,
-        "title": "Self-education in Java using <a href='http://www.greenfoot.org' target='_blank'>Greenfoot</a>."
+        "title":
+          "Self-education in Java using <a href='http://www.greenfoot.org' target='_blank'>Greenfoot</a>."
       },
       {
         "start": 2009,
         "end": 2010,
-        "title": "DAES 2 (diploma for high school teaching) in mathematics and physics."
+        "title":
+          "DAES 2 (diploma for high school teaching) in mathematics and physics."
       },
       {
         "start": 2006,
@@ -171,23 +177,30 @@
     "Achievements": [
       {
         "date": 2017,
-        "title": "N'avion",
-        "details": "The game I made to learn using Unity.<br /><br /><a href='./Navion/navion.winx64.zip' target='_blank'>Download for windows</a>"
+        "title":
+          "<a href='./Navion/navionWeb/index.html' target='_blank'>N'avion</a>",
+        "details":
+          "The game I made to learn using Unity.<br /><a href='./Navion/navion.winx64.zip' target='_blank'>Download for windows</a>"
       },
       {
         "date": 2015,
-        "title": "Youtube channel: <a href='https://www.youtube.com/channel/UC5k_6tN3xdEgSs9JnFEiGzw' target='_blank'>Pourquoi Bordel</a>",
-        "details": "Proving mathematics concepts with simple words <br /><br /><iframe src='https://www.youtube.com/embed/K2qlOfA_-QU' frameborder='0' allowfullscreen></iframe>"
+        "title":
+          "Youtube channel: <a href='https://www.youtube.com/channel/UC5k_6tN3xdEgSs9JnFEiGzw' target='_blank'>Pourquoi Bordel</a>",
+        "details":
+          "Proving mathematics concepts with simple words <br /><br /><iframe src='https://www.youtube.com/embed/K2qlOfA_-QU' frameborder='0' allowfullscreen></iframe>"
       },
       {
         "date": 2013,
-        "title": "Drawings to teach French to migrants, mandated by the <a href='http://oseo-fr.ch/' target='_blank'>OSEO</a>",
-        "details": "Some of these...<br /><br /><image src='./assets/Team/florian_extrait_OSEO.jpg'/>"
+        "title":
+          "Drawings to teach French to migrants, mandated by the <a href='http://oseo-fr.ch/' target='_blank'>OSEO</a>",
+        "details":
+          "Some of these...<br /><br /><image src='./assets/team/florian_extrait_OSEO.jpg'/>"
       },
       {
         "date": 2006,
-        "title": "Second prize at the <a href='http://www.bedemania.ch' target='_blank'>bedeMANIA</a> contest",
-        "details": "<image href='./assets/Team/florian_BD.jpg'/>"
+        "title":
+          "Second prize at the <a href='http://www.bedemania.ch' target='_blank'>bedeMANIA</a> contest",
+        "details": "<image href='./assets/team/florian_BD.jpg'/>"
       }
     ]
   },
