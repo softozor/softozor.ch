@@ -183,24 +183,30 @@
           "The game I made to learn using Unity.<br /><a href='./Navion/navion.winx64.zip' target='_blank'>Download for windows</a>"
       },
       {
+        "date": 2017,
+        "title": "Fusion des trois communes",
+        "details":
+          "I was asked to make a drone movie about three towns that are about to merge.<br /><iframe src='https://www.youtube.com/embed/TdOckfVe4cY' frameborder='0' allowfullscreen></iframe>"
+      },
+      {
         "date": 2015,
         "title":
           "Youtube channel: <a href='https://www.youtube.com/channel/UC5k_6tN3xdEgSs9JnFEiGzw' target='_blank'>Pourquoi Bordel</a>",
         "details":
-          "Proving mathematics concepts with simple words <br /><br /><iframe src='https://www.youtube.com/embed/K2qlOfA_-QU' frameborder='0' allowfullscreen></iframe>"
+          "Proving mathematics concepts with simple words <br /><iframe src='https://www.youtube.com/embed/K2qlOfA_-QU' frameborder='0' allowfullscreen></iframe>"
       },
       {
         "date": 2013,
         "title":
           "Drawings to teach French to migrants, mandated by the <a href='http://oseo-fr.ch/' target='_blank'>OSEO</a>",
         "details":
-          "Some of these...<br /><br /><image src='./assets/team/florian_extrait_OSEO.jpg'/>"
+          "Some of these...<br /><image src='./assets/team/florian_extrait_OSEO.jpg'/>"
       },
       {
         "date": 2006,
         "title":
           "Second prize at the <a href='http://www.bedemania.ch' target='_blank'>bedeMANIA</a> contest",
-        "details": "<image href='./assets/team/florian_BD.jpg'/>"
+        "details": "<image src='./assets/team/florian_BD.jpg'/>"
       }
     ]
   },
