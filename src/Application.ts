@@ -5,6 +5,7 @@ import ContactFormManager from './ContactFormManager';
 import FocusRenderer from './FocusRenderer';
 import HighScoresRenderer from './HighScoresRenderer';
 import NewsRenderer from './NewsRenderer';
+import BrowserWarningRender from './BrowserWarningRender';
 
 export class Application {
   constructor() {
@@ -37,6 +38,7 @@ export class Application {
   private readonly m_FocusRenderer: FocusRenderer = new FocusRenderer();
   private readonly m_HighScoresRenderer: HighScoresRenderer = new HighScoresRenderer();
   private readonly m_NewsRenderer: NewsRenderer = new NewsRenderer();
+  private readonly m_BrowserWarningRender: BrowserWarningRender = new BrowserWarningRender();
 }
 /**
  * Non-member methods

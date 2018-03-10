@@ -1,0 +1,17 @@
+#browserWarning {
+  display: none;
+  $parent-width: 100%;
+  position: absolute;
+  top: 0;
+  width: $parent-width;
+  z-index: 100;
+  .content {
+    position: relative;
+    $width: 50%;
+    left: ($parent-width - $width) / 2;
+    width: $width;
+    border: 1px solid black;
+    background-color: $hover-color;
+    padding: 15px;
+  }
+}
