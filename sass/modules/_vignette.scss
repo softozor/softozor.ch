@@ -33,6 +33,11 @@ $margin: 25px;
   img {
     grid-area: i;
     width: 100%;
+
+    @media screen and (max-width: $large-screen) {
+      width: 50%;
+      margin: 15px auto;
+    }
   }
   .title {
     grid-area: title;
@@ -63,6 +68,7 @@ $margin: 25px;
     grid-area: tabs;
     display: flex;
     justify-content: center;
+    margin: $tab-images-margin auto;
     .tab-image {
       border: 2px solid $principal-color;
       border-radius: 5px;
@@ -80,8 +86,8 @@ $margin: 25px;
   }
 }
 
-$panel-width-ratio: 0.8;
-$panel-width: $panel-width-ratio*100%;
+// $panel-width-ratio: 0.8;
+$panel-width: 80%; //$panel-width-ratio*100%;
 
 .cv {
   width: $panel-width;
@@ -89,11 +95,12 @@ $panel-width: $panel-width-ratio*100%;
   margin-left: (100% - $panel-width) / 2;
   position: relative;
 
-  $ratio-right: 0.75;
+  // $ratio-right: 0.75;
 
   .entry {
     display: grid;
-    grid-template-columns: 25% $ratio-right*100%;
+    // grid-template-columns: 25% $ratio-right*100%;
+    grid-template-columns: 25% 75%;
     grid-template-rows: auto;
     grid-template-areas:
       'date        title      '
@@ -110,18 +117,18 @@ $panel-width: $panel-width-ratio*100%;
       grid-area: description;
       // padding-top: 56.25%;
       position: relative;
-      overflow: hidden;
-      padding-top: 56.25%;
-        iframe {
+      // overflow: hidden;
+      // padding-top: 56.25%;
+      iframe {
         // width: 100%;
-        // width: $panel-width-ratio*$ratio-right*100vw; 
+        // width: $panel-width-ratio*$ratio-right*100vw;
         // height: 0.75*$panel-width-ratio*$ratio-right*100vw;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+        // width: 100%;
+        // height: 100%;
+        // border: 0;
       }
     }
   }

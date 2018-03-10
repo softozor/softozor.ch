@@ -18,7 +18,7 @@ each member in Members
   .cv
     .career
       .close &times;
-      h2 Professional experience
+      h3 Professional experience
       each item in member.Career 
         .entry
           .date #{item.start} &#8211; #{item.end}
@@ -26,7 +26,7 @@ each member in Members
           .description!= item.details
     .education
       .close &times;
-      h2 Education
+      h3 Education
       each item in member.Education 
         .entry
           .date #{item.start} &#8211; #{item.end}
@@ -34,7 +34,7 @@ each member in Members
           .description!= item.details
     .achievements
       .close &times;
-      h2 Achievements
+      h3 Achievements
       each item in member.Achievements 
         .entry
           .date #{item.date}
