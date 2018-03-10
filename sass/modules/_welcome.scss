@@ -24,7 +24,7 @@ section#welcome {
       display: block;
       z-index: -1;
       @media screen and (max-width: $large-screen) {
-        max-width: 50%;
+        display: none;
       }
     }
   }
