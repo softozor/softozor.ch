@@ -97,6 +97,11 @@ $panel-width: 80%; //$panel-width-ratio*100%;
 
   // $ratio-right: 0.75;
 
+  @media screen and (max-width: $large-screen) {
+    width: 100%;
+    margin-left: 0;
+  }
+
   .entry {
     display: grid;
     // grid-template-columns: 25% $ratio-right*100%;
@@ -105,6 +110,14 @@ $panel-width: 80%; //$panel-width-ratio*100%;
     grid-template-areas:
       'date        title      '
       'date        description';
+    margin: 10px auto;
+    @media screen and (max-width: $large-screen) {
+      grid-template-columns: 100%;
+      grid-template-areas:
+      'date       '
+      'title      '
+      'description';
+    }
     .date {
       grid-area: date;
       font-style: italic;
