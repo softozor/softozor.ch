@@ -1,14 +1,22 @@
-// TODO: for mobiles, just span the whole banner, i.e. set height = width = 100%
 #scoreForm {
   $height: 75%;
   $width: 25%;
-  position: absolute;
+  border-radius: 10px;
   top: 50% - $height / 2;
   left: 50% - $width / 2;
   width: $width;
   height: $height;
+  @media screen and (max-width: $large-screen) {
+    $height: 100%;
+    $width: 100%;
+    border-radius: 0;
+    top: 50% - $height / 2;
+    left: 50% - $width / 2;
+    width: $width;
+    height: $height;
+  }
+  position: absolute;
   border: 0px solid black;
-  border-radius: 10px;
   background: white;
   opacity: 0.9;
   display: none;
@@ -16,7 +24,7 @@
     $font-size: 2rem;
     font-weight: bold;
     font-size: $font-size;
-    margin: - $font-size / 4 $font-size / 8;
+    margin: -$font-size / 4 $font-size / 8;
     position: absolute;
     top: 0;
     right: 0;

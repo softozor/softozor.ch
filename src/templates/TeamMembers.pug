@@ -17,7 +17,7 @@ each member in Members
         img.achievements-image(src=pathToImg('team', 'achievements.png'))
   .cv
     .career
-      .close X
+      .close &times;
       h2 Professional experience
       each item in member.Career 
         .entry
@@ -25,7 +25,7 @@ each member in Members
           .title!= item.title
           .description!= item.details
     .education
-      .close X
+      .close &times;
       h2 Education
       each item in member.Education 
         .entry
@@ -33,7 +33,7 @@ each member in Members
           .title!= item.title
           .description!= item.details
     .achievements
-      .close X
+      .close &times;
       h2 Achievements
       each item in member.Achievements 
         .entry
