@@ -71,8 +71,12 @@
       height: 100%;
     }
 
+    transition: all 2s ease;
+
     &.active {
       box-shadow: 10px 10px 10px $shadow-color;
+      bottom: calc(100vh - #{$banner-height});
+      height: calc(100vh - #{$banner-height});
     }
   }
 }

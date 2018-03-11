@@ -78,31 +78,17 @@ export default class HighScoresRenderer {
       return;
     }
     this.m_Dh = this.computeDH();
-    $(`${this.ELEMENT}`).addClass('active');
+    $(this.ELEMENT).addClass('active');
     $(`${this.ELEMENT} table`).show();
-    $(this.ELEMENT).animate(
-      {
-        height: `+=${this.m_Dh}`,
-        bottom: `-=${this.m_Dh}`
-      },
-      'slow',
-      this.onExpand.bind(this)
-    );
+    this.onExpand();
   }
 
   private collapse(event): void {
     if (this.m_Collapsed) {
       return;
     }
-
-    $(this.ELEMENT).animate(
-      {
-        height: `-=${this.m_Dh}`,
-        bottom: `+=${this.m_Dh}`
-      },
-      'slow',
-      this.onCollapse.bind(this)
-    );
+    $(this.ELEMENT).removeClass('active');
+    this.onCollapse();
   }
 
   private onExpand(): void {
@@ -111,8 +97,7 @@ export default class HighScoresRenderer {
   }
 
   private onCollapse(): void {
-    $(`${this.ELEMENT} table`).hide();
-    $(this.ELEMENT).removeClass('active');
+    $(`${this.ELEMENT} table`).slideUp(2000);
     this.bindMouseClick();
     this.m_Collapsed = true;
   }
