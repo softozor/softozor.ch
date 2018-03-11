@@ -8,8 +8,6 @@ type ScoreData = { username: string; score: string }[];
 export default class HighScoresRenderer {
   constructor() {
     this.bindMouseClick();
-
-    $(`${this.ELEMENT} table`).hide();
     this.refreshScores();
   }
 
@@ -79,7 +77,6 @@ export default class HighScoresRenderer {
     }
     this.m_Dh = this.computeDH();
     $(this.ELEMENT).addClass('active');
-    $(`${this.ELEMENT} table`).show();
     this.onExpand();
   }
 
@@ -97,7 +94,6 @@ export default class HighScoresRenderer {
   }
 
   private onCollapse(): void {
-    $(`${this.ELEMENT} table`).slideUp(2000);
     this.bindMouseClick();
     this.m_Collapsed = true;
   }

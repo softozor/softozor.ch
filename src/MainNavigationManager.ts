@@ -83,6 +83,7 @@ export default class MainNavigationManager {
   private setupLinks(): void {
     $('nav#navigation a, footer a')
       .not('.external')
+      .not('.nomenu')
       .click(e => {
         e.preventDefault();
         this.onClick(e.target);
