@@ -61,8 +61,11 @@ var plugins = [
     {
       from: 'images/icon/favicon_all_size',
       to: 'icons'
-    }
-    ,
+    },
+    {
+      from: 'images/icon/favicon_all_size/favicon.ico',
+      to: 'favicon.ico'
+    },
     {
       from: 'Navion',
       to: 'Navion'

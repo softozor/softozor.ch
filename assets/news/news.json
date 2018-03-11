@@ -1,5 +1,17 @@
 [
   {
+    "Date": "Mar 11th 2018",
+    "Title": "Production of the Shopozor's initial product backlog",
+    "Description":
+      "We have now gathered enough information about what our customer and his artisans want to have in their application. We are now initializing its initial product backlog."
+  },
+  {
+    "Date": "Mar 10th 2018",
+    "Title": "Mobile version of Softozor website available",
+    "Description":
+      "The first production version of our mobile website has been released. Up to a few minor problems with the game on some browsers, you should now enjoy navigating on our application with your mobile device."
+  },
+  {
     "Date": "Feb 25th 2018",
     "Title": "Desktop version of Softozor website available",
     "Description":
