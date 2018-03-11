@@ -52,25 +52,29 @@
         "date": "August 2014",
         "title":
           "<a href='https://link.springer.com/article/10.1007/s10596-014-9439-6?sa_campaign=email/event/articleAuthor/onlineFirst' target='_blank'>Bedrock topography reconstruction of glaciers from surface topography and mass-balance data</a>",
-        "details": ""
+        "details":
+          "Three methods based on the three-dimensional shallow ice approximation of glacier flow are devised that infer a glacier’s subglacial topography from the observation of its time-evolving surface and mass balance. The quasi-stationary inverse method relying on the apparent surface mass-balance description of the glacier’s evolution is first exposed. Second, the transient inverse method that iteratively updates the bedrock topography with the surface topography discrepancy is formulated. Third, a shape optimization algorithm is presented. The aim of the paper is to collect these methods, analyze their differences, and identify what brings the sophistication of shape optimization for reconstructing subglacial topographies. The three methods are compared to the ice thickness estimation method (ITEM) on direct measurements on Gries glacier, Swiss Alps. The paper concludes with a detailed discussion on the sensitivity of the shape optimization method to the model parameters."
       },
       {
         "date": "May 2014",
         "title":
           "<a href='http://www.sciencedirect.com/science/article/pii/S0098300414000235' target='_blank'>Estimating the ice thickness of shallow glaciers from surface topography and mass-balance data with a shape optimization algorithm</a>",
-        "details": ""
+        "details":
+          "A shape optimization algorithm is presented that estimates the ice thickness distribution within a three-dimensional, shallow glacier, given a transient surface geometry and a mass-balance distribution. The approach is based on the minimization of the surface topography misfit in the shallow ice approximation by means of a primal-dual procedure. The method׳s essential novelty is that it uses surface topography and mass-balance data only within the context of a time-dependent problem with evolving surface topography. Moreover, the algorithm is capable of computing some of the model parameters concurrently with the ice thickness distribution. The method is validated on synthetic and real-world data, where the choice of its Tikhonov regularization parameter by means of an L-curve criterion is discussed."
       },
       {
         "date": "November 2013",
         "title":
           "<a href='https://www.degruyter.com/view/j/jip.ahead-of-print/jip-2013-0016/jip-2013-0016.xml' target='_blank'>Estimating the ice thickness of mountain glaciers with a shape optimization algorithm using surface topography and mass-balance</a>",
-        "details": ""
+        "details":
+          "We present a shape optimization algorithm to estimate the ice thickness distribution within a two-dimensional, non-sliding mountain glacier, given a transient surface geometry and a mass-balance distribution. The approach is based on the minimization of the surface topography misfit at the end of the glacier's evolution in the shallow ice approximation of ice flow. Neither filtering of the surface topography where its gradient vanishes nor interpolation of the basal shear stress is involved. Novelty of the presented shape optimization algorithm is the use of surface topography and mass-balance only within a time-dependent Lagrangian approach for moving-boundary glaciers. On real-world inspired geometries, it is shown to produce estimations of even better quality in smaller time than the recently proposed steady and transient inverse methods. A sensitivity analysis completes the study and evinces the method's higher susceptibility to perturbations in the surface topography than in surface mass-balance or rate factor."
       },
       {
         "date": "February 2013",
         "title":
           "<a href='http://iopscience.iop.org/article/10.1088/0266-5611/29/3/035002/meta;jsessionid=9066A8362AB73C9FEE199FE08099C3F7.c5.iopscience.cld.iop.org' target='_blank'>Estimating the ice thickness of mountain glaciers with an inverse approach using surface topography and mass-balance</a>",
-        "details": ""
+        "details":
+          "We present a numerical method to estimate the ice thickness distribution within a two-dimensional, non-sliding mountain glacier, given a transient surface geometry and a mass-balance distribution, which are relatively easy to obtain for a large number of glaciers. The inverse approach is based on the shallow ice approximation (SIA) of ice flow and requires neither filtering of the surface topography with a lower slope limit nor approximation of constant basal shear stress. We first address this problem for a steady-state surface geometry. Next, we use an apparent surface mass-balance description that makes the transient evolution quasi-stationary. Then, we employ a more elaborated fixed-point method in which the bedrock solution is iteratively obtained by adding the difference between the computed and known surface geometries at the end of the considered time interval. In a sensitivity study, we show that the procedure is much more susceptible to small perturbations in surface geometry than mass-balance. Finally, we present preliminary results for bed elevations in three space dimensions."
       }
     ],
     "Education": [
@@ -86,7 +90,7 @@
         "end": 2008,
         "title":
           "MSc in Physics, The University of Fribourg, Fribourg, Minor of mathematics.",
-        "details": "<a href=''>Time evolution of the quantum spiral state</a>"
+        "details": "<i>Time evolution of the quantum spiral state</i>"
       },
       {
         "start": 2003,
