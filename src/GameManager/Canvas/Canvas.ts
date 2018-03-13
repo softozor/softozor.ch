@@ -182,8 +182,8 @@ export default class Canvas {
   private handleKeyDown(event): void {
     switch (event.keyCode) {
     case KEY.e_SPACE:
-      event.preventDefault();
-      this.m_DownHandler.post();
+      // event.preventDefault(); // unfortunately, this blocks the usage of the space key over the whole web site!
+      // this.m_DownHandler.post();
       break;
     case KEY.e_ESC:
       this.m_Buttons.play.click();
