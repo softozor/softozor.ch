@@ -1,0 +1,15 @@
+// TODO items:
+
+* remove *W for the sake of readability
+* use keyword "declare" as in the *.d.ts to define interfaces and see if I can declare protected and private methods in this way
+* implement fading of softozor and other objects when when we go from 'starting' state to 'running' and from 'pausing' to 'paused'
+  o see old banner.transitionUpdate and implied behaviors 
+* deal with the setting of the initial values and make sure that they are consistent (see my sheets of paper where I computed the "initial condition")
+
+
+* playButton is not yet finished:
+  o when I show it, I don't want the animation from pause to play (or vice-versa) to be triggered; I just want to show the last displayed state (either play or pause)
+  o this class needs an "animate" method (the button should have a toggle mechanism; if state = play, then go to pause and vice-versa)
+  
+* remove Canvas reference from all renderers; replace draw(pos?: Vector2D) with draw(canvas: Canvas, alpha: number, pos?: Vector2D)
+* remove reference to canvas from all classes and get it from the MovingCoordinateSystem
