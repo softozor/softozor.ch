@@ -1,5 +1,11 @@
 [
   {
+    "Date": "Apr 3rd 2018",
+    "Title": "Development environment ready for the Shopozor project",
+    "Description":
+      "We are done clarifying what technologies we will go for in this project. Our apps' development builds will be regularly deployed on <a href='http://www.heroku.com' target='_blank'>Heroku</a> as it offers free hosting for NodeJS applications. Our backend application will base on <a href='http://www.prisma.io' target='_blank'>PrismaJS</a> for the database API. Our frontend application will be written with the <a href='https://reactjs.org' target='_blank'>ReactJS</a> library. We will give <a href='https://www.apollographql.com/' target='_blank'>Apollo</a> a shot for client - server communications as well as internal state management."
+  },
+  {
     "Date": "Mar 11th 2018",
     "Title": "Production of the Shopozor's initial product backlog",
     "Description":
