@@ -1,5 +1,10 @@
 [
   {
+    "Date": "May 24th 2018",
+    "Title": "Shopozor's development applications made available online for our stakeholders",
+    "Description": "The initial commits to our repositories were performed today. Our private repositories are automatically deployed onto heroku: you can find our <a href='http://shopozor-server.herokuapp.com' target='_blank'>server application</a> as well as our <a href='http://shopozor-client.herokuapp.com' target='_blank'>client application</a>. The development is on-going which means that the design of both applications is far from being done. We also decided to base our system on the graph database developed by <a href='http://www.neo4j.com' target='_blank'>neo4j</a>."
+  },
+  {
     "Date": "May 15th 2018",
     "Title": "First meeting with the Shopozor's stakeholders",
     "Description": "We held our first meeting with the stakeholders of the project in the restaurant \"La Pinte\" in Farvagny. There we got contact with a dozen people interested in the up-coming software. The discussions were very interesting and we were able to take important needs into account. We also did a first demonstration of our Shopozor!"
@@ -7,7 +12,7 @@
   {
     "Date": "May 14th 2018",
     "Title": "First governance meeting",
-    "Description": "As a new team member will join us, we will need to address a few questions related to our internal governance, like role assignments, potentially new roles definition, finance, and overall strategy."
+    "Description": "As a new team member will join us, we need to address a few questions related to our internal governance, like role assignments, potentially new roles definition, finance, and overall strategy."
   },
   {
     "Date": "Apr 3rd 2018",
