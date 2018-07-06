@@ -1,5 +1,10 @@
 [
   {
+    "Date": "June 30th 2018",
+    "Title": "First rental of our Fotozor under the code name 'Micmacmaton'",
+    "Description": "<p>The event \"Mic mac dans les contes\" organized by <a href='https://www.petit-theatre-siviriez.ch/' target='_blank'>Le Petit Th&eacute;&acirc;tre de Siviriez</a> show-cased the 'Micmacmaton' instance of our Fotozor in Villaraboud.</p> <p> <img align='center' src='../assets/news/micmacmaton.jpeg'></p>"
+  },
+  {
     "Date": "May 24th 2018",
     "Title": "Shopozor's development applications made available online for our stakeholders",
     "Description": "The initial commits to our repositories were performed today. Our private repositories are automatically deployed onto heroku: you can find our <a href='http://shopozor-server.herokuapp.com' target='_blank'>server application</a> as well as our <a href='http://shopozor-client.herokuapp.com' target='_blank'>client application</a>. The development is on-going which means that the design of both applications is far from being done. We also decided to base our system on the graph database developed by <a href='http://www.neo4j.com' target='_blank'>neo4j</a>."

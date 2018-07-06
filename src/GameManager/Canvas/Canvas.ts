@@ -146,9 +146,7 @@ export default class Canvas {
 
   private getClickedObject(event: MouseEvent): Button | undefined {
     let buttons: Button[] = values(this.m_Buttons);
-    let clickedBtns: Button[] = filter(buttons, (elem: Button): Boolean =>
-      elem.hasMouse(event)
-    );
+    let clickedBtns: Button[] = buttons.filter((elem: Button) => elem.hasMouse(event));
     return clickedBtns.length === 1 ? clickedBtns.pop() : undefined;
   }
 

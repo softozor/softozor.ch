@@ -50,10 +50,6 @@ export default class SpriteListLoader {
  * Helper functions
  */
 export function getSpriteWithSrc(sprites: SpriteList, imgSrc: string): Sprite {
-  let result: DistantSprite | undefined = find(
-    sprites,
-    (element: DistantSprite): Boolean =>
-      indexOf(split(element.sprite.img.src, '/'), imgSrc) !== -1
-  );
+  let result: DistantSprite | undefined = sprites.find((element: DistantSprite) => indexOf(split(element.sprite.img.src, '/'), imgSrc) !== -1);
   return result !== undefined ? result.sprite : new Sprite();
 }
