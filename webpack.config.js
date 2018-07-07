@@ -51,6 +51,10 @@ var plugins = [
       to: 'assets/news.png'
     },
     {
+      from: 'assets/news',
+      to: 'assets/news'
+    },
+    {
       from: 'server',
       to: 'server'
     },
